@@ -188,17 +188,25 @@ Identity Proofing は, ある Subject が自身で主張する主体であるこ
 
 <!-- Identity proofing establishes that a subject is who they claim to be. Digital authentication establishes that a subject attempting to access a digital service is in control of one or more valid authenticators associated with that subject's digital identity. For services in which return visits are applicable, successfully authenticating provides reasonable risk-based assurances that the subject accessing the service today is the same as that which accessed the service previously. Digital identity presents a technical challenge because this process often involves proofing individuals over an open network, and always involves the authentication of individual subjects over an open network to access digital government services. The processes and technologies to establish and use digital identities offer multiple opportunities for impersonation and other attacks. -->
 
-本技術ガイドライン群は NIST Special Publication SP 800-63-2 に取って代わる. 各政府機関はこれらのガイドラインを自身のデジタルサービスの Risk Assessment および実装の一部として利用することとなる.
+本技術ガイドライン群は NIST Special Publication SP 800-63-2 に取って代わる. 各政府機関はこれらのガイドラインを自身のデジタルサービスの Risk Assessment および実装の一部として利用することとなる. 本ガイドライン群では, Identity Assurance を個別要素ごとに分割し, Authentication の誤りがもたらすネガティブインパクトへの対策を提供する. Non-federated なシステムでは, 政府機関はそれらのうち *Identity Assurance Level (IAL)* と *Authenticator Assurance Level (AAL)* という2つの要素を用いるであろう. Federated なシステムでは, それに加えて3つ目の要素となる *Federation Assurance Level (FAL)* も用いることとなろう.
 
-These technical guidelines supersede NIST Special Publication SP 800-63-2. Agencies use these guidelines as part of the risk assessment and implementation of their digital service(s). These guidelines provide mitigations of an authentication error's negative impacts by separating the individual elements of identity assurance into discrete, component parts. For non-federated systems, agencies will select two components, referred to as *Identity Assurance Level (IAL)* and *Authenticator Assurance Level (AAL)*. For federated systems, agencies will select a third component, *Federation Assurance Level (FAL)*.
+<!-- These technical guidelines supersede NIST Special Publication SP 800-63-2. Agencies use these guidelines as part of the risk assessment and implementation of their digital service(s). These guidelines provide mitigations of an authentication error's negative impacts by separating the individual elements of identity assurance into discrete, component parts. For non-federated systems, agencies will select two components, referred to as *Identity Assurance Level (IAL)* and *Authenticator Assurance Level (AAL)*. For federated systems, agencies will select a third component, *Federation Assurance Level (FAL)*. -->
 
-These guidelines retire the concept of a level of assurance (LOA) as a single ordinal that drives implementation-specific requirements. Rather, by combining appropriate business and privacy risk management side-by-side with mission need, agencies will select IAL, AAL, and FAL as distinct options. While many systems will have the same numerical level for each of IAL, AAL, and FAL, this is not a requirement and agencies should not assume they will be the same in any given system.
+本ガイドライン群は, 各実装固有の要件を追いやる単一の序数としての Level of Assurance (LOA) というコンセプトを諦め, 適切なビジネスおよびプライバシーに関する Risk Assessment のもと, 各機関が IAL, AAL, FAL を個別に選択するようにする. 多くのシステムで IAL, AAL, FAL がそれぞれ同じレベル値となるとしても, その値自体は要件ではなく, 各機関はいかなるシステムでもこの値が適切であるとみなすべきでもない.
 
-The components of identity assurance detailed in these guidelines are as follows:
+<!-- These guidelines retire the concept of a level of assurance (LOA) as a single ordinal that drives implementation-specific requirements. Rather, by combining appropriate business and privacy risk management side-by-side with mission need, agencies will select IAL, AAL, and FAL as distinct options. While many systems will have the same numerical level for each of IAL, AAL, and FAL, this is not a requirement and agencies should not assume they will be the same in any given system. -->
 
-* **IAL** refers to the identity proofing process.
+Identity Assurance の構成要素は以下のガイドライン群に詳しい.
+
+<!-- The components of identity assurance detailed in these guidelines are as follows: -->
+
+* **IAL** は, Identity Proofing プロセスについて述べる.
+* **AAL** は, Authentication プロセスについて述べる.
+* **FAL** は, Federated な環境において Authentication 情報 (および場合によっては Attribute 情報) を Relying Party (RP) に伝達する Assertion の強度について述べる.
+
+<!-- * **IAL** refers to the identity proofing process.
 * **AAL** refers to the authentication process.
-* **FAL** refers to the strength of an assertion in a federated environment, used to communicate authentication and attribute information (if applicable) to a relying party (RP).
+* **FAL** refers to the strength of an assertion in a federated environment, used to communicate authentication and attribute information (if applicable) to a relying party (RP). -->
 
 The separation of these categories provides agencies flexibility in choosing identity solutions and increases the ability to include privacy-enhancing techniques as fundamental elements of identity systems at any assurance level. For example, these guidelines support scenarios that will allow pseudonymous interactions even when strong, multi-factor authenticators are used. In addition, these guidelines encourage minimizing the dissemination of identifying information by requiring federated identity providers (IdPs) to support a range of options for querying data, such as asserting whether an individual is older than a certain age rather than querying the entire date of birth. While many agency use cases will require individuals to be fully identified, these guidelines encourage pseudonymous access to government digital services wherever possible and, even where full identification is necessary, limiting the amount of personal information collected as much as possible.
 
