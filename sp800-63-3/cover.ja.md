@@ -236,7 +236,7 @@ SP 800-63 は, 一般的な Identity Framework およびデジタルシステム
 
 [**SP 800-63A Enrollment and Identity Proofing**](sp800-63a.ja.html)
 
-NIST SP 800-63-A は, Applicant が自身の Identity を提示し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この巻では, リモートと対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
+NIST SP 800-63-A は, Applicant が自身の Identity を提示し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この Vol. では, リモートと対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
 
 <!-- NIST SP 800-63-A addresses how applicants can prove their identities and become enrolled as valid subscribers within an identity system. It provides requirements by which applicants can both identity proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._ -->
 
