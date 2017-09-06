@@ -208,29 +208,41 @@ Identity Assurance の構成要素は以下のガイドライン群に詳しい.
 * **AAL** refers to the authentication process.
 * **FAL** refers to the strength of an assertion in a federated environment, used to communicate authentication and attribute information (if applicable) to a relying party (RP). -->
 
-これらのカテゴリーを分割することで, 各機関は Identity ソリューション選択の自由を獲得し, いかなる Assurance Level においても Identity システムの基本要素としてプライバシー強化手法を採用する余地を高める. 例えば, 本ガイドライン群では, 強固な多要素 Authenticator を用いる場合でも, 仮名でのインタラクションを可能としている. また本ガイドライン群は, Federated Identity Provider (IdP) にデータ問い合わせに関する幅広い選択肢の用意を求め, 識別情報拡散の最小化を推奨している. このような選択肢の例としては, 生年月日をまるごと取得するのではなく, ある年齢より上かどうかを問い合わせられるようにするといったことがあげられる. 各機関が持つ多くのユースケースでは, 個人が完全に識別されていることが求められるであろうが, 本ガイドライン群は可能な限り政府の Digital Service への仮名アクセスを推奨する. また完全な識別が必要な場合でも, 収集する Personal Information を最小化することが推奨される.
+これらのカテゴリーを分割することで, 各機関は Identity ソリューション選択の自由を獲得し, いかなる Assurance Level においても Identity システムの基本要素としてプライバシー強化手法を採用する余地を高める. 例えば, 本ガイドライン群では, 強固な多要素 Authenticator を用いる場合でも, 仮名でのインタラクションを可能としている. また本ガイドライン群は, Federated Identity Provider (IdP) にデータ問い合わせに関する幅広い選択肢の用意を求め, 識別情報拡散の最小化を推奨している. このような選択肢の例としては, 生年月日をまるごと取得するのではなく, ある年齢より上かどうかを問い合わせられるようにするといったことがあげられる. 各機関が持つ多くのユースケースでは, 個人が完全に識別されていることが求められるであろうが, 本ガイドライン群は可能な限り政府のデジタルサービスへの仮名アクセスを推奨する. また完全な識別が必要な場合でも, 収集する Personal Information を最小化することが推奨される.
 
 <!-- The separation of these categories provides agencies flexibility in choosing identity solutions and increases the ability to include privacy-enhancing techniques as fundamental elements of identity systems at any assurance level. For example, these guidelines support scenarios that will allow pseudonymous interactions even when strong, multi-factor authenticators are used. In addition, these guidelines encourage minimizing the dissemination of identifying information by requiring federated identity providers (IdPs) to support a range of options for querying data, such as asserting whether an individual is older than a certain age rather than querying the entire date of birth. While many agency use cases will require individuals to be fully identified, these guidelines encourage pseudonymous access to government digital services wherever possible and, even where full identification is necessary, limiting the amount of personal information collected as much as possible. -->
 
-今日では, 組織における Identity ソリューションは単一システムや同一ベンダーが全機能を提供するといったモノリシックなものとは限らない. Identity サービスのマーケットは細分化され, 組織や機関は標準準拠かつプラガブルな Identity ソリューションを目的に合わせて採用することができるようになっている. そのようなことから, SP 800-63 は一連のドキュメントに分割されたのである. 以降この一連のドキュメント一式を "本ガイドライン群 (the guidelines)" と呼び, 個々のドキュメントは "巻 (volumes)" と呼ぶ. RP は SP 800-63 を採用することが要求される. 残りの巻は, 各機関が求める要素サービスに応じて, 個別に用いても良いし一体的に用いても良い.
+今日では, 組織における Identity ソリューションは単一システムや同一ベンダーが全機能を提供するといったモノリシックなものとは限らない. Identity サービスのマーケットは細分化され, 組織や機関は標準準拠かつプラガブルな Identity ソリューションを目的に合わせて採用することができるようになっている. そのようなことから, SP 800-63 は一連のドキュメントに分割されたのである. 以降この一連のドキュメント一式を "本ガイドライン群 (the guidelines)" と呼び, 個々のドキュメントは "Vol. (volumes)" と呼ぶ. RP は SP 800-63 を採用することが要求される. 残りの Vol. は, 各機関が求める要素サービスに応じて, 個別に用いても良いし一体的に用いても良い.
 
 <!-- In today's environment, an organization's identity solution need not be a monolith, where one system or vendor provides all functionality. The market for identity services is componentized, allowing organizations and agencies to employ standards-based, pluggable identity solutions based on mission need. As such, SP 800-63 has been split into a suite of documents. The suite as a whole is referred to as "the guidelines," with the individual documents referred to as "volumes." RPs are required to use SP 800-63; the remaining volumes may be used independently or in an integrated fashion, depending on the component service(s) an agency requires. -->
 
-Each volume has adopted verbs that are internationally recognized in standards organizations as normative and requirements-based. When used in a normative statement in these guidelines, they are CAPITALIZED for ease of identification. For example, SHALL is used to denote a mandatory requirement, while SHOULD refers to a technique, technology, or process that is recommended but not mandatory. For more details on the definitions of these terms see the [Requirements Notation and Conventions](#notation) at the beginning of each document.
+各 Vol. は様々な標準化団体で規範ないしは要件を示す国際的に認められた用語を用いる. 本ガイドライン群で規範的表現を用いるときには, それらは明示的に大文字表記 (CAPITALIZED) することとする. 例えば, SHALL は必須要件を示し, SHOULD は推奨されるが必須ではないということを示す. これらの用語の詳細は, 各ドキュメント冒頭の [Requirements Notation and Conventions](#notation) を参照のこと.
 
-These documents may inform — but do not restrict or constrain — the development or use of standards for application outside the federal government, such as e-commerce transactions.
+<!-- Each volume has adopted verbs that are internationally recognized in standards organizations as normative and requirements-based. When used in a normative statement in these guidelines, they are CAPITALIZED for ease of identification. For example, SHALL is used to denote a mandatory requirement, while SHOULD refers to a technique, technology, or process that is recommended but not mandatory. For more details on the definitions of these terms see the [Requirements Notation and Conventions](#notation) at the beginning of each document. -->
 
-These guidelines are organized as follows:
+本ドキュメント群は E-Commerce などの連邦政府以外のアプリケーションにおける標準技術の開発・利用に関して言及することもあるが, 決してそれらのアプリケーションに対してなんらかの制限や制約を課すものではない.
+
+<!-- These documents may inform — but do not restrict or constrain — the development or use of standards for application outside the federal government, such as e-commerce transactions. -->
+
+本ガイドライン群は以下のような構成となっている.
+
+<!-- These guidelines are organized as follows: -->
 
 **SP 800-63 Digital Identity Guidelines** (This document)
 
-SP 800-63 provides an overview of general identity frameworks, using authenticators, credentials, and assertions together in a digital system, and a risk-based process of selecting assurance levels. _SP 800-63 contains both normative and informative material._
+SP 800-63 は, 一般的な Identity Framework およびデジタルシステムにおける, Authenticator, Credential, Assertion の利用について概観し, リスクベースプロセスに基づく各 Assurance Level の選択方法について述べる. _SP 800-63 contains both normative and informative material._
 
-[**SP 800-63A Enrollment and Identity Proofing**](sp800-63a.html)
+<!-- SP 800-63 provides an overview of general identity frameworks, using authenticators, credentials, and assertions together in a digital system, and a risk-based process of selecting assurance levels. _SP 800-63 contains both normative and informative material._ -->
 
-NIST SP 800-63-A addresses how applicants can prove their identities and become enrolled as valid subscribers within an identity system. It provides requirements by which applicants can both identity proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._
+[**SP 800-63A Enrollment and Identity Proofing**](sp800-63a.ja.html)
 
-SP 800-63A sets requirements to achieve a given IAL. The three IALs reflect the options agencies may select from based on their risk profile and the potential harm caused by an attacker making a successful false claim of an identity. The IALs are as follows:
+NIST SP 800-63-A は, Applicant が自身の Identity を提示し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この巻では, リモートと対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
+
+<!-- NIST SP 800-63-A addresses how applicants can prove their identities and become enrolled as valid subscribers within an identity system. It provides requirements by which applicants can both identity proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._ -->
+
+SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, 各機関による自身のリスクプロファイリングと, 攻撃者による不正な Identity の主張が成功してしまった場合の潜在的被害に基づいて, 各機関が選択できる選択肢を示す. 各 IAL は以下のとおりである.
+
+<!-- SP 800-63A sets requirements to achieve a given IAL. The three IALs reflect the options agencies may select from based on their risk profile and the potential harm caused by an attacker making a successful false claim of an identity. The IALs are as follows: -->
 
 **IAL1**: There is no requirement to link the applicant to a specific real-life identity. Any attributes provided in conjunction with the authentication process are self-asserted or should be treated as such (including attributes a Credential Service Provider, or CSP, asserts to an RP).
 
@@ -239,7 +251,7 @@ SP 800-63A sets requirements to achieve a given IAL. The three IALs reflect the 
 **IAL3**: Physical presence is required for identity proofing. Identifying attributes must be verified by an authorized and trained representative of the CSP. As with IAL2, attributes can be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes.
 
 
-[**SP 800-63B Authentication and Lifecycle Management**](sp800-63b.html)
+[**SP 800-63B Authentication and Lifecycle Management**](sp800-63b.ja.html)
 
 For services in which return visits are applicable, a successful authentication provides reasonable risk-based assurances that the subscriber accessing the service today is the same as that which accessed the service previously. The robustness of this confidence is described by an AAL categorization. NIST SP 800-63B addresses how an individual can securely authenticate to a CSP to access a digital service or set of digital services. _SP 800-63B contains both normative and informative material._
 
@@ -251,7 +263,7 @@ The three AALs define the subsets of options agencies can select based on their 
 
 **AAL3**: AAL3 provides very high confidence that the claimant controls authenticator(s) bound to the subscriber's account. Authentication at AAL3 is based on proof of possession of a key through a cryptographic protocol. AAL3 authentication SHALL use a hardware-based cryptographic authenticator and an authenticator that provides verifier impersonation resistance; the same device MAY fulfill both these requirements. In order to authenticate at AAL3, claimants SHALL prove possession and control of [two distinct authentication factors](#mfa-definition) through secure authentication protocol(s). [Approved cryptographic](#approved) techniques are required.
 
-[**SP 800-63C Federation and Assertions**](sp800-63c.html)
+[**SP 800-63C Federation and Assertions**](sp800-63c.ja.html)
 
 NIST SP 800-63C provides requirements when using federated identity architectures and assertions to convey the results of authentication processes and relevant identity information to an agency application. In addition, this volume offers privacy-enhancing techniques to share information about a valid, authenticated subject and describes methods that allow for strong multi-factor authentication (MFA) while the subject remains pseudonymous to the digital service. _SP 800-63C contains both normative and informative material._
 
