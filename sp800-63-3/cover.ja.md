@@ -236,7 +236,7 @@ SP 800-63 は, 一般的な Identity Framework およびデジタルシステム
 
 [**SP 800-63A Enrollment and Identity Proofing**](sp800-63a.ja.html)
 
-NIST SP 800-63-A は, Applicant が自身の Identity を提示し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この Vol. では, リモートと対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
+NIST SP 800-63-A は, Applicant が自身の Identity を提示し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この Vol. では, Remote と対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
 
 <!-- NIST SP 800-63-A addresses how applicants can prove their identities and become enrolled as valid subscribers within an identity system. It provides requirements by which applicants can both identity proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._ -->
 
@@ -244,11 +244,17 @@ SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, 各
 
 <!-- SP 800-63A sets requirements to achieve a given IAL. The three IALs reflect the options agencies may select from based on their risk profile and the potential harm caused by an attacker making a successful false claim of an identity. The IALs are as follows: -->
 
-**IAL1**: There is no requirement to link the applicant to a specific real-life identity. Any attributes provided in conjunction with the authentication process are self-asserted or should be treated as such (including attributes a Credential Service Provider, or CSP, asserts to an RP).
+**IAL1**: Applicant を特定の現実世界の Identity と紐づける必要はない. Authentication プロセスにおいて提供されるいかなる Attribute も Self-asserted であるものとする. (Credential Service Provider (CSP) が RP に対して Assert する Attribute も含む)
 
-**IAL2**: Evidence supports the real-world existence of the claimed identity and verifies that the applicant is appropriately associated with this real-world identity. IAL2 introduces the need for either remote or physically-present identity proofing. Attributes can be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes.
+<!-- **IAL1**: There is no requirement to link the applicant to a specific real-life identity. Any attributes provided in conjunction with the authentication process are self-asserted or should be treated as such (including attributes a Credential Service Provider, or CSP, asserts to an RP). -->
 
-**IAL3**: Physical presence is required for identity proofing. Identifying attributes must be verified by an authorized and trained representative of the CSP. As with IAL2, attributes can be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes.
+**IAL2**: Claimed Identity が現実世界に存在し, Applicant が現実世界の当該 Identity に適切に紐づいていることを検証し, それを証明すること. IAL2 では Remote もしくは対面での Identity Proofing が必要となる. CSP は, 検証済 Attribute を含む仮名の Identity を許容しつつ, RP に対して Attribute を Assert する.
+
+<!-- **IAL2**: Evidence supports the real-world existence of the claimed identity and verifies that the applicant is appropriately associated with this real-world identity. IAL2 introduces the need for either remote or physically-present identity proofing. Attributes can be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. -->
+
+**IAL3**: 対面での Identity Proofing が要求される. 識別に用いられる Attribute は, 認可されトレーニングされた CSP の担当者によって検証される必要がある. IAL2 同様, CSP は, 検証済 Attribute を含む仮名の Identity を許容しつつ, RP に対して Attribute を Assert する.
+
+<!-- **IAL3**: Physical presence is required for identity proofing. Identifying attributes must be verified by an authorized and trained representative of the CSP. As with IAL2, attributes can be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. -->
 
 
 [**SP 800-63B Authentication and Lifecycle Management**](sp800-63b.ja.html)
