@@ -735,96 +735,184 @@ Attacker が事前に記録しておいた (正当な Claimant と Verifier と�
 <!-- An attack in which the attacker is able to replay previously captured messages (between a legitimate claimant and a verifier) to masquerade as that claimant to the verifier or vice versa. -->
 
 #### Replay Resistance
-The property of an authentication process to resist replay attacks, typically by use of an authenticator output that is valid only for a specific authentication.
+
+Replay Attack 耐性のある Authentication プロセスのプロパティ. 典型的には, 特定の Authentication にのみ有効な Authenticator Output により実現される.
+
+<!-- The property of an authentication process to resist replay attacks, typically by use of an authenticator output that is valid only for a specific authentication. -->
 
 #### Restricted
-An authenticator type, class, or instantiation having additional risk of false acceptance associated with its use that is therefore subject to additional requirements.
+
+誤認発生時に追加のリスクが発生するため, 追加要件を要求されるような Authenticator Type, クラス, インスタンス.
+
+<!-- An authenticator type, class, or instantiation having additional risk of false acceptance associated with its use that is therefore subject to additional requirements. -->
 
 #### Risk Assessment
-The process of identifying, estimating, and prioritizing risks to organizational operations (including mission, functions, image, or reputation), organizational assets, individuals, and other organizations, resulting from the operation of a system. It is part of risk management, incorporates threat and vulnerability analyses, and considers mitigations provided by security controls planned or in place. Synonymous with risk analysis.
+
+システムの運用に起因する, 組織の運営 (ミッション, 機能, イメージ, レピュテーションを含む), 組織の資産, 個人および他組織に対するリスクを, 特定, 推定, 優先順位付けするプロセス. Risk Assessment は Risk Management の一部であり, 脅威・脆弱性解析を包含し, 計画済もしくは実施中のセキュリティー管理で施される対策について考察するプロセスである. Risk Analysis と同義.
+
+<!-- The process of identifying, estimating, and prioritizing risks to organizational operations (including mission, functions, image, or reputation), organizational assets, individuals, and other organizations, resulting from the operation of a system. It is part of risk management, incorporates threat and vulnerability analyses, and considers mitigations provided by security controls planned or in place. Synonymous with risk analysis. -->
 
 #### Risk Management
-The program and supporting processes to manage information security risk to organizational operations (including mission, functions, image, reputation), organizational assets, individuals, other organizations, and includes: (i) establishing the context for risk-related activities; (ii) assessing risk; (iii) responding to risk once determined; and (iv) monitoring risk over time.
+
+組織の運営 (ミッション, 機能, イメージ, レピュテーションを含む), 組織の資産, 個人および他組織に対する情報セキュリティーリスクを管理するプログラムや補助的プロセス. (i) リスクに関係するアクティビティーを見極め, (ii) リスクを評価し, (iii) ひとたびリスクが特定されればそれに対応し, (iv) 継続的にリスクをモニタリングする, という一連の行動を含む.
+
+<!-- The program and supporting processes to manage information security risk to organizational operations (including mission, functions, image, reputation), organizational assets, individuals, other organizations, and includes: (i) establishing the context for risk-related activities; (ii) assessing risk; (iii) responding to risk once determined; and (iv) monitoring risk over time. -->
 
 #### Salt
-A non-secret value used in a cryptographic process, usually to ensure that the results of computations for one instance cannot be reused by an attacker.
+
+暗号プロセスにおいて用いられる秘密でない (non-secret) 値で, 通常ある特定の計算結果が Attacker によって再利用されないことを保証するために用いられる.
+
+<!-- A non-secret value used in a cryptographic process, usually to ensure that the results of computations for one instance cannot be reused by an attacker. -->
 
 #### Secure Sockets Layer (SSL)
-See *Transport Layer Security (TLS)*.
+
+*Transport Layer Security (TLS)* 参照.
+
+<!-- See *Transport Layer Security (TLS)*. -->
 
 #### Session
-A persistent interaction between a subscriber and an endpoint, either an RP or a CSP. A session begins with an authentication event and ends with a session termination event. A session is bound by use of a session secret that the subscriber's software (a browser, application, or OS) can present to the RP or CSP in lieu of the subscriber's authentication credentials.
+
+Subscriber と RP ないしは CSP のエンドポイントの間の継続的インタラクション. Session は Authentication イベントにより開始され, Session 終了イベントで終了する. Session は Session シークレットにより紐づけられる. Session シークレットは Subscriber のソフトウェア (Browser, アプリケーション, OS) が RP や CSP に Subscriber の Authentication Credential の代わりとして提示することができる値である.
+
+<!-- A persistent interaction between a subscriber and an endpoint, either an RP or a CSP. A session begins with an authentication event and ends with a session termination event. A session is bound by use of a session secret that the subscriber's software (a browser, application, or OS) can present to the RP or CSP in lieu of the subscriber's authentication credentials. -->
 
 #### Session Hijack Attack
-An attack in which the attacker is able to insert himself or herself between a claimant and a verifier subsequent to a successful authentication exchange between the latter two parties. The attacker is able to pose as a subscriber to the verifier or vice versa to control session data exchange. Sessions between the claimant and the RP can be similarly compromised.
+
+Claimant と Verifier の間の Authentication のやりとりが成功したのち, Attacker が Claimant と Verifier の間に入り込む攻撃. Attacker は Verifier に対して Subscriber のふりをしたり, Subscriber に対して Verifier のふりをしたりして, Session 中のデータ交換をコントロールする. Claimant と RP の間の Session も同様に侵害されうる.
+
+<!-- An attack in which the attacker is able to insert himself or herself between a claimant and a verifier subsequent to a successful authentication exchange between the latter two parties. The attacker is able to pose as a subscriber to the verifier or vice versa to control session data exchange. Sessions between the claimant and the RP can be similarly compromised. -->
 
 #### Shared Secret
-A secret used in authentication that is known to the subscriber and the verifier.
+
+Subscriber と Verifier が知っている, Authentication で使われるシークレット.
+
+<!-- A secret used in authentication that is known to the subscriber and the verifier. -->
 
 #### Side-Channel Attack
-An attack enabled by leakage of information from a physical cryptosystem. Characteristics that could be exploited in a side-channel attack include timing, power consumption, and electromagnetic and acoustic emissions.
+
+物理的な暗号システムからの情報漏洩によって可能となる Attack. Side-Channel Attack においては, タイミング, 消費電力, 電磁波放出, 及び音響放射といった特性が利用される.
+
+<!-- An attack enabled by leakage of information from a physical cryptosystem. Characteristics that could be exploited in a side-channel attack include timing, power consumption, and electromagnetic and acoustic emissions. -->
 
 #### <a name="sf"></a> Single-Factor
-A characteristic of an authentication system or an authenticator that requires only one authentication factor (something you know, something you have, or something you are) for successful authentication.
+
+単一の Authentication Factor (something you know, something you have, or something you are) を要求する Authentication システムや Authenticator の特徴.
+
+<!-- A characteristic of an authentication system or an authenticator that requires only one authentication factor (something you know, something you have, or something you are) for successful authentication. -->
 
 #### Social Engineering
-The act of deceiving an individual into revealing sensitive information, obtaining unauthorized access, or committing fraud by associating with the individual to gain confidence and trust.
+
+人を欺いてセンシティブな情報を露呈させたり, Unauthorized Access を得たり, 人と付き合いながら信頼を獲得した上で詐欺を行う活動.
+
+<!-- The act of deceiving an individual into revealing sensitive information, obtaining unauthorized access, or committing fraud by associating with the individual to gain confidence and trust. -->
 
 #### Special Publication (SP)
-A type of publication issued by NIST. Specifically, the SP 800-series reports on the Information Technology Laboratory's research, guidelines, and outreach efforts in computer security, and its collaborative activities with industry, government, and academic organizations.
+
+NIST が発行する出版物の一形態. 特に SP 800 シリーズは, Information Technology Laboratory による研究活動, ガイドライン, コンピュターセキュリティ分野における公共福祉のための支援活動, 民間・政府・学術組織との協調的な活動などに関するレポートとなっている.
+
+<!-- A type of publication issued by NIST. Specifically, the SP 800-series reports on the Information Technology Laboratory's research, guidelines, and outreach efforts in computer security, and its collaborative activities with industry, government, and academic organizations. -->
 
 #### Subject
-A person, organization, device, hardware, network, software, or service.
+
+人間, 組織, デバイス, ハードウェア, ネットワーク, ソフトウェア, サービスなど.
+
+<!-- A person, organization, device, hardware, network, software, or service. -->
 
 #### Subscriber
-A party who has received a credential or authenticator from a CSP.
+
+CSP から Credential や Authenticator を受け取る主体.
+
+<!-- A party who has received a credential or authenticator from a CSP. -->
 
 #### Symmetric Key
-A cryptographic key used to perform both the cryptographic operation and its inverse. For example, to encrypt and decrypt or create a message authentication code and to verify the code.
+
+暗号化と復号, Message Authentication Code の生成と検証などの, 対となる暗号論的オペレーションの両方で用いられる暗号論的な鍵.
+
+<!-- A cryptographic key used to perform both the cryptographic operation and its inverse. For example, to encrypt and decrypt or create a message authentication code and to verify the code. -->
 
 #### Token
-See [Authenticator](#authenticator).
+
+[Authenticator](#authenticator) 参照.
+
+<!-- See [Authenticator](#authenticator). -->
 
 #### Token Authenticator
-See [Authenticator Output](#authenticatoroutput).
+
+[Authenticator Output](#authenticatoroutput) 参照.
+
+<!-- See [Authenticator Output](#authenticatoroutput). -->
 
 #### Token Secret
-See [Authenticator Secret](#authenticatorsecret).
+
+[Authenticator Secret](#authenticatorsecret) 参照.
+
+<!-- See [Authenticator Secret](#authenticatorsecret). -->
 
 #### Transaction
 
-A discrete event between a user and a system that supports a business or programmatic purpose. A government digital system may have multiple categories or types of transactions, which may require separate analysis within the overall digital identity risk assessment.
+ビジネスやプログラムの目標を支援する, ユーザーとシステムの間の個別のイベント. 政府のデジタルシステムにおいては, デジタル Identity の Risk Assessment において個別の分析が必要な, 複数のカテゴリーないしはタイプの Transaction がある.
+
+<!-- A discrete event between a user and a system that supports a business or programmatic purpose. A government digital system may have multiple categories or types of transactions, which may require separate analysis within the overall digital identity risk assessment. -->
 
 #### Transport Layer Security (TLS)
-An authentication and security protocol widely implemented in browsers and web servers. TLS is defined by RFC 5246. TLS is similar to the older SSL protocol, and TLS 1.0 is effectively SSL version 3.1. NIST SP 800-52, Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations [[SP 800-52]](#SP800-52), specifies how TLS is to be used in government applications.
+
+ブラウザやウェブサーバに広く実装されている Authentication およびセキュリティプロトコル. TLSは [[RFC 5246]](#RFC5246) で定義されている. TLSはより古い SSL プロトコルと似ており, 実質的に TLS1.0 は SSL version 3.1 といえる. [[SP 800-52]](#SP800-52) (Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations) では, 政府のアプリケーションにおいてどのように TLS を用いるかを定めている.
+
+<!-- An authentication and security protocol widely implemented in browsers and web servers. TLS is defined by RFC 5246. TLS is similar to the older SSL protocol, and TLS 1.0 is effectively SSL version 3.1. NIST SP 800-52, Guidelines for the Selection and Use of Transport Layer Security (TLS) Implementations [[SP 800-52]](#SP800-52), specifies how TLS is to be used in government applications. -->
 
 #### Trust Anchor
-A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate). A trust anchor may have name or policy constraints limiting its scope.
+
+ハードウェアやソフトウェエアに直接埋め込まれていたり, Out-of-band な手法によりセキュアに提供されたりすることで Trust される, Public Key もしくは Symmetric Key. 他の Trusted Entity の保証を受けて Trust を得るものは Trust Anchor とは呼ばない (Public Key Certificate 等). Trust Anchor はそのスコープを制限するような名称やポリシー制約を持つこともある.
+
+<!-- A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate). A trust anchor may have name or policy constraints limiting its scope. -->
 
 #### Usability
-Per [ISO/IEC 9241-11](#ISO9241): Extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use.
+
+[ISO/IEC 9241-11](#ISO9241) によると, 特定のユーザが特定の利用コンテキストにおいて, 効果的, 効率的かつ十分に特定の目的を果たすためにプロダクトを利用しうる度合い.
+
+<!-- Per [ISO/IEC 9241-11](#ISO9241): Extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency, and satisfaction in a specified context of use. -->
 
 #### Verifier
-An entity that verifies the claimant's identity by verifying the claimant's possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) to the subscriber's identifier and check their status.
+
+Authentication Protocol を利用して, Claimant が1つまたは2つの Authenticator を 所有, 管理していることを検証し, Claimant の Identity を検証する主体. Verifier は上記の目的のため, Authenticator と Identity を紐付ける Credential を確認し, そのステータスをチェックする必要がある場合もある.
+
+<!-- An entity that verifies the claimant's identity by verifying the claimant's possession and control of one or two authenticators using an authentication protocol. To do this, the verifier may also need to validate credentials that link the authenticator(s) to the subscriber's identifier and check their status. -->
 
 #### Verifier Impersonation
-A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier. In previous editions of SP 800-63, authentication protocols that are resistant to verifier impersonation have been described as "strongly MitM resistant".
+
+通常は正規の Verifier に対して Subscriber になりすますために使える情報を詐取することを目的とし, Authentication Protocol において Attacker が Verifier になりすますようなシナリオ. 以前の SP 800-63 では Verifier Impersonation 耐性を持つ Authentication Protocol は "strongly MitM resistant" であると記述されていた.
+
+<!-- A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier. In previous editions of SP 800-63, authentication protocols that are resistant to verifier impersonation have been described as "strongly MitM resistant". -->
 
 #### Virtual In-Person Proofing
-A remote identity proofing process that employs physical, technical and procedural measures that provide sufficient confidence that the remote session can be considered equivalent to a physical, in-person identity proofing process.
+
+Remote の Identity Proofing プロセスのうち, 物理的・技術的・手続き上の手段により Remote Session であっても物理的に対面 (In-person) の Identity Proofing プロセスと同等であると考えられるもの.
+
+<!-- A remote identity proofing process that employs physical, technical and procedural measures that provide sufficient confidence that the remote session can be considered equivalent to a physical, in-person identity proofing process. -->
 
 #### Weakly Bound Credentials
-Credentials that are bound to a subscriber in a manner than can be modified without invalidating the credential.
+
+Credential を無効化することなく変更可能な方法で, Subscriber と結びつけられた Credentials.
+
+<!-- Credentials that are bound to a subscriber in a manner than can be modified without invalidating the credential. -->
 
 #### Zeroize
-Overwrite a memory location with data consisting entirely of bits with the value zero so that the data is destroyed and not recoverable. This is often contrasted with deletion methods that merely destroy reference to data within a file system rather than the data itself.
+
+データを破壊し復元できないようにするために, ゼロ値のビットだけで構成されるデータによってメモリを上書きすること. これはしばしばデータそのものを破壊するのではなく, ファイルシステム上のデータへの参照を破壊するだけの削除手法と対比される.
+
+<!-- Overwrite a memory location with data consisting entirely of bits with the value zero so that the data is destroyed and not recoverable. This is often contrasted with deletion methods that merely destroy reference to data within a file system rather than the data itself. -->
 
 #### Zero-Knowledge Password Protocol
-A password-based authentication protocol that allows a claimant to authenticate to a verifier without revealing the password to the verifier. Examples of such protocols are EKE, SPEKE and SRP.
+
+Claimant が Verifier に対して Authenticate を行う際, Verifier に対して Password を提示する必要がないような Password ベースの Authentication Protocol. 例としては EKE, SPEKE, SRP などが挙げられる.
+
+<!-- A password-based authentication protocol that allows a claimant to authenticate to a verifier without revealing the password to the verifier. Examples of such protocols are EKE, SPEKE and SRP. -->
 
 ### A.2 Abbreviations
 
-Selected abbreviations in these guidelines are defined below.
+本ガイドライン群で選択されている略語を以下に定義する.
+
+<!-- Selected abbreviations in these guidelines are defined below. -->
 
 |Abbreviation|Term|
 |:-----|:---------|
