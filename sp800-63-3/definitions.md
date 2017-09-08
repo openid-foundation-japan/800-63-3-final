@@ -20,9 +20,9 @@ Authentication 分野で使われる用語は幅広く, 多くの用語は以前
 
 #### Active Attack
 
-Attacker が Claimant、クレデンシャルサービスプロバイダ、検証器、リライングパーティに対してデータを送信するような認証プロトコルにおける攻撃のこと。能動的攻撃の例として、中間者攻撃、なりすまし、セッションハイジャックが挙げられる。
+Attacker が Claimant, Credential Service Provider (CSP), Verifier, Relying Party (RP) に対してデータを送信するような Authentication Protocol における Attack のこと. Active Attack の例としては Man-in-the-Middle Attack (MitM), Impersonation, Session Hijacking などが挙げられる.
 
-An attack on the authentication protocol where the attacker transmits data to the claimant, Credential Service Provider (CSP), verifier, or Relying Party (RP). Examples of active attacks include man-in-the-middle (MitM), impersonation, and session hijacking.
+<!-- An attack on the authentication protocol where the attacker transmits data to the claimant, Credential Service Provider (CSP), verifier, or Relying Party (RP). Examples of active attacks include man-in-the-middle (MitM), impersonation, and session hijacking. -->
 
 #### Address of Record
 The validated and verified location (physical or digital) where an individual can receive communications using approved mechanisms.
