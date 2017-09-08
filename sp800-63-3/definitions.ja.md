@@ -63,7 +63,7 @@ Public Key と Private Key からなる鍵ペア.
 
 #### Attack
 
-認可されていない主体が, Verifier や RP をだまして当該個人を Subscriber だと信じ込ませようとする行為.
+Authorize されていない主体が, Verifier や RP をだまして当該個人を Subscriber だと信じ込ませようとする行為.
 
 <!-- An unauthorized entity's attempt to fool a verifier or RP into believing that the unauthorized individual in question is the subscriber. -->
 
@@ -93,7 +93,7 @@ Subscriber のプロパティーを Assert する Statement である. 必ずし
 
 #### Attribute Value
 
-Subscriber のプロパティを Assert する完全な Statement. フォーマットは問わない. 例えば "birthday" という Attribute に対しては, "12/1/1980" や "December 1, 1980" などが Attribute Value となりうる.
+Subscriber のプロパティーを Assert する完全な Statement. フォーマットは問わない. 例えば "birthday" という Attribute に対しては, "12/1/1980" や "December 1, 1980" などが Attribute Value となりうる.
 
 <!-- A complete statement asserting a property of a subscriber, independent of format. For example, for the attribute "birthday," a value could be "12/1/1980" or "December 1, 1980." -->
 
@@ -123,112 +123,220 @@ Subscriber のプロパティを Assert する完全な Statement. フォーマ�
 
 #### Authentication Intent
 
-ユーザーを Authentication フローに介在させるプロセスを経ることによって, Claimant が Authenticate ないしは Reauthenticate を行う意思を確認するプロセス. Authenticator によっては, Authentication Intent をオペレーションの一部に含むこともあれば (e.g., OTP デバイス), ボタンを押させるなどといった特別なステップを要求するものもある. Authentication Intent は
+ユーザーを Authentication フローに介在させるプロセスを経ることによって, Claimant が Authenticate ないしは Reauthenticate を行う意思を確認するプロセス. Authenticator によっては, Authentication Intent をオペレーションの一部に含むこともあれば (e.g., OTP デバイス), ボタンを押させるなどといった特別なステップを要求するものもある. Authentication Intent は, 当該 Endpoint を Proxy として, マルウェアが Subscriber に気づかれずに Attacker を Authenticate してしまうケースに対する対抗策となる.
 
-The process of confirming the claimant's intent to authenticate or reauthenticate by including a process requiring user intervention in the authentication flow. Some authenticators (e.g., OTP devices) establish authentication intent as part of their operation, others require a specific step, such as pressing a button, to establish intent. Authentication intent is a countermeasure against use by malware of the endpoint as a proxy for authenticating an attacker without the subscriber's knowledge.
+<!-- The process of confirming the claimant's intent to authenticate or reauthenticate by including a process requiring user intervention in the authentication flow. Some authenticators (e.g., OTP devices) establish authentication intent as part of their operation, others require a specific step, such as pressing a button, to establish intent. Authentication intent is a countermeasure against use by malware of the endpoint as a proxy for authenticating an attacker without the subscriber's knowledge. -->
 
 #### Authentication Protocol
-A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of one or more valid authenticators to establish their identity, and, optionally, demonstrates that the claimant is communicating with the intended verifier.
+
+Claimant が正規の Authenticator の所有および管理権限を示すことで自身の Identity を確立するプロセスにおいて, Claimant と Verifier の間でやりとりされる一連のメッセージの定義. Claimant が意図した Verifier とコミュニケーションしていることを立証するためのプロセスを含むこともある.
+
+<!-- A defined sequence of messages between a claimant and a verifier that demonstrates that the claimant has possession and control of one or more valid authenticators to establish their identity, and, optionally, demonstrates that the claimant is communicating with the intended verifier. -->
 
 #### Authentication Protocol Run
-An exchange of messages between a claimant and a verifier that results in authentication (or authentication failure) between the two parties.
+
+Claimant と Verifier との間で Authentication (または Authentication 失敗) という結果に至るまでの, 一連のメッセージ交換.
+
+<!-- An exchange of messages between a claimant and a verifier that results in authentication (or authentication failure) between the two parties. -->
 
 #### Authentication Secret
-A generic term for any secret value that an attacker could use to impersonate the subscriber in an authentication protocol.
 
-These are further divided into *short-term authentication secrets*, which are only useful to an attacker for a limited period of time, and *long-term authentication secrets*, which allow an attacker to impersonate the subscriber until they are manually reset. The authenticator secret is the canonical example of a long-term authentication secret, while the authenticator output, if it is different from the authenticator secret, is usually a short-term authentication secret.
+あらゆる鍵を示す一般的な呼び名. Authentication Protocol において Attacker が Subscriber になりすますために利用することもできる.
+
+<!-- A generic term for any secret value that an attacker could use to impersonate the subscriber in an authentication protocol. -->
+
+Authentication Secret は *short-term authentication secrets* と *long-term authentication secrets* に分類することができ, 前者は限定的な期間のみ利用可能なもの, 後者は手動でリセットされるまで使い続けられるものを示す. Authenticator Secret は long-term authentication secret の代表的な例であり, Authenticator の出力する鍵が Authenticator Secret と異なる場合, その出力された鍵は一般的に short-term authentication secret である.
+
+<!-- These are further divided into *short-term authentication secrets*, which are only useful to an attacker for a limited period of time, and *long-term authentication secrets*, which allow an attacker to impersonate the subscriber until they are manually reset. The authenticator secret is the canonical example of a long-term authentication secret, while the authenticator output, if it is different from the authenticator secret, is usually a short-term authentication secret. -->
 
 #### <a name="authenticator"></a> Authenticator
-Something the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant's identity. In previous editions of SP 800-63, this was referred to as a *token*.
+
+Claimant が所有および管理するもので, 典型的な例としては暗号モジュールやパスワード等がある. Authenticator は Claimant の Identity を認証するために用いられる. SP 800-63 の前エディションまでは *token* と呼ばれていたものと同等である.
+
+<!-- Something the claimant possesses and controls (typically a cryptographic module or password) that is used to authenticate the claimant's identity. In previous editions of SP 800-63, this was referred to as a *token*. -->
 
 #### Authenticator Assurance Level (AAL)
-A category describing the strength of the authentication process.
+
+Authentication プロセスの強度を示すカテゴリー.
+
+<!-- A category describing the strength of the authentication process. -->
 
 #### <a name="authenticatoroutput"></a> Authenticator Output
-The output value generated by an authenticator. The ability to generate valid authenticator outputs on demand proves that the claimant possesses and controls the authenticator. Protocol messages sent to the verifier are dependent upon the authenticator output, but they may or may not explicitly contain it.
+
+Authenticator によって生成される出力値. 必要に応じて正当な Authenticator Output を生成することで, Claimant が Authenticator を所有し管理していることを証明できる. Verifier へ送信されるプロトコルメッセージは Authenticator Output によって異なり, プロトコルメッセージが明示的に Authenticator Output を含んでいることもあればそうでないこともある.
+
+<!-- The output value generated by an authenticator. The ability to generate valid authenticator outputs on demand proves that the claimant possesses and controls the authenticator. Protocol messages sent to the verifier are dependent upon the authenticator output, but they may or may not explicitly contain it. -->
 
 #### <a name="authenticatorsecret"></a> Authenticator Secret
-The secret value contained within an authenticator.
+
+Authenticator に内包されるシークレット値.
+
+<!-- The secret value contained within an authenticator. -->
 
 #### Authenticator Type
-A category of authenticators with common characteristics. Some authenticator types provide one authentication factor, others provide two.
+
+共通の特徴を持つ Authenticator のカテゴリー. Authenticator Type によっては単一の Authentication Factor のみを持つものもあれば, 2つの Authentication Factor を持つものもある.
+
+<!-- A category of authenticators with common characteristics. Some authenticator types provide one authentication factor, others provide two. -->
 
 #### Authenticity
-The property that data originated from its purported source.
+
+データが意図された情報源から得られたものであるというプロパティー.
+
+<!-- The property that data originated from its purported source. -->
 
 #### Authoritative Source
-An entity that has access to, or verified copies of, accurate information from an issuing source such that a CSP can confirm the validity of the identity evidence supplied by an applicant during identity proofing. An issuing source may also be an authoritative source. Often, authoritative sources are determined by a policy decision of the agency or CSP before they can be used in the identity proofing validation phase.
+
+Identity Evidence の Issuing Source がもつ正確な情報にアクセスできる, もしくは検証済みコピーを所有している主体. これにより Identity Proofing 実施時に CSP が Applicant の提出した Identity Evidence の有効性を確認できる. Issuing Source 自身が Authoritative Source であることもありうる. Authoritative Source は, Identity Proofing の検証フェーズの前に, 機関や CSP のポリシーによって決定されることも多い.
+
+<!-- An entity that has access to, or verified copies of, accurate information from an issuing source such that a CSP can confirm the validity of the identity evidence supplied by an applicant during identity proofing. An issuing source may also be an authoritative source. Often, authoritative sources are determined by a policy decision of the agency or CSP before they can be used in the identity proofing validation phase. -->
 
 #### Authorize
-A decision to grant [access](#access), typically automated by evaluating a subject's attributes.
+
+[access](#access) を許可するかどうかの判断. 通常は Subject の Attribute を評価することで自動的に判断される.
+
+<!-- A decision to grant [access](#access), typically automated by evaluating a subject's attributes. -->
 
 #### Back-Channel Communication
-Communication between two systems that relies on a direct connection (allowing for standard protocol-level proxies), without using redirects through an intermediary such as a browser. This can be accomplished using HTTP requests and responses.
+
+2つのシステム間で直接コネクションを貼って行われるコミュニケーション (標準プロトコルレベルでのプロキシの利用を許容する). ブラウザ等を媒介としたリダイレクトは用いない. HTTP Request & Response により実現される.
+
+<!-- Communication between two systems that relies on a direct connection (allowing for standard protocol-level proxies), without using redirects through an intermediary such as a browser. This can be accomplished using HTTP requests and responses. -->
 
 #### Bearer Assertion
-The assertion a party presents as proof of identity, where possession of the assertion itself is sufficient proof of identity for the assertion bearer.
+
+ある主体が Identity を証明するために提示する Assertion であり, Assertion を保有していること自体が Assertion 持参人の Identity 証明として十分であるようなもの.
+
+<!-- The assertion a party presents as proof of identity, where possession of the assertion itself is sufficient proof of identity for the assertion bearer. -->
 
 #### Binding
-An association between a subscriber identity and an authenticator or given subscriber session.
+
+Subscriber の Identity と Authenticator や Subscriber Session の間の関連性.
+
+<!-- An association between a subscriber identity and an authenticator or given subscriber session. -->
 
 #### Biometrics
-Automated recognition of individuals based on their biological and behavioral characteristics.
+
+個人の行動や生体情報をもとに個人を自動認証すること.
+
+<!-- Automated recognition of individuals based on their biological and behavioral characteristics. -->
 
 #### Challenge-Response Protocol
-An authentication protocol where the verifier sends the claimant a challenge (usually a random value or nonce) that the claimant combines with a secret (such as by hashing the challenge and a shared secret together, or by applying a private key operation to the challenge) to generate a response that is sent to the verifier. The verifier can independently verify the response generated by the claimant (such as by re-computing the hash of the challenge and the shared secret and comparing to the response, or performing a public key operation on the response) and establish that the claimant possesses and controls the secret.
+
+Verifier が Claimant に対してチャレンジ (通常はランダム値やノンス) を送信し, Claimant はシークレットと連結 (チャレンジと Shared Secret を一緒にハッシュしたり, チャレンジに対して Private Key による操作を実施) して応答を生成し, Verifier に返却するような Authentication Protocol. Verifier は Claimant が生成した応答を自身のみで検証 (チャレンジと Shared Secret のハッシュを再計算してレスポンスと比較したり, レスポンスに対して Public Key による操作を実施) し, Claimant がシークレットを所有し管理下に置いているを証明することができる.
+
+<!-- An authentication protocol where the verifier sends the claimant a challenge (usually a random value or nonce) that the claimant combines with a secret (such as by hashing the challenge and a shared secret together, or by applying a private key operation to the challenge) to generate a response that is sent to the verifier. The verifier can independently verify the response generated by the claimant (such as by re-computing the hash of the challenge and the shared secret and comparing to the response, or performing a public key operation on the response) and establish that the claimant possesses and controls the secret. -->
 
 #### Claimant
-A subject whose identity is to be verified using one or more authentication protocols.
+
+1つ以上の Authentication Protocol により Identity を検証される Subject.
+
+<!-- A subject whose identity is to be verified using one or more authentication protocols. -->
 
 #### Claimed Address
-The physical location asserted by a subject where they can be reached. It includes the individual's residential street address and may also include their mailing address.
 
-For example, a person with a foreign passport living in the U.S. will need to give an address when going through the identity proofing process. This address would not be an "address of record" but a "claimed address."
+Subject により, 自分に到達可能だと Assert された物理的位置. 居住地の住所や郵便の届く住所などを含む.
+
+<!-- The physical location asserted by a subject where they can be reached. It includes the individual's residential street address and may also include their mailing address. -->
+
+例えば, 外国籍のパスポートを所持している状態で U.S. に在住する人物であれば, Identity Proofing プロセスにおいて住所を要求されることになる. そう言った場合の住所は, "address of record" ではなく "claimed address" となろう.
+
+<!-- For example, a person with a foreign passport living in the U.S. will need to give an address when going through the identity proofing process. This address would not be an "address of record" but a "claimed address." -->
 
 #### Claimed Identity
-An applicant's declaration of unvalidated and unverified personal attributes.
+
+ある Applicant による, 個人に関する未検証かつ未証明な Attribute の申告.
+
+<!-- An applicant's declaration of unvalidated and unverified personal attributes. -->
 
 #### Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA)
-An interactive feature added to web forms to distinguish whether a human or automated agent is using the form. Typically, it requires entering text corresponding to a distorted image or a sound stream.
+
+利用者が人間か自動化されたエージェントかを区別するために Web フォームに追加する対話的な機能. 典型的には, 歪んだ画像や音声に対応するテキストの入力を求める方式である.
+
+<!-- An interactive feature added to web forms to distinguish whether a human or automated agent is using the form. Typically, it requires entering text corresponding to a distorted image or a sound stream. -->
 
 #### Credential
-An object or data structure that authoritatively binds an identity - via an identifier or identifiers - and (optionally) additional attributes, to at least one authenticator possessed and controlled by a subscriber.
 
-While common usage often assumes that the subscriber maintains the credential, these guidelines also use the term to refer to electronic records maintained by the CSP that establish binding between the subscriber's authenticator(s) and identity.
+ある Identity および (任意で) 追加の Attribute を, Identifier を通じて, Subscriber が所有ないしは管理する Authenticator に紐付ける, 信頼のおけるオブジェクトもしくはデータ構造.
+
+<!-- An object or data structure that authoritatively binds an identity - via an identifier or identifiers - and (optionally) additional attributes, to at least one authenticator possessed and controlled by a subscriber. -->
+
+一般的に Credential は Subscriber に管理されることが想定されるが, 本ガイドライン群では Subscriber の Authenticator と Identity の紐付けを確立する CSP 管理下の電子レコードを指すこともある.
+
+<!-- While common usage often assumes that the subscriber maintains the credential, these guidelines also use the term to refer to electronic records maintained by the CSP that establish binding between the subscriber's authenticator(s) and identity. -->
 
 #### Credential Service Provider (CSP)
-A trusted entity that issues or registers subscriber authenticators and issues electronic credentials to subscribers. A CSP may be an independent third party or issue credentials for its own use.
+
+Subscriber の Authenticator を発行もしくは登録し, Subscriber に電子的な Credential を発行する信頼された主体. CSP は独立した第三者となることもあれば, 自身で発行した Credential を用いて自らサービスを提供することもある.
+
+<!-- A trusted entity that issues or registers subscriber authenticators and issues electronic credentials to subscribers. A CSP may be an independent third party or issue credentials for its own use. -->
 
 #### Cross-site Request Forgery (CSRF)
-An attack in which a subscriber currently authenticated to an RP and connected through a secure session browses to an attacker's website, causing the subscriber to unknowingly invoke unwanted actions at the RP.
 
+RP に対して Authenticate されている Subscriber が, セキュアなセッションをつうじて Attacker のウェブサイトに接続する場合に発生する Attack であり, 加入者が無意識のうちに望まないアクションを RP 上で実行してしまうことになる.
+
+<!-- An attack in which a subscriber currently authenticated to an RP and connected through a secure session browses to an attacker's website, causing the subscriber to unknowingly invoke unwanted actions at the RP. -->
+
+<!--
 For example, if a bank website is vulnerable to a CSRF attack, it may be possible for a subscriber to unintentionally authorize a large money transfer, merely by viewing a malicious link in a webmail message while a connection to the bank is open in another browser window.
+-->
+
+例えば, もし銀行のサイトが CSRF に対して脆弱である場合, 単にユーザが Web メールの本文中の悪意のあるリンクを参照するだけで, 別のブラウザウィンドウで銀行への接続が開かれ, 加入者が意図せず大きな金額の資金移動を Authorize してしまう可能性がある.
+
+<!-- For example, if a bank website is vulnerable to a CSRF attack, it may be possible for a subscriber to unintentionally authorize a large money transfer, merely by viewing a malicious link in a webmail message while a connection to the bank is open in another browser window. -->
 
 #### Cross-site Scripting (XSS)
-A vulnerability that allows attackers to inject malicious code into an otherwise benign website. These scripts acquire the permissions of scripts generated by the target website and can therefore compromise the confidentiality and integrity of data transfers between the website and client. Websites are vulnerable if they display user-supplied data from requests or forms without sanitizing the data so that it is not executable.
+
+Attacker が, 不正なコードを他の無害なページに対して注入することを許してしまう脆弱性. これらのスクリプトはターゲットのウェブサイトで生成されるスクリプトの権限で動作し, ウェブサイトとクライアント間でのデータ転送の機密性や一貫性を侵害する. ウェブサイトは, ユーザが入力するデータをリクエストやフォームから受け取り, サニタイズを施して実行不可能にすることなく表示してしまう場合に脆弱である.
+
+<!-- A vulnerability that allows attackers to inject malicious code into an otherwise benign website. These scripts acquire the permissions of scripts generated by the target website and can therefore compromise the confidentiality and integrity of data transfers between the website and client. Websites are vulnerable if they display user-supplied data from requests or forms without sanitizing the data so that it is not executable. -->
 
 #### Cryptographic Authenticator
-An authenticator where the secret is a cryptographic key.
+
+Cryptographic Key をシークレットとする Authenticator.
+
+<!-- An authenticator where the secret is a cryptographic key. -->
 
 #### Cryptographic Key
-A value used to control cryptographic operations, such as decryption, encryption, signature generation, or signature verification. For the purposes of these guidelines, key requirements shall meet the minimum requirements stated in Table 2 of NIST SP 800-57 Part 1.
 
-See also Asymmetric Keys, Symmetric Key.
+復号, 暗号化, 署名生成, 署名検証等の暗号論的オペレーションを管理するために用いられる値. 本ガイドライン群では, NIST SP 800-57 Part 1 の Table 2 で述べられた最低限の要件を満たすものとする.
+
+<!-- A value used to control cryptographic operations, such as decryption, encryption, signature generation, or signature verification. For the purposes of these guidelines, key requirements shall meet the minimum requirements stated in Table 2 of NIST SP 800-57 Part 1. -->
+
+Asymmetric Keys および Symmetric Key も参照のこと.
+
+<!-- See also Asymmetric Keys, Symmetric Key. -->
 
 #### Cryptographic Module
-A set of hardware, software, and/or firmware that implements approved security functions (including cryptographic algorithms and key generation).
+
+一式のハードウェア, ソフトウェア, およびファームウェアで, (暗号アルゴリズムや鍵生成を含む) 承認されたセキュリティ機能を実装するもの.
+
+<!-- A set of hardware, software, and/or firmware that implements approved security functions (including cryptographic algorithms and key generation). -->
 
 #### Data Integrity
-The property that data has not been altered by an unauthorized entity.
+
+Authorize されていないエンティティによってデータが変更されることがないというプロパティー.
+
+<!-- The property that data has not been altered by an unauthorized entity. -->
 
 #### Derived Credential
-A credential issued based on proof of possession and control of an authenticator associated with a previously issued credential, so as not to duplicate the identity proofing process.
+
+事前に発行済の Credential に紐づいた Authenticator を所有・管理していることを証明することで発行される Credential. このような Credential を発行することで, 再び Identity Proofing プロセスを繰り返す必要がなくなる.
+
+<!-- A credential issued based on proof of possession and control of an authenticator associated with a previously issued credential, so as not to duplicate the identity proofing process. -->
 
 #### Digital Authentication
-The process of establishing confidence in user identities presented digitally to a system. In previous editions of SP 800-63, this was referred to as *Electronic Authentication*.
+
+情報システムに対して, 電子的に表現されたユーザーの Identity の確からしさを確立するプロセス.
+SP 800-63 の前エディションまでは *Electronic Authentication* と呼ばれていたもの.
+
+<!-- The process of establishing confidence in user identities presented digitally to a system. In previous editions of SP 800-63, this was referred to as *Electronic Authentication*. -->
 
 #### Digital Signature
-An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation, but not confidentiality protection.  
+
+Private Key を用いてデータに電子署名を行い, Public Key を用いて署名検証を行う, Asymmetric Key を用いたオペレーション. Digital Signature は Authenticity Protection (真正性), Integrity Protection (完全性), Non-Repudication (否認防止) を提供するが, Confidentiality Protection (機密性) は提供しない.
+
+<!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation, but not confidentiality protection.   -->
 
 #### Diversionary
 In regards to KBV, a multiple-choice question for which all answers provided are incorrect, requiring the applicant to select an option similar to "none of the above."
