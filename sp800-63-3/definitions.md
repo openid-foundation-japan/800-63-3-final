@@ -8,12 +8,20 @@
 
 ### A.1 Definitions
 
-A wide variety of terms is used in the realm of authentication. While many terms' definitions are consistent with earlier versions of SP 800-63, some have changed in this revision. Many of these terms lack a single, consistent definition, warranting careful attention to how the terms are defined here.
+Authentication 分野で使われる用語は幅広く, 多くの用語は以前のバージョンの SP 800-63 と整合性を保っているものの, いくつかは本リビジョンから定義が変更になっている. 多くの用語に複数の定義がありうるため, 本ドキュメントにおける定義を明確にする必要がある.
+
+<!-- A wide variety of terms is used in the realm of authentication. While many terms' definitions are consistent with earlier versions of SP 800-63, some have changed in this revision. Many of these terms lack a single, consistent definition, warranting careful attention to how the terms are defined here. -->
 
 #### <a name="access"></a> Access
-To make contact with one or more discrete functions of an online, digital service.
+
+オンラインのデジタルサービスの1つ以上の個別機能に接続すること.
+
+<!-- To make contact with one or more discrete functions of an online, digital service. -->
 
 #### Active Attack
+
+Attacker が Claimant、クレデンシャルサービスプロバイダ、検証器、リライングパーティに対してデータを送信するような認証プロトコルにおける攻撃のこと。能動的攻撃の例として、中間者攻撃、なりすまし、セッションハイジャックが挙げられる。
+
 An attack on the authentication protocol where the attacker transmits data to the claimant, Credential Service Provider (CSP), verifier, or Relying Party (RP). Examples of active attacks include man-in-the-middle (MitM), impersonation, and session hijacking.
 
 #### Address of Record

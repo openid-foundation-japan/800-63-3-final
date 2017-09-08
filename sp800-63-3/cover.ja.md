@@ -240,7 +240,7 @@ NIST SP 800-63-A では, Applicant が自身の Identity を提示し, 正当な
 
 <!-- NIST SP 800-63-A addresses how applicants can prove their identities and become enrolled as valid subscribers within an identity system. It provides requirements by which applicants can both identity proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._ -->
 
-SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, 攻撃者による不正な Identity の主張が成功してしまった場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢を示す. 各 IAL は以下のとおりである.
+SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, Attacker による不正な Identity の主張が成功してしまった場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢を示す. 各 IAL は以下のとおりである.
 
 <!-- SP 800-63A sets requirements to achieve a given IAL. The three IALs reflect the options agencies may select from based on their risk profile and the potential harm caused by an attacker making a successful false claim of an identity. The IALs are as follows: -->
 
@@ -263,7 +263,7 @@ SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, 攻
 
 <!-- For services in which return visits are applicable, a successful authentication provides reasonable risk-based assurances that the subscriber accessing the service today is the same as that which accessed the service previously. The robustness of this confidence is described by an AAL categorization. NIST SP 800-63B addresses how an individual can securely authenticate to a CSP to access a digital service or set of digital services. _SP 800-63B contains both normative and informative material._ -->
 
-3つの AAL は, 攻撃者が Authenticator を手中に収め政府機関のシステムにアクセスできてしまった場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢のサブセットを定義する. 各 AAL は以下のとおりである.
+3つの AAL は, Attacker が Authenticator を手中に収め政府機関のシステムにアクセスできてしまった場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢のサブセットを定義する. 各 AAL は以下のとおりである.
 
 <!-- The three AALs define the subsets of options agencies can select based on their risk profile and the potential harm caused by an attacker taking control of an authenticator and accessing agencies' systems. The AALs are as follows: -->
 
@@ -285,7 +285,7 @@ NIST SP 800-63C では, Federated Identity アーキテクチャーを採用し�
 
 <!-- NIST SP 800-63C provides requirements when using federated identity architectures and assertions to convey the results of authentication processes and relevant identity information to an agency application. In addition, this volume offers privacy-enhancing techniques to share information about a valid, authenticated subject and describes methods that allow for strong multi-factor authentication (MFA) while the subject remains pseudonymous to the digital service. _SP 800-63C contains both normative and informative material._ -->
 
-3つの FAL は, 攻撃者が Federated Transaction をコントロールできる状況に陥った場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢を示す. 各 FAL は以下のとおりである.
+3つの FAL は, Attacker が Federated Transaction をコントロールできる状況に陥った場合を想定した各機関によるリスクプロファイリングと被害想定に基づいて, 各機関が選択できる選択肢を示す. 各 FAL は以下のとおりである.
 
 <!-- The three FALs reflect the options agencies can select based on their risk profile and the potential harm caused by an attacker taking control of federated transactions. The FALs are as follows: -->
 
