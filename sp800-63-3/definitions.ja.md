@@ -339,49 +339,95 @@ Private Key を用いてデータに電子署名を行い, Public Key を用い�
 <!-- An asymmetric key operation where the private key is used to digitally sign data and the public key is used to verify the signature. Digital signatures provide authenticity protection, integrity protection, and non-repudiation, but not confidentiality protection.   -->
 
 #### Diversionary
-In regards to KBV, a multiple-choice question for which all answers provided are incorrect, requiring the applicant to select an option similar to "none of the above."
+
+KBV において, 多項選択式問題の全選択肢がまちがいであり, Applicant に "none of the above" といった選択肢を選択するよう要求するもの.
+
+<!-- In regards to KBV, a multiple-choice question for which all answers provided are incorrect, requiring the applicant to select an option similar to "none of the above." -->
 
 #### Eavesdropping Attack
-An attack in which an attacker listens passively to the authentication protocol to capture information that can be used in a subsequent active attack to masquerade as the claimant.
+
+Authentication Protocol を受動的に傾聴し, 情報を傍受する攻撃. 傍受した情報は, 後続の Claimant に成りすました Active Attack で利用される.
+
+<!-- An attack in which an attacker listens passively to the authentication protocol to capture information that can be used in a subsequent active attack to masquerade as the claimant. -->
 
 #### Electronic Authentication (E-Authentication)
-See *Digital Authentication*.
+
+*Digital Authentication* 参照.
+
+<!-- See *Digital Authentication*. -->
 
 #### <a name="enroll"></a> Enrollment
-The process through which an applicant applies to become a subscriber of a CSP and the CSP validates the applicant's identity.
+
+Applicant が CSP の Subscriber となるべく申し込み, CSP が Applicant の Identity を検証するプロセス.
+
+<!-- The process through which an applicant applies to become a subscriber of a CSP and the CSP validates the applicant's identity. -->
 
 #### Entropy
-A measure of the amount of uncertainty an attacker faces to determine the value of a secret. Entropy is usually stated in bits. A value having *n* bits of entropy has the same degree of uncertainty as a uniformly distributed *n*-bit random value.
+
+Attacker がシークレット値を決定することに対峙する際の不確実性の量の尺度. Entropy は通常ビットで表現される. *n* ビットの Entropy を持つ値は,  *n* ビットの一様乱数と同等の不確実性を持つ.
+
+<!-- A measure of the amount of uncertainty an attacker faces to determine the value of a secret. Entropy is usually stated in bits. A value having *n* bits of entropy has the same degree of uncertainty as a uniformly distributed *n*-bit random value. -->
 
 #### Federal Information Processing Standard (FIPS)
-Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves the standards and guidelines that the National Institute of Standards and Technology (NIST) develops for federal computer systems. NIST issues these standards and guidelines as Federal Information Processing Standards (FIPS) for government-wide use. NIST develops FIPS when there are compelling federal government requirements, such as for security and interoperability, and there are no acceptable industry standards or solutions. See background information for more details.
 
-FIPS documents are available online on the FIPS home page: <http://www.nist.gov/itl/fips.cfm>
+Secretary of Commerce は, Information Technology Management Reform Act (Public Law 104-106) に基づいて, National Institute of Standards and Technology (NIST) により連邦政府機関のコンピュータシステムに適用するために開発された標準及びガイドラインを承認する. これらの標準及びガイドラインは NIST によって FIPS として発行されたものであり, 政府機関で横断的に使われるものである. NIST はセキュリティや相互運用性といった強制力のある連邦政府の要求事項がある場合や, 許容可能な業界標準やソリューションが存在しない場合に, FIPS を開発する. 詳細については背景を参照すること.
+
+<!-- Under the Information Technology Management Reform Act (Public Law 104-106), the Secretary of Commerce approves the standards and guidelines that the National Institute of Standards and Technology (NIST) develops for federal computer systems. NIST issues these standards and guidelines as Federal Information Processing Standards (FIPS) for government-wide use. NIST develops FIPS when there are compelling federal government requirements, such as for security and interoperability, and there are no acceptable industry standards or solutions. See background information for more details. -->
+
+FIPS ドキュメントは FIPS ホームページ <http://www.nist.gov/itl/fips.cfm> からオンラインアクセス可能である.
+
+<!-- FIPS documents are available online on the FIPS home page: <http://www.nist.gov/itl/fips.cfm> -->
 
 #### Federation
-A process that allows the conveyance of identity and authentication information across a set of networked systems.
+
+一連のネットワークシステム間で Identity および Authentication 情報の伝搬を行うためのプロセス.
+
+<!-- A process that allows the conveyance of identity and authentication information across a set of networked systems. -->
 
 #### Federation Assurance Level (FAL)
-A category describing the assertion protocol used by the federation to communicate authentication and attribute information (if applicable) to an RP.
+
+Federation において Authentication 情報および (場合によっては) Attribute 情報を RP に送る際に用いられる Assertion Protocol のカテゴリー.
+
+<!-- A category describing the assertion protocol used by the federation to communicate authentication and attribute information (if applicable) to an RP. -->
 
 #### Federation Proxy
-A component that acts as a logical RP to a set of IdPs and a logical IdP to a set of RPs, bridging the two systems with a single component. These are sometimes referred to as "brokers".
+
+IdP に対して論理的に RP として動作し, RP に対して論理的に IdP として動作する, 2つのシステムを Bridge するコンポーネント. "Broker" と呼ばれることもある.
+
+<!-- A component that acts as a logical RP to a set of IdPs and a logical IdP to a set of RPs, bridging the two systems with a single component. These are sometimes referred to as "brokers". -->
 
 #### Front-Channel Communication
-Communication between two systems that relies on redirects through an intermediary such as a browser. This is normally accomplished by appending HTTP query parameters to URLs hosted by the receiver of the message.
+
+ブラウザ等を媒介とし, 2つのシステム間でリダイレクトを用いて行われるコミュニケーション.
+これは通常メッセージ受信者がホストする URL に HTTP Query Parameter を付与することで実現される.
+
+<!-- Communication between two systems that relies on redirects through an intermediary such as a browser. This is normally accomplished by appending HTTP query parameters to URLs hosted by the receiver of the message. -->
 
 #### Hash Function
-A function that maps a bit string of arbitrary length to a fixed-length bit string. Approved hash functions satisfy the following properties:
 
-1. One-way - It is computationally infeasible to find any input that maps to any pre-specified output; and
+任意長の短いの文字列を固定長の文字列に変換する関数. 承認されている Hash Function は以下のプロパティーを満たす.
 
-2. Collision resistant - It is computationally infeasible to find any two distinct inputs that map to the same output.
+<!-- A function that maps a bit string of arbitrary length to a fixed-length bit string. Approved hash functions satisfy the following properties: -->
+
+1. 一方向性 - 指定された出力結果から対応する入力を特定することが計算上困難であり
+
+<!-- 1. One-way - It is computationally infeasible to find any input that maps to any pre-specified output; and -->
+
+2. 衝突困難性 - 同じ出力となる任意の2つの異なる入力を特定することが計算上困難である.
+
+<!-- 2. Collision resistant - It is computationally infeasible to find any two distinct inputs that map to the same output. -->
 
 #### Identity
-An attribute or set of attributes that uniquely describe a subject within a given context.
+
+特定のコンテキストにおいて, ある Subject を他と区別できるかたちで表現する, Attribute ないしは Attribute の集合.
+
+<!-- An attribute or set of attributes that uniquely describe a subject within a given context. -->
 
 #### Identity Assurance Level (IAL)
-A category that conveys the degree of confidence that the applicant's claimed identity is their real identity.
+
+Applicant の Claimed Identity が本人の本物の Identity であることの確からしさの度合いをあらわすカテゴリー.
+
+<!-- A category that conveys the degree of confidence that the applicant's claimed identity is their real identity. -->
 
 #### Identity Evidence
 Information or documentation provided by the applicant to support the claimed identity. Identity evidence may be physical (e.g. a driver license) or digital (e.g. an assertion generated and issued by a CSP based on the applicant successfully authenticating to the CSP).
