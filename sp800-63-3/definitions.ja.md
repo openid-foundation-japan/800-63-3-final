@@ -25,54 +25,106 @@ Attacker が Claimant, Credential Service Provider (CSP), Verifier, Relying Part
 <!-- An attack on the authentication protocol where the attacker transmits data to the claimant, Credential Service Provider (CSP), verifier, or Relying Party (RP). Examples of active attacks include man-in-the-middle (MitM), impersonation, and session hijacking. -->
 
 #### Address of Record
-The validated and verified location (physical or digital) where an individual can receive communications using approved mechanisms.
+
+許可された手段によって特定個人とのコミュニケーションに利用可能な, 有効かつ検証済の (物理的またはデジタルの) 場所情報.
+
+<!-- The validated and verified location (physical or digital) where an individual can receive communications using approved mechanisms. -->
 
 #### Applicant
-A subject undergoing the processes of enrollment and identity proofing.
+
+Enrollment および Identity Proofing のプロセスを受けている主体.
+
+<!-- A subject undergoing the processes of enrollment and identity proofing. -->
 
 #### <a name="approved"></a> Approved Cryptography
-Federal Information Processing Standard (FIPS)-approved or NIST recommended. An algorithm or technique that is either 1) specified in a FIPS or NIST Recommendation, or 2) adopted in a FIPS or NIST Recommendation.
+
+Federal Information Processing Standard (FIPS) の承認, もしくは NIST の推奨を受けているもの. FIPS ないしは NIST Recommendation に (1) 指定されているか, (2) 採用されているアルゴリズムおよびテクニック.
+
+<!-- Federal Information Processing Standard (FIPS)-approved or NIST recommended. An algorithm or technique that is either 1) specified in a FIPS or NIST Recommendation, or 2) adopted in a FIPS or NIST Recommendation. -->
 
 #### Assertion
-A statement from a verifier to an RP that contains information about a subscriber. Assertions may also contain verified attributes.
+
+Verifier から Relying Party (RP) に対して送られる, Subscriber の Identity 情報を含んだ Statement. Assertion は検証済属性情報を含むこともある.
+
+<!-- A statement from a verifier to an RP that contains information about a subscriber. Assertions may also contain verified attributes. -->
 
 #### Assertion Reference
-A data object, created in conjunction with an assertion, that identifies the verifier and includes a pointer to the full assertion held by the verifier.
+
+Assertion と紐付けて生成されるデータオブジェクトであり, Verifier を識別するとともに, Verifier が所有する Full Assertion へのポインタとして機能する.
+
+<!-- A data object, created in conjunction with an assertion, that identifies the verifier and includes a pointer to the full assertion held by the verifier. -->
 
 #### Asymmetric Keys
-Two related keys, comprised of a public key and a private key, that are used to perform complementary operations such as encryption and decryption or signature verification and generation.
+
+Public Key と Private Key からなる鍵ペア.
+暗号化と復号, 署名生成と署名検証など, 対となるオペレーションに用いられる.
+
+<!-- Two related keys, comprised of a public key and a private key, that are used to perform complementary operations such as encryption and decryption or signature verification and generation. -->
 
 #### Attack
-An unauthorized entity's attempt to fool a verifier or RP into believing that the unauthorized individual in question is the subscriber.
+
+認可されていない主体が, Verifier や RP をだまして当該個人を Subscriber だと信じ込ませようとする行為.
+
+<!-- An unauthorized entity's attempt to fool a verifier or RP into believing that the unauthorized individual in question is the subscriber. -->
 
 #### Attacker
-A party, including an insider, who acts with malicious intent to compromise a system.
+
+不正な意図を持ち情報システムに不正アクセスする主体. 内部犯も含む.
+
+<!-- A party, including an insider, who acts with malicious intent to compromise a system. -->
 
 #### Attribute
-A quality or characteristic ascribed to someone or something.
+
+人や物に関する生来の性質や特徴.
+
+<!-- A quality or characteristic ascribed to someone or something. -->
 
 #### Attribute Bundle
-A packaged set of attributes, usually contained within an assertion. Attribute bundles offer RPs a simple way to retrieve the most relevant attributes they need from IdPs. Attribute bundles are synonymous with OpenID Connect scopes [[OpenID Connect Core 1.0]](#OpenIDConnectCore).
+
+パッケージ化された Attribute の集合で, 通常は単一の Assertion に含まれる. Attribute Bundle により, RP は関連する必要な Attribute 一式を IdP から簡単に受け取ることができる. Attribute Bundle は OpenID Connect の scope [[OpenID Connect Core 1.0]](#OpenIDConnectCore) と同義である.
+
+<!-- A packaged set of attributes, usually contained within an assertion. Attribute bundles offer RPs a simple way to retrieve the most relevant attributes they need from IdPs. Attribute bundles are synonymous with OpenID Connect scopes [[OpenID Connect Core 1.0]](#OpenIDConnectCore). -->
 
 #### Attribute Reference
-A statement asserting a property of a subscriber without necessarily containing identity information, independent of format. For example, for the attribute "birthday," a reference could be "older than 18" or "born in December."
+
+Subscriber のプロパティーを Assert する Statement である. 必ずしも Identity 情報を含む必要はなく, フォーマットは問わない. 例えば, "birthday" という Attribute に対しては, "older than 18" や "born in December" などが Attribute Reference たりうる.
+
+<!-- A statement asserting a property of a subscriber without necessarily containing identity information, independent of format. For example, for the attribute "birthday," a reference could be "older than 18" or "born in December." -->
 
 #### Attribute Value
-A complete statement asserting a property of a subscriber, independent of format. For example, for the attribute "birthday," a value could be "12/1/1980" or "December 1, 1980."
+
+Subscriber のプロパティを Assert する完全な Statement. フォーマットは問わない. 例えば "birthday" という Attribute に対しては, "12/1/1980" や "December 1, 1980" などが Attribute Value となりうる.
+
+<!-- A complete statement asserting a property of a subscriber, independent of format. For example, for the attribute "birthday," a value could be "12/1/1980" or "December 1, 1980." -->
 
 #### Authenticate
-See [Authentication](#authentication).
+
+[Authentication](#authentication) 参照.
+
+<!-- See [Authentication](#authentication). -->
 
 #### Authenticated Protected Channel
-An encrypted communication channel that uses approved cryptography where the connection initiator (client) has authenticated the recipient (server). Authenticated protected channels provide confidentiality and MitM protection and are frequently used in the user authentication process. Transport Layer Security (TLS) [[BCP 195]](#bcp195) is an example of an authenticated protected channel where the certificate presented by the recipient is verified by the initiator. Unless otherwise specified, authenticated protected channels do not require the server to authenticate the client. Authentication of the server is often accomplished through a certificate chain leading to a trusted root rather than individually with each server.
+
+接続元 (Client) が 接続先 (Server) を認証しており, Approved Cryptography を用いて暗号化されたコミュニケーションチャネル. Authenticated Protocol Channel は機密性および MitM 保護を提供するものであり, ユーザーの Authentication プロセスの中でよく使われるものである. Transport Layer Security (TLS) [[BCP 195]](#bcp195) がその例としてあげられ, TLS では接続先が提示した Certificate を接続元が検証することになる. 特に指定がない限り, Authenticated Protected Channel では Server が Client を認証する必要はない. Server の Authentication は, 各 Server 個別の対応ではなく, しばしば Trusted Root から始まる Certificate Chain を用いて行われる.
+
+<!-- An encrypted communication channel that uses approved cryptography where the connection initiator (client) has authenticated the recipient (server). Authenticated protected channels provide confidentiality and MitM protection and are frequently used in the user authentication process. Transport Layer Security (TLS) [[BCP 195]](#bcp195) is an example of an authenticated protected channel where the certificate presented by the recipient is verified by the initiator. Unless otherwise specified, authenticated protected channels do not require the server to authenticate the client. Authentication of the server is often accomplished through a certificate chain leading to a trusted root rather than individually with each server. -->
 
 #### <a name="authentication"></a> Authentication
-Verifying the identity of a user, process, or device, often as a prerequisite to allowing access to a system's resources.
+
+ユーザー, プロセス, デバイスなどの Identity を検証すること. しばしばあるシステムのリソースへの Access を許可する際の必須要件となる.
+
+<!-- Verifying the identity of a user, process, or device, often as a prerequisite to allowing access to a system's resources. -->
 
 #### <a name="af"></a> Authentication Factor
-The three types of authentication factors are *something you know*, *something you have*, and *something you are*. Every authenticator has one or more authentication factors.
+
+*something you know*, *something you have*, および *something you are* という3種類の Authentication Factor がある. 全ての Authenticator はこれら1つ以上の Authentication Factor を持つ.
+
+<!-- The three types of authentication factors are *something you know*, *something you have*, and *something you are*. Every authenticator has one or more authentication factors. -->
 
 #### Authentication Intent
+
+ユーザーを Authentication フローに介在させるプロセスを経ることによって, Claimant が Authenticate ないしは Reauthenticate を行う意思を確認するプロセス. Authenticator によっては, Authentication Intent をオペレーションの一部に含むこともあれば (e.g., OTP デバイス), ボタンを押させるなどといった特別なステップを要求するものもある. Authentication Intent は
+
 The process of confirming the claimant's intent to authenticate or reauthenticate by including a process requiring user intervention in the authentication flow. Some authenticators (e.g., OTP devices) establish authentication intent as part of their operation, others require a specific step, such as pressing a button, to establish intent. Authentication intent is a countermeasure against use by malware of the endpoint as a proxy for authenticating an attacker without the subscriber's knowledge.
 
 #### Authentication Protocol
