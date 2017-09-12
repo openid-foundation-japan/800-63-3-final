@@ -187,7 +187,7 @@ Authenticator に内包されるシークレット値.
 
 #### Authoritative Source
 
-Identity Evidence の Issuing Source がもつ正確な情報にアクセスできる, もしくは検証済みコピーを所有している主体. これにより Identity Proofing 実施時に CSP が Applicant の提出した Identity Evidence の有効性を確認できる. Issuing Source 自身が Authoritative Source であることもありうる. Authoritative Source は, Identity Proofing の検証フェーズの前に, 機関や CSP のポリシーによって決定されることも多い.
+Identity Evidence の Issuing Source がもつ正確な情報に Access できる, もしくは検証済みコピーを所有している主体. これにより Identity Proofing 実施時に CSP が Applicant の提出した Identity Evidence の有効性を確認できる. Issuing Source 自身が Authoritative Source であることもありうる. Authoritative Source は, Identity Proofing の検証フェーズの前に, 機関や CSP のポリシーによって決定されることも多い.
 
 <!-- An entity that has access to, or verified copies of, accurate information from an issuing source such that a CSP can confirm the validity of the identity evidence supplied by an applicant during identity proofing. An issuing source may also be an authoritative source. Often, authoritative sources are determined by a policy decision of the agency or CSP before they can be used in the identity proofing validation phase. -->
 
@@ -478,7 +478,7 @@ Attacker が通信を行う2つの主体の間に介在し, 両者の間を行�
 
 #### Memorized Secret
 
-Subscriber に記憶されることを前提とした, 文字列からなる Authenticator. Subscriber が Authentication Process において *something they know* を立証するために利用できる.
+Subscriber に記憶されることを前提とした, 文字列からなる Authenticator. Subscriber が Authentication プロセスにおいて *something they know* を立証するために利用できる.
 
 <!-- A type of authenticator comprised of a character string intended to be memorized or memorable by the subscriber, permitting the subscriber to demonstrate *something they know* as part of an authentication process. -->
 
@@ -593,75 +593,146 @@ Passphrase は Claimant が自身の Identity を Authenticate する際に利�
 <!-- See *Personally Identifiable Information*. -->
 
 #### Personally Identifiable Information (PII)
-As defined by [OMB Circular A-130](#A-130), Personally Identifiable Information is information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual.
+
+[OMB Circular A-130](#A-130) で定義されているように, Personally Identifiable Information とは個人の Identity を識別したり追跡するために用いられる情報である. 単体の情報で個人を識別・追跡可能なものもあれば, 特定の個人に紐付け済もしくは紐付け可能なその他の情報と組み合わせることで識別・追跡可能となるものもある.
+
+<!-- As defined by [OMB Circular A-130](#A-130), Personally Identifiable Information is information that can be used to distinguish or trace an individual's identity, either alone or when combined with other information that is linked or linkable to a specific individual. -->
 
 #### Pharming
-An attack in which an attacker corrupts an infrastructure service such as DNS (Domain Name System) causing the subscriber to be misdirected to a forged verifier/RP, which could cause the subscriber to reveal sensitive information, download harmful software, or contribute to a fraudulent act.
+
+DNS (Domain Name System) のようなインフラストラクチャサービスを汚染する手法により, Subscriber を偽の Verifier/RP へ誘導し, 機微情報を入力させる, 有害なソフトウェアをダウンロードさせる, 詐欺活動に加担させるような Attack.
+
+<!-- An attack in which an attacker corrupts an infrastructure service such as DNS (Domain Name System) causing the subscriber to be misdirected to a forged verifier/RP, which could cause the subscriber to reveal sensitive information, download harmful software, or contribute to a fraudulent act. -->
 
 #### Phishing
-An attack in which the subscriber is lured (usually through an email) to interact with a counterfeit verifier/RP and tricked into revealing information that can be used to masquerade as that subscriber to the real verifier/RP.
+
+Subscriber を (主に Email を通じて) 偽の Verifier/RP に誘導し, 本物の Verifier/RP に対して Subscriber になりすますための情報を騙し取る Attack.
+
+<!-- An attack in which the subscriber is lured (usually through an email) to interact with a counterfeit verifier/RP and tricked into revealing information that can be used to masquerade as that subscriber to the real verifier/RP. -->
 
 #### Possession and Control of an Authenticator
-The ability to activate and use the authenticator in an authentication protocol.
+
+Authenticator Protocol において, Authenticator をアクティベートし利用する能力.
+
+<!-- The ability to activate and use the authenticator in an authentication protocol. -->
 
 #### Practice Statement
-A formal statement of the practices followed by the parties to an authentication process (e.g., CSP or verifier). It usually describes the parties' policies and practices and can become legally binding.
+
+Authentication プロセスの当事者 (e.g. CSP, Verifier) が従う実践的な内容を正式に記載した文書. 通常, 当事者のポリシーと実行内容が記述されており, 法的拘束力を持つ可能性がある.
+
+<!-- A formal statement of the practices followed by the parties to an authentication process (e.g., CSP or verifier). It usually describes the parties' policies and practices and can become legally binding. -->
 
 #### Private Credentials
-Credentials that cannot be disclosed by the CSP because the contents can be used to compromise the authenticator.
+
+Authenticator へのセキュリティー侵害につながるため, CSP によって開示されることがない Credential.
+
+<!-- Credentials that cannot be disclosed by the CSP because the contents can be used to compromise the authenticator. -->
 
 #### Private Key
-The secret part of an asymmetric key pair that is used to digitally sign or decrypt data.
+
+Asymmetric Key ペアの秘密鍵. データへのデジタル署名や復号に用いられる.
+
+<!-- The secret part of an asymmetric key pair that is used to digitally sign or decrypt data. -->
 
 #### Presentation Attack
-Presentation to the biometric data capture subsystem with the goal of interfering with the operation of the biometric system.
+
+Biometric システムの運用妨害を目的とした Biometric データ読み取りサブシステムへの提示.
+
+<!-- Presentation to the biometric data capture subsystem with the goal of interfering with the operation of the biometric system. -->
 
 #### Presentation Attack Detection (PAD)
-Automated determination of a presentation attack. A subset of presentation attack determination methods, referred to as *liveness detection*, involve measurement and analysis of anatomical characteristics or involuntary or voluntary reactions, in order to determine if a biometric sample is being captured from a living subject present at the point of capture.
+
+Presentation Attack の自動検知. Presentation Attack Detection 手法のサブセットである *liveness detection* では, 解剖学的特徴または非自発的または自発的反応の測定および分析を行い, Biometric サンプルが生体の Subject から直接読み取られたものかどうかを判定する.
+
+<!-- Automated determination of a presentation attack. A subset of presentation attack determination methods, referred to as *liveness detection*, involve measurement and analysis of anatomical characteristics or involuntary or voluntary reactions, in order to determine if a biometric sample is being captured from a living subject present at the point of capture. -->
 
 #### Protected Session
-A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys.
 
-A participant is said to be *authenticated* if, during the session, they prove possession of one or more authenticators in addition to the session keys, and if the other party can verify the identity associated with the authenticator(s). If both participants are authenticated, the protected session is said to be *mutually authenticated*.
+2者間でやりとりされるメッセージを, Session Key と呼ばれる Shared Secret を用いて暗号化し, Integrity を保護するセッション.
+
+<!-- A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys. -->
+
+当該セッション内で, ある主体が Session Key に加えて1つ以上の Authenticator を所有していることを証明し, もう一方の主体が当該 Authenticator に紐づく Identity を検証できる場合, 当該主体は *Authenticated* であると言う. もし両主体が共に Authenticated となる場合, この Protected Session は *Mutually Authenticated* であると言える.
+
+<!-- A participant is said to be *authenticated* if, during the session, they prove possession of one or more authenticators in addition to the session keys, and if the other party can verify the identity associated with the authenticator(s). If both participants are authenticated, the protected session is said to be *mutually authenticated*. -->
 
 #### Protected Session
-A session established on an authenticated protected channel.
+
+Authenticate され保護されたチャネルで確立された Session.
+
+<!-- A session established on an authenticated protected channel. -->
 
 #### Pseudonym
-A name other than a legal name.
+
+実名 (Legal Name) 以外の名前.
+
+<!-- A name other than a legal name. -->
 
 #### Pseudonymity
-The use of a pseudonym to identify a subject.
+
+Subject の識別に Pseudonym を用いること.
+
+<!-- The use of a pseudonym to identify a subject. -->
 
 #### Pseudonymous Identifier
-A meaningless but unique number that does not allow the RP to infer anything regarding the subscriber but which does permit the RP to associate multiple interactions with the subscriber's claimed identity.
+
+RP による Subscriber に関するいかなる推測をも許さず, かつ RP が複数のインタラクションに渡って Subscriber の Claimed Identity を紐づけられるような, 意味のないユニークな識別子.
+
+<!-- A meaningless but unique number that does not allow the RP to infer anything regarding the subscriber but which does permit the RP to associate multiple interactions with the subscriber's claimed identity. -->
 
 #### Public Credentials
-Credentials that describe the binding in a way that does not compromise the authenticator.
+
+セキュリティー侵害を伴わず Authenticator との紐付けを表せる Credential.
+
+<!-- Credentials that describe the binding in a way that does not compromise the authenticator. -->
 
 #### Public Key
-The public part of an asymmetric key pair that is used to verify signatures or encrypt data.
+
+Asymmetric Key ペアの公開鍵. データへの署名検証や暗号化に用いられる.
+
+<!-- The public part of an asymmetric key pair that is used to verify signatures or encrypt data. -->
 
 #### Public Key Certificate
-A digital document issued and digitally signed by the private key of a certificate authority that binds an identifier to a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](sp800-63b.html#RFC5280).
+
+Certificate Authority によって発行され, Certificate Authority の秘密鍵でデジタル署名された電子文書. Public Key Certificate により Subscriber の Identifier が Public Key と紐づけられる. 当該 Certificate により識別される Subscriber のみが Private Key の管理および Access を持っていることが暗示される. [[RFC 5280]](sp800-63b.ja.html#RFC5280) も参照のこと.
+
+<!-- A digital document issued and digitally signed by the private key of a certificate authority that binds an identifier to a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](sp800-63b.html#RFC5280). -->
 
 #### Public Key Infrastructure (PKI)
-A set of policies, processes, server platforms, software, and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates.
+
+Certificate と Public-Private Key Pair を管理する目的で利用される, 一連のポリシー, プロセス, サーバープラットフォーム, ソフトウェア, ワークステーションなど. Public Key Certificate の発行, 管理, 失効を行う能力を備える.
+
+<!-- A set of policies, processes, server platforms, software, and workstations used for the purpose of administering certificates and public-private key pairs, including the ability to issue, maintain, and revoke public key certificates. -->
 
 #### Reauthentication
-The process of confirming the subscriber's continued presence and intent to be authenticated during an extended usage session.
+
+ある Session において, Subscriber が継続してその場に存在し Authenticate する意思を持っていることを確認するプロセス.
+
+<!-- The process of confirming the subscriber's continued presence and intent to be authenticated during an extended usage session. -->
 
 #### Registration
-See [Enrollment](#enroll).
+
+[Enrollment](#enroll) 参照.
+
+<!-- See [Enrollment](#enroll). -->
 
 #### Relying Party (RP)
-An entity that relies upon the subscriber's authenticator(s) and credentials or a verifier's assertion of a claimant's identity, typically to process a transaction or grant access to information or a system.
+
+Subscriber の Authenticator および Credential, Verifier の Claimant Identity に関する Assertion を信頼して, Transaction を処理したり情報やシステムへの Access を許可したりする主体.
+
+<!-- An entity that relies upon the subscriber's authenticator(s) and credentials or a verifier's assertion of a claimant's identity, typically to process a transaction or grant access to information or a system. -->
 
 #### Remote
-(*In the context of remote authentication or remote transaction*) An information exchange between network-connected devices where the information cannot be reliably protected end-to-end by a single organization's security controls.
+
+(*Remote Authentication や Remote Transaction といったコンテキストで*) 単一組織によるセキュリティ対策のみでは End-to-End での確実な保護が期待できないような状況下での, Network 接続されたデバイス間の情報交換.
+
+<!-- (*In the context of remote authentication or remote transaction*) An information exchange between network-connected devices where the information cannot be reliably protected end-to-end by a single organization's security controls. -->
 
 #### Replay Attack
-An attack in which the attacker is able to replay previously captured messages (between a legitimate claimant and a verifier) to masquerade as that claimant to the verifier or vice versa.
+
+Attacker が事前に記録しておいた (正当な Claimant と Verifier との間の) メッセージを, Verifier に対して Claimant になりすまして, もしくはその逆方向に, 再送する Attack.
+
+<!-- An attack in which the attacker is able to replay previously captured messages (between a legitimate claimant and a verifier) to masquerade as that claimant to the verifier or vice versa. -->
 
 #### Replay Resistance
 The property of an authentication process to resist replay attacks, typically by use of an authenticator output that is valid only for a specific authentication.
