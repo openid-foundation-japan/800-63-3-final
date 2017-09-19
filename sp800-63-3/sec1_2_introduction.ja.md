@@ -36,27 +36,49 @@ Digital Authentication は, 個人の情報への Unauthorized Access のリス�
 
 <!-- These guidelines support the mitigation of the negative impacts induced by an authentication error by separating the individual elements of identity assurance into discrete, component parts. For non-federated systems, agencies will select two components, referred to as *Identity Assurance Level (IAL)* and *Authenticator Assurance Level (AAL)*. For federated systems, a third component, *Federation Assurance Level (FAL)*, is included. [Section 5, Digital Identity Risk Management](#sec5) provides details on the risk assessment process. [Section 6, Selecting Assurance Levels](#sec6) combines the results of the risk assessment with additional context to support agency selection of the appropriate IAL, AAL, and FAL combinations based on risk. -->
 
-These guidelines do not consider nor result in a composite level of assurance (LOA) in the context of a single ordinal that drives implementation-specific requirements. Rather, by combining appropriate risk management for business, security, and privacy side-by-side with mission need, agencies will select IAL, AAL, and FAL as distinct options. Specifically, this document does not recognize the four LOA model previously used by federal agencies and described in OMB M-04-04, instead requiring agencies to individually select levels corresponding to each function being performed. While many systems will have the same numerical level for each IAL, AAL, and FAL, this is not a requirement, and agencies should not assume they will be the same in any given system or application.
+本ガイドライン群は, 実装固有の要件をもたらす単一の序数としての Level of Assurance (LOA) を構成するものではなく, ビジネス, セキュリティー, プライバシーのための適切な Risk Management をミッションニーズと組み合わせ, 各機関が個別に IAL, AAL, FAL を選択するためのものである. 特に本ドキュメントは, 各政府機関が以前利用し OMB M-04-04 でも述べられている4つの LOA モデルを認めず, 各機関が実施している各機能ごとに個別に各レベルを選択するよう求めている. 多くのシステムで IAL, AAL, FAL がそれぞれ同じレベル値となるとしても, その値自体は要件ではなく, 各機関はいかなるシステムでもこの値が適切であるとみなすべきでもない.
 
-The components of identity assurance detailed in these guidelines are as follows:
+<!-- These guidelines do not consider nor result in a composite level of assurance (LOA) in the context of a single ordinal that drives implementation-specific requirements. Rather, by combining appropriate risk management for business, security, and privacy side-by-side with mission need, agencies will select IAL, AAL, and FAL as distinct options. Specifically, this document does not recognize the four LOA model previously used by federal agencies and described in OMB M-04-04, instead requiring agencies to individually select levels corresponding to each function being performed. While many systems will have the same numerical level for each IAL, AAL, and FAL, this is not a requirement, and agencies should not assume they will be the same in any given system or application. -->
 
-* **IAL** refers to the identity proofing process.
+本ガイドライン群において詳しく扱う Identity Assurance の構成要素は以下の通りである.
+
+<!-- The components of identity assurance detailed in these guidelines are as follows: -->
+
+* **IAL** は, Identity Proofing プロセスについて述べる.
+* **AAL** は, Authentication プロセスについて述べる.
+* **FAL** は, Federated な環境において Authentication 情報 (および場合によっては Attribute 情報) を Relying Party (RP) に伝達する Assertion Protocol について述べる.
+
+<!-- * **IAL** refers to the identity proofing process.
 * **AAL** refers to the authentication process.
-* **FAL** refers to the assertion protocol used in a federated environment to communicate authentication and attribute information (if applicable) to an RP.
+* **FAL** refers to the assertion protocol used in a federated environment to communicate authentication and attribute information (if applicable) to an RP. -->
 
-As such, SP 800-63 is organized as a suite of volumes as follows:
+SP 800-63 は以下のような一連の Vol. から構成される.
 
-SP 800-63 *Digital Identity Guidelines*: Provides the risk assessment methodology and an overview of general identity frameworks, using authenticators, credentials, and assertions together in a digital system, and a risk-based process of selecting assurance levels. _SP 800-63 contains both normative and informative material._
+<!-- As such, SP 800-63 is organized as a suite of volumes as follows: -->
 
-SP 800-63A *Enrollment and Identity Proofing*: Addresses how applicants can prove their identities and become enrolled as valid subjects within an identity system. It provides requirements for processes by which applicants can both proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._
+SP 800-63 *Digital Identity Guidelines*:　SP 800-63 では, Risk Assesment の方法論, デジタルシステムにおける Authenticator, Credential, Assertion を利用した一般的な Identity Framework の概観, およびリスクベースプロセスに基づく各 Assurance Level の選択方法について述べる. _SP 800-63 contains both normative and informative material._
 
-SP 800-63B *Authentication and Lifecycle Management*: Addresses how an individual can securely authenticate to a CSP to access a digital service or set of digital services. This volume also describes the process of binding an authenticator to an identity. _SP 800-63B contains both normative and informative material._
+<!-- SP 800-63 *Digital Identity Guidelines*: Provides the risk assessment methodology and an overview of general identity frameworks, using authenticators, credentials, and assertions together in a digital system, and a risk-based process of selecting assurance levels. _SP 800-63 contains both normative and informative material._ -->
 
-SP 800-63C *Federation and Assertions*: Provides requirements on the use of federated identity architectures and assertions to convey the results of authentication processes and relevant identity information to an agency application. Further, this volume offers privacy-enhancing techniques to share information about a valid, authenticated subject, and describes methods that allow for strong multi-factor authentication (MFA) while the subject remains pseudonymous to the digital service. _SP 800-63C contains both normative and informative material._
+SP 800-63A *Enrollment and Identity Proofing*: NIST SP 800-63-A では, Applicant が自身の Identity を証明し, 正当な Subscriber として Identity システムに登録されるまでの一連の流れについて記述する. この Vol. では, Remote と対面の両シナリオにおいて, Applicant が Identity を証明し登録する際のリスクレベルを3段階に分け, それぞれのレベルにおける要件をまとめる. _SP 800-63A contains both normative and informative material._
 
-NIST anticipates that individual volumes in these guidelines will be revised asynchronously. At any time, the most recent revision of each should be used (e.g., if at a time in the future SP 800-63A-1 and SP 800-63B-2 are the most recent revisions of each volume, they should be used together even though the revision numbers do not match). To minimize the risk of compatibility errors, a reference to the base document (i.e., SP 800-63 rather than SP 800-63-3) always refers to the current version of the document.
+<!-- SP 800-63A *Enrollment and Identity Proofing*: Addresses how applicants can prove their identities and become enrolled as valid subjects within an identity system. It provides requirements for processes by which applicants can both proof and enroll at one of three different levels of risk mitigation in both remote and physically-present scenarios. _SP 800-63A contains both normative and informative material._ -->
 
-The following table states which sections of this volume are normative and which are informative:
+SP 800-63B *Authentication and Lifecycle Management*: NIST SP 800-63B では, デジタルサービスに Access する個人が CSP に対してセキュアに Authenticate されるプロセスを扱う. 本 Vol. では Authenticator を Identity に紐づけるプロセスについても記述する. _SP 800-63B contains both normative and informative material._
+
+<!-- SP 800-63B *Authentication and Lifecycle Management*: Addresses how an individual can securely authenticate to a CSP to access a digital service or set of digital services. This volume also describes the process of binding an authenticator to an identity. _SP 800-63B contains both normative and informative material._ -->
+
+SP 800-63C *Federation and Assertions*: NIST SP 800-63C では, Federated Identity アーキテクチャーを採用したり, Authentication プロセスの結果と関連する Identity 情報を機関のアプリケーションに伝送する際に Assertion を利用するにあたっての要件について述べる. さらにこの Vol. では, 正当かつ Authenticated な Subject についての情報を共有する際のプライバシー強化手法や, Subject が Pseudonymous なまま強固な Multi-factor Authentication (MFA) を行う手法についても述べる. _SP 800-63C contains both normative and informative material._
+
+<!-- SP 800-63C *Federation and Assertions*: Provides requirements on the use of federated identity architectures and assertions to convey the results of authentication processes and relevant identity information to an agency application. Further, this volume offers privacy-enhancing techniques to share information about a valid, authenticated subject, and describes methods that allow for strong multi-factor authentication (MFA) while the subject remains pseudonymous to the digital service. _SP 800-63C contains both normative and informative material._ -->
+
+NIST では, 本ガイドライン群中の個々の Vol. が非同期に改訂されることを想定している. いかなる場合でも, 各 Vol. のもっとも最新のリビジョンを用いること (e.g. ある時点において SP 800-63A-1 および SP 800-63B-2 がそれぞれの最新リビジョンであれば, 互いのリビジョン番号がずれていたとしてもそれらを同時に利用するべきである). 互換性エラーを最小化するため, ベースドキュメント (i.e., SP 800-63-3 ではなく SP 800-63) は常に本ドキュメントの最新バージョンを参照することとする.
+
+<!-- NIST anticipates that individual volumes in these guidelines will be revised asynchronously. At any time, the most recent revision of each should be used (e.g., if at a time in the future SP 800-63A-1 and SP 800-63B-2 are the most recent revisions of each volume, they should be used together even though the revision numbers do not match). To minimize the risk of compatibility errors, a reference to the base document (i.e., SP 800-63 rather than SP 800-63-3) always refers to the current version of the document. -->
+
+下表は, 本 Vol. のどのセクションが Normative (規範) であり, どのセクションが Informative (参考) であるかを示している.
+
+<!-- The following table states which sections of this volume are normative and which are informative: -->
 
 |Section Name|Normative/Informative|
 |----|:--:|
