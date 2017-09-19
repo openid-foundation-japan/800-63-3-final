@@ -121,29 +121,54 @@ NIST では, 本ガイドライン群中の個々の Vol. が非同期に改訂�
 
 ### 2.3 A Few Limitations
 
-These technical guidelines do not address the authentication of subjects for physical access (e.g., to buildings), though some authenticators used for digital access may also be used for physical access authentication. Additionally, this revision of these guidelines does not explicitly address device identity, often referred to as machine-to-machine (such as router-to-router) authentication or interconnected devices, commonly referred to as the internet of things (IoT). That said, these guidelines are written to refer to generic subjects wherever possible to leave open the possibility for applicability to devices. Also excluded are specific requirements for issuing authenticators to devices when they are used in authentication protocols with people.
+Authenticator によってはデジタル Access のみならず物理的 Access 時の Authentication の為にも利用可能なものもあるが, 本技術ガイドライン群は物理的 Access (e.g. ビル入館) に際する Subject の Authentication に関しては扱わない. さらに, 本ガイドライン群の本リビジョンでは, しばしば Machine-to-Machene (Router-to-Router など) Authentication や相互接続デバイスと呼ばれ, 一般的には Internet of Things (IoT) とも呼ばれる Device Identity については明示的には扱わない. つまり, 本ガイドライン群は可能な限り一般的 Subject について言及し, デバイスへの適用可能性を残している. また対人間の Authentication Protocol でデバイスを用いる際に, デバイスに Authenticator を発行する固有の要件についても除外されている.
+
+<!-- These technical guidelines do not address the authentication of subjects for physical access (e.g., to buildings), though some authenticators used for digital access may also be used for physical access authentication. Additionally, this revision of these guidelines does not explicitly address device identity, often referred to as machine-to-machine (such as router-to-router) authentication or interconnected devices, commonly referred to as the internet of things (IoT). That said, these guidelines are written to refer to generic subjects wherever possible to leave open the possibility for applicability to devices. Also excluded are specific requirements for issuing authenticators to devices when they are used in authentication protocols with people. -->
 
 ### 2.4 How to Use this Suite of SPs
 
-The business model, marketplace, and composition of how identity services are delivered has drastically changed since the first version of SP 800-63 was released. Notably, CSPs can be componentized and comprised of multiple independently-operated and owned business entities. Further, there may be a significant security benefit to using strong authenticators even if no identity proofing is required. Therefore, in this revision, a suite of SPs under the 800-63 moniker has been created to facilitate these new models and make it easy to access the specific requirements for the function an entity may serve under the overall digital identity model.
+Identity サービスを提供する際のビジネスモデル, マーケットプレイス, 構成は, 最初のバージョンの SP 800-63 がリリースされて以降, 劇的に変化している. 特に CSP はコンポーネント化され, 独立して運営・保有される複数のビジネス主体により構成されるケースも出てきた. さらに Identity Proofing が必要ないケースでも強固な Authenticator を利用する大きなセキュリティー上の利点もありうる. したがって本リビジョンでは, 800-63 という呼称の元に一連の SP を置き, 上記のような新しいモデルを促進し, 全体の Digital Identity モデルの中である主体が提供可能な機能に対する特定の要件に容易にたどり着けるようにしている.
+
+<!-- The business model, marketplace, and composition of how identity services are delivered has drastically changed since the first version of SP 800-63 was released. Notably, CSPs can be componentized and comprised of multiple independently-operated and owned business entities. Further, there may be a significant security benefit to using strong authenticators even if no identity proofing is required. Therefore, in this revision, a suite of SPs under the 800-63 moniker has been created to facilitate these new models and make it easy to access the specific requirements for the function an entity may serve under the overall digital identity model. -->
 
 ### 2.5 Change History
 
 #### 2.5.1 SP 800-63-1
 
-NIST SP 800-63-1 updated NIST SP 800-63 to reflect current authenticator (then referred to as "token") technologies and restructured it to provide a better understanding of the digital identity architectural model used here. Additional (minimum) technical requirements were specified for the CSP, protocols used to transport authentication information, and assertions if implemented within the digital identity model.
+NIST SP 800-63-1 は, 最新の Authenticator ("Token" と呼ばれた) 技術を反映し, 今日使われている Digital Identity アーキテクチャーモデルをよりよく理解すべく, NIST SP 800-63 を改訂したものである. 追加の (最小限の) 技術要件が, CSP, Authentication 情報伝達プロトコル, および Digital Identity モデル中で利用されていれば Assertion に対して規定された.
+
+<!-- NIST SP 800-63-1 updated NIST SP 800-63 to reflect current authenticator (then referred to as "token") technologies and restructured it to provide a better understanding of the digital identity architectural model used here. Additional (minimum) technical requirements were specified for the CSP, protocols used to transport authentication information, and assertions if implemented within the digital identity model. -->
 
 #### 2.5.2 SP 800-63-2
 
-NIST SP 800-63-2 was a limited update of SP 800-63-1 and substantive changes were made only in Section 5, *Registration and Issuance Processes*. The substantive changes in the revised draft were intended to facilitate the use of professional credentials in the identity proofing process, and to reduce the need to send postal mail to an address of record to issue credentials for level 3 remote registration. Other changes to Section 5 were minor explanations and clarifications.
+NIST SP 800-63-2 は SP 800-63-1 の限定的アップデートであり, 実質的変更は Section 5 *Registration and Issuance Processes* のみであった. 改訂 Draft の実質的変更は, Identity Proofing プロセスにおいて専門資格の使用を促進し, Level 3 の Remote Registration における Credential 発行のため Address of Record に郵便を送る必要性を低減させることを意図したものであった. Section 5 のその他の変更は, 軽微な説明と明確化であった.
+
+<!-- NIST SP 800-63-2 was a limited update of SP 800-63-1 and substantive changes were made only in Section 5, *Registration and Issuance Processes*. The substantive changes in the revised draft were intended to facilitate the use of professional credentials in the identity proofing process, and to reduce the need to send postal mail to an address of record to issue credentials for level 3 remote registration. Other changes to Section 5 were minor explanations and clarifications. -->
 
 #### 2.5.3 SP 800-63-3
 
-NIST SP 800-63-3 is a substantial update and restructuring of SP 800-63-2. SP 800-63-3 introduces individual components of digital authentication assurance &mdash; AAL, IAL, and FAL &mdash; to support the growing need for independent treatment of authentication strength and confidence in an individual's claimed identity (e.g., in strong pseudonymous authentication). A risk assessment methodology and its application to IAL, AAL, and FAL has been included in this guideline. It also moves the whole of digital identity guidance covered under SP 800-63 from a single document describing authentication to a suite of four documents (to separately address the individual components mentioned above) of which SP 800-63-3 is the top-level document.
+NIST SP 800-63-3 は SP 800-63-2 の大幅なアップデートと再構成を伴っている. SP 800-63-3 では Digital Authentication Assurance の個々の構成要素となる AAL, IAL, FAL を導入し, Authentication の強度と個々の Claimed Identity の確実性を独立して扱いたい (e.g. 強固な Pseudonymous Authentication) という高まる要求に応えている. 本ガイドラインには, Risk Assessment 方法論とその IAL, AAL, FAL への適用が含まれる. SP 800-63-3 では, SP 800-63 がカバーする Digital Identity ガイダンス全体を, Authentication について述べる単一のドキュメントから, (上述の個々の構成要素に個別に対処するべく) SP 800-63-3 をトップレベルのドキュメントとする一連の4つのドキュメント群へと分割する.
 
-Other areas updated in 800-63-3 include:
+<!-- NIST SP 800-63-3 is a substantial update and restructuring of SP 800-63-2. SP 800-63-3 introduces individual components of digital authentication assurance &mdash; AAL, IAL, and FAL &mdash; to support the growing need for independent treatment of authentication strength and confidence in an individual's claimed identity (e.g., in strong pseudonymous authentication). A risk assessment methodology and its application to IAL, AAL, and FAL has been included in this guideline. It also moves the whole of digital identity guidance covered under SP 800-63 from a single document describing authentication to a suite of four documents (to separately address the individual components mentioned above) of which SP 800-63-3 is the top-level document. -->
 
-- Renamed to "Digital Identity Guidelines" to properly represent the scope includes identity proofing and federation, and to support expanding the scope to include device identity, or machine-to-machine authentication in future revisions.
+800-63-3 でのその他の変更点は以下の通りである.
+
+<!-- Other areas updated in 800-63-3 include: -->
+
+- Identity Proofing および Federation をスコープに含めていることを正しく示すべく, "Digital Identity Guidelines" に改名し, 将来のリビジョンで Device Identity や Machine-to-Machene Authentication を扱えるようスコープを拡大する余地を含めた.
+- Assertion 技術における *Token* との混同を避けるため *Token* の代わりに *Authenticator* という用語を用いるなど, 用語変更を行った.
+- Authentication および Assertion の要件を更新し, セキュリティー技術および脅威の進化を反映した.
+- Verifier が Long-term Secret を保管する際の要件を定めた.
+- Identity Proofing モデルを再構成した.
+- Remote Identity Proofing に関連する要件を更新した.
+- 独立したチャネルやデバイスを "something you have" として用いるということを明確化した.
+- 事前登録済の Knowledge Token (Autnenticator) は, (時として非常に弱い) パスワードの特別な形態という認識のもと **削除** した.
+- Authenticator の紛失や盗難時のアカウントリカバリーに関する要件を定めた.
+- Out-of-band Authenticator 用の有効なチャネルとしての Email を **削除** した.
+- Re-authentication やセッションマネージメントに関するより深い議論を追加した.
+- Identity Federation に関するより深い議論を追加し, Federation コンテキストにおける Assertion の再構成を行った.
+
+<!-- - Renamed to "Digital Identity Guidelines" to properly represent the scope includes identity proofing and federation, and to support expanding the scope to include device identity, or machine-to-machine authentication in future revisions.
 - Terminology changes, including the use of *authenticator* in place of *token* to avoid conflicting use of the word *token* in assertion technologies.
 -	Updates to authentication and assertion requirements to reflect advances in both security technology and threats.
 -	Requirements on the storage of long-term secrets by verifiers.
@@ -154,4 +179,4 @@ Other areas updated in 800-63-3 include:
 -	Requirements regarding account recovery in the event of loss or theft of an authenticator.
 -	**Removal** of email as a valid channel for out-of-band authenticators.
 -   Expanded discussion of reauthentication and session management.
--   Expanded discussion of identity federation; restructuring of assertions in the context of federation.
+-   Expanded discussion of identity federation; restructuring of assertions in the context of federation. -->
