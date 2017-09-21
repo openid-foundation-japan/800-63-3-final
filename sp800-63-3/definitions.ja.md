@@ -257,7 +257,7 @@ Subject により, 自分に到達可能だと Assert された物理的位置. 
 
 #### Credential
 
-ある Identity および (任意で) 追加の Attribute を, Identifier を通じて, Subscriber が所有ないしは管理する Authenticator に紐付ける, 信頼のおけるオブジェクトもしくはデータ構造.
+ある Identity および (任意で) 追加の Attribute を, 識別子を通じて, Subscriber が所有ないしは管理する Authenticator に紐付ける, 信頼のおけるオブジェクトもしくはデータ構造.
 
 <!-- An object or data structure that authoritatively binds an identity - via an identifier or identifiers - and (optionally) additional attributes, to at least one authenticator possessed and controlled by a subscriber. -->
 
@@ -694,7 +694,7 @@ Asymmetric Key ペアの公開鍵. データへの署名検証や暗号化に用
 
 #### Public Key Certificate
 
-Certificate Authority によって発行され, Certificate Authority の秘密鍵でデジタル署名された電子文書. Public Key Certificate により Subscriber の Identifier が Public Key と紐づけられる. 当該 Certificate により識別される Subscriber のみが Private Key の管理および Access を持っていることが暗示される. [[RFC 5280]](sp800-63b.ja.html#RFC5280) も参照のこと.
+Certificate Authority によって発行され, Certificate Authority の秘密鍵でデジタル署名された電子文書. Public Key Certificate により Subscriber の識別子が Public Key と紐づけられる. 当該 Certificate により識別される Subscriber のみが Private Key の管理および Access を持っていることが暗示される. [[RFC 5280]](sp800-63b.ja.html#RFC5280) も参照のこと.
 
 <!-- A digital document issued and digitally signed by the private key of a certificate authority that binds an identifier to a subscriber to a public key. The certificate indicates that the subscriber identified in the certificate has sole control and access to the private key. See also [[RFC 5280]](sp800-63b.html#RFC5280). -->
 
