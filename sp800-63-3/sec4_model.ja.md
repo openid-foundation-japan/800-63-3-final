@@ -24,11 +24,17 @@ Identity Proofing の強度は IAL と呼ばれる序数的指標で表される
 
 <!-- In these guidelines, the party to be authenticated is called a *claimant* and the party verifying that identity is called a *verifier*. When a claimant successfully demonstrates possession and control of one or more authenticators to a verifier through an authentication protocol, the verifier can verify that the claimant is a valid subscriber. The verifier passes on an assertion about the subscriber, who may be either pseudonymous or non-pseudonymous, to the RP. That assertion includes an identifier, and may include identity information about the subscriber, such as the name, or other attributes that were collected in the enrollment process (subject to the CSP's policies, the RP's needs, and consent for disclosure of attributes given by the subject). Where the verifier is also the RP, the assertion may be implicit. The RP can use the authenticated information provided by the verifier to make authorization decisions. -->
 
-Authentication establishes confidence that the claimant has possession of an authenticator(s) bound to the credential, and in some cases in the attribute values of the subscriber (e.g., if the subscriber is a U.S. citizen, is a student at a particular university, or is assigned a particular number or code by an agency or organization). Authentication does not determine the claimant's authorizations or access privileges; this is a separate decision, and is out of these guidelines' scope. RPs can use a subscriber's authenticated identity and attributes with other factors to make authorization decisions. Nothing in this document suite precludes RPs from requesting additional information from a subscriber that has successfully authenticated.
+Authentication により, Claimant が Credential に紐づく Authenticator を管理下に置いていることが確かめられ, 場合によっては Subscriber の Attribute Value (e.g., Subscriber が U.S. 市民, 特定の大学の生徒であること, ある機関や組織から特定の番号やコードを割り当てられていること) についても確認できる. Authentication は Claimant の Authorization や Access 権限の決定を行うものではなく, これらは別の意思決定であり, 本ガイドライン群の扱うところではない. RP は Subscriber の Authenticated Identity および Attribute を他の要素と組み合わせ, Authorization の決定を行う. 本ドキュメントスイートは RP が Subscriber に対して Authenticate を成功させるために追加情報を要求することを妨げるものではない.
 
-The strength of the authentication process is described by an ordinal measurement called the AAL. AAL1 requires single-factor authentication and is permitted with a variety of different authenticator types. At AAL2, authentication requires two authentication factors for additional security. Authentication at the highest level, AAL3, additionally requires the use of a hardware-based authenticator and verifier impersonation resistance.
+<!-- Authentication establishes confidence that the claimant has possession of an authenticator(s) bound to the credential, and in some cases in the attribute values of the subscriber (e.g., if the subscriber is a U.S. citizen, is a student at a particular university, or is assigned a particular number or code by an agency or organization). Authentication does not determine the claimant's authorizations or access privileges; this is a separate decision, and is out of these guidelines' scope. RPs can use a subscriber's authenticated identity and attributes with other factors to make authorization decisions. Nothing in this document suite precludes RPs from requesting additional information from a subscriber that has successfully authenticated. -->
 
-The various entities and interactions that comprise the digital identity model used here are illustrated in [Figure 4-1](#63Sec4-Figure1).
+Authentication プロセスの強度は AAL と呼ばれる序数的指標で表される. AAL1 では Single-factor Authentication が求められ, 幅広い種類の Authenticator Type が利用可能である. AAL2 ではより強固なセキュリティーの為に2つの Authentication Factor が要求される. 最高レベルの Authentication である AAL3 では, さらにハードウェアベースの Authenticator と Verifier なりすまし対策が要求される.
+
+<!-- The strength of the authentication process is described by an ordinal measurement called the AAL. AAL1 requires single-factor authentication and is permitted with a variety of different authenticator types. At AAL2, authentication requires two authentication factors for additional security. Authentication at the highest level, AAL3, additionally requires the use of a hardware-based authenticator and verifier impersonation resistance. -->
+
+ここで扱われる Digital Identity モデルを構成する多様な主体とインタラクションを [Figure 4-1](#63Sec4-Figure1) に示す.
+
+<!-- The various entities and interactions that comprise the digital identity model used here are illustrated in [Figure 4-1](#63Sec4-Figure1). -->
 
 <a name="63Sec4-Figure1"></a>
 <div class="text-center" markdown="1">
@@ -37,31 +43,55 @@ The various entities and interactions that comprise the digital identity model u
 **Figure 4-1 Digital Identity Model**
 </div>
 
-The left side of the diagram shows the enrollment, credential issuance, lifecycle management activities, and various states of an identity proofing and authentication process. The usual sequence of interactions is as follows:
+このダイアグラム左側は Enrollment, Credential 発行, ライフサイクル管理, および Identity Proofing と Authentication プロセスにおけるさまざまなステータスを示している. 通常は以下のようなシーケンスでインタラクションが行われる.
 
-1.	An applicant applies to a CSP through an enrollment process.
+<!-- The left side of the diagram shows the enrollment, credential issuance, lifecycle management activities, and various states of an identity proofing and authentication process. The usual sequence of interactions is as follows: -->
+
+1. Applicant が Enrollment プロセスを通じて CSP に申請を行う.
+2. CSP は Applicant に対して Identity Proofing を行い, Proofing が成功すると Applicant は Subscriber になる.
+3. Authenticator とそれに対応する Credential が CSP と Subscriber の間で確立される.
+4. CSP は Credential とそのステータスを管理, Credential のライフタイム期間内に収集された Enrollment データを管理し, Subscriber は自身の Authenticator を管理する.
+
+<!-- 1.	An applicant applies to a CSP through an enrollment process.
 2.	The CSP identity proofs that applicant. Upon successful proofing, the applicant becomes a subscriber.
 3.	Authenticator(s) and a corresponding credential are established between the CSP and the subscriber.
-4.	The CSP maintains the credential, its status, and the enrollment data collected for the lifetime of the credential (at a minimum). The subscriber maintains his or her authenticator(s).
+4.	The CSP maintains the credential, its status, and the enrollment data collected for the lifetime of the credential (at a minimum). The subscriber maintains his or her authenticator(s). -->
 
-Other sequences are less common, but could also achieve the same functional requirements.
+上記のシーケンスほど一般的ではなくても, 同様の機能要件を満たすその他のシーケンスもありうる.
 
-The right side of [Figure 4-1](#63Sec4-Figure1) shows the entities and interactions involved in using an authenticator to perform digital authentication. A subscriber is referred to as a claimant when he or she needs to authenticate to a verifier. The interactions are as follows:
+<!-- Other sequences are less common, but could also achieve the same functional requirements. -->
 
-1.	The claimant proves possession and control of the authenticator(s) to the verifier through an authentication protocol.
+[Figure 4-1](#63Sec4-Figure1) 右側は Authenticator を利用して Digital Authentication を行う主体およびインタラクションを示している. Subscriber は Verifier に対して Authenticate する必要がある時は Claimant と呼ばれる. ここでのインタラクションは以下の通りである.
+
+<!-- The right side of [Figure 4-1](#63Sec4-Figure1) shows the entities and interactions involved in using an authenticator to perform digital authentication. A subscriber is referred to as a claimant when he or she needs to authenticate to a verifier. The interactions are as follows: -->
+
+1. Claimant が Authentication Protocol を通じて, Verifier に対し Authenticator を保持・管理していることを証明する.
+2. Verifier は CSP とインタラクションを行い, Subscriber の Identity と Authenticator を紐づける Credential を検証し, 任意で Claimant の Attribute を取得する.
+3. CSP ないし Verifier は Subscriber に関する Assertion を RP に提供する. RP は Assertion に含まれる情報を利用して Authorization の決定を行う.
+4. Subscriber と RP の間で Authenticated Session が確立される.
+
+<!-- 1.	The claimant proves possession and control of the authenticator(s) to the verifier through an authentication protocol.
 2.	The verifier interacts with the CSP to validate the credential that binds the subscriber's identity to their authenticator and to optionally obtain claimant attributes.
 3.	The CSP or verifier provides an assertion about the subscriber to the RP, which may use the information in the assertion to make an authorization decision.
-4.	An authenticated session is established between the subscriber and the RP.
+4.	An authenticated session is established between the subscriber and the RP. -->
 
-In all cases, the RP should request the attributes it requires from a CSP before authenticating the claimant. In addition, the claimant should be requested to consent to the release of those attributes prior to generation and release of an assertion.
+いかなる場合でも, RP は Claimant を Authenticate する前に CSP に対して必要な Attribute を要求しべきである. さらに Claimant は Assertion の生成および送信前に Attribute 送信についての同意を求められるべきである.
 
-In some cases, the verifier does not need to communicate in real time with the CSP to complete the authentication activity (e.g., some uses of digital certificates). Therefore, the dashed line between the verifier and the CSP represents a logical link between the two entities. In some implementations, the verifier, RP, and CSP functions may be distributed and separated as shown in [Figure 4-1](#63Sec4-Figure1). However, if these functions reside on the same platform, the interactions between the components are local messages between applications running on the same system rather than protocols over shared, untrusted networks.
+<!-- In all cases, the RP should request the attributes it requires from a CSP before authenticating the claimant. In addition, the claimant should be requested to consent to the release of those attributes prior to generation and release of an assertion. -->
 
-As noted above, a CSP maintains status information about the credentials it issues. CSPs will generally assign a finite lifetime when issuing credentials to limit the maintenance period. When the status changes, or when the credentials near expiration, credentials may be renewed or re-issued; or, the credential may be revoked and destroyed. Typically, the subscriber authenticates to the CSP using their existing, unexpired authenticator and credential in order to request issuance of a new authenticator and credential. If the subscriber fails to request authenticator and credential re-issuance prior to their expiration or revocation, they may be required to repeat the enrollment process to obtain a new authenticator and credential. Alternatively, the CSP may choose to accept a request during a grace period after expiration.
+場合によっては, Verifier は Authentication を完了させる為に CSP とリアルタイムでコミュニケーションする必要はない (e.g., デジタル証明書を利用する場合). したがって, Verifier と CSP の間の点線は当該2主体の論理的なリンクを示している. 実装によっては, Verifier, RP, CSP の各機能は [Figure 4-1](#63Sec4-Figure1) のように分離されているが, これらの機能が同じプラットフォーム上に存在する場合, 各構成要素間のインタラクションは, 共有の信頼できない Network 越しのプロトコルではなく, 同一システム上で動作するアプリケーション間のローカルメッセージであることもある.
+
+<!-- In some cases, the verifier does not need to communicate in real time with the CSP to complete the authentication activity (e.g., some uses of digital certificates). Therefore, the dashed line between the verifier and the CSP represents a logical link between the two entities. In some implementations, the verifier, RP, and CSP functions may be distributed and separated as shown in [Figure 4-1](#63Sec4-Figure1). However, if these functions reside on the same platform, the interactions between the components are local messages between applications running on the same system rather than protocols over shared, untrusted networks. -->
+
+上述の通り, CSP は自身が発行した Credential に関するステータス情報を管理する. CSP は通常 Credential 発行時に管理期間を制限するため有限のライフタイムを設定する. ステータス変更時や Credential の期限切れに近づいた時は, Credential は更新されたり再発行されるか, 無効化され破棄される. 典型的には, Subscriber が自身の現存の期限切れしていない Authenticator および Credential を使って CSP に対して Authenticate した上で新規の Authenticator および Credential の発行を依頼する. Subscriber が有効期限切れや無効化処理が行われる前に Authenticator および Credential の再発行を行えなかった場合は, 再度 Enrollment プロセスを経て新規の Authenticator および Credential を取得することになるであろう. その代わりに CSP が有効期限切れ後一定期間は再発行リクエストを受け付ける, というようなことも考えられる.
+
+<!-- As noted above, a CSP maintains status information about the credentials it issues. CSPs will generally assign a finite lifetime when issuing credentials to limit the maintenance period. When the status changes, or when the credentials near expiration, credentials may be renewed or re-issued; or, the credential may be revoked and destroyed. Typically, the subscriber authenticates to the CSP using their existing, unexpired authenticator and credential in order to request issuance of a new authenticator and credential. If the subscriber fails to request authenticator and credential re-issuance prior to their expiration or revocation, they may be required to repeat the enrollment process to obtain a new authenticator and credential. Alternatively, the CSP may choose to accept a request during a grace period after expiration. -->
 
 ### 4.2 Enrollment and Identity Proofing
 
-Normative requirements can be found in [SP 800-63A](sp800-63a.html), *Enrollment and Identity Proofing*.
+Normative 要件は [SP 800-63A](sp800-63a.html) *Enrollment and Identity Proofing* に従うこと.
+
+<!-- Normative requirements can be found in [SP 800-63A](sp800-63a.html), *Enrollment and Identity Proofing*. -->
 
 The previous section introduced the  participants in the conceptual digital identity model. This section provides additional details regarding the participants' relationships and responsibilities in enrollment and identity proofing.
 

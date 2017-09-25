@@ -1,4 +1,4 @@
-<a name="def-and-acr"></a>
+e.g., <a name="def-and-acr"></a>
 
 <div class="breaker"></div>
 
@@ -490,7 +490,7 @@ Subscriber に記憶されることを前提とした, 文字列からなる Aut
 
 #### Mobile Code
 
-実行コードであり, 通常は提供元から別のコンピューターシステムに転送されたのち実行されるもの. 転送は Network を介す (e.g. Web ページに埋め込まれた JavaScript) が, 物理的なメディアを介して転送されることもある.
+実行コードであり, 通常は提供元から別のコンピューターシステムに転送されたのち実行されるもの. 転送は Network を介す (e.g.Web ページに埋め込まれた JavaScript) が, 物理的なメディアを介して転送されることもある.
 
 <!-- Executable code that is normally transferred from its source to another computer system for execution. This transfer is often through the network (e.g., JavaScript embedded in a web page) but may transfer through physical media as well. -->
 
@@ -522,7 +522,7 @@ Authentication Factor としては, Something You Know, Something You Have, Some
 
 #### Network
 
-オープンなコミュニケーションの伝達手段. Internet がその代表例である. Network は Claimant とその他の主体の間でメッセージを伝達するために用いられる. 特に明示されない限り, Network のセキュリティは前提とされず, オープンであり, 任意の主体 (e.g. Claimant, Verifier, CSP および RP) 間の任意の点において Active Attack (e.g. なりすまし, Man-in-the-Middle, Session Hijacking) や Passive Attack (e.g. 盗聴) にさらされうるものと想定される.
+オープンなコミュニケーションの伝達手段. Internet がその代表例である. Network は Claimant とその他の主体の間でメッセージを伝達するために用いられる. 特に明示されない限り, Network のセキュリティは前提とされず, オープンであり, 任意の主体 (e.g., Claimant, Verifier, CSP および RP) 間の任意の点において Active Attack (e.g., なりすまし, Man-in-the-Middle, Session Hijacking) や Passive Attack (e.g., 盗聴) にさらされうるものと想定される.
 
 <!-- An open communications medium, typically the Internet, used to transport messages between the claimant and other parties. Unless otherwise stated, no assumptions are made about the network's security; it is assumed to be open and subject to active (e.g., impersonation, man-in-the-middle, session hijacking) and passive (e.g., eavesdropping) attack at any point between the parties (e.g., claimant, verifier, CSP, RP). -->
 
@@ -618,7 +618,7 @@ Authenticator Protocol において, Authenticator をアクティベートし�
 
 #### Practice Statement
 
-Authentication プロセスの当事者 (e.g. CSP, Verifier) が従う実践的な内容を正式に記載した文書. 通常, 当事者のポリシーと実行内容が記述されており, 法的拘束力を持つ可能性がある.
+Authentication プロセスの当事者 (e.g., CSP, Verifier) が従う実践的な内容を正式に記載した文書. 通常, 当事者のポリシーと実行内容が記述されており, 法的拘束力を持つ可能性がある.
 
 <!-- A formal statement of the practices followed by the parties to an authentication process (e.g., CSP or verifier). It usually describes the parties' policies and practices and can become legally binding. -->
 
@@ -862,7 +862,7 @@ CSP から Credential や Authenticator を受け取る主体.
 
 #### Trust Anchor
 
-ハードウェアやソフトウェエアに直接埋め込まれていたり, Out-of-band な手法によりセキュアに提供されたりすることで Trust される, Public Key もしくは Symmetric Key. 他の Trusted Entity の保証を受けて Trust を得るものは Trust Anchor とは呼ばない (Public Key Certificate 等). Trust Anchor はそのスコープを制限するような名称やポリシー制約を持つこともある.
+ハードウェアやソフトウェエアに直接埋め込まれていたり, Out-of-band な手法によりセキュアに提供されたりすることで Trust される, Public Key もしくは Symmetric Key. 他の信頼できる主体の保証を受けて Trust を得るものは Trust Anchor とは呼ばない (Public Key Certificate 等). Trust Anchor はそのスコープを制限するような名称やポリシー制約を持つこともある.
 
 <!-- A public or symmetric key that is trusted because it is directly built into hardware or software, or securely provisioned via out-of-band means, rather than because it is vouched for by another trusted entity (e.g. in a public key certificate). A trust anchor may have name or policy constraints limiting its scope. -->
 
@@ -881,6 +881,7 @@ Authentication Protocol を利用して, Claimant が1つまたは2つの Authen
 #### Verifier Impersonation
 
 通常は正規の Verifier に対して Subscriber になりすますために使える情報を詐取することを目的とし, Authentication Protocol において Attacker が Verifier になりすますようなシナリオ. 以前の SP 800-63 では Verifier Impersonation 耐性を持つ Authentication Protocol は "strongly MitM resistant" であると記述されていた.
+
 
 <!-- A scenario where the attacker impersonates the verifier in an authentication protocol, usually to capture information that can be used to masquerade as a subscriber to the real verifier. In previous editions of SP 800-63, authentication protocols that are resistant to verifier impersonation have been described as "strongly MitM resistant". -->
 
