@@ -185,19 +185,33 @@ Verifier は機能的役割であるが, しばしば CSP, RP ないしはその
 
 ### 4.4 Federation and Assertions
 
-Normative requirements can be found in [SP 800-63C](sp800-63c.html), *Federation and Assertions*.
+Normative 要件は [SP 800-63C](sp800-63c.html), *Federation and Assertions* に従うこと.
 
-Overall, SP 800-63 does not presuppose a federated identity architecture; rather, these guidelines are agnostic to the types of models that exist in the marketplace, allowing agencies to deploy a digital authentication scheme according to their own requirements. However, identity federation is preferred over a number of siloed identity systems that each serve a single agency or RP.
+<!-- Normative requirements can be found in [SP 800-63C](sp800-63c.html), *Federation and Assertions*. -->
 
-Federated architectures have many significant benefits, including, but not limited to:
+全体として, SP 800-63 は Federated Identity アーキテクチャーを前提とはしていない. むしろ本ガイドライン群は市場に存在するモデルについては感知せず, 各機関は自身の要件にそった Digital Authentication スキームを導入できる. しかしながら, 単一の機関や RP が運営するサイロ化した多数の Identity システムよりも, Identity Federation の方が好ましい.
 
-* Enhanced user experience. For example, an individual can be identity proofed once and reuse the issued credential at multiple RPs.
+<!-- Overall, SP 800-63 does not presuppose a federated identity architecture; rather, these guidelines are agnostic to the types of models that exist in the marketplace, allowing agencies to deploy a digital authentication scheme according to their own requirements. However, identity federation is preferred over a number of siloed identity systems that each serve a single agency or RP. -->
+
+Federated アーキテクチャーには, 以下にあげたようなものをはじめとする多くの利点がある.
+
+<!-- Federated architectures have many significant benefits, including, but not limited to: -->
+
+* ユーザーエクスペリエンスの向上. 例えば, ある個人がひとたび Identity Proofing を終えると, 発行された Credential を複数の RP に対して再利用できる.
+* ユーザーと各機関双方にとってコスト低減効果がある. (ユーザーにとっては Authenticator の減少, 各機関にとっては情報テクノロジーインフラストラクチャーの縮小)
+* 各機関が Personal Information を保存するにあたっての, 収集, 保管, 処理, 法令遵守活動のための活動費用が不要となり, データ最小化につながる.
+* 各機関はサービス提供に必要な最小限の Attribute を要求し, それを Pseudonymous Attribute Assertion の Claim として含めるよう要求できる.
+* 各機関は Identity 管理ではなく自身のミッションに集中することができる.
+
+<!-- * Enhanced user experience. For example, an individual can be identity proofed once and reuse the issued credential at multiple RPs.
 * Cost reduction to both the user (reduction in authenticators) and the agency (reduction in information technology infrastructure).
 * Data minimization as agencies do not need to pay for collection, storage, disposal, and compliance activities related to storing personal information.
 * Pseudonymous attribute assertions as agencies can request a minimized set of attributes, to include claims, to fulfill service delivery.
-* Mission enablement as agencies can focus on mission, rather than the business of identity management.
+* Mission enablement as agencies can focus on mission, rather than the business of identity management. -->
 
-The following sections discuss the components of a federated identity architecture should an agency elect this type of model.
+次のセクションでは, 各機関が Federated Identity アーキテクチャを選択する場合に登場する構成要素について説明します。
+
+<!-- The following sections discuss the components of a federated identity architecture should an agency elect this type of model. -->
 
 #### 4.4.1 Assertions
 
