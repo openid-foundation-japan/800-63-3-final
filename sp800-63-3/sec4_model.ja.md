@@ -161,17 +161,27 @@ Digital Authentication システムは, 以下の2つの方法のどちらかで
 
 #### 4.3.2 Credentials
 
-As described in the preceding sections, a credential binds an authenticator to the subscriber, via an identifier, as part of the issuance process. A credential is stored and maintained by the CSP, though the claimant may possess it. The claimant possesses an authenticator, but is not necessarily in possession of the credential. For example, database entries containing the user attributes are considered to be credentials for the purpose of this document but are possessed by the verifier. X.509 public key certificates are a classic example of credentials the claimant can, and often does, possess.
+前セクションで述べた通り, Credential は発行プロセスにおいて Authenticator と Subscriber を識別子を通じて紐づける. Credential は CSP によって保管・管理されるが, Claimant が保持することもある. Claimant は Authenticator を保持するが, 必ずしも Credential を保持する必要はない. 例えば, あるユーザーの Attribute を含んだデータベースエントリーは, 本ドキュメントの目的においては Credential であると見なされますが, これは Verifier が保持するものです. X.509 Public Key Certificate は Claimant が保持しうる Credential の古典的な例です.
+
+<!-- As described in the preceding sections, a credential binds an authenticator to the subscriber, via an identifier, as part of the issuance process. A credential is stored and maintained by the CSP, though the claimant may possess it. The claimant possesses an authenticator, but is not necessarily in possession of the credential. For example, database entries containing the user attributes are considered to be credentials for the purpose of this document but are possessed by the verifier. X.509 public key certificates are a classic example of credentials the claimant can, and often does, possess. -->
 
 #### 4.3.3 Authentication Process
 
-The authentication process begins with the claimant demonstrating to the verifier possession and control of an authenticator that is bound to the asserted identity through an authentication protocol. Once possession and control have been demonstrated, the verifier verifies that the credential remains valid, usually by interacting with the CSP.
+Authentication プロセスは, Claimant が Verifier に Authenticator の保持・管理を示すところから始まる. ここで Authenticator は Authentication Protocol を通じて Asserted Identity に紐づけられている. 一度 Authenticator の保持・管理が示されれば, Verifier は, 通常 CSP とのインタラクションを通じて, 当該 Credential が依然有効であるかどうかを確認する.
 
-The exact nature of the interaction between the verifier and the claimant during the authentication protocol is extremely important in determining the overall security of the system. Well-designed protocols can protect the integrity and confidentiality of communication between the claimant and the verifier both during and after the authentication, and can help limit the damage that can be done by an attacker masquerading as a legitimate verifier.
+<!-- The authentication process begins with the claimant demonstrating to the verifier possession and control of an authenticator that is bound to the asserted identity through an authentication protocol. Once possession and control have been demonstrated, the verifier verifies that the credential remains valid, usually by interacting with the CSP. -->
 
-Additionally, mechanisms located at the verifier can mitigate online guessing attacks against lower entropy secrets &mdash; like passwords and PINs &mdash; by limiting the rate at which an attacker can make authentication attempts, or otherwise delaying incorrect attempts. Generally, this is done by keeping track of and limiting the number of unsuccessful attempts, since the premise of an online guessing attack is that most attempts will fail.
+Authentication Protocol における Verifier と Claimant の間のインタラクションは, システム全体のセキュリティーにとって極めて重要である. よく設計されたプロトコルは, Authentication の最中および事後において, Claimant と Verifier の間のコミュニケーションの Integrity (完全性) および Confidentiality (機密性) を保護し, Attacker が正当な Verifier であるかのように偽装できてしまった場合の被害を限定的にする.
 
-The verifier is a functional role, but is frequently implemented in combination with the CSP, the RP, or both. If the verifier is a separate entity from the CSP, it is often desirable to ensure that the verifier does not learn the subscriber's authenticator secret in the process of authentication, or at least to ensure that the verifier does not have unrestricted access to secrets stored by the CSP.
+<!-- The exact nature of the interaction between the verifier and the claimant during the authentication protocol is extremely important in determining the overall security of the system. Well-designed protocols can protect the integrity and confidentiality of communication between the claimant and the verifier both during and after the authentication, and can help limit the damage that can be done by an attacker masquerading as a legitimate verifier. -->
+
+また, Verifier 側で Attacker による Authentication 試行レートを制限したり不正な試行を遅延させたりすることで, Password や PIN といったエントロピーの低いシークレットに対する Online Guessing Attack の影響を軽減できる. 一般的に Online Guessing Attack ではほとんどの試行が失敗するので, その対策は失敗試行数を制限するというような方式となる.
+
+<!-- Additionally, mechanisms located at the verifier can mitigate online guessing attacks against lower entropy secrets &mdash; like passwords and PINs &mdash; by limiting the rate at which an attacker can make authentication attempts, or otherwise delaying incorrect attempts. Generally, this is done by keeping track of and limiting the number of unsuccessful attempts, since the premise of an online guessing attack is that most attempts will fail. -->
+
+Verifier は機能的役割であるが, しばしば CSP, RP ないしはその両方と合わせて実装される. Verifier が CSP から独立した主体である場合, 一般的には Authentication プロセス中に Verifier が Subscriber の Authenticator Secret を知ることがないよう保証できることが望ましい. 少なくとも Verifier が CSP に保管されているシークレットに無制限にアクセスできるような状況ではないことが保証されるべきである.
+
+<!-- The verifier is a functional role, but is frequently implemented in combination with the CSP, the RP, or both. If the verifier is a separate entity from the CSP, it is often desirable to ensure that the verifier does not learn the subscriber's authenticator secret in the process of authentication, or at least to ensure that the verifier does not have unrestricted access to secrets stored by the CSP. -->
 
 ### 4.4 Federation and Assertions
 

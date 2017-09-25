@@ -490,7 +490,7 @@ Subscriber に記憶されることを前提とした, 文字列からなる Aut
 
 #### Mobile Code
 
-実行コードであり, 通常は提供元から別のコンピューターシステムに転送されたのち実行されるもの. 転送は Network を介す (e.g.Web ページに埋め込まれた JavaScript) が, 物理的なメディアを介して転送されることもある.
+実行コードであり, 通常は提供元から別のコンピューターシステムに転送されたのち実行されるもの. 転送は Network を介す (e.g., Web ページに埋め込まれた JavaScript) が, 物理的なメディアを介して転送されることもある.
 
 <!-- Executable code that is normally transferred from its source to another computer system for execution. This transfer is often through the network (e.g., JavaScript embedded in a web page) but may transfer through physical media as well. -->
 
