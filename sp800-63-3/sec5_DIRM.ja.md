@@ -12,42 +12,75 @@ _This section is normative._
 
 ### <a name="5-1-overview"></a> 5.1 Overview
 
-In today's digital services, combining proofing, authenticator, and federation requirements into a single bundle sometimes has unintended consequences and can put unnecessary implementation burden on the implementing organization. It is quite possible that an agency can deliver the most effective set of identity services by assessing the risk and impacts of failures for each individual component of digital authentication, rather than as a single, all-encompassing LOA. To this end, these guidelines recognize that an authentication error is not a singleton that drives all requirements.
+今日の Digital サービスでは, Proofing と Authenticator と Federation の各要件をひとくくりにすると, 意図しない結果が生じ, 実装組織に不必要な実装負担をかけることがある. 単一の包括的な LOA ではなく, Digital Authentication の個々の構成要素ごとに失敗時のリスクと影響を評価することで, 機関は高確率で最も効果的に Identity Service を提供できることになるであろう. 以上のことから, 本ガイドライン群では Authentication エラーは全ての要件を満たすシングルトンではないという認識のもとに立つ.
 
-This volume details requirements to assist agencies in avoiding:
+<!-- In today's digital services, combining proofing, authenticator, and federation requirements into a single bundle sometimes has unintended consequences and can put unnecessary implementation burden on the implementing organization. It is quite possible that an agency can deliver the most effective set of identity services by assessing the risk and impacts of failures for each individual component of digital authentication, rather than as a single, all-encompassing LOA. To this end, these guidelines recognize that an authentication error is not a singleton that drives all requirements. -->
 
-1. Identity proofing errors (i.e., a false applicant claiming an identity that is not rightfully theirs);
+本 Vol. では各機関が避けるべき要件をまとめる.
+
+<!-- This volume details requirements to assist agencies in avoiding: -->
+
+1. Identity Proofing エラー (i.e., 偽の Applicant が正当なふりをして Identity を主張する)
+2. Authentication エラー (i.e., 本来正当でない偽の Claimant が正当なふりをして Credential を利用する)
+3. Federation エラー (i.e., Identity Assertion が毀損する)
+
+<!-- 1. Identity proofing errors (i.e., a false applicant claiming an identity that is not rightfully theirs);
 2. Authentication errors (i.e., a false claimant using a credential that is not rightfully theirs); and
-3. Federation errors (i.e., an identity assertion is compromised).
+3. Federation errors (i.e., an identity assertion is compromised). -->
 
-From the perspective of an identity proofing failure, there are two dimensions of potential failure:
+Identity Proofing の失敗という観点からは, 潜在的に以下の2種類の影響が考えられる.
 
-1. The impact of providing a service to the wrong subject (e.g., an attacker successfully proofs as someone else).
-2. The impact of excessive identity proofing (i.e., collecting and securely storing more information about a person than is required to successfully provide the digital service).
+<!-- From the perspective of an identity proofing failure, there are two dimensions of potential failure: -->
 
-As such, agencies SHALL assess the risk of proofing, authentication, and federation errors separately to determine the required assurance level for each transaction.
+1. サービスを異なる Subject に提供してしまうことによる影響. (e.g., Attacker が他人になりすませてしまう)
+2. 過度の Identity Proofing による影響. (i.e., Digital サービス提供のために, ある人物に関する必要以上に多くの情報を収集し, セキュアに保管してしまう)
 
-[Section 5.3](#section5-3) provides impact categories specific to digital identity to assist in the overall application of the RMF.
+<!-- 1. The impact of providing a service to the wrong subject (e.g., an attacker successfully proofs as someone else).
+2. The impact of excessive identity proofing (i.e., collecting and securely storing more information about a person than is required to successfully provide the digital service). -->
 
-Risk assessments determine the extent to which risk must be mitigated by the identity proofing, authentication, and federation processes. These determinations drive the relevant choices of applicable technologies and mitigation strategies, rather than the desire for any given technology driving risk determinations. Once an agency has completed the overall risk assessment; selected individual assurance levels for identity proofing, authentication, and federation (if applicable); and determined the processes and technologies they will employ to meet each assurance level, agencies SHALL develop a "Digital Identity Acceptance Statement", in accordance with [SP 800-53A](#SP800-53A) IA-1 a.1. See [Section 5.5](#daps) for more detail on the necessary content of the Digital Identity Acceptance Statement.
+そのため, 各機関は Proofing, Authentication および Federation のリスクを個別に評価し, 各トランザクションに必要な Assurance Level を決定する必要がある (SHALL).
+
+<!-- As such, agencies SHALL assess the risk of proofing, authentication, and federation errors separately to determine the required assurance level for each transaction. -->
+
+RMF の全体的な適用を支援するため, [Section 5.3](#section5-3) には Digital Identity 固有の影響カテゴリーを提示している.
+
+<!-- [Section 5.3](#section5-3) provides impact categories specific to digital identity to assist in the overall application of the RMF. -->
+
+Risk Assesment は, Identity Proofing, Authentication, Federation の各プロセスにおいて, どのようなリスクを軽減するべきかを決定するものである. こういった決定は, リスク明確化に役立つ技術への欲求を引き起こすものではなく, 適用可能な技術とリスク軽減策の選択を推進するものである. ひとたび機関が全体の Risk Assessment を終え, Identity Proofing, Authentication, (および該当する場合は) Federation それぞれに対する Assurance Level を選択し, それぞれの Assurance Level を満たすために採用すべきプロセスや技術を選定すると, 機関は [SP 800-53A](#SP800-53A) IA-1 a.1 に従い "Digital Identity Acceptance Statement" を策定すること (SHALL). [Section 5.5](#daps) に "Digital Identity Acceptance Statement" に必要なコンテンツを詳説する.
+
+<!-- Risk assessments determine the extent to which risk must be mitigated by the identity proofing, authentication, and federation processes. These determinations drive the relevant choices of applicable technologies and mitigation strategies, rather than the desire for any given technology driving risk determinations. Once an agency has completed the overall risk assessment; selected individual assurance levels for identity proofing, authentication, and federation (if applicable); and determined the processes and technologies they will employ to meet each assurance level, agencies SHALL develop a "Digital Identity Acceptance Statement", in accordance with [SP 800-53A](#SP800-53A) IA-1 a.1. See [Section 5.5](#daps) for more detail on the necessary content of the Digital Identity Acceptance Statement. -->
 
 ### 5.2 <a name="5-2"></a> Assurance Levels
 
-An agency RP SHALL select, based on risk, the following individual assurance levels:
+機関の RP はリスクに基づき以下の個々の Assurance Level を選択すること (SHALL).
 
-* IAL: The robustness of the identity proofing process to confidently determine the identity of an individual. IAL is selected to mitigate potential identity proofing errors.
+<!-- An agency RP SHALL select, based on risk, the following individual assurance levels: -->
+
+* IAL: 個人の Identity を確信を持って決定するための Identity Proofing プロセスの頑強性. IAL は潜在的 Identity Proofing エラーを軽減することを目的に選択される.
+* AAL: Authentication プロセス自体, および Authenticator と特定個人の識別子の紐付けの頑強性. AAL は Authentication エラーを軽減することを目的に選択される. (i.e., 本来正当でない偽の Claimant が正当なふりをして Credential を利用する)
+* FAL: Federation 時に Authentication および Attribute の情報をやり取りするための Assertion Protocol の頑強性. すべての Digital システムが Federated Identity アーキテクチャーを採用する訳ではないため, FAL はオプションである. FAL は Federation エラー (Identity Assertion が毀損するなど) を軽減することを目的に選択される.
+
+<!-- * IAL: The robustness of the identity proofing process to confidently determine the identity of an individual. IAL is selected to mitigate potential identity proofing errors.
 * AAL: The robustness of the authentication process itself, and the binding between an authenticator and a specific individual's identifier. AAL is selected to mitigate potential authentication errors (i.e., a false claimant using a credential that is not rightfully theirs).
-* FAL: The robustness of the assertion protocol the federation uses to communicate authentication and attribute information (if applicable) to an RP. FAL is optional as not all digital systems will leverage federated identity architectures. FAL is selected to mitigate potential federation errors (an identity assertion is compromised).
+* FAL: The robustness of the assertion protocol the federation uses to communicate authentication and attribute information (if applicable) to an RP. FAL is optional as not all digital systems will leverage federated identity architectures. FAL is selected to mitigate potential federation errors (an identity assertion is compromised). -->
 
-A summary of each of the identity, authenticator, and federation assurance levels is provided below.
+Identity, Authenticator, Federation Assurance Level の概要はそれぞれ以下にまとめる.
+
+<!-- A summary of each of the identity, authenticator, and federation assurance levels is provided below. -->
 
 **Table 5-1 Identity Assurance Levels**
 
 | Identity Assurance Level |
 |:----------------------|
+| **IAL1:** IAL1 では, Attribute がある場合それらは Self-asserted であるか, もしくは Self-asserted として扱われるべきである. |
+| **IAL2:** IAL2 では, Remote ないしは対面での Identity Proofing が必須となる. IAL2 では, 識別に用いられる Attribute に関しては, [SP 800-63A](sp800-63a.html) に従い, 対面ないしは Remote で検証する必要がある. |
+| **IAL3:** IAL3 では, 対面での Identity Proofing が必須となる. 識別に用いられる Attribute に関しては, [SP 800-63A](sp800-63a.html) に従い, Authorize された CSP の担当者によって物理ドキュメントを用いた検証がなされる必要がある. |
+
+<!-- | Identity Assurance Level |
+|:----------------------|
 | **IAL1:** At IAL1, attributes, if any, are self-asserted or should be treated as self-asserted.|
 | **IAL2:** At IAL2, either remote or in-person identity proofing is required. IAL2 requires identifying attributes to have been verified in person or remotely using, at a minimum, the procedures given in [SP 800-63A](sp800-63a.html).|
-| **IAL3:** At IAL3, in-person identity proofing is required. Identifying attributes must be verified by an authorized CSP representative through examination of physical documentation as described in [SP 800-63A](sp800-63a.html).|
+| **IAL3:** At IAL3, in-person identity proofing is required. Identifying attributes must be verified by an authorized CSP representative through examination of physical documentation as described in [SP 800-63A](sp800-63a.html).| -->
 
 **Table 5-2 Authenticator Assurance Levels**
 
