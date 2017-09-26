@@ -86,19 +86,33 @@ Identity, Authenticator, Federation Assurance Level の概要はそれぞれ以�
 
 |Authenticator Assurance Level|
 |:----------------------|
+|**AAL1:** AAL1 では, Claimant が Subscriber に紐づく Authenticator を管理下に置いていることが, ある程度の確からしさで確認できる. AAL1 では Single-factor Authentication が必須となり, そこでは幅広い Authentication 技術が利用可能である. Authentication を成功させるには, Claimant がセキュアな Authentication Protocol を通じて Authenticator を保持・管理していることを証明する必要がある. |
+| **AAL2:** AAL2 では, Claimant が Subscriber に紐づく Authenticator を管理下に置いているということが, 高い確度で保証される. セキュアな Authentication Protocol によって, 2つの異なる Authentication Factor を保持・管理していることを証明する必要がある. AAL2 以上では, Approved Cryptographic テクノロジーも必要となる. |
+|**AAL3:** AAL3 では, Claimant が Subscriber のアカウントに紐づく Authenticator を管理下に置いているということが, 非常に高い確度で保証される. AAL3 の Authentication は, 暗号プロトコルによる鍵所有証明 (Proof of Possession) に基づいている. AAL3 は AAL2 と似ているが, AAL2 に加え Verifier Inpersonation 耐性のある "ハードの" Cryptographic Authenticator を要求する. |
+
+<!-- |Authenticator Assurance Level|
+|:----------------------|
 |**AAL1:** AAL1 provides some assurance that the claimant controls an authenticator registered to the subscriber. AAL1 requires single-factor authentication using a wide range of available authentication technologies. Successful authentication requires that the claimant prove possession and control of the authenticator(s) through a secure authentication protocol.|
 | **AAL2:** AAL2 provides high confidence that the claimant controls authenticator(s) registered to the subscriber. Proof of possession and control of two different authentication factors is required through a secure authentication protocol. Approved cryptographic techniques are required at AAL2 and above.|
-|**AAL3:** AAL3 provides very high confidence that the claimant controls authenticator(s) registered to the subscriber. Authentication at AAL3 is based on proof of possession of a key through a cryptographic protocol. AAL3 is like AAL2 but also requires a "hard" cryptographic authenticator that provides verifier impersonation resistance.|
+|**AAL3:** AAL3 provides very high confidence that the claimant controls authenticator(s) registered to the subscriber. Authentication at AAL3 is based on proof of possession of a key through a cryptographic protocol. AAL3 is like AAL2 but also requires a "hard" cryptographic authenticator that provides verifier impersonation resistance.| -->
 
 **Table 5-3 Federation Assurance Levels**
 
 |Federation Assurance Level|
 |:----------------------|
+|**FAL1:** FAL1 では, RP は Identity Provider (IdP) から Bearer Assertion を受け取ることができる. IdP は Approved Cryptography を使って Assertion に署名する必要がある. |
+|**FAL2:** FAL2 では, 上記に加え, RP のみが復号可能なかたちで, Assertion に対する暗号化が必要になる. 暗号化には Approved Cryptography を用いる. |
+|**FAL3:** FAL3 では, Subscriber が Assertion および Assertion Artifact から参照される Cryptographic Key を保持していることを証明する必要がある. Assertion は Approved Cryptography を使って署名され, Approved Cryptography を使って RP に対して暗号化されなければならない. |
+
+<!-- |Federation Assurance Level|
+|:----------------------|
 |**FAL1:** FAL1 permits the RP to receive a bearer assertion from an identity provider (IdP). The IdP must sign the assertion using approved cryptography.|
 |**FAL2:** FAL2 adds the requirement that the assertion be encrypted using approved cryptography such that the RP is the only party that can decrypt it.|
-|**FAL3:** FAL3 requires the subscriber to present proof of possession of a cryptographic key reference to in the assertion and the assertion artifact itself. The assertion must be signed using approved cryptography and encrypted to the RP using approved cryptography.|
+|**FAL3:** FAL3 requires the subscriber to present proof of possession of a cryptographic key reference to in the assertion and the assertion artifact itself. The assertion must be signed using approved cryptography and encrypted to the RP using approved cryptography.| -->
 
-When described generically or bundled, these guidelines will refer to IAL, AAL, and FAL as **_xAL_**.
+総称的ないしは一括で扱う場合, 本ガイドラン群では IAL, AAL, FAL を **_ xAL _** と呼ぶこととする.
+
+<!-- When described generically or bundled, these guidelines will refer to IAL, AAL, and FAL as **_xAL_**. -->
 
 ### <a name="section5-3"></a> 5.3 Risk and Impacts
 

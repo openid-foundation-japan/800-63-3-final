@@ -271,7 +271,7 @@ SP 800-63A は所与の IAL を満たす要件を決める. 3つの IAL は, Att
 
 <!-- **AAL1**: AAL1 provides some assurance that the claimant controls an authenticator bound to the subscriber's account. AAL1 requires either single-factor or multi-factor authentication using a wide range of available authentication technologies. Successful authentication requires that the claimant prove possession and control of the authenticator through a secure authentication protocol. -->
 
-**AAL2**:  AAL2 では, Claimant が Subscriber のアカウントに紐づく Authenticator を管理下に置いているということが, ある程度の確度で保証される. セキュアな Authentication Protocol によって, [2つの異なる Authentication Factor](#mfa-definition) を所有し管理下に置いていることを証明する必要がある. AAL2 以上では, [Approved Cryptographic](#approved) テクノロジーも必要となる.
+**AAL2**: AAL2 では, Claimant が Subscriber のアカウントに紐づく Authenticator を管理下に置いているということが, 高い確度で保証される. セキュアな Authentication Protocol によって, [2つの異なる Authentication Factor](#mfa-definition) を所有し管理下に置いていることを証明する必要がある. AAL2 以上では, [Approved Cryptographic](#approved) テクノロジーも必要となる.
 
 <!-- **AAL2**: AAL2 provides high confidence that the claimant controls authenticator(s) bound to the subscriber's account. Proof of possession and control of [two distinct authentication factors](#mfa-definition) is required through secure authentication protocol(s). [Approved cryptographic](#approved) techniques are required at AAL2 and above. -->
 
