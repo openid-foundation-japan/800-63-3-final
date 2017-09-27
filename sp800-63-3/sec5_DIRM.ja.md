@@ -133,11 +133,11 @@ Identity, Authenticator, Federation Assurance Level の概要はそれぞれ以�
 <!-- Categories of harm and impact include: -->
 
 1. 不便, 苦痛, または社会的地位やレピュテーションの毀損.
-2. 金銭的損失または機関の負債.
+2. 経済的損失または機関の負債.
 3. 機関のプログラムや公共の利益への損害.
-4. Authorize のないセンシティブ情報の公表.
+4. Authorize のないセンシティブ情報の公開.
 5. 個人の安全.
-6. 民事または刑上の違反.
+6. 民事または刑事上の違反.
 
 <!-- 1. Inconvenience, distress, or damage to standing or reputation;
 2. Financial loss or agency liability;
@@ -174,45 +174,86 @@ Assurance Level の決定は, Digital システムの一部をなす Transaction
 
 #### 5.3.2 Impacts per Category
 
-This section defines the potential impacts for each category of harm. Each assurance level, IAL, AAL, and FAL (if accepting or asserting a federated identity) SHALL be evaluated separately.
+本セクションでは各被害カテゴリーごとの潜在的影響を定義する. IAL, AAL, および (Federated Identity を受け入れないしは評価する場合は) FAL の各 Assurance Level は個別に評価すること (SHALL).
 
-> Note: If an error in the identity system causes no measurable consequences for a category, there is no impact.
+<!-- This section defines the potential impacts for each category of harm. Each assurance level, IAL, AAL, and FAL (if accepting or asserting a federated identity) SHALL be evaluated separately. -->
 
-_Potential impact of inconvenience, distress, or damage to standing or reputation:_    
+> Note: もし Identity システムのエラーがカテゴリーに測定可能な結果を及ぼさない場合, 影響はないものとする.
 
-- Low: at worst, limited, short-term inconvenience, distress, or embarrassment to any party.
+<!-- > Note: If an error in the identity system causes no measurable consequences for a category, there is no impact. -->
+
+_不便, 苦痛, または社会的地位やレピュテーションの毀損による潜在的影響:_
+
+<!-- _Potential impact of inconvenience, distress, or damage to standing or reputation:_     -->
+
+- Low: 最悪でも, 任意の主体に対する, 限定的かつ短期間の不便, 苦痛, 困難.
+- Moderate: 最悪でも, 任意の主体に対する, 相当かつ短期間ないしは限定的だが長期間の不便, 苦痛, 社会的地位やレピュテーションの毀損.
+- High: 任意の主体に対する, 重度または重大かつ長期的な不便, 苦痛, 社会的地位やレピュテーションの毀損. これは通常, 特に重大な影響を及ぼしたり, 多くの個人に影響を及ぼす可能性のある状況を想定したレベルである.
+
+<!-- - Low: at worst, limited, short-term inconvenience, distress, or embarrassment to any party.
 - Moderate: at worst, serious short-term or limited long-term inconvenience, distress, or damage to the standing or reputation of any party.
-- High: severe or serious long-term inconvenience, distress, or damage to the standing or reputation of any party. This is ordinarily reserved for situations with particularly severe effects or which potentially affect many individuals.
+- High: severe or serious long-term inconvenience, distress, or damage to the standing or reputation of any party. This is ordinarily reserved for situations with particularly severe effects or which potentially affect many individuals. -->
 
-_Potential impact of financial loss:_
+_経済的損失の潜在的影響:_
 
-- Low: at worst, an insignificant or inconsequential financial loss to any party, or at worst, an insignificant or inconsequential agency liability.
+<!-- _Potential impact of financial loss:_ -->
+
+- Low: 最悪でも, 任意の主体に対する, ささいで取るに足らない経済的損失ないしは機関の負債.
+- Moderate: 最悪でも, 任意の主体に対する, 相当な経済的損失ないしは機関の負債.
+- High: 任意の主体に対する, 重大または致命的な経済的損失ないしは機関の負債.
+
+<!-- - Low: at worst, an insignificant or inconsequential financial loss to any party, or at worst, an insignificant or inconsequential agency liability.
 - Moderate: at worst, a serious financial loss to any party, or a serious agency liability.
-- High: severe or catastrophic financial loss to any party, or severe or catastrophic agency liability.
+- High: severe or catastrophic financial loss to any party, or severe or catastrophic agency liability. -->
 
-_Potential impact of harm to agency programs or public interests:_
+_機関のプログラムや公共の利益への損害による潜在的影響:_
 
-- Low: at worst, a limited adverse effect on organizational operations or assets, or public interests. Examples of limited adverse effects are: (i) mission capability degradation to the extent and duration that the organization is able to perform its primary functions with noticeably reduced effectiveness, or (ii) minor damage to organizational assets or public interests.
+<!-- _Potential impact of harm to agency programs or public interests:_ -->
+
+- Low: 最悪でも, 組織の運用や資産, 公共の利益への限定的な悪影響. 限定的な悪影響の例としては, (i) 一定範囲および期間にわたる, 組織のミッション遂行能力の低下による組織の主たる機能の処理効率の目に見えた低下, (ii) 組織資産または公益への軽微な損害, などがある.
+- Moderate: 最悪でも, 組織の運用や資産, 公共の利益への相当な悪影響. 相当な悪影響の例としては, (i) 一定範囲および期間にわたる, 組織のミッション遂行能力の著しい低下による組織の主たる機能の処理効率の著しい低下, (ii) 組織資産または公益への著しい損害, などがある.
+- High: 組織の運用や資産, 公共の利益への重大または致命的な悪影響. 重大または致命的な悪影響の例としては, (i) 一定範囲および期間にわたる, 組織のミッション遂行能力の重大な低下や喪失による組織の主たる機能の処理不能, (ii) 組織資産または公益への深刻な損害, などがある.
+
+<!-- - Low: at worst, a limited adverse effect on organizational operations or assets, or public interests. Examples of limited adverse effects are: (i) mission capability degradation to the extent and duration that the organization is able to perform its primary functions with noticeably reduced effectiveness, or (ii) minor damage to organizational assets or public interests.
 - Moderate: at worst, a serious adverse effect on organizational operations or assets, or public interests. Examples of serious adverse effects are: (i) significant mission capability degradation to the extent and duration that the organization is able to perform its primary functions with significantly reduced effectiveness; or (ii) significant damage to organizational assets or public interests.
-- High: a severe or catastrophic adverse effect on organizational operations or assets, or public interests. Examples of severe or catastrophic effects are: (i) severe mission capability degradation or loss of to the extent and duration that the organization is unable to perform one or more of its primary functions; or (ii) major damage to organizational assets or public interests.
+- High: a severe or catastrophic adverse effect on organizational operations or assets, or public interests. Examples of severe or catastrophic effects are: (i) severe mission capability degradation or loss of to the extent and duration that the organization is unable to perform one or more of its primary functions; or (ii) major damage to organizational assets or public interests. -->
 
-_Potential impact of unauthorized release of sensitive information:_
 
-- Low: at worst, a limited release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in a loss of confidentiality with a low impact as defined in FIPS 199.
+_Authorize のないセンシティブ情報の公開による潜在的影響:_
+
+<!-- _Potential impact of unauthorized release of sensitive information:_ -->
+
+- Low: 最悪でも, FIPS 199 で定義された低インパクトの Confidentiality (機密性) 喪失をもたらす, Authorize されていない主体に対する限定的な Personal Information, U.S. 政府にとってないしは商業的にセンシティブな情報の公開.
+- Moderate: 最悪でも, FIPS 199 で定義された中インパクトの Confidentiality (機密性) 喪失をもたらす, Authorize されていない主体に対する限定的な Personal Information, U.S. 政府にとってないしは商業的にセンシティブな情報の公開.
+- High: FIPS 199 で定義された高インパクトの Confidentiality (機密性) 喪失をもたらす, Authorize されていない主体に対する限定的な Personal Information, U.S. 政府にとってないしは商業的にセンシティブな情報の公開.
+
+<!-- - Low: at worst, a limited release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in a loss of confidentiality with a low impact as defined in FIPS 199.
 - Moderate: at worst, a release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in loss of confidentiality with a moderate impact as defined in FIPS 199.
-- High: a release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in loss of confidentiality with a high impact as defined in FIPS 199.
+- High: a release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in loss of confidentiality with a high impact as defined in FIPS 199. -->
 
-_Potential impact to personal safety:_
+_個人の安全への潜在的影響:_
 
-- Low: at worst, minor injury not requiring medical treatment.
+<!-- _Potential impact to personal safety:_ -->
+
+- Low: 最悪でも, 治療を必要としない軽傷.
+- Moderate: 最悪でも, 軽傷に関する中程度のリスク, ないしは治療を必要とする怪我に関する限定的リスク.
+- High: 重大な傷害または死亡に関するリスク.
+
+<!-- - Low: at worst, minor injury not requiring medical treatment.
 - Moderate: at worst, moderate risk of minor injury or limited risk of injury requiring medical treatment.
-- High: a risk of serious injury or death.
+- High: a risk of serious injury or death. -->
 
-_The potential impact of civil or criminal violations is:_
+_民事または刑事上の違反による潜在的影響:_
 
-- Low: at worst, a risk of civil or criminal violations of a nature that would not ordinarily be subject to enforcement efforts.
+<!-- _The potential impact of civil or criminal violations is:_ -->
+
+- Low: 最悪でも, 通常は執行努力の対象とはならない種類の民事または刑事上の違反のリスク.
+- Moderate: 最悪でも, 執行努力の対象とりうる民事または刑事上の違反のリスク.
+- High: 執行プログラムにとって特に重要な民事または刑事上の違反のリスク
+
+<!-- - Low: at worst, a risk of civil or criminal violations of a nature that would not ordinarily be subject to enforcement efforts.
 - Moderate: at worst, a risk of civil or criminal violations that may be subject to enforcement efforts.
-- High: a risk of civil or criminal violations that are of special importance to enforcement programs.
+- High: a risk of civil or criminal violations that are of special importance to enforcement programs. -->
 
 ### 5.4 Risk Acceptance and Compensating Controls
 
