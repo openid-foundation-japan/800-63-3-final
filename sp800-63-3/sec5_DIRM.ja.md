@@ -12,7 +12,7 @@ _This section is normative._
 
 ### <a name="5-1-overview"></a> 5.1 Overview
 
-今日の Digital サービスでは, Proofing と Authenticator と Federation の各要件をひとくくりにすると, 意図しない結果が生じ, 実装組織に不必要な実装負担をかけることがある. 単一の包括的な LOA ではなく, Digital Authentication の個々の構成要素ごとに失敗時のリスクと影響を評価することで, 機関は高確率で最も効果的に Identity Service を提供できることになるであろう. 以上のことから, 本ガイドライン群では Authentication エラーは全ての要件を満たすシングルトンではないという認識のもとに立つ.
+今日のデジタルサービスでは, Proofing と Authenticator と Federation の各要件をひとくくりにすると, 意図しない結果が生じ, 実装組織に不必要な実装負担をかけることがある. 単一の包括的な LOA ではなく, Digital Authentication の個々の構成要素ごとに失敗時のリスクと影響を評価することで, 機関は高確率で最も効果的に Identity Service を提供できることになるであろう. 以上のことから, 本ガイドライン群では Authentication エラーは全ての要件を満たすシングルトンではないという認識のもとに立つ.
 
 <!-- In today's digital services, combining proofing, authenticator, and federation requirements into a single bundle sometimes has unintended consequences and can put unnecessary implementation burden on the implementing organization. It is quite possible that an agency can deliver the most effective set of identity services by assessing the risk and impacts of failures for each individual component of digital authentication, rather than as a single, all-encompassing LOA. To this end, these guidelines recognize that an authentication error is not a singleton that drives all requirements. -->
 
@@ -33,7 +33,7 @@ Identity Proofing の失敗という観点からは, 潜在的に以下の2種�
 <!-- From the perspective of an identity proofing failure, there are two dimensions of potential failure: -->
 
 1. サービスを異なる Subject に提供してしまうことによる影響. (e.g., Attacker が他人になりすませてしまう)
-2. 過度の Identity Proofing による影響. (i.e., Digital サービス提供のために, ある人物に関する必要以上に多くの情報を収集し, セキュアに保管してしまう)
+2. 過度の Identity Proofing による影響. (i.e., デジタルサービス提供のために, ある人物に関する必要以上に多くの情報を収集し, セキュアに保管してしまう)
 
 <!-- 1. The impact of providing a service to the wrong subject (e.g., an attacker successfully proofs as someone else).
 2. The impact of excessive identity proofing (i.e., collecting and securely storing more information about a person than is required to successfully provide the digital service). -->
@@ -116,34 +116,61 @@ Identity, Authenticator, Federation Assurance Level の概要はそれぞれ以�
 
 ### <a name="section5-3"></a> 5.3 Risk and Impacts
 
-This section provides details on the impact categories used to determine IAL, AAL, and FAL.
+本セクションでは IAL, AAL, FAL を決定する際に利用される影響カテゴリーについて述べる.
 
-Potential Impact Categories: To determine the appropriate level of assurance of the user's asserted identity, agencies SHALL assess the potential risks and identify measures to minimize their impact.
+<!-- This section provides details on the impact categories used to determine IAL, AAL, and FAL. -->
 
-Authentication, proofing, and federation errors with potentially worse consequences require higher levels of assurance. Business process, policy, and technology may help reduce risk.
+潜在的影響カテゴリー: ユーザーの Asserted Identity の適切な Assurance Level を決定するため, 各機関は潜在リスクを評価し, その影響を最小限に抑える手段を特定する必要がある (SHALL).
 
-Categories of harm and impact include:
+<!-- Potential Impact Categories: To determine the appropriate level of assurance of the user's asserted identity, agencies SHALL assess the potential risks and identify measures to minimize their impact. -->
 
-1. Inconvenience, distress, or damage to standing or reputation;
+より悪影響が予想される Authentication, Proofing, および Federation エラーには, より高い Asssurance Level が求められる. ビジネスプロセスやポリシー, 技術などがそのリスク低減に役立つ.
+
+<!-- Authentication, proofing, and federation errors with potentially worse consequences require higher levels of assurance. Business process, policy, and technology may help reduce risk. -->
+
+被害と影響のカテゴリーは次のとおりである.
+
+<!-- Categories of harm and impact include: -->
+
+1. 不便, 苦痛, または社会的地位やレピュテーションの毀損.
+2. 金銭的損失または機関の負債.
+3. 機関のプログラムや公共の利益への損害.
+4. Authorize のないセンシティブ情報の公表.
+5. 個人の安全.
+6. 民事または刑上の違反.
+
+<!-- 1. Inconvenience, distress, or damage to standing or reputation;
 2. Financial loss or agency liability;
 3. Harm to agency programs or public interests;
 4. Unauthorized release of sensitive information;
 5. Personal safety; and
-6. Civil or criminal violations.
+6. Civil or criminal violations. -->
 
-Required assurance levels for digital transactions are determined by assessing the potential impact of each of the above categories using the potential impact values described in Federal Information Processing Standard (FIPS) 199 [[FIPS 199]](#FIPS199).
+Digital Transaction に要求される Assurance Level は, Federal Information Processing Standard (FIPS) 199 [[FIPS 199]](#FIPS199) が示す潜在的影響度合いを利用し, 上記カテゴリーごとの潜在的影響評価を行うことで決定できる.
 
-The three potential impact values are:
+<!-- Required assurance levels for digital transactions are determined by assessing the potential impact of each of the above categories using the potential impact values described in Federal Information Processing Standard (FIPS) 199 [[FIPS 199]](#FIPS199). -->
 
-1. Low impact,
+上記潜在的影響度合いには, 以下の3つの値がある.
+
+<!-- The three potential impact values are: -->
+
+1. 影響度 Low
+2. 影響度 Moderate
+3. 影響度 High
+
+<!-- 1. Low impact,
 2. Moderate impact, and
-3. High impact.
+3. High impact. -->
 
 #### 5.3.1 Business Process vs. Online Transaction
 
-The assurance level determination is only based on transactions that are part of a digital system. An online transaction may not be equivalent to a complete business process that requires offline processing, or online processing in a completely segmented system. In selecting the appropriate assurance levels, the agency should assess the risk associated with online transactions they are offering via the digital service, not the entire business process associated with the provided benefit or service. For example, in an online survey, personal information may be collected, but it is never made available online to the submitter after the information is saved. In this instance, it is important for the information to be carefully protected in backend systems, but there is no reason to identity proof or even authenticate the user providing the information for the purposes of their own access to the system or its associated benefits. The online transaction is solely a submission of the data. The entire business process may require a significant amount of data validation, without ever needing to know if the correct person submitted the information. In this scenario, there is no need for any identity proofing nor authentication.
+Assurance Level の決定は, Digital システムの一部をなす Transaction にのみ基づいて行われる. あるオンライン Transaction は, オフライン処理や完全にセグメント化されたシステム上でのオンライン処理を必要とする完全なビジネスプロセスとは等価でないこともありうる. 適切な Assurance Level の選択において, 当該機関は, 提供する便益やサービスに関連するビジネスプロセス全体の評価ではなく, 自身のデジタルサービスにおけるオンライン Transaction に関連するリスクの評価を行うべきである. たとえばオンラインアンケートでは Personal Information が収集されることがあるが, 当該情報が保存後に情報提供者に対してオンラインで提供されることはない. このような場合, バックエンドシステムで注意深く情報を保護することは重要だが, 情報提供者自身がシステムや関連する便益に Access するために当該ユーザーに対して Identity Proofing や Authentication を実施する必要はない. オンライン Transaction は単にデータの提出処理のみである. ビジネスプロセス全体ではかなりのデータ検証処理が必要となる可能性があるが, 正規の人物が情報を提出したかどうかを知る必要はない. このシナリオでは, Identity Proofing も Authentication も必要ではない.
 
-Another example where the assessed risk could differ if the agency evaluated the entire business process rather than the online transaction requirements is a digital service that accepts résumés to apply for open job postings. In this use case, the digital service allows an individual to submit – or at least does not restrict an individual from submitting – a résumé on behalf of anyone else, and in subsequent visits to the site, access the résumé for various purposes. Since the résumé information is available to the user in later sessions, and is likely to contain personal information, the agency must select an AAL that requires MFA, even though the user self-asserted the personal information. In this case, the requirements of [[EO 13681]](#EO13681) apply and the application must provide at least AAL2. However, the identity proofing requirements remain unclear. The entire business process of examining a résumé and ultimately hiring and onboarding a person requires a significant amount of identity proofing. The agency needs a high level of confidence that the job applicant is in fact the subject of the résumé submitted online if a decision to hire is made. Yet this level of proofing is not required to submit the résumé online. Identity proofing is not required to complete the digital portion of the transaction successfully. Identity proofing the submitter would create more risk than required in the online system as excess personal information would be collected when no such information is needed for the portion of the hiring process served by the digital job application portal and may reduce usability. Therefore, the most appropriate IAL selection would be 1. There is no need to identity proof the user to successfully complete the online transaction. This decision for the online portal itself is independent of a seemingly obvious identity proofing requirement for the entire business process, lest a job be offered to a fraudulent applicant.
+<!-- The assurance level determination is only based on transactions that are part of a digital system. An online transaction may not be equivalent to a complete business process that requires offline processing, or online processing in a completely segmented system. In selecting the appropriate assurance levels, the agency should assess the risk associated with online transactions they are offering via the digital service, not the entire business process associated with the provided benefit or service. For example, in an online survey, personal information may be collected, but it is never made available online to the submitter after the information is saved. In this instance, it is important for the information to be carefully protected in backend systems, but there is no reason to identity proof or even authenticate the user providing the information for the purposes of their own access to the system or its associated benefits. The online transaction is solely a submission of the data. The entire business process may require a significant amount of data validation, without ever needing to know if the correct person submitted the information. In this scenario, there is no need for any identity proofing nor authentication. -->
+
+機関がオンライン Transaction の要件ではなくビジネスプロセス全体を評価した場合にリスク評価が変わりうるその他の事例としては, 公開求人情報応募用の履歴書受取デジタルサービスが挙げられる. このユースケースでは, 当該デジタルサービスは個人が他人の代理で履歴書を提出することは許可する, ないしは最低でも制限はせず, その後にサイトに再訪された時にはさまざまな目的のため履歴書に Access する. 履歴書の情報は後の Session でもユーザーから利用可能であり, また Personal Information を含むため, Personal Information が Self-asserted であったとしても, 当該機関は MFA を必要とする AAL を選択する必要がある. この場合, [[EO 13681]](#EO13681) の要件が適用され, アプリケーションは AAL2 以上で提供されなければならない. しかしながら Identity Proofing 要件は依然不確定である. 履歴書を検査し最終的に雇用し新人研修を施すといったビジネスプロセス全体では, 相当の Identity Proofing が必要である. 採用決定時には, 求人情報への Applicant が実際にオンライン提出された履歴書の Subject であるという高レベルの確信が必要となる. しかしこのレベルの Proofing はオンラインでの履歴書投稿には必要ではない. Identity Proofing はデジタルな世界での Transaction を完了させるためには必要とならない. 投稿者に対して Identity Proofing を行うと, デジタル求人アプリケーションポータルによって提供される採用プロセスでの必要性を過えた Personal Information を収集することに繋がるため, 必要以上にリスクを増大させ, ユーザビリティを低下させることにつながる. 従って最も適切な IAL は1となるであろう. 当該オンライン Transaction には Identity Proofing は不要である. オンラインポータル自体に対するこの決定は, 偽の Applicant による応募を防ぐためビジネスプロセス全体で求められるであろう Identity Proofing 要件とは独立している.
+
+<!-- Another example where the assessed risk could differ if the agency evaluated the entire business process rather than the online transaction requirements is a digital service that accepts résumés to apply for open job postings. In this use case, the digital service allows an individual to submit – or at least does not restrict an individual from submitting – a résumé on behalf of anyone else, and in subsequent visits to the site, access the résumé for various purposes. Since the résumé information is available to the user in later sessions, and is likely to contain personal information, the agency must select an AAL that requires MFA, even though the user self-asserted the personal information. In this case, the requirements of [[EO 13681]](#EO13681) apply and the application must provide at least AAL2. However, the identity proofing requirements remain unclear. The entire business process of examining a résumé and ultimately hiring and onboarding a person requires a significant amount of identity proofing. The agency needs a high level of confidence that the job applicant is in fact the subject of the résumé submitted online if a decision to hire is made. Yet this level of proofing is not required to submit the résumé online. Identity proofing is not required to complete the digital portion of the transaction successfully. Identity proofing the submitter would create more risk than required in the online system as excess personal information would be collected when no such information is needed for the portion of the hiring process served by the digital job application portal and may reduce usability. Therefore, the most appropriate IAL selection would be 1. There is no need to identity proof the user to successfully complete the online transaction. This decision for the online portal itself is independent of a seemingly obvious identity proofing requirement for the entire business process, lest a job be offered to a fraudulent applicant. -->
 
 #### 5.3.2 Impacts per Category
 
