@@ -182,7 +182,7 @@ Assurance Level の決定は, Digital システムの一部をなす Transaction
 
 <!-- > Note: If an error in the identity system causes no measurable consequences for a category, there is no impact. -->
 
-_不便, 苦痛, または社会的地位やレピュテーションの毀損による潜在的影響:_
+_不便, 苦痛, または社会的地位やレピュテーションの毀損に関する潜在的影響:_
 
 <!-- _Potential impact of inconvenience, distress, or damage to standing or reputation:_     -->
 
@@ -194,7 +194,7 @@ _不便, 苦痛, または社会的地位やレピュテーションの毀損に
 - Moderate: at worst, serious short-term or limited long-term inconvenience, distress, or damage to the standing or reputation of any party.
 - High: severe or serious long-term inconvenience, distress, or damage to the standing or reputation of any party. This is ordinarily reserved for situations with particularly severe effects or which potentially affect many individuals. -->
 
-_経済的損失の潜在的影響:_
+_経済的損失に関する潜在的影響:_
 
 <!-- _Potential impact of financial loss:_ -->
 
@@ -206,7 +206,7 @@ _経済的損失の潜在的影響:_
 - Moderate: at worst, a serious financial loss to any party, or a serious agency liability.
 - High: severe or catastrophic financial loss to any party, or severe or catastrophic agency liability. -->
 
-_機関のプログラムや公共の利益への損害による潜在的影響:_
+_機関のプログラムや公共の利益への損害に関する潜在的影響:_
 
 <!-- _Potential impact of harm to agency programs or public interests:_ -->
 
@@ -219,7 +219,7 @@ _機関のプログラムや公共の利益への損害による潜在的影響:
 - High: a severe or catastrophic adverse effect on organizational operations or assets, or public interests. Examples of severe or catastrophic effects are: (i) severe mission capability degradation or loss of to the extent and duration that the organization is unable to perform one or more of its primary functions; or (ii) major damage to organizational assets or public interests. -->
 
 
-_Authorize のないセンシティブ情報の公開による潜在的影響:_
+_Authorize のないセンシティブ情報の公開に関する潜在的影響:_
 
 <!-- _Potential impact of unauthorized release of sensitive information:_ -->
 
@@ -231,7 +231,7 @@ _Authorize のないセンシティブ情報の公開による潜在的影響:_
 - Moderate: at worst, a release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in loss of confidentiality with a moderate impact as defined in FIPS 199.
 - High: a release of personal, U.S. government sensitive, or commercially sensitive information to unauthorized parties resulting in loss of confidentiality with a high impact as defined in FIPS 199. -->
 
-_個人の安全への潜在的影響:_
+_個人の安全に関する潜在的影響:_
 
 <!-- _Potential impact to personal safety:_ -->
 
@@ -243,7 +243,7 @@ _個人の安全への潜在的影響:_
 - Moderate: at worst, moderate risk of minor injury or limited risk of injury requiring medical treatment.
 - High: a risk of serious injury or death. -->
 
-_民事または刑事上の違反による潜在的影響:_
+_民事または刑事上の違反に関する潜在的影響:_
 
 <!-- _The potential impact of civil or criminal violations is:_ -->
 
