@@ -257,34 +257,60 @@ _民事または刑事上の違反に関する潜在的影響:_
 
 ### 5.4 Risk Acceptance and Compensating Controls
 
-The SP 800-63 suite specifies baseline requirements for digital identity services based on assurance level. Agencies SHOULD implement identity services per the requirements in these guidelines and SHOULD consider additional techniques and technologies to further secure and privacy-enhance their services.
+SP 800-63 スイートは Assurance Level に基づき Digital Identity サービスに対する基本要件を示す. 各機関は本ガイドライン群の要件に従って Identity サービスを実装すべきであり (SHOULD), さらにシステムをセキュアにしたりプライバシーを強化するべく追加の技法や技術を検討すべきである (SHOULD).
 
-Agencies MAY determine alternatives to the NIST-recommended guidance, for the assessed xALs, based on their mission, risk tolerance, existing business processes, special considerations for certain populations, availability of data that provides similar mitigations to those described in this suite, or due to other capabilities that are unique to the agency.
+<!-- The SP 800-63 suite specifies baseline requirements for digital identity services based on assurance level. Agencies SHOULD implement identity services per the requirements in these guidelines and SHOULD consider additional techniques and technologies to further secure and privacy-enhance their services. -->
 
-Agencies SHALL demonstrate comparability of any chosen alternative, to include any compensating controls, when the complete set of applicable SP 800-63 requirements is not implemented. For example, an agency may choose a National Information Assurance Partnership (NIAP) protection profile over FIPS, where the profile is equivalent to or stronger than the FIPS requirements. That said, agencies SHALL NOT alter the assessed xAL based on agency capabilities. Rather, the agency MAY adjust their implementation of solutions based on the agency's ability to mitigate risk via means not explicitly addressed by SP 800-63 requirements. The agency SHALL implement procedures to document both the justification for any departure from normative requirements and detail the compensating control(s) employed.
+各機関は, ミッション, リスク許容範囲, 既存のビジネスプロセス, 特定の人々への特別な考慮事項, 本スイートに記載されているものと同様の緩和策を実現するためのデータの可用性, 当該組織固有のその他の能力などに基づき, 評価された xALs に対して NIST 推奨ガイダンス代替策を講じてもよい (MAY).
 
-This guidance addresses only those risks associated with authentication and identity proofing errors. NIST Special Publication 800-30, Risk Management Guide for Information Technology Systems [[SP 800-30]](#SP800-30) recommends a general methodology for managing risk in federal systems.
+<!-- Agencies MAY determine alternatives to the NIST-recommended guidance, for the assessed xALs, based on their mission, risk tolerance, existing business processes, special considerations for certain populations, availability of data that provides similar mitigations to those described in this suite, or due to other capabilities that are unique to the agency. -->
+
+適用可能な SP 800-63 要件が完全には実装されていない場合, 各機関は任意の代替策の比較可能性を示さなければならない (SHALL). 例えば, National Information Assurance Partnership (NIAP) 保護プロファイルが FIPS 要件と同等もしくはより強固である場合, 当該機関は FIPS の代わりに National Information Assurance Partnership (NIAP) 保護プロファイルを選択してもよい. 機関は機関自身の能力に基づいて評価済 xAL を変更してはならないが (SHALL NOT), SP 800-63 に明記されていない手段によりリスクを低減する能力に基づいて自身のソリューションの実装を調整することは可能である (MAY). 機関は Normative 要件から逸脱する正当な理由と, 自身が採用する代替策の詳細をドキュメント化するべく手順化しなければならない (SHALL).
+
+<!-- Agencies SHALL demonstrate comparability of any chosen alternative, to include any compensating controls, when the complete set of applicable SP 800-63 requirements is not implemented. For example, an agency may choose a National Information Assurance Partnership (NIAP) protection profile over FIPS, where the profile is equivalent to or stronger than the FIPS requirements. That said, agencies SHALL NOT alter the assessed xAL based on agency capabilities. Rather, the agency MAY adjust their implementation of solutions based on the agency's ability to mitigate risk via means not explicitly addressed by SP 800-63 requirements. The agency SHALL implement procedures to document both the justification for any departure from normative requirements and detail the compensating control(s) employed. -->
+
+本ガイダンスは Authentication と Identity Proofing エラーに関するリスクのみを扱う. NIST Special Publication 800-30 Risk Management Guide for Information Technology Systems [[SP 800-30]](#SP800-30) は, 政府システムにおいてリスクを管理する一般的方法論を推奨している.
+
+<!-- This guidance addresses only those risks associated with authentication and identity proofing errors. NIST Special Publication 800-30, Risk Management Guide for Information Technology Systems [[SP 800-30]](#SP800-30) recommends a general methodology for managing risk in federal systems. -->
 
 ### <a name="daps"></a> 5.5 Digital Identity Acceptance Statement
 
-Agencies SHOULD include this information in existing artifacts required to achieve a SA&A.
+各機関は SA＆A を達成するために必要な既存の成果物にこの情報を含めるべきである (SHOULD).
 
-The statement SHALL include, at a minimum:
+<!-- Agencies SHOULD include this information in existing artifacts required to achieve a SA&A. -->
 
-1. Assessed xAL,
+このステートメントには, 最低限以下の情報を含めること (SHALL).
+
+<!-- The statement SHALL include, at a minimum: -->
+
+1. 評価済 xAL.
+2. 実装済 xAL.
+3. 実装済 xAL が評価済 xAL と異なる場合は, その根拠.
+4. 適用可能な 800-63 要件が完全には実装されていない場合, 代替策の比較可能性.
+5. Federated Identity を採用していない場合は, その根拠.
+
+<!-- 1. Assessed xAL,
 2. Implemented xAL,
 3. Rationale, if implemented xAL differs from assessed xAL,
 4. Comparability demonstration of compensating controls when the complete set of applicable 800-63 requirements are not implemented, and
-5. If not accepting federated identities, rationale.
+5. If not accepting federated identities, rationale. -->
 
 ### 5.6 Migrating Identities
 
+本ガイドライン群は改訂され要件にも変更が起こるため, CSP はそれが自身のユーザーに与える影響を考慮しなければならない (SHALL). ユーザーに影響がない場合もあるが, ユーザーに移行手続を要求することもあるでしょう. 例えば, 改訂後の最初のログイン時に, CSP は新しい IAL 要件を遵守すべくユーザーに追加の身元確認書類を要求するかもしれません. これは CSP, 当該 CSP を利用する RP, ミッション, 対象ユーザーといったコンテキストを考慮して, リスクに基づいて決定すること (SHALL). 以下の考慮点は, 機関が要件変更の影響を考慮する場合の向けのガイドである.
 
-As these guidelines are revised, CSPs SHALL consider how changes in requirements affect their user population. In some instances, the user population will be unaffected, yet in others, the CSP will require users undergo a transitional activity. For example, CSPs may request users &mdash; upon initial logon since last revision &mdash; to supply additional proofing evidence to adhere to new IAL requirements. This SHALL be a risk-based decision, made in context of the CSP, any RPs that use the CSP, mission, and the population served. The following considerations serve only as a guide to agencies when considering the impacts of requirements changes:
+<!-- As these guidelines are revised, CSPs SHALL consider how changes in requirements affect their user population. In some instances, the user population will be unaffected, yet in others, the CSP will require users undergo a transitional activity. For example, CSPs may request users &mdash; upon initial logon since last revision &mdash; to supply additional proofing evidence to adhere to new IAL requirements. This SHALL be a risk-based decision, made in context of the CSP, any RPs that use the CSP, mission, and the population served. The following considerations serve only as a guide to agencies when considering the impacts of requirements changes: -->
 
-1. If the RP is experiencing identity-related fraud, a migration may prove beneficial. If not, migration may not be an added value.
+1. RP で Identity 関連の詐欺が発生している場合は, 移行が有益である可能性がある. そうでなければ移行には価値がないかもしれない.
+2. 新しくより強固ないしはよりユーザーフレンドリーな Authentication の選択肢が個々の AAL に追加されれば, CSP は新しい Authenticator を発行したり, ユーザーがすでに持っている Authenticator を登録させることが可能になる.
+3. Federation 要件はユーザー影響があるかもしれないしないかもしれない. 例えば, 同意要件やインフラストラクチャー要件により, インフラストラクチャーやプロトコルのアップグレードが必要になることもある.
+4. xAL の追加や削除は移行を必要としないかもしれないが, RP 側での変更が必要かどうかを決定すべく新規に Risk Assessment を行うことになるであろう.
+
+<!-- 1. If the RP is experiencing identity-related fraud, a migration may prove beneficial. If not, migration may not be an added value.
 2. New, stronger, or user-friendly authentication options are added to individual AALs the CSP could issue new authenticators or allow users to register authenticators they already have.
 3. Federation requirements may or may not have a user impact. For example, consent requirements or infrastructure requirements could necessitate an infrastructure or protocol upgrade.
-4. Addition or removal of xALs may not require a migration, but would trigger a new risk assessment to determine if a change is necessary for the RP.
+4. Addition or removal of xALs may not require a migration, but would trigger a new risk assessment to determine if a change is necessary for the RP. -->
 
-The guidance does not prescribe that any migration needs to occur, only that it be considered as revisions are released. It is up to the CSP and RP, based on their risk tolerance and mission, to determine the best approach.
+本ガイダンスでは, 必ずしも移行を行う必要があるとはしておらず, 改訂版がリリースされた時点で考慮が必要であることのみを定めている. 両者のリスク許容範囲とミッションに基づいた最良のアプローチの決定は, CSP と RP の判断に委ねられる.
+
+<!-- The guidance does not prescribe that any migration needs to occur, only that it be considered as revisions are released. It is up to the CSP and RP, based on their risk tolerance and mission, to determine the best approach. -->
