@@ -51,7 +51,7 @@ Authenticationトランザクションの強度はAALとして知られている
 The strength of an authentication transaction is characterized by an ordinal measurement known as the AAL. Stronger authentication (a higher AAL) requires malicious actors to have better capabilities and expend greater resources in order to successfully subvert the authentication process. Authentication at higher AALs can effectively reduce the risk of attacks. A high-level summary of the technical requirements for each of the AALs is provided below; see [Sections 4](#sec4) and [5](#sec5) of this document for specific normative requirements.
 -->
 
-**Authenticator Assurance Level 1** - AAL 1はSubscriberのアカウントに対して結び付けられているAuthenticatorをClaimantが制御しているという，いくらかの保証を提供する．AAL 1では幅広く利用可能なAuthentication技術を利用した，単一要素または多要素のAuthenticationを必要とする．Authenticationが成功するには，そのClaimantが，セキュアなAuthenticationプロトコルを介して，自身がそのAuthenticatorを所有・制御していることを証明する必要がある．
+**Authenticator Assurance Level 1** - AAL 1はSubscriberのアカウントに対して結び付けられているAuthenticatorをClaimantが制御しているという，ある程度の保証を提供する．AAL 1では幅広く利用可能なAuthentication技術を利用した，単一要素または多要素のAuthenticationを必要とする．Authenticationが成功するには，そのClaimantが，セキュアなAuthenticationプロトコルを介して，自身がそのAuthenticatorを所有・制御していることを証明する必要がある．
 <!--
 **Authenticator Assurance Level 1**: AAL1 provides some assurance that the claimant controls an authenticator bound to the subscriber's account. AAL1 requires either single-factor or multi-factor authentication using a wide range of available authentication technologies. Successful authentication requires that the claimant prove possession and control of the authenticator through a secure authentication protocol.
 -->

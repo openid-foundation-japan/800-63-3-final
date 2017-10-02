@@ -2,28 +2,71 @@
 
 ## <a name="AAL_SEC4"></a>4 Authenticator Assurance Levels
 
+_本セクションは標準及び参考情報の題材両方を含む._
+<!--
 _This section contains both normative and informative material._
+-->
 
+指定されたAALの要件を満たすために、Claimantは少なくとも自身がSubscriberとして認識される強度のレベルでAuthenticateされるものとする(SHALL)。認証プロセスの結果は識別子であり、SubscriberがRPに対してAuthenticateするたびに使われるものとする(SHALL)。それは仮名でもよい(MAY)、Subscriberの識別子は異なる目的で再利用すべきではない(SHOULD NOT)が、CSPによって過去に登録済みのSubjectが再登録される場合には再利用すべきである(SHOULD)。Subscriberをを一意なSubjectであると識別する他の属性もまた提供されてもよい(MAY)。
+
+<!--
 To satisfy the requirements of a given AAL, a claimant SHALL be authenticated with at least a given level of strength to be recognized as a subscriber. The result of an authentication process is an identifier that SHALL be used each time that subscriber authenticates to that RP. The identifier MAY be pseudonymous. Subscriber identifiers SHOULD NOT be reused for a different subject but SHOULD be reused when a previously-enrolled subject is re-enrolled by the CSP. Other attributes that identify the subscriber as a unique subject MAY also be provided.
+-->
 
+各AALにおけるAuthenticator及びVerifierに対する標準要件の詳細についてはセクション5に示されている。
+<!--
 Detailed normative requirements for authenticators and verifiers at each AAL are provided in Section 5.
+-->
 
+最も適切なAALの選択方法の詳細については [SP 800-63](sp800-63-3.html) セクション6.2参照。
+<!--
 See [SP 800-63](sp800-63-3.html) Section 6.2 for details on how to choose the most appropriate AAL.
+-->
 
+FIPS 140 要件は、[[FIPS 140-2]](#FIPS140-2)またはより新しい版によって充足される。
+<!--
 FIPS 140 requirements are satisfied by [FIPS 140-2](#FIPS140-2) or newer revisions.
+-->
 
+IAL1では、属性はDigital Identityサービスによって収集され、利用可能となる。任意のPIIまたは他の個人情報は - self-assertedまたは確認されたもののどちらでも - 多要素Authenticationを必要とする。従って、連邦政府機関はself-assertedであるPIIや他の個人情報がオンラインで利用可能である場合、最低でもAAL2を選択するものとする(SHALL)。
+<!--
 At IAL1, it is possible that attributes are collected and made available by the digital identity service. Any PII or other personal information — whether self-asserted or validated — requires multi-factor authentication. Therefore, agencies SHALL select a minimum of AAL2 when self-asserted PII or other personal information is made available online.
+-->
 
 ### 4.1 Authenticator Assurance Level 1
 
+*本セクションは標準である。*
+<!--
 *This section is normative.*
+-->
 
+
+AAL 1はSubscriberのアカウントに対して結び付けられているAuthenticatorをClaimantが制御しているという，ある程度の保証を提供する．AAL 1では幅広く利用可能なAuthentication技術を利用した，単一要素または多要素のAuthenticationを必要とする．Authenticationが成功するには，そのClaimantが，セキュアなAuthenticationプロトコルを介して，自身がそのAuthenticatorを所有・制御していることを証明する必要がある．
+<!--
 AAL1 provides some assurance that the claimant controls an authenticator bound to the subscriber's account. AAL1 requires either single-factor or multi-factor authentication using a wide range of available authentication technologies. Successful authentication requires that the claimant prove possession and control of the authenticator through a secure authentication protocol.
+-->
 
+#### 4.1.1 許可されているAuthenticatorタイプ
+<!--
 #### 4.1.1 Permitted Authenticator Types
+-->
 
+AAL1のAuthenticationでは、[Section 5](#sec5) で定義されている次のAuthenticatorタイプの何れかを利用するものとする(SHALL):
+<!--
 AAL1 authentication SHALL occur by the use of any of the following authenticator types, which are defined in [Section 5](#sec5):
+-->
 
+* 記憶シークレット ([Section 5.1.1](#memsecret))
+* ルックアップシークレット ([Section 5.1.2](#lookupsecrets))
+* アウトオブバンドデバイス  ([Section 5.1.3](#out-of-band))
+* 単一要素ワンタイムパスワード (OTP) デバイス ([Section 5.1.4](#singlefactorOTP))
+* 多要素 OTP デバイス ([Section 5.1.5](#multifactorOTP))
+* 単一要素暗号ソフトウェア ([Section 5.1.6](#sfcs))
+* 単一要素暗号デバイス ([Section 5.1.7](#sfcd))
+* 多要素暗号ソフトウェア ([Section 5.1.8](#mfcs))
+* 多要素暗号デバイス ([Section 5.1.9](#mfcd))
+
+<!--
 * Memorized Secret ([Section 5.1.1](#memsecret))
 * Look-Up Secret ([Section 5.1.2](#lookupsecrets))
 * Out-of-Band Devices ([Section 5.1.3](#out-of-band))
@@ -33,14 +76,29 @@ AAL1 authentication SHALL occur by the use of any of the following authenticator
 * Single-Factor Cryptographic Device ([Section 5.1.7](#sfcd))
 * Multi-Factor Cryptographic Software ([Section 5.1.8](#mfcs))
 * Multi-Factor Cryptographic Device ([Section 5.1.9](#mfcd))
+-->
 
+#### <a name="aal1req"></a>4.1.2 Authenticator及びVerifierの要件
+<!--
 #### <a name="aal1req"></a>4.1.2 Authenticator and Verifier Requirements
+-->
 
+AAL 1で用いられる暗号Authenticatorは、Approved Cryptographyを利用するものとする(SHALL)。オペレーティング・システム環境で動作するソフトウェアベースの認証器は、該当する場合(例、マルウェアによって)それ自身が動作している利用者のエンドポイントに対する改竄検出を試みてもよく(MAY)、そのような改竄が検出された場合には操作を完了すべきでではない(SHOULD NOT)。
+
+<!--
 Cryptographic authenticators used at AAL1 SHALL use approved cryptography. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise (e.g., by malware) of the user endpoint in which they are running and SHOULD NOT complete the operation when such a compromise is detected.
+-->
 
+ClaimantとVerifierとの間のチャネル通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は、Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護された認証済みチャネルを介して行われるものとする(SHALL)。
+<!--
 Communication between the claimant and verifier (using the primary channel in the case of an out-of-band authenticator) SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to man-in-the-middle (MitM) attacks.
+-->
 
+政府機関が運用するVerifierは、AAL 1において、[[FIPS 140]](#FIPS140-2) Level 1 の要件に適合していることが確認されるものとする(SHALL)。
+
+<!--
 Verifiers operated by government agencies at AAL1 SHALL be validated to meet the requirements of [FIPS 140](#FIPS140-2) Level 1.
+-->
 
 #### <a name="aal1reauth"></a>4.1.3 Reauthentication
 
