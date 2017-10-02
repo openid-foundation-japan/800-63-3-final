@@ -6,9 +6,13 @@
 
 _This section is normative._
 
-The risk assessment results are the primary factor in selecting the most appropriate levels. This section details how to apply the results of the risk assessment with additional factors unrelated to risk to determine the most advantageous xAL selection.
+Risk Assessment の結果は最適なレベル選択における第一の要素となる. 本セクションでは Risk Assessment の結果を, リスクと無関係なその他の要素と合わせて, どのように最も有益な xAL 選択を行うかについて詳説する.
 
-First, compare the risk assessment impact profile to the impact profiles associated with each assurance level, as shown in [Table 6-1](#63Sec6-Table6-1) below. To determine the required assurance level, find the lowest level whose impact profile meets or exceeds the potential impact for every category analyzed in the risk assessment.
+<!-- The risk assessment results are the primary factor in selecting the most appropriate levels. This section details how to apply the results of the risk assessment with additional factors unrelated to risk to determine the most advantageous xAL selection. -->
+
+第一に, Risk Assessment 影響プロファイル を, [Table 6-1](#63Sec6-Table6-1) にある各 Assurance Level に関連する影響プロファイルと比較する. 必要な Assurance Level を決定するには, Risk Assessment により得られた全カテゴリーにおける潜在的影響に合致ないしは超越する影響プロファイルを見つけること.
+
+<!-- First, compare the risk assessment impact profile to the impact profiles associated with each assurance level, as shown in [Table 6-1](#63Sec6-Table6-1) below. To determine the required assurance level, find the lowest level whose impact profile meets or exceeds the potential impact for every category analyzed in the risk assessment. -->
 
 <a name="63Sec6-Table6-1"></a>
 <div class="text-center" markdown="1">
@@ -16,6 +20,60 @@ First, compare the risk assessment impact profile to the impact profiles associa
 </div>
 
 <table>
+
+ <tr>
+
+ <td></td>
+    <td style="text-align: center" colspan="3"><strong>Assurance Level</strong></td>
+  </tr>
+  <tr>
+
+  <th>影響カテゴリー</th>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+  </tr>
+  <tr>
+    <td>不便, 苦痛, または社会的地位やレピュテーションの毀損</td>
+    <td>Low</td>
+    <td>Mod</td>
+    <td>High</td>
+  </tr>
+  <tr>
+    <td>経済的損失または機関の負債</td>
+    <td>Low</td>
+    <td>Mod</td>
+    <td>High</td>
+  </tr>
+   <tr>
+    <td>機関のプログラムや公共の利益への損害</td>
+    <td>N/A</td>
+    <td>Low/Mod</td>
+    <td>High</td>
+  <tr>
+  <tr>
+    <td>Authorize のないセンシティブ情報の公開</td>
+    <td>N/A</td>
+    <td>Low/Mod</td>
+    <td>High</td>
+  </tr>
+    <td>個人の安全</td>
+    <td>N/A</td>
+    <td>Low</td>
+    <td>Mod/High</td>
+  </tr>
+
+  </tr>
+  <tr>
+    <td>民事または刑事上の違反</td>
+    <td>N/A</td>
+    <td>Low/Mod</td>
+    <td>High</td>
+  </tr>
+
+</table>
+
+<!-- <table>
 
  <tr>
 
@@ -67,27 +125,43 @@ First, compare the risk assessment impact profile to the impact profiles associa
     <td>High</td>
   </tr>
 
-</table>
+</table> -->
 
-In analyzing risks, the agency SHALL consider all of the expected direct and indirect results of an authentication failure, including the possibility that there will be more than one failure, or harms to more than one person or organization. The definitions of potential impacts contain some relative terms, like "serious" or "minor," whose meaning will depend on context. The agency SHOULD consider the context and the nature of the persons or entities affected to decide the relative significance of these harms. Over time, the meaning of these terms will become more definite as agencies gain practical experience with these issues. The analysis of harms to agency programs or other public interests depends strongly on the context; the agency SHOULD consider these issues with care.
+リスクを分析するにあたり, 機関は, 何らかの失敗を引き起こしたり人・組織に損害を及ぼす可能性を含む, 予想される誤認証の直接的および間接的な結果のすべてを考慮しなければならない (SHALL). 潜在的な影響の定義には, 意味がコンテキストに依存する "相当" または "軽微" のような相対的な用語が含まれる. 機関はこういった被害の相対的重要性を決定するために, 影響を受ける人や主体のコンテキストや性質を考慮すべきである (SHOULD). 時間が経つにつれて, 機関はこれらの問題に関する実践的な経験を得ることとなり, これらの用語の意味はより明確になるであろう. 機関のプログラムや公共の利益に対する被害の分析はコンテキストに強く依存するため, 機関はこれらの問題を注意深く考慮すべきである (SHOULD).
 
-It is possible that the assurance levels may differ across IAL, AAL, and FAL. For example, suppose an agency establishes a "health tracker" application in which users submit personal information in the form of personal health information (PHI). In line with the terms of [EO 13681](#EO13681) requiring "that all agencies making personal data accessible to citizens through digital applications require the use of multiple factors of authentication," the agency is required to implement MFA at AAL2 or AAL3.
+<!-- In analyzing risks, the agency SHALL consider all of the expected direct and indirect results of an authentication failure, including the possibility that there will be more than one failure, or harms to more than one person or organization. The definitions of potential impacts contain some relative terms, like "serious" or "minor," whose meaning will depend on context. The agency SHOULD consider the context and the nature of the persons or entities affected to decide the relative significance of these harms. Over time, the meaning of these terms will become more definite as agencies gain practical experience with these issues. The analysis of harms to agency programs or other public interests depends strongly on the context; the agency SHOULD consider these issues with care. -->
 
-EO 13681 also requires agencies employ "an effective identity proofing process, as appropriate" when personal information is released. This does not mean that proofing at IAL2 or IAL3 (to match the required AAL) is necessary. In the above example, there may be no need for the agency system to know the actual identity of the user. In this case, an "effective proofing process" would be to not proof at all, therefore the agency would select IAL1. This allows the user of the health tracker system to be pseudonymous.
+IAL, AAL, FAL の各 Assurance Level 値はそれぞれ異なる可能性もある. 例えばある機関が, ユーザーにより Personal Health Information (PHI) といった形で Personal Information が提出される "health tracker" アプリケーションを構築したとする. [EO 13681](#EO13681) には "デジタルアプリケーションを通じて, 市民に対して Personal Data への Access を可能にする全機関は, Multi-factor Authentication を採用する必要がある" と定められており, 当該機関は AAL2 ないしは AAL3 で MFA を実装する必要がある.
 
-Despite the user being pseudonymous, the agency should still select AAL2 or AAL3 for authentication because a malicious actor could gain access to the user's PHI by compromising the account.
+<!-- It is possible that the assurance levels may differ across IAL, AAL, and FAL. For example, suppose an agency establishes a "health tracker" application in which users submit personal information in the form of personal health information (PHI). In line with the terms of [EO 13681](#EO13681) requiring "that all agencies making personal data accessible to citizens through digital applications require the use of multiple factors of authentication," the agency is required to implement MFA at AAL2 or AAL3. -->
 
-> Note: An agency can accept a higher assurance level than those required in the table above. For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2. The same holds true for authenticators: stronger authenticators can be used at RPs that have lower authenticator requirements. However, RPs will have to ensure that this only occurs in federated scenarios with appropriate privacy protections by the CSP such that only attributes that have been requested by the RP and authorized by the subscriber are provided to the RP and that excessive personal information does not leak from the credential or an assertion. See the [privacy considerations in SP 800-63C](sp800-63c.html#privacy) for more details.
+また EO 13681 は, Personal Information が公開される場合, 各機関が "必要に応じて有効な Identity Proofing プロセス" を行うことを要求している. これは (必要な AAL に合致するよう) IAL2 や IAL3 での Proofing が必要であるということを意味しない. 上記の例では, 機関のシステムはユーザーの実際の Identity を知る必要もないかもしれない. このケースでは, "有効な Proofing プロセス" というのは Proofing を一切行わないこととなり, 機関は IAL1 を選択することになるであろう. これによりHealth Tracker システムのユーザーは Pseudonymous な状態でいることができる.
+
+<!-- EO 13681 also requires agencies employ "an effective identity proofing process, as appropriate" when personal information is released. This does not mean that proofing at IAL2 or IAL3 (to match the required AAL) is necessary. In the above example, there may be no need for the agency system to know the actual identity of the user. In this case, an "effective proofing process" would be to not proof at all, therefore the agency would select IAL1. This allows the user of the health tracker system to be pseudonymous. -->
+
+ユーザーが Pseudonymous な状態である一方で, 機関 Authentication においては AAL2 や AAL3 を選択するべきである. さもないと悪意ある主体が正規ユーザーのアカウントを侵害し, 当該ユーザーの PHI に Access 可能となってしまう.
+
+<!-- Despite the user being pseudonymous, the agency should still select AAL2 or AAL3 for authentication because a malicious actor could gain access to the user's PHI by compromising the account. -->
+
+> Note: 機関は上表で求められている以上の Assurance Level を許容することもできる. 例えば Federated Transaction では, IAL2 と評価されたアプリケーションにおいて IAL3 の Identity を受け入れることも可能である. これは Authenticator に対しても同様であり, RP が必要とするより強固な Authenticator を利用することも可能である. ただし RP は, こういったことが　CSP によって適切なプライバシー保護がなされている Federated シナリオのみで発生し, RP が要求し Subscriber が Authorize した Attribute のみが RP に提供され, 過度な Personal Information が Credential や Assertion から漏れることがないよう保証する必要がある. 詳細は [SP 800-63C の Privacy Considerations](sp800-63c.html#privacy) を参照のこと.
+
+<!-- > Note: An agency can accept a higher assurance level than those required in the table above. For example, in a federated transaction, an agency can accept an IAL3 identity if their application is assessed at IAL2. The same holds true for authenticators: stronger authenticators can be used at RPs that have lower authenticator requirements. However, RPs will have to ensure that this only occurs in federated scenarios with appropriate privacy protections by the CSP such that only attributes that have been requested by the RP and authorized by the subscriber are provided to the RP and that excessive personal information does not leak from the credential or an assertion. See the [privacy considerations in SP 800-63C](sp800-63c.html#privacy) for more details. -->
 
 <!---->
 
-> Note: The upshot of potentially having a different IAL, AAL, and FAL within a single application stems from the fact that this document no longer supports the notion of an overall LOA &mdash; the "low watermark" approach to determining LOA no longer applies. An application with IAL1 and AAL2 should not be considered any less secure or privacy-enhancing than an application with IAL2 and AAL2. The only difference between these applications is the amount of proofing required, which may not impact the security and privacy of each application. That said, if an agency incorrectly determines the xAL, security and privacy could very well be impacted.
+単一のアプリケーションにおいて異なる IAL, AAL, FAL を設定可能ということは, 本ドキュメントがもはや総合的な LOA という概念をサポートしていないということである. LOA 決定のための "Low Watermark" アプローチはもはや通用しない. IAL1 かつ AAL2 のアプリケーションを, IAL2 かつ AAL2 のアプリケーションよりセキュアでないとかプライバシー強度が低いとみなすべきではない. これらのアプリケーションの差異は, 必要とされる Proofing の程度のみであり, それはアプリケーションのセキュリティーやプライバシーには影響しないかもしれない. 一方でもし機関が誤った xAL 選択を行うと, セキュリティーやプライバシーに大きな影響を及ぼす可能性がある.
+
+<!-- > Note: The upshot of potentially having a different IAL, AAL, and FAL within a single application stems from the fact that this document no longer supports the notion of an overall LOA &mdash; the "low watermark" approach to determining LOA no longer applies. An application with IAL1 and AAL2 should not be considered any less secure or privacy-enhancing than an application with IAL2 and AAL2. The only difference between these applications is the amount of proofing required, which may not impact the security and privacy of each application. That said, if an agency incorrectly determines the xAL, security and privacy could very well be impacted. -->
 
 ### <a name="IAL_CYOA"></a> 6.1 Selecting IAL
 
-The IAL decision tree in [Figure 6-1](#63Sec6-Figure1) combines the results from the risk assessment with additional considerations related to identity proofing services to allow agencies to select the most appropriate identity proofing requirements for their digital service offering.
+[Figure 6-1](#63Sec6-Figure1) に示す IAL の決定木は, Risk Assessment の結果と Identity Proofing サービスに関する追加の考慮事項を組み合わせ, 各機関がデジタルサービスの提供に最適な Identity Proofing 要件を決定する際の一助となる.
 
-The IAL selection does not mean the digital service provider will need to perform the proofing themselves. More information on whether an agency can federate is provided in [Section 7](#toFedorNotToFed).
+<!-- The IAL decision tree in [Figure 6-1](#63Sec6-Figure1) combines the results from the risk assessment with additional considerations related to identity proofing services to allow agencies to select the most appropriate identity proofing requirements for their digital service offering. -->
+
+IAL 選択の実施は, 当該デジタルサービス提供者が Proofing を行わなければならないということを意味するものではない. 機関が Federate できるかどうかは [Section 7](#toFedorNotToFed) に詳しく述べる.
+
+<!-- The IAL selection does not mean the digital service provider will need to perform the proofing themselves. More information on whether an agency can federate is provided in [Section 7](#toFedorNotToFed). -->
 
 <a name="63Sec6-Figure1"></a>
 <div class="text-center" markdown="1">
