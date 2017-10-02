@@ -149,7 +149,7 @@ IAL, AAL, FAL の各 Assurance Level 値はそれぞれ異なる可能性もあ�
 
 <!---->
 
-単一のアプリケーションにおいて異なる IAL, AAL, FAL を設定可能ということは, 本ドキュメントがもはや総合的な LOA という概念をサポートしていないということである. LOA 決定のための "Low Watermark" アプローチはもはや通用しない. IAL1 かつ AAL2 のアプリケーションを, IAL2 かつ AAL2 のアプリケーションよりセキュアでないとかプライバシー強度が低いとみなすべきではない. これらのアプリケーションの差異は, 必要とされる Proofing の程度のみであり, それはアプリケーションのセキュリティーやプライバシーには影響しないかもしれない. 一方でもし機関が誤った xAL 選択を行うと, セキュリティーやプライバシーに大きな影響を及ぼす可能性がある.
+> Note: 単一のアプリケーションにおいて異なる IAL, AAL, FAL を設定可能ということは, 本ドキュメントがもはや総合的な LOA という概念をサポートしていないということである. LOA 決定のための "Low Watermark" アプローチはもはや通用しない. IAL1 かつ AAL2 のアプリケーションを, IAL2 かつ AAL2 のアプリケーションよりセキュアでないとかプライバシー強度が低いとみなすべきではない. これらのアプリケーションの差異は, 必要とされる Proofing の程度のみであり, それはアプリケーションのセキュリティーやプライバシーには影響しないかもしれない. 一方でもし機関が誤った xAL 選択を行うと, セキュリティーやプライバシーに大きな影響を及ぼす可能性がある.
 
 <!-- > Note: The upshot of potentially having a different IAL, AAL, and FAL within a single application stems from the fact that this document no longer supports the notion of an overall LOA &mdash; the "low watermark" approach to determining LOA no longer applies. An application with IAL1 and AAL2 should not be considered any less secure or privacy-enhancing than an application with IAL2 and AAL2. The only difference between these applications is the amount of proofing required, which may not impact the security and privacy of each application. That said, if an agency incorrectly determines the xAL, security and privacy could very well be impacted. -->
 
@@ -177,42 +177,62 @@ IAL 選択の実施は, 当該デジタルサービス提供者が Proofing を�
     <td><img src="sp800-63-3/media/ial-step1.png" alt="IAL Step 1"/></td>
   </tr>
   <tr>
-   <td>The risk assessment and IAL selection can be short circuited by answering this question first. If the service does not require any personal information to execute any digital transactions, the system can operate at IAL1.</td>
+    <td>
+      最初にこの問いに答えることで, Risk Assessment と IAL 選択はショートカットできる. サービスがデジタル Transaction 実行に際していかなる Personal Information も必要としない場合, システムは IAL1 で運用可能である.
+    </td>
+    <!-- <td>The risk assessment and IAL selection can be short circuited by answering this question first. If the service does not require any personal information to execute any digital transactions, the system can operate at IAL1.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/ial-step2.png" alt="IAL Step 2"/></td>
   </tr>
   <tr>
-   <td>If personal information is needed, the RP needs to determine if validated and verified attributes are required, or if self-asserted attributes are acceptable. If even a single validated and verified attribute is needed, then the provider will need to accept attributes that have been IAL2 or IAL3 proofed. Again, the selection of IAL can be short circuited to IAL1 if the agency can deliver the digital service with self-asserted attributes only.</td>
+    <td>
+      RP は Personal Information が必要であれば, 確認済かつ検証済な Attribute が必要か, Self-asserted な Attribute が許容可能かを判断する必要がある. ひとつでも確認済かつ検証済な Attribute が必要な場合は, IAL2 か IAL3 の Proofing を行なった上で Attribute を受け入れる必要があるであろう. Self-asserted な Attribute のみでデジタルサービスを提供可能であれば, IAL 選択はショートカットして IAL1 に落ち着くことができる.
+    </td>
+    <!-- <td>If personal information is needed, the RP needs to determine if validated and verified attributes are required, or if self-asserted attributes are acceptable. If even a single validated and verified attribute is needed, then the provider will need to accept attributes that have been IAL2 or IAL3 proofed. Again, the selection of IAL can be short circuited to IAL1 if the agency can deliver the digital service with self-asserted attributes only.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/ial-step3.png" alt="IAL Step 3"/></td>
   </tr>
   <tr>
-   <td>At this point, the agency understands that some level of proofing is required. Step 3 is intended to look at the potential impacts of an identity proofing failure to determine if IAL2 or IAL3 is the most appropriate selection. The primary identity proofing failure an agency may encounter is accepting a falsified identity as true, therefore providing a service or benefit to the wrong or ineligible person. In addition, proofing, when not required, or collecting more information than needed is a risk in and of itself. Hence, obtaining verified attribute information when not needed is also considered an identity proofing failure. This step should identify if the agency answered Step 1 and 2 incorrectly, realizing they do not need personal information to deliver the service. Risk should be considered from the perspective of the organization and to the user, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td>
+    <td>
+      この段階では, 機関はある程度の Proofing が必要であることは理解していることになる. Step 3 は, IAL2 と IAL3 のどちらが最適な選択かを決定するために, Identity Proofing が失敗した際の潜在的影響に着目している. 機関が陥る可能性のある主な Idetity Proofing 失敗は, 偽造された Identity を真として受け入れてしまうことである. これによりサービスや利益を間違った人物や不適格な人物に提供してしまうことになる. さらに, Proofing が必要ない場合や必要以上に多くの情報を収集してしまった場合, それ自体がリスクとなりうる. 従って必要がないのに検証済 Attribute を取得することも, Identity Proofing の失敗であるとみなされる. このステップでは, サービス提供の為に Personal Information が必要であるかどうか察知し, 機関が Step 1 および 2 に誤って回答していないかどうかを検知すべきである. 片方にはネガティブな影響がない場合でも, もう一方には著しい被害が及ぶ可能性もあるため, リスクは組織およびユーザーの両方の視点で考慮すべきである. 機関の Risk Management プロセスはこのステップから開始されるべきである.
+    </td>
+    <!-- <td>At this point, the agency understands that some level of proofing is required. Step 3 is intended to look at the potential impacts of an identity proofing failure to determine if IAL2 or IAL3 is the most appropriate selection. The primary identity proofing failure an agency may encounter is accepting a falsified identity as true, therefore providing a service or benefit to the wrong or ineligible person. In addition, proofing, when not required, or collecting more information than needed is a risk in and of itself. Hence, obtaining verified attribute information when not needed is also considered an identity proofing failure. This step should identify if the agency answered Step 1 and 2 incorrectly, realizing they do not need personal information to deliver the service. Risk should be considered from the perspective of the organization and to the user, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/ial-step4.png" alt="IAL Step 4"/></td>
   </tr>
   <tr>
-   <td>Step 4 is intended to determine if the personal information required by the agency will ultimately resolve to a unique identity. In other words, the agency needs to know the full identity of the subject accessing the digital service, and pseudonymous access, even with a few validated and verified attributes, is not possible. If the agency needs to uniquely identify the subject, the process can end. However, the agency should consider if Step 5 is of value to them, as the acceptance of claims will reduce exposure to the risk of over collecting and storing more personal information than is necessary.</td>
+    <td>
+      Step 4 では, 機関が要求する Personal Information が最終的に Identity の特定につながるかどうかを決定する. この問いは言い換えれば, 機関がデジタルサービスに Access する Subject の完全な Identity を知る必要があり, 2-3 の Attribute が確認済かつ検証済みであったとしても Pseudonymous Access が不可能かどうかということである. 機関が Subject を特定する必要がある場合, IAL 選択プロセスは終了可能である. しかしながら機関は, Step 5 が価値あるものかどうか検討すべきである. Claim (訳注: draft 段階では "Attribute Claim" と呼ばれていた "Attribute Reference" のこと) の受け入れにより, 必要以上の Personal Information の収集や保存のリスクを軽減することができる.
+    </td>
+    <!-- <td>Step 4 is intended to determine if the personal information required by the agency will ultimately resolve to a unique identity. In other words, the agency needs to know the full identity of the subject accessing the digital service, and pseudonymous access, even with a few validated and verified attributes, is not possible. If the agency needs to uniquely identify the subject, the process can end. However, the agency should consider if Step 5 is of value to them, as the acceptance of claims will reduce exposure to the risk of over collecting and storing more personal information than is necessary.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/ial-step5.png" alt="IAL Step 5"/></td>
   </tr>
   <tr>
-   <td>Step 5 focuses on whether the digital service can be provided without having access to full attribute values. This does not mean all attributes must be delivered as claims, but this step does ask the agency to look at each personal attribute they have deemed necessary, and identify which can suffice as claims and which need to be complete values. A federated environment is best suited for receiving claims, as the digital service provider is not in control of the attribute information to start with. If the application also performs all required identity proofing, claims may not make sense since full values are already under the digital service provider's control.</td>
+    <td>
+      Step 5 はデジタルサービスが完全な Attribute Value への Access なしに提供可能かどうかにフォーカスしている. これはすべての Attribute が Claim として受け渡されなければならないという意味ではなく, 機関が必要と判断する個人の各 Attribute に着目し, どれは Claim で十分であり, どれは完全な Value でないといけないかを判断するよう求めるものである. Federated な環境ではデジタルサービス提供者は Attribute 情報を最初から管理下に置いていないため, Claim 受け取りに最適である. アプリケーションがすべての必要な Identity Proofing を自身で実行するのであれば, すべての Value がすでにデジタルサービス提供者の管理下にあるため, Claim 受け渡しは意味がない可能性もある.
+    </td>
+    <!-- <td>Step 5 focuses on whether the digital service can be provided without having access to full attribute values. This does not mean all attributes must be delivered as claims, but this step does ask the agency to look at each personal attribute they have deemed necessary, and identify which can suffice as claims and which need to be complete values. A federated environment is best suited for receiving claims, as the digital service provider is not in control of the attribute information to start with. If the application also performs all required identity proofing, claims may not make sense since full values are already under the digital service provider's control.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/ial-step6.png" alt="IAL Step 6"/></td>
   </tr>
   <tr>
-   <td>If the agency has reached Step 6, claims should be used. This step identifies the digital service as an excellent candidate for accepting federated attribute references from a CSP (or multiple CSPs), since it has been determined that complete attribute values are not needed to deliver the digital service.</td>
+    <td>
+      もし機関が Step 6 にたどり着いたとすれば, Claim を利用すべきである. このステップにたどり着いたということは, デジタルサービスの提供に完全な Attribute Value が必要でないと判断されたということであり, デジタルサービスは Federated Attribute Reference を CSP (もしくは複数の CSPs) から受け取るのに最適であると判断される.
+    </td>
+    <!-- <td>If the agency has reached Step 6, claims should be used. This step identifies the digital service as an excellent candidate for accepting federated attribute references from a CSP (or multiple CSPs), since it has been determined that complete attribute values are not needed to deliver the digital service.</td> -->
   </tr>
   </table>
 </div>
 
-> Note: Agencies should also consider their constituents' demographics when selecting the most appropriate proofing process. While not a function of IAL selection, certain proofing processes may be more appropriate for some demographics than others. Agencies will benefit as this type of analysis ensures the greatest opportunity for their constituents to be proofed successfully.
+> Note: 機関は最適な Proofing プロセスを選択する際に, 自身のサービス対象のユーザー層も考慮すべきである. IAL 選択の機能ではないものの, ある種の Proofing プロセスはある種のユーザー層に対して他のプロセスより適切である可能性がある. 対象ユーザー層により高い Proofing 成功率を高められるため, この種の分析は機関にメリットをもたらすであろう.
+
+<!-- > Note: Agencies should also consider their constituents' demographics when selecting the most appropriate proofing process. While not a function of IAL selection, certain proofing processes may be more appropriate for some demographics than others. Agencies will benefit as this type of analysis ensures the greatest opportunity for their constituents to be proofed successfully. -->
 
 ### <a name="AAL_CYOA"></a> 6.2 Selecting AAL
 
