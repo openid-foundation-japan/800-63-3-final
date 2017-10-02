@@ -227,6 +227,31 @@ The terms "CAN" and "CANNOT" indicate a possibility or capability, whether mater
 ## Table of Contents
 </div>
 
+[1. 目的](#sec1)
+
+[2. はじめに](#sec2)
+
+[3. 定義及び略語](#sec3)
+
+[4. Authenticator Assurance Levels](#sec4)
+
+[5. Authenticator及びVerifierの要件](#sec5)
+
+[6. Authenticatorライフサイクルの要件](#sec6)
+
+[7. セッション管理](#sec7)
+
+[8. 脅威とセキュリティに関する考慮事項](#sec8)
+
+[9. プライバシに関する考慮事項](#sec9)
+
+[10. ユーザビリティに関する考慮事項](#sec10)
+
+[11. 参照](#references)
+
+[付録A &mdash; 記憶シークレットの強度](#appA)
+
+<!--
 [1. Purpose](#sec1)
 
 [2. Introduction](#sec2)
@@ -250,3 +275,4 @@ The terms "CAN" and "CANNOT" indicate a possibility or capability, whether mater
 [11. References](#references)
 
 [Appendix A &mdash; Strength of Memorized Secrets](#appA)
+-->
