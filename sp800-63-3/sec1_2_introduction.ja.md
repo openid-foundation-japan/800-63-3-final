@@ -72,7 +72,7 @@ SP 800-63C *Federation and Assertions*: NIST SP 800-63C では, Federated Identi
 
 <!-- SP 800-63C *Federation and Assertions*: Provides requirements on the use of federated identity architectures and assertions to convey the results of authentication processes and relevant identity information to an agency application. Further, this volume offers privacy-enhancing techniques to share information about a valid, authenticated subject, and describes methods that allow for strong multi-factor authentication (MFA) while the subject remains pseudonymous to the digital service. _SP 800-63C contains both normative and informative material._ -->
 
-NIST では, 本ガイドライン群中の個々の Vol. が非同期に改訂されることを想定している. いかなる場合でも, 各 Vol. のもっとも最新のリビジョンを用いること (e.g. ある時点において SP 800-63A-1 および SP 800-63B-2 がそれぞれの最新リビジョンであれば, 互いのリビジョン番号がずれていたとしてもそれらを同時に利用するべきである). 互換性エラーを最小化するため, ベースドキュメント (i.e., SP 800-63-3 ではなく SP 800-63) は常に本ドキュメントの最新バージョンを参照することとする.
+NIST では, 本ガイドライン群中の個々の Vol. が非同期に改訂されることを想定している. いかなる場合でも, 各 Vol. のもっとも最新のリビジョンを用いること (e.g., ある時点において SP 800-63A-1 および SP 800-63B-2 がそれぞれの最新リビジョンであれば, 互いのリビジョン番号がずれていたとしてもそれらを同時に利用するべきである). 互換性エラーを最小化するため, ベースドキュメント (i.e., SP 800-63-3 ではなく SP 800-63) は常に本ドキュメントの最新バージョンを参照することとする.
 
 <!-- NIST anticipates that individual volumes in these guidelines will be revised asynchronously. At any time, the most recent revision of each should be used (e.g., if at a time in the future SP 800-63A-1 and SP 800-63B-2 are the most recent revisions of each volume, they should be used together even though the revision numbers do not match). To minimize the risk of compatibility errors, a reference to the base document (i.e., SP 800-63 rather than SP 800-63-3) always refers to the current version of the document. -->
 
@@ -121,7 +121,7 @@ NIST では, 本ガイドライン群中の個々の Vol. が非同期に改訂�
 
 ### 2.3 A Few Limitations
 
-Authenticator によってはデジタル Access のみならず物理的 Access 時の Authentication の為にも利用可能なものもあるが, 本技術ガイドライン群は物理的 Access (e.g. ビル入館) に際する Subject の Authentication に関しては扱わない. さらに, 本ガイドライン群の本リビジョンでは, しばしば Machine-to-Machene (Router-to-Router など) Authentication や相互接続デバイスと呼ばれ, 一般的には Internet of Things (IoT) とも呼ばれる Device Identity については明示的には扱わない. つまり, 本ガイドライン群は可能な限り一般的 Subject について言及し, デバイスへの適用可能性を残している. また対人間の Authentication Protocol でデバイスを用いる際に, デバイスに Authenticator を発行する固有の要件についても除外されている.
+Authenticator によってはデジタル Access のみならず物理的 Access 時の Authentication の為にも利用可能なものもあるが, 本技術ガイドライン群は物理的 Access (e.g., ビル入館) に際する Subject の Authentication に関しては扱わない. さらに, 本ガイドライン群の本リビジョンでは, しばしば Machine-to-Machene (Router-to-Router など) Authentication や相互接続デバイスと呼ばれ, 一般的には Internet of Things (IoT) とも呼ばれる Device Identity については明示的には扱わない. つまり, 本ガイドライン群は可能な限り一般的 Subject について言及し, デバイスへの適用可能性を残している. また対人間の Authentication Protocol でデバイスを用いる際に, デバイスに Authenticator を発行する固有の要件についても除外されている.
 
 <!-- These technical guidelines do not address the authentication of subjects for physical access (e.g., to buildings), though some authenticators used for digital access may also be used for physical access authentication. Additionally, this revision of these guidelines does not explicitly address device identity, often referred to as machine-to-machine (such as router-to-router) authentication or interconnected devices, commonly referred to as the internet of things (IoT). That said, these guidelines are written to refer to generic subjects wherever possible to leave open the possibility for applicability to devices. Also excluded are specific requirements for issuing authenticators to devices when they are used in authentication protocols with people. -->
 
@@ -147,7 +147,7 @@ NIST SP 800-63-2 は SP 800-63-1 の限定的アップデートであり, 実質
 
 #### 2.5.3 SP 800-63-3
 
-NIST SP 800-63-3 は SP 800-63-2 の大幅なアップデートと再構成を伴っている. SP 800-63-3 では Digital Authentication Assurance の個々の構成要素となる AAL, IAL, FAL を導入し, Authentication の強度と個々の Claimed Identity の確実性を独立して扱いたい (e.g. 強固な Pseudonymous Authentication) という高まる要求に応えている. 本ガイドラインには, Risk Assessment 方法論とその IAL, AAL, FAL への適用が含まれる. SP 800-63-3 では, SP 800-63 がカバーする Digital Identity ガイダンス全体を, Authentication について述べる単一のドキュメントから, (上述の個々の構成要素に個別に対処するべく) SP 800-63-3 をトップレベルのドキュメントとする一連の4つのドキュメント群へと分割する.
+NIST SP 800-63-3 は SP 800-63-2 の大幅なアップデートと再構成を伴っている. SP 800-63-3 では Digital Authentication Assurance の個々の構成要素となる AAL, IAL, FAL を導入し, Authentication の強度と個々の Claimed Identity の確実性を独立して扱いたい (e.g., 強固な Pseudonymous Authentication) という高まる要求に応えている. 本ガイドラインには, Risk Assessment 方法論とその IAL, AAL, FAL への適用が含まれる. SP 800-63-3 では, SP 800-63 がカバーする Digital Identity ガイダンス全体を, Authentication について述べる単一のドキュメントから, (上述の個々の構成要素に個別に対処するべく) SP 800-63-3 をトップレベルのドキュメントとする一連の4つのドキュメント群へと分割する.
 
 <!-- NIST SP 800-63-3 is a substantial update and restructuring of SP 800-63-2. SP 800-63-3 introduces individual components of digital authentication assurance &mdash; AAL, IAL, and FAL &mdash; to support the growing need for independent treatment of authentication strength and confidence in an individual's claimed identity (e.g., in strong pseudonymous authentication). A risk assessment methodology and its application to IAL, AAL, and FAL has been included in this guideline. It also moves the whole of digital identity guidance covered under SP 800-63 from a single document describing authentication to a suite of four documents (to separately address the individual components mentioned above) of which SP 800-63-3 is the top-level document. -->
 
