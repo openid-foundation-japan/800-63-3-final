@@ -236,9 +236,13 @@ IAL 選択の実施は, 当該デジタルサービス提供者が Proofing を�
 
 ### <a name="AAL_CYOA"></a> 6.2 Selecting AAL
 
-The AAL decision tree in [Figure 6-2](#63Sec6-Figure2) combines the results from the risk assessment with additional considerations related to authentication to allow agencies to select the most appropriate authentication requirements for their digital service offering.
+[Figure 6-2](#63Sec6-Figure2) に示す AAL の決定木は, Risk Assessment の結果と Authentication に関する追加の考慮事項を組み合わせ, 各機関がデジタルサービスの提供に最適な Authentication 要件を決定する際の一助となる.
 
-The AAL selection does not mean the digital service provider will need to issue authenticators themselves. More information on whether the agency can federate is provided in [Section 7](#toFedorNotToFed).
+<!-- The AAL decision tree in [Figure 6-2](#63Sec6-Figure2) combines the results from the risk assessment with additional considerations related to authentication to allow agencies to select the most appropriate authentication requirements for their digital service offering. -->
+
+AAL 選択の実施は, 当該デジタルサービス提供者が自身で Authenticator を発行しなければならないということを意味するものではない. 機関が Federate できるかどうかは Section 7 に詳しく述べる.
+
+<!-- The AAL selection does not mean the digital service provider will need to issue authenticators themselves. More information on whether the agency can federate is provided in [Section 7](#toFedorNotToFed). -->
 
 <a name="63Sec6-Figure2"></a>
 <div class="text-center" markdown="1">
@@ -253,14 +257,19 @@ The AAL selection does not mean the digital service provider will need to issue 
     <td><img src="sp800-63-3/media/aal-step1.png" alt="AAL Step 1"/></td>
   </tr>
   <tr>
-   <td>Step 1 asks agencies to look at the potential impacts of an authentication failure. In other words, what would occur if an unauthorized user accessed one or more valid user accounts? Risk should be considered from the perspective of the organization and to a valid user, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td>
+    <td>
+      Step 1 では Authentication 失敗の潜在的影響に着目する. これはつまり, Authorize されていないユーザーが正規のユーザーアカウントに Access できた場合, 何が起こるかということである. 片方にはネガティブな影響がない場合でも, もう一方には著しい被害が及ぶ可能性もあるため, リスクは組織およびユーザーの両方の視点で考慮すべきである. 機関の Risk Management プロセスはこのステップから開始されるべきである.
+    </td>
+    <!-- <td>Step 1 asks agencies to look at the potential impacts of an authentication failure. In other words, what would occur if an unauthorized user accessed one or more valid user accounts? Risk should be considered from the perspective of the organization and to a valid user, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/aal-step2.png" alt="AAL Step 2"/></td>
   </tr>
   <tr>
-
-   <td>MFA is required when any personal information is made available online. Since the other paths in this decision tree already drive the agency to an AAL that requires MFA, the question of personal information is only raised at this point. That said, personal information release at all AALs should be considered when performing the risk assessment. An important point at this step is that the collection of personal information, if not made available online, does not need to be validated or verified to require an AAL of 2 or higher. Release of even self-asserted personal information requires account protection via MFA. Even though self-asserted information can be falsified, most users will provide accurate information to benefit from the digital service. As such, self-asserted data must be protected appropriately.</td>
+    <td>
+      Personal Information にオンラインでアクセス可能な場合は, MFA が必要となる. この決定木の他のパスではすでに MFA が必要な AAL が確定しているため, Personal Information に関して問われるのはこの段階のみとなる. Risk Assessment 実施に際しては, 全ての AAL で Personal Information の公開に関して検討すべきである. このステップで重要な点は, Personal Information をオンラインで収集しない場合, AAL2 以上を要求するために Personal Information を確認・検証する必要はないということである. Self-asserted Personal Information の公開時も MFA によるアカウント保護は必要である. Self-asserted な情報は偽造可能だが, ほとんどのユーザーはデジタルサービスの恩恵を受けるため正しい情報を提供するであろう. したがって Self-asserted データは適切に保護しなければならない.
+    </td>
+    <!-- <td>MFA is required when any personal information is made available online. Since the other paths in this decision tree already drive the agency to an AAL that requires MFA, the question of personal information is only raised at this point. That said, personal information release at all AALs should be considered when performing the risk assessment. An important point at this step is that the collection of personal information, if not made available online, does not need to be validated or verified to require an AAL of 2 or higher. Release of even self-asserted personal information requires account protection via MFA. Even though self-asserted information can be falsified, most users will provide accurate information to benefit from the digital service. As such, self-asserted data must be protected appropriately.</td> -->
 
   </tr>
 
