@@ -127,7 +127,7 @@ Risk Assessment の結果は最適なレベル選択における第一の要素�
 
 </table> -->
 
-リスクを分析するにあたり, 機関は, 何らかの失敗を引き起こしたり人・組織に損害を及ぼす可能性を含む, 予想される誤認証の直接的および間接的な結果のすべてを考慮しなければならない (SHALL). 潜在的な影響の定義には, 意味がコンテキストに依存する "相当" または "軽微" のような相対的な用語が含まれる. 機関はこういった被害の相対的重要性を決定するために, 影響を受ける人や主体のコンテキストや性質を考慮すべきである (SHOULD). 時間が経つにつれて, 機関はこれらの問題に関する実践的な経験を得ることとなり, これらの用語の意味はより明確になるであろう. 機関のプログラムや公共の利益に対する被害の分析はコンテキストに強く依存するため, 機関はこれらの問題を注意深く考慮すべきである (SHOULD).
+リスクを分析するにあたり, 機関は, 何らかの失敗を引き起こしたり人・組織に損害を及ぼす可能性を含む, 予想される Authenticatino 失敗の直接的および間接的な結果のすべてを考慮しなければならない (SHALL). 潜在的な影響の定義には, 意味がコンテキストに依存する "相当" または "軽微" のような相対的な用語が含まれる. 機関はこういった被害の相対的重要性を決定するために, 影響を受ける人や主体のコンテキストや性質を考慮すべきである (SHOULD). 時間が経つにつれて, 機関はこれらの問題に関する実践的な経験を得ることとなり, これらの用語の意味はより明確になるであろう. 機関のプログラムや公共の利益に対する被害の分析はコンテキストに強く依存するため, 機関はこれらの問題を注意深く考慮すべきである (SHOULD).
 
 <!-- In analyzing risks, the agency SHALL consider all of the expected direct and indirect results of an authentication failure, including the possibility that there will be more than one failure, or harms to more than one person or organization. The definitions of potential impacts contain some relative terms, like "serious" or "minor," whose meaning will depend on context. The agency SHOULD consider the context and the nature of the persons or entities affected to decide the relative significance of these harms. Over time, the meaning of these terms will become more definite as agencies gain practical experience with these issues. The analysis of harms to agency programs or other public interests depends strongly on the context; the agency SHOULD consider these issues with care. -->
 
