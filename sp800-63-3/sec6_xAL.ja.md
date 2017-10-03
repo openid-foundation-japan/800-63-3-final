@@ -278,7 +278,9 @@ AAL 選択の実施は, 当該デジタルサービス提供者が自身で Auth
 
 ### <a name="FAL_CYOA"></a> 6.3 Selecting FAL
 
-The FAL decision tree in [Figure 6-3](#63Sec6-Figure3) combines the results from the risk assessment with additional considerations related to federation to allow agencies to select the most appropriate requirements for their digital service offering.
+[Figure 6-3](#63Sec6-Figure3) に示す FAL の決定木は, Risk Assessment の結果と Federation に関する追加の考慮事項を組み合わせ, 各機関がデジタルサービスの提供に最適な要件を決定する際の一助となる.
+
+<!-- The FAL decision tree in [Figure 6-3](#63Sec6-Figure3) combines the results from the risk assessment with additional considerations related to federation to allow agencies to select the most appropriate requirements for their digital service offering. -->
 
 <a name="63Sec6-Figure3"></a>
 <div class="text-center" markdown="1">
@@ -293,33 +295,47 @@ The FAL decision tree in [Figure 6-3](#63Sec6-Figure3) combines the results from
     <td><img src="sp800-63-3/media/fal-step1.png" alt="FAL Step 1"/></td>
   </tr>
   <tr>
-   <td>Step 1 asks agencies to look at the potential impacts of a federation failure. In other words, what would occur if an unauthorized user could compromise an assertion? Examples of compromise include use of assertion replay to impersonate a valid user or leakage of assertion information information through the browser. Risk should be considered from the perspective of the organization and to the subscriber, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td>
+    <td>
+      Step 1 では Federation 失敗の潜在的影響に着目する. これはつまり, Authorize されていないユーザーが Assertion を毀損できた場合, 何が起こるかということである. Assertion 毀損の例としては, Assertion のリプレイによるなりすまし, ブラウザを会した Assertion 情報の漏洩などが挙げられる. 片方にはネガティブな影響がない場合でも, もう一方には著しい被害が及ぶ可能性もあるため, リスクは組織およびユーザーの両方の視点で考慮すべきである. 機関の Risk Management プロセスはこのステップから開始されるべきである.
+    </td>
+    <!-- <td>Step 1 asks agencies to look at the potential impacts of a federation failure. In other words, what would occur if an unauthorized user could compromise an assertion? Examples of compromise include use of assertion replay to impersonate a valid user or leakage of assertion information information through the browser. Risk should be considered from the perspective of the organization and to the subscriber, since one may not be negatively impacted while the other could be significantly harmed. Agency risk management processes should commence with this step.</td> -->
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/fal-step2.png" alt="FAL Step 2"/></td>
   </tr>
   <tr>
-
-   <td>FAL2 is required when any personal information is passed in an assertion. Personal information release at all FALs should be considered when performing the risk assessment. FAL2 or higher is required when any personal information is contained in an assertion, as the audience and encryption requirements at FAL1 are not sufficient to protect personal information from being released. Release of even self-asserted personal information requires assertion protection via FAL2. Even though self-asserted information can be falsified, most users will provide accurate information to benefit from the digital service. However, when personal information is available to the RP via an authorized API call, such information need not be included in the assertion itself. Since the assertion no longer includes personal information, it need not be encrypted and this FAL requirement does not apply.</td>
+    <td>
+      Personal Information が Assertion を介してやり取りされる場合は, FAL2 が必須となる. Risk Assessment 実施にあたっては, 全ての FAL で Personal Information の公開について考慮すべきである. Assertion に Personal Information が含まれる場合は FAL2 以上が必要であり, FAL1 の Audience 要件および暗号化要件では Personal Information の保護には不十分である. Self-asserted Personal Information の公開時にも FAL2 による Assertion 保護が必要である. Self-asserted な情報は偽造可能だが, ほとんどのユーザーはデジタルサービスの恩恵を受けるため正しい情報を提供するであろう. ただし Personal Information が RP による Authorized API Call で提供される場合には, それらの情報は Assertion 自体に含める必要はない. その場合には Assertion に Personal Information が含まれないため, 暗号化は必須ではなく FAL の暗号化要件も適用されない.
+    </td>
+    <!-- <td>FAL2 is required when any personal information is passed in an assertion. Personal information release at all FALs should be considered when performing the risk assessment. FAL2 or higher is required when any personal information is contained in an assertion, as the audience and encryption requirements at FAL1 are not sufficient to protect personal information from being released. Release of even self-asserted personal information requires assertion protection via FAL2. Even though self-asserted information can be falsified, most users will provide accurate information to benefit from the digital service. However, when personal information is available to the RP via an authorized API call, such information need not be included in the assertion itself. Since the assertion no longer includes personal information, it need not be encrypted and this FAL requirement does not apply.</td> -->
 
   </tr>
   <tr>
     <td><img src="sp800-63-3/media/fal-step3.png" alt="FAL Step 3"/></td>
   </tr>
   <tr>
-   <td>RPs should use a back-channel presentation mechanism as described in [SP 800-63C Section 7.1](sp800-63c.html#back-channel) where possible as such mechanisms allow for greater privacy and security. Since the subscriber handles only an assertion reference and not the assertion itself, there is less chance of leakage of attributes or other sensitive information found in the assertion to the subscriber's browser or other programs. As the RP directly presents the assertion reference to the IdP, the IdP can often take steps to identify and authenticate the RP during this step. Further, as the RP fetches the assertion directly from the IdP over an authenticated protected channel, there are fewer opportunities for an attacker to inject an assertion into an RP.</td>
+    <td>
+      RP は, より高度なプライバシーおよびセキュリティーを実現するため, 可能であれば [SP 800-63C Section 7.1](sp800-63c.html#back-channel) にある Back-channel での提示方式を用いるべきである. この方式では Subscriber は Assertion 自体ではなく Assertion Reference のみを扱うため, Subscriber のブラウザやその他のプログラムに渡った Assertion から Attribute やその他のセンシティブ情報が漏洩する可能性は低下する. RP は Assertion Reference を直接 IdP に提示するため, IdP は RP を識別し Authenticate することができる. さらに RP は Assertion を Authenticated Protected Channel 経由で IdP から直接受け取るため, Attacker が RP に対して Assertion を注入する可能性も低下する.
+    </td>
+    <!-- <td>RPs should use a back-channel presentation mechanism as described in [SP 800-63C Section 7.1](sp800-63c.html#back-channel) where possible as such mechanisms allow for greater privacy and security. Since the subscriber handles only an assertion reference and not the assertion itself, there is less chance of leakage of attributes or other sensitive information found in the assertion to the subscriber's browser or other programs. As the RP directly presents the assertion reference to the IdP, the IdP can often take steps to identify and authenticate the RP during this step. Further, as the RP fetches the assertion directly from the IdP over an authenticated protected channel, there are fewer opportunities for an attacker to inject an assertion into an RP.</td> -->
   </tr>
 
   </table>
 </div>
 
-All FALs require assertions to have a baseline of protections, including signatures, expirations, audience restrictions, and others enumerated in [SP 800-63C](sp800-63c.html#assertions). When taken together, these measures make it so that assertions cannot be created or modified by an unauthorized party, and that an RP will not accept an assertion created for a different system.
+全ての FAL において, Assertion には, 署名, 有効期限, Audience 制約, その他 [SP 800-63C](sp800-63c.html#assertions) に列挙された基本的保護策が施される. これらの対策により, Assertion は Authorize されていない主体により作成・変更されることはなくなり, RP が異なるシステム向けに作成された Assertion を受け入れることもなくなる.
+
+<!-- All FALs require assertions to have a baseline of protections, including signatures, expirations, audience restrictions, and others enumerated in [SP 800-63C](sp800-63c.html#assertions). When taken together, these measures make it so that assertions cannot be created or modified by an unauthorized party, and that an RP will not accept an assertion created for a different system. -->
 
 ### 6.4 Combining xALs
 
-This guideline introduces a model where individual xALs can be selected without requiring parity to each other. While options exist to select varying xALs for a system, in many instances the same level will be chosen for all xALs.
+本ガイドラインは各 xAL を相互に一致させることなく選択可能なモデルを提示している. あるシステムに対して多様な xAL の選択肢が存在するが, 多くの場合全ての xAL に同じレベルが適用されるであろう.
 
-The ability to combine varying xALs offers significant flexibility to agencies, but not all combinations are possible due to the nature of the data collected from an individual and the authenticators to protect that data. [Table 6-2](#63sec6-Table2) details valid combinations of IAL and AAL to ensure personal information remains protected by MFA.
+<!-- This guideline introduces a model where individual xALs can be selected without requiring parity to each other. While options exist to select varying xALs for a system, in many instances the same level will be chosen for all xALs. -->
+
+多様な xAL の組み合わせが可能となったことにより, 各機関には大きな柔軟性がもたらされたが, 個人から取集するデータの性質とそのデータを保護する Authenticator の性質上, 全ての組み合わせが可能なわけではない. [Table 6-2](#63sec6-Table2) には Personal Information が MFA で保護されることを保証可能な IAL と AAL の組み合わせをまとめる.
+
+<!-- The ability to combine varying xALs offers significant flexibility to agencies, but not all combinations are possible due to the nature of the data collected from an individual and the authenticators to protect that data. [Table 6-2](#63sec6-Table2) details valid combinations of IAL and AAL to ensure personal information remains protected by MFA. -->
 
 <a name="63sec6-Table2"></a>
 
@@ -337,4 +353,6 @@ The ability to combine varying xALs offers significant flexibility to agencies, 
 | **IAL2** |  **NO** | Allowed | Allowed |
 | **IAL3** |  **NO** | Allowed | Allowed |
 
-> Note: Per Executive Order 13681 [[EO 13681]](#EO13681), the release of personal data requires protection with MFA, even if the personal data is self-asserted and not validated. When the transaction does not make personal data accessible, authentication may occur at AAL1, although providing an option for the user to choose stronger authentication is recommended. In addition, it may be possible at IAL1 to self-assert information that is not personal, in which case AAL1 is acceptable.
+> Note: Executive Order 13681 [[EO 13681]](#EO13681) によると, Personal Data が Self-asserted かつ未検証であっても, Personal Data 公開には MFA が必須である. Personal Data へのアクセスを生じさせない Transaction では, ユーザーにより強固な Authentication の選択肢を提供することが推奨されるものの, AAL1 での Authentication も可能である. さらに IAL1 では個人に紐づかない情報を Self-assert することもあるが, そのようなケースでは AAL1 が適用可能である.
+
+<!-- > Note: Per Executive Order 13681 [[EO 13681]](#EO13681), the release of personal data requires protection with MFA, even if the personal data is self-asserted and not validated. When the transaction does not make personal data accessible, authentication may occur at AAL1, although providing an option for the user to choose stronger authentication is recommended. In addition, it may be possible at IAL1 to self-assert information that is not personal, in which case AAL1 is acceptable. -->
