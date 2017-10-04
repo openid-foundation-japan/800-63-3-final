@@ -1,4 +1,4 @@
-e.g., <a name="def-and-acr"></a>
+<a name="def-and-acr"></a>
 
 <div class="breaker"></div>
 

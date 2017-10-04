@@ -4,10 +4,17 @@
 
 *This section is normative.*
 
-In a federation protocol, a three-party relationship is formed between the subscriber, the IdP, and the RP, as shown in [Figure 5-1](#63cSec5-Figure1). Depending on the specifics of the protocol, different information passes between the participants at different times. The subscriber communicates with both the IdP and the RP, usually through a browser. The RP and the IdP communicate with each other in two ways:
+Federation プロトコルでは, [Figure 5-1](#63cSec5-Figure1) に示すように Subscriber, IdP, RP の3者の関係が構築される. 各プロトコルによってどのタイムングでどの主体の間でどんな情報がやりとりされるかは異なる. Subscriber は通常ブラウザーを介して IdP と RP の両方とコミュニケーションをとる. RP と IdP の間のコミュニケーション方法は2通りある.
 
+<!-- In a federation protocol, a three-party relationship is formed between the subscriber, the IdP, and the RP, as shown in [Figure 5-1](#63cSec5-Figure1). Depending on the specifics of the protocol, different information passes between the participants at different times. The subscriber communicates with both the IdP and the RP, usually through a browser. The RP and the IdP communicate with each other in two ways: -->
+
+- *Front Channel*, Subscriber を介したリダイレクトを通じたコミュニケーション
+- *Back Channel*, Subscriber を介さず RP と IdP の直接のコネクションを通じたコミュニケーション
+
+<!--
  - The *front channel*, through redirects involving the subscriber; or
  - The *back channel*, through a direct connection between the RP and IdP, not involving the subscriber.
+-->
 
 <a name="63cSec5-Figure1"></a>
 
@@ -18,7 +25,9 @@ In a federation protocol, a three-party relationship is formed between the subsc
 
 </div>
 
-The subscriber authenticates to the IdP and the result of that authentication event is asserted to the RP across the network. In this transaction, the IdP acts as the verifier for the credential, as described in [SP 800-63B](sp800-63b.html). The IdP can also make attribute statements about the subscriber as part of this process. These attributes and authentication event information are carried to the RP through the use of an assertion, described in [Section 6](#assertions). Additional attributes MAY be made available through a secondary protocol protected by an authorized credential.
+Subscriber は IdP に対して Authenticate し, Authentication イベントの結果が RP に対して Network 経由で提示される. この Transaction において, IdP は [SP 800-63B](sp800-63b.html) にあるように Credential の Verifier として振る舞う. IdP はこのプロセスにおいて Subject に関する Attribute ステートメントを作成することも可能である. Attribute と Authentication イベントの情報は, [Section 6](#assertions) にあるように Assertion を通じて RP に伝送される. さらなる Attribute が Authorized Credential で保護されたセカンダリープロトコルを通じてやりとりされることもある (MAY).
+
+<!-- The subscriber authenticates to the IdP and the result of that authentication event is asserted to the RP across the network. In this transaction, the IdP acts as the verifier for the credential, as described in [SP 800-63B](sp800-63b.html). The IdP can also make attribute statements about the subscriber as part of this process. These attributes and authentication event information are carried to the RP through the use of an assertion, described in [Section 6](#assertions). Additional attributes MAY be made available through a secondary protocol protected by an authorized credential. -->
 
 ### <a name="federation-model"></a> 5.1 Federation Models
 
@@ -37,7 +46,7 @@ In the manual registration model, the IdP and RP manually provision configuratio
 
 </div>
 
-As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps: 
+As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps:
 
 1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP.
 
@@ -64,7 +73,7 @@ In the dynamic registration model of federation, it is possible for relationship
 
 </div>
 
-As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps: 
+As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps:
 
 1. Discover. The RP goes to a well-known location at the IdP to find the IdP's metadata.
 
