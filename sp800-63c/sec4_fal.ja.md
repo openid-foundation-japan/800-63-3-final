@@ -31,19 +31,31 @@
 |2|Bearer assertion, signed by IdP and encrypted to RP.|
 |3|Holder of key assertion, signed by IdP and encrypted to RP.|
 
-For example, FAL1 maps to the OpenID Connect Basic Client profile or Security Assertion Markup Language (SAML) Web SSO Artifact Binding profile with no additional features. FAL2 additionally requires that the assertion (e.g., the OpenID Connect ID Token or SAML Assertion) be encrypted to a public key representing the RP in question. FAL3 requires the subscriber to cryptographically prove possession of a key bound to the assertion (e.g., the use of a cryptographic authenticator) along with all requirements of FAL2. The additional key presented at FAL3 need not be the same key used by the subscriber to authenticate to the IdP.
+例えば, FAL1 は特に機能追加の無い OpenID Connect Basic Client プロファイルや Security Assertion Markup Language (SAML) Web SSO Artifact Binding プロファイルに相当する. FAL2 は, それに加え Assertion (e.g., the OpenID Connect ID Token ないしは SAML Assertion) に対する RP の公開鍵による暗号化を要求する. FAL3 では, FAL2 のすべての要件に加え, Subscriber が暗号論的に Assertion に紐づく鍵の所有証明を行う (e.g., Cryptographic Authenticator を利用) 必要がある. FAL3 で新たに登場した鍵は Subscriber が IdP に対して Authenticate する際に利用する鍵と同一でなくてもいい.
 
-Regardless of what the RP requests or what the protocol requires, the RP can easily detect the FAL in use by observing the nature of the assertion as it is presented as part of the federation protocol. Therefore, the RP is responsible for determining which FALs it is willing to accept for a given authentication transaction and ensuring that the transaction meets that FAL's requirements.
+<!-- For example, FAL1 maps to the OpenID Connect Basic Client profile or Security Assertion Markup Language (SAML) Web SSO Artifact Binding profile with no additional features. FAL2 additionally requires that the assertion (e.g., the OpenID Connect ID Token or SAML Assertion) be encrypted to a public key representing the RP in question. FAL3 requires the subscriber to cryptographically prove possession of a key bound to the assertion (e.g., the use of a cryptographic authenticator) along with all requirements of FAL2. The additional key presented at FAL3 need not be the same key used by the subscriber to authenticate to the IdP. -->
 
-If the RP is using a front-channel presentation mechanism, as defined in [Section 7.2](#front-channel) (e.g., the OpenID Connect Implicit Client profile or the SAML Web SSO profile), it SHALL require FAL2 or greater in order to protect the information in the assertion from disclosure to the browser or other parties in the transaction other than the intended RP.
+RP のリクエストやプロトコルの要件に関わらず, RP は Federation プロトコルにおいて提示される Assertion の性質を観察するだけで, 容易に利用している FAL を知ることができる. したがって RP は, 特定の Authentication Transaction において受け入れる FAL を決定し, 当該 Transaction が FAL 要件を満たすことを保証する責任がある.
 
-Additionally, the IdP SHALL employ appropriately-tailored security controls (to include control enhancements) from the moderate or high baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard.
+<!-- Regardless of what the RP requests or what the protocol requires, the RP can easily detect the FAL in use by observing the nature of the assertion as it is presented as part of the federation protocol. Therefore, the RP is responsible for determining which FALs it is willing to accept for a given authentication transaction and ensuring that the transaction meets that FAL's requirements. -->
+
+RP が [Section 7.2](#front-channel) にある Front-channel 提示手法 (e.g., OpenID Connect Implicit Client プロファイルや SAML Web SSO プロファイル) を用いている場合, Assertion に含まれる情報が意図した RP をのぞく Transaction 中のブラウザやその他の主体に漏洩することを防ぐため, FAL2 以上が必要となる (SHALL).
+
+<!-- If the RP is using a front-channel presentation mechanism, as defined in [Section 7.2](#front-channel) (e.g., the OpenID Connect Implicit Client profile or the SAML Web SSO profile), it SHALL require FAL2 or greater in order to protect the information in the assertion from disclosure to the browser or other parties in the transaction other than the intended RP. -->
+
+さらに IdP は, [SP 800-53](#SP800-53) に定義されている Moderate ないしは High 基準のセキュリティー制御やそれに相当する連邦政府標準 (e.g., [FEDRAMP](#FEDRAMP)) や業界標準から, (制御強化を含む) 適切に適合したセキュリティー制御を採用しなければならない (SHALL).
+
+<!-- Additionally, the IdP SHALL employ appropriately-tailored security controls (to include control enhancements) from the moderate or high baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. -->
 
 ### <a name="key-mgmt"></a>4.1 Key Management
 
-At any FAL, the IdP SHALL ensure that an RP is unable to impersonate the IdP at another RP by protecting the assertion with a signature and key using approved cryptography. If the assertion is protected by a digital signature using an asymmetric key, the IdP MAY use the same public and private key pair to sign assertions to multiple RPs. The IdP MAY publish its public key in a verifiable fashion, such as at an HTTPS-protected URL at a well-known location. If the assertion is protected by a MAC using a shared key, the IdP SHALL use a different shared key for each RP.
+どの FAL においても, IdP は Assertion を Approved Cryptography による署名および鍵で保護し, RP がその他の RP に対して IdP になりすますことができないよう保証しなければならない (SHALL). Assertion が Asymmetric Key を使った Digital Signature により保護されている場合, IdP は同じ Public Key と Private Key のペアを複数の RP に対する署名に利用することができる (MAY). IdP は, 自身の Public Key を, HTTPS で保護された周知の URL を通じてなど, 検証可能な形で公開することもできる (MAY). Assertion が Shared Key を用いた MAC によって保護されている場合, IdP は RP ごとに異なる Shared Key を使わねばならない (SHALL).
 
-Government-operated IdPs asserting authentication at AAL2 and all IdPs asserting authentication at AAL3 SHALL protect keys used for signing or encrypting those assertions with mechanisms validated at [FIPS 140](#FIPS140) Level 1 or higher.
+<!-- At any FAL, the IdP SHALL ensure that an RP is unable to impersonate the IdP at another RP by protecting the assertion with a signature and key using approved cryptography. If the assertion is protected by a digital signature using an asymmetric key, the IdP MAY use the same public and private key pair to sign assertions to multiple RPs. The IdP MAY publish its public key in a verifiable fashion, such as at an HTTPS-protected URL at a well-known location. If the assertion is protected by a MAC using a shared key, the IdP SHALL use a different shared key for each RP. -->
+
+政府が運営する AAL2 での Authentication を行う IdP と AAL3 での Authentication を行うすべての IdP は, [FIPS 140](#FIPS140) Level 1 以上の手段で Assertion の署名および暗号化に使う鍵を保護しなければならない (SHALL).
+
+<!-- Government-operated IdPs asserting authentication at AAL2 and all IdPs asserting authentication at AAL3 SHALL protect keys used for signing or encrypting those assertions with mechanisms validated at [FIPS 140](#FIPS140) Level 1 or higher. -->
 
 ### 4.2 <a name="runtime-decisions"></a>Runtime Decisions
 
