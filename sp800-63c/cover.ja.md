@@ -4,7 +4,7 @@
 
 ![](sp800-63-3/media/div-1.png)  
 
-# Digital Identity Guidelines  
+# Digital Identity Guidelines (翻訳版)  
 
 ### _Federation and Assertions_
 
