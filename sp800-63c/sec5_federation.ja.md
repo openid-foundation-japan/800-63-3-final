@@ -31,11 +31,15 @@ Subscriber は IdP に対して Authenticate し, Authentication イベントの
 
 ### <a name="federation-model"></a> 5.1 Federation Models
 
-IdPs that provide authentication services and RPs that consume those services are known as members of a federation. From an IdP's perspective, the federation consists of the RPs that it serves. From an RP's perspective, the federation consists of the IdPs that it uses. This section provides an overview of and requirements for common identity federation models currently in use. In each model, relationships are established between members of the federation.
+Authentication サービスを提供する IdP とそれを利用する RP は Federation の参加者として知られている. IdP の視点から見れば, Federation は自身がサービス提供をする RP から構成される. RP の視点から見れば, Federation は自身が利用する IdP から構成される. 本セクションでは, 今日使われている一般的 Identity Federation モデルに対する要件を概観する. 各モデルにおいて, Federation 参加者間の関係性が確立される.
+
+<!-- IdPs that provide authentication services and RPs that consume those services are known as members of a federation. From an IdP's perspective, the federation consists of the RPs that it serves. From an RP's perspective, the federation consists of the IdPs that it uses. This section provides an overview of and requirements for common identity federation models currently in use. In each model, relationships are established between members of the federation. -->
 
 #### <a name="manual-registration"></a> 5.1.1 Manual Registration
 
-In the manual registration model, the IdP and RP manually provision configuration information about parties with which they expect to interoperate. IdPs MAY configure RPs using an explicit whitelist, allowing these RPs to receive authentication and attribute information as part of the authentication transaction. In cases where an RP is not whitelisted, the IdP SHALL require runtime decisions (see [Section 4.2](#runtime-decisions)) to be made by an authorized party (such as the subscriber) before releasing user information.
+手動の Registration モデルでは, IdP と RP が手動で相互運用する相手に関する設定情報を用意する. IdP は明示的ホワイトリストによって RP を設定し, そこに含まれる RP に関しては Authentication Transaction 中で Authentication や Attribute に関する情報を受け取れるようにしてもよい (MAY). RP がホワイトリストに含まれない場合は, IdP はユーザー情報を提供する前に Authorized な主体によるランタイムでの決断 ([Section 4.2](#runtime-decisions) 参照) を要求とすることとする (SHALL).
+
+<!-- In the manual registration model, the IdP and RP manually provision configuration information about parties with which they expect to interoperate. IdPs MAY configure RPs using an explicit whitelist, allowing these RPs to receive authentication and attribute information as part of the authentication transaction. In cases where an RP is not whitelisted, the IdP SHALL require runtime decisions (see [Section 4.2](#runtime-decisions)) to be made by an authorized party (such as the subscriber) before releasing user information. -->
 
 <a name="63cSec5-Figure2"></a>
 
@@ -46,19 +50,33 @@ In the manual registration model, the IdP and RP manually provision configuratio
 
 </div>
 
-As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps:
+[Figure 5-2](#63cSec5-Figure2) に示す通り, 手動の Registration は以下の3ステップからなる.
 
-1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP.
+<!-- As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps: -->
 
-2. The IdP's system administrator shares the IdP's attributes with the RP's system administrator, who associates those attributes with the IdP.
+1. RP のシステム管理者が RP の Attribute を IdP のシステム管理者に共有し, IdP のシステム管理者はその Attribute を RP に関連づける.
 
-3. The IdP and RP then communicate using a standard federation protocol.
+<!-- 1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP. -->
 
-IdPs and RPs MAY act as their own authorities on who to federate with or MAY externalize those authority decisions to an external party as in [Section 5.1.3](#authorities).
+2. IdP のシステム管理者が IdP の Attribute を RP のシステム管理者に共有し, RP のシステム管理者はその Attribute を IdP に関連づける.
 
-Protocols requiring the transfer of keying information SHALL use a secure method during the registration process to exchange keying information needed to operate the federated relationship, including any shared secrets or public keys. Any symmetric keys used in this relationship SHALL be unique to a pair of federation participants.
+<!-- 2. The IdP's system administrator shares the IdP's attributes with the RP's system administrator, who associates those attributes with the IdP. -->
 
-Federation relationships SHALL establish parameters regarding expected and acceptable IALs and AALs in connection with the federated relationship.
+3. その後 IdP と RP は標準的 Federation プロトコルを使ってコミュニケーションする.
+
+<!-- 3. The IdP and RP then communicate using a standard federation protocol. -->
+
+IdP と RP は, 自身を自身のオーソリティーとしてもよいし (MAY), [Section 5.1.3](#authorities) のようにオーソリティー権限を外部の主体に移譲してもよい (MAY).
+
+<!-- IdPs and RPs MAY act as their own authorities on who to federate with or MAY externalize those authority decisions to an external party as in [Section 5.1.3](#authorities). -->
+
+鍵情報の伝送を必要とするプロトコルでは, Rigistration プロセスにおいてセキュアな方法で Federated な関係性の運用に必要な鍵情報を交換すること (SHALL). これには Shared Secret も Public Key も含まれる. この関係性を示すために利用される鍵が Symmetric Key である場合は, Federation 参加者ペア毎にユニークでなければならない (SHALL).
+
+<!-- Protocols requiring the transfer of keying information SHALL use a secure method during the registration process to exchange keying information needed to operate the federated relationship, including any shared secrets or public keys. Any symmetric keys used in this relationship SHALL be unique to a pair of federation participants. -->
+
+Federation の関係性に対して, 期待され許容される IAL および AAL についてのパラメーターを確立すること (SHALL).
+
+<!-- Federation relationships SHALL establish parameters regarding expected and acceptable IALs and AALs in connection with the federated relationship. -->
 
 #### <a name="dynamic-registration"></a> 5.1.2 Dynamic Registration
 
