@@ -56,15 +56,15 @@ Authentication サービスを提供する IdP とそれを利用する RP は F
 
 1. RP のシステム管理者が RP の Attribute を IdP のシステム管理者に共有し, IdP のシステム管理者はその Attribute を RP に関連づける.
 
-<!-- 1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP. -->
-
 2. IdP のシステム管理者が IdP の Attribute を RP のシステム管理者に共有し, RP のシステム管理者はその Attribute を IdP に関連づける.
-
-<!-- 2. The IdP's system administrator shares the IdP's attributes with the RP's system administrator, who associates those attributes with the IdP. -->
 
 3. その後 IdP と RP は標準的 Federation プロトコルを使ってコミュニケーションする.
 
-<!-- 3. The IdP and RP then communicate using a standard federation protocol. -->
+<!-- 1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP.
+
+2. The IdP's system administrator shares the IdP's attributes with the RP's system administrator, who associates those attributes with the IdP.
+
+3. The IdP and RP then communicate using a standard federation protocol. -->
 
 IdP と RP は, 自身を自身のオーソリティーとしてもよいし (MAY), [Section 5.1.3](#authorities) のようにオーソリティー権限を外部の主体に移譲してもよい (MAY).
 
@@ -80,7 +80,9 @@ Federation の関係性に対して, 期待され許容される IAL および A
 
 #### <a name="dynamic-registration"></a> 5.1.2 Dynamic Registration
 
-In the dynamic registration model of federation, it is possible for relationships between members of the federation to be negotiated at the time of a transaction. This process allows IdPs and RPs to be connected together without manually establishing a connection between them using manual registration (See [Section 5.1.1](#manual-registration)). IdPs that support dynamic registration SHALL make their configuration information (such as dynamic registration endpoints) available in such a way as to minimize system administrator involvement.
+Federation の動的な Registration モデルでは, Transaction 実行時に Federation 参加者間でその関係性を取り決めるすることが可能である. このプロセスにおいて IdP と RP は, 手動 Registration ([Section 5.1.1](#manual-registration) 参照) により手動でコネクションを確立することなく, 相互接続することができる. 動的 Registration をサポートする IdP は, 自身の設定情報 (動的 Registration のエンドポイント等) を取得可能にし, システム管理者の関与を最小化すること (SHALL).
+
+<!-- In the dynamic registration model of federation, it is possible for relationships between members of the federation to be negotiated at the time of a transaction. This process allows IdPs and RPs to be connected together without manually establishing a connection between them using manual registration (See [Section 5.1.1](#manual-registration)). IdPs that support dynamic registration SHALL make their configuration information (such as dynamic registration endpoints) available in such a way as to minimize system administrator involvement. -->
 
 <a name="63cSec5-Figure3"></a>
 
@@ -91,21 +93,37 @@ In the dynamic registration model of federation, it is possible for relationship
 
 </div>
 
-As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps:
+[Figure 5-3](#63cSec5-Figure3) に示す通り, 動的な Registration は以下の4ステップからなる.
 
-1. Discover. The RP goes to a well-known location at the IdP to find the IdP's metadata.
+<!-- As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps: -->
+
+1. 発見. RP は IdP の周知な場所に行き, IdP のメタデータを発見する.
+
+2. 確認. RP と RP はお互いの正当性を確認する. これには鍵情報やメタデータ, Software Statement, その他の方法などが利用できる.
+
+3. RP Attribute の登録. RP は自身の Attribute を IdP に送り, IdP はその Attribute を当該 RP に関連づける.
+
+4. Federastion プロトコル. IdP と RP は標準の Federation プロトコルを使ってコミュニケーションする.
+
+<!-- 1. Discover. The RP goes to a well-known location at the IdP to find the IdP's metadata.
 
 2. Validate. The RP and IdP determine each other's validity. This can be accomplished through keying information, metadata, software statements, or other means.
 
 3. Register RP attributes. The RP sends its attributes to the IdP, and the IdP associates those attributes with the RP.
 
-4. Federation Protocol. The IdP and RP then communicate using a standard federation protocol.
+4. Federation Protocol. The IdP and RP then communicate using a standard federation protocol. -->
 
-Protocols requiring the transfer of keying information SHALL use a secure method during the registration process to establish such keying information needed to operate the federated relationship, including any shared secrets or public keys. Any symmetric keys used in this relationship SHALL be unique to a pair of federation participants.
+鍵情報の伝送を必要とするプロトコルでは, Rigistration プロセスにおいてセキュアな方法で Federated な関係性の運用に必要な鍵情報を交換すること (SHALL). これには Shared Secret も Public Key も含まれる. この関係性を示すために利用される鍵が Symmetric Key である場合は, Federation 参加者ペア毎にユニークでなければならない (SHALL).
 
-IdPs SHALL require runtime decisions (see [Section 4.2](#runtime-decisions)) to be made by an authorized party (such as the subscriber) before releasing user information. An IdP accepting dynamically registered RPs MAY limit the types of attributes and other information made available to such RPs. An RP capable of dynamically registering MAY limit which IdPs it is willing to accept identity information from.
+<!-- Protocols requiring the transfer of keying information SHALL use a secure method during the registration process to establish such keying information needed to operate the federated relationship, including any shared secrets or public keys. Any symmetric keys used in this relationship SHALL be unique to a pair of federation participants. -->
 
-Parties in a dynamic registration model frequently do not know each other ahead of time. Where possible, this SHOULD be augmented by *software statements*, which allow federated parties to cryptographically verify some attributes of an RP being dynamically registered. Software statements are lists of attributes describing the RP software, cryptographically signed by an authority (either the IdP itself, a federation authority as in [Section 5.1.3](#authorities), or another trusted party). This cryptographically-verifiable statement allows the connection to be established or elevated between the federating parties without relying solely on self-asserted attributes. (See [RFC 7591](#RFC7591) Section 2.3 for more information on one protocol's implementation of software statements.)
+IdP はユーザー情報を提供する前に Authorized な主体 (Subscriber 等) によるランタイムでの決断 ([Section 4.2](#runtime-decisions) 参照) を要求とすることとする (SHALL). 動的 Registration を行う RP を受け入れる IdP は, そういった RP が利用できる Attribute やその他の情報のタイプを制限してもよい (MAY). 動的 Registration を利用可能な RP は, Identity 情報を受け入れる IdP を制限してもよい (MAY).
+
+<!-- IdPs SHALL require runtime decisions (see [Section 4.2](#runtime-decisions)) to be made by an authorized party (such as the subscriber) before releasing user information. An IdP accepting dynamically registered RPs MAY limit the types of attributes and other information made available to such RPs. An RP capable of dynamically registering MAY limit which IdPs it is willing to accept identity information from. -->
+
+動的 Registration モデルの参加者は, しばしばお互いのことを事前に知らないことがある. 可能であれば, Federation 参加者が動的に登録した RP の Attribute のいくつかを暗号論的に検証できるよう, *Software Statement* により補強すべきである (SHOULD). Software Statement は RP ソフトウェアに関する Attribute を列挙したものであり, オーソリティー (IdP 自身, [Section 5.1.3](#authorities) にある Federation Authority, その他の信頼できる主体) により暗号論的に署名されている. この暗号論的に検証可能なステートメントにより, Self-asserted Attribute のみに頼る必要がなくなり, Federation 参加者間のコネクションを確立ないし向上させることができる. ([RFC 7591](#RFC7591) Section 2.3 にあるプロトコルにおける Software Statement の実装に関する詳しい情報がある)
+
+<!-- Parties in a dynamic registration model frequently do not know each other ahead of time. Where possible, this SHOULD be augmented by *software statements*, which allow federated parties to cryptographically verify some attributes of an RP being dynamically registered. Software statements are lists of attributes describing the RP software, cryptographically signed by an authority (either the IdP itself, a federation authority as in [Section 5.1.3](#authorities), or another trusted party). This cryptographically-verifiable statement allows the connection to be established or elevated between the federating parties without relying solely on self-asserted attributes. (See [RFC 7591](#RFC7591) Section 2.3 for more information on one protocol's implementation of software statements.) -->
 
 #### <a name="authorities"></a> 5.1.3 Federation Authorities
 
