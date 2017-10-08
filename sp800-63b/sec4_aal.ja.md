@@ -83,13 +83,14 @@ AAL1 authentication SHALL occur by the use of any of the following authenticator
 #### <a name="aal1req"></a>4.1.2 Authenticator and Verifier Requirements
 -->
 
-AAL 1で用いられる暗号Authenticatorは，Approved Cryptographyを利用するものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作している利用者のエンドポイントに対する改竄検出を試みてもよく(MAY)，そのような改竄が検出された場合には操作を完了すべきでではない(SHOULD NOT)．
+AAL 1で用いられる暗号Authenticatorは，Approved Cryptographyを利用するものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作している利用者のエンドポイントの改竄検出を試みてもよく(MAY)，そのような改竄が検出された場合には操作を完了すべきでではない(SHOULD NOT)．
 
 <!--
 Cryptographic authenticators used at AAL1 SHALL use approved cryptography. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise (e.g., by malware) of the user endpoint in which they are running and SHOULD NOT complete the operation when such a compromise is detected.
 -->
 
-ClaimantとVerifierとの間のチャネル通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．
+ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．
+
 <!--
 Communication between the claimant and verifier (using the primary channel in the case of an out-of-band authenticator) SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to man-in-the-middle (MitM) attacks.
 -->
@@ -114,7 +115,7 @@ Periodic reauthentication of subscriber sessions SHALL be performed as described
 #### 4.1.4 Security Controls
 -->
 
-CSPは，[[SP 800-53]](#SP800-53) または等価な連邦政府機関(例えば [FEDRAMP](#FEDRAMP)) か業界標準で定義されているセキュリティ統制の*低い*基準から適切に調整されているセキュリティ統制を採用することとする(SHALL)．CSPは*影響が小さい*システム，またはそれに相当するものに対する最低限の保証関連の統制を果たしていることを保証することとする(SHALL)．
+CSPは，[[SP 800-53]](#SP800-53) または等価な連邦政府機関(例えば [FEDRAMP](#FEDRAMP)) あるいは業界標準で定義されているセキュリティ統制の*低い*基準から適切に調整されているセキュリティ統制を採用することとする(SHALL)．CSPは*影響が小さい*システム，またはそれに相当するものに対する最低限の保証関連の統制を果たしていることを保証することとする(SHALL)．
 
 <!--
 The CSP SHALL employ appropriately-tailored security controls from the *low* baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g. [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *low-impact* systems, or equivalent, are satisfied.
@@ -126,7 +127,7 @@ The CSP SHALL employ appropriately-tailored security controls from the *low* bas
 #### <a name="aal1records"></a> 4.1.5 Records Retention Policy
 -->
 
-CSPは，準拠法，規則，及び任意のNational Archives and Records Administration (NARA)のレコード保持スケジュールを含むポリシーに合致するそれぞれのレコード保持ポリシーに従う．もしCSPが何らかの必須要件なくレコードを保持することを選択する場合，CSPはレコードの保持期間を決定するためのプライバシ及びセキュリティリスクのアセスメントを含むリスク管理プロセスを実施するものとし(SHALL)，Subscriberに対して当該保持ポリシーについて通知するものとする(SHALL)．
+CSPは，準拠法，規則，及び任意のNational Archives and Records Administration (NARA)のレコード保持スケジュールを含むポリシーに合致するそれぞれのレコード保持ポリシーに従う．もしCSPがいずれの必須要件なくレコードを保持することを選択する場合，CSPはレコードの保持期間を決定するためのプライバシ及びセキュリティリスクのアセスメントを含むリスク管理プロセスを実施するものとし(SHALL)，Subscriberに対して当該保持ポリシーについて通知するものとする(SHALL)．
 
 <!--
 The CSP shall comply with its respective records retention policies in accordance with applicable laws, regulations, and policies, including any National Archives and Records Administration (NARA) records retention schedules that may apply. If the CSP opts to retain records in the absence of any mandatory requirements, the CSP SHALL conduct a risk management process, including assessments of privacy and security risks, to determine how long records should be retained and SHALL inform the subscriber of that retention policy.
@@ -195,31 +196,78 @@ When a combination of two single-factor authenticators is used, it SHALL include
 > Note: When biometric authentication meets the requirements in [Section 5.2.3](#biometric_use), the device has to be authenticated in addition to the biometric &mdash; a biometric is recognized as a factor, but not recognized as an authenticator by itself. Therefore, when conducting authentication with a biometric, it is unnecessary to use two authenticators because the associated device serves as "something you have," while the biometric serves as "something you are."
 -->
 
+#### <a name="aal2req"></a>4.2.2 Authenticator及びVerifierの要件
+
+<!--
 #### <a name="aal2req"></a>4.2.2 Authenticator and Verifier Requirements
+-->
 
+AAL 2で用いられる暗号Authenticatorは，Approved Cryptographyを使うものとする(SHALL)．政府機関によって調達されたAuthenticatorは，[[FIPS 140]](#FIPS140-2) Level 1の要件に適合していることを確認されるものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作しているプラットフォームの改竄検知を試みてもよく(MAY)，そのような改竄が検出されると操作を拒否すべき(SHOULD)である．AAL2では少なくとも1つのAuthenticatorは[Section 5.2.8](#replay)に記載されているように，リプレイ耐性があるものとする(SHALL)．AAL2のAuthenticatorは[Section 5.2.9](#intent)に記載されているように，少なくとも1つのAuthenticatorからAuthenticationの意図を明示するべきである(SHOULD)．
+
+<!--
 Cryptographic authenticators used at AAL2 SHALL use approved cryptography. Authenticators procured by government agencies SHALL be validated to meet the requirements of [FIPS 140](#FIPS140-2) Level 1. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise of the platform in which they are running (e.g., by malware) and SHOULD NOT complete the operation when such a compromise is detected. At least one authenticator used at AAL2 SHALL be replay resistant as described in [Section 5.2.8](#replay). Authentication at AAL2 SHOULD demonstrate authentication intent from at least one authenticator as discussed in [Section 5.2.9](#intent).
+-->
 
+ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．
+
+<!--
 Communication between the claimant and verifier (the primary channel in the case of an out-of-band authenticator) SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to MitM attacks.
+-->
 
+政府機関が運用するVerifierは，AAL 2において，[[FIPS 140]](#FIPS140-2) Level 1 の要件に適合していることが確認されるものとする(SHALL)．
+
+<!--
 Verifiers operated by government agencies at AAL2 SHALL be validated to meet the requirements of [FIPS 140](#FIPS140-2) Level 1.
+-->
 
+Authenticationプロセスでスマートフォンなどのデバイスが利用される際に，（典型的にはPINやバイオメトリックを利用して）デバイスをアンロックする行為はAuthentication要素の一つとしてみなされないものとする(SHALL NOT)．一般的には，Verifierがそのデバイスがロックされていたのか，あるいはアンロックプロセスが関連するAuthenticatorタイプの要件に合致しているかを把握することができない．
+
+<!--
 When a device such a smartphone is used in the authentication process, the unlocking of that device (typically done using a PIN or biometric) SHALL NOT be considered one of the authentication factors. Generally, it is not possible for a verifier to know that the device had been locked or if the unlock process met the requirements for the relevant authenticator type.
+-->
 
+バイオメトリック要素がAAL 2で利用されている場合，[Section 5.2.3](#biometric_use)に規定されたパフォーマンス要件を満たすものとし(SHALL)，Verifierはバイオメトリックセンサー及び後続処理がこれらの要件に合致していることを明確にしなければならない(SHOULD)．
+<!--
 When a biometric factor is used in authentication at AAL2, the performance requirements stated in [Section 5.2.3](#biometric_use) SHALL be met, and the verifier SHOULD make a determination that the biometric sensor and subsequent processing meet these requirements.
+-->
 
 #### <a name="aal2reauth"></a>4.2.3 Reauthentication
 
+[Section 7.2](#sessionreauthn)に記載があるように，Subscriberのセッションの定期的なReauthenticationが行われるものとする(SHALL)．AAL 2では，ユーザの活動に関わらず，SubscriberのReauthenticationはセッションの利用が延長されている間は少なくとも12時間に1回は繰り返されるものとする(SHALL)．
+30分以上継続している非活動期間の後は，SubscriberのReauthenticationは繰り返されるものとする(SHALL)．
+セッションはこの時間制限に到達したら終了される(すなわちログアウトされる)ものとする(SHALL)．
+
+<!--
 Periodic reauthentication of subscriber sessions SHALL be performed as described in [Section 7.2](#sessionreauthn). At AAL2, authentication of the subscriber SHALL be repeated at least once per 12 hours during an extended usage session, regardless of user activity. Reauthentication of the subscriber SHALL be repeated following any period of inactivity lasting 30 minutes or longer. The session SHALL be terminated (i.e., logged out) when either of these time limits is reached.
+-->
 
+まだ時間制限に到達していないセッションのReauthenticationは，記憶シークレットだけ，あるいはまだ有効なセッションシークレットと連動しているバイオメトリックを要求してもよい(MAY)．Verifierは非活動によるタイムアウトの直前に，ユーザに対して活動を促してもよい(MAY)．
+<!--
 Reauthentication of a session that has not yet reached its time limit MAY require only a memorized secret or a biometric in conjunction with the still-valid session secret. The verifier MAY prompt the user to cause activity just before the inactivity timeout.
+-->
 
+#### 4.2.4 セキュリティ統制
+<!--
 #### 4.2.4 Security Controls
+-->
 
+CSPは，[[SP 800-53]](#SP800-53) または等価な連邦政府機関(例えば [FEDRAMP](#FEDRAMP)) あるいは業界標準で定義されているセキュリティ統制の*中程度の*基準から適切に調整されているセキュリティ統制を採用することとする(SHALL)．CSPは*影響が中程度な*システム，またはそれに相当するものに対する最低限の保証関連の統制を果たしていることを保証することとする(SHALL)．
+
+<!--
 The CSP SHALL employ appropriately-tailored security controls from the *moderate* baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *moderate-impact* systems or equivalent are satisfied.
+-->
 
+#### <a name="aal2records"></a> 4.2.5 レコード保持ポリシ
+
+<!--
 #### <a name="aal2records"></a> 4.2.5 Records Retention Policy
+-->
 
+CSPは，準拠法，規則，及び任意のNational Archives and Records Administration (NARA)のレコード保持スケジュールを含むポリシーに合致するそれぞれのレコード保持ポリシーに従う．もしCSPがいずれの必須要件なくレコードを保持することを選択する場合，CSPはレコードの保持期間を決定するためのプライバシ及びセキュリティリスクのアセスメントを含むリスク管理プロセスを実施するものとし(SHALL)，Subscriberに対して当該保持ポリシーについて通知するものとする(SHALL)．
+
+<!--
 The CSP shall comply with its respective records retention policies in accordance with applicable laws, regulations, and policies, including any NARA records retention schedules that may apply. If the CSP opts to retain records in the absence of any mandatory requirements, the CSP SHALL conduct a risk management process, including assessments of privacy and security risks to determine how long records should be retained and SHALL inform the subscriber of that retention policy.
+-->
 
 ### 4.3 Authenticator Assurance Level 3
 
