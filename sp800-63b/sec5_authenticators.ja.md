@@ -5,24 +5,43 @@
 ## 5 <a name="AAL_SEC5"></a>Authenticator and Verifier Requirements
 -->
 
+_本セクションは標準である．_
+<!--
 _This section is normative._
+-->
 
+本セクションでは、各Authenticatorタイプごとの要件詳細について記載する。[Section 4](#AAL_SEC4)で指定されたReauthentication要件及び[Section 5.2.5]に記載があるAAL3におけるVerifierなりすまし耐性の例外を除いて、各Authenticatorタイプ毎の技術要件はAuthenticatorが利用されるAALに関わらず同様である。
+
+<!--
 This section provides the detailed requirements specific to each type of authenticator. With the exception of reauthentication requirements specified in [Section 4](#AAL_SEC4) and the requirement for verifier impersonation resistance at AAL3 described in [Section 5.2.5](#verifimpers), the technical requirements for each of the authenticator types are the same regardless of the AAL at which the authenticator is used.
+-->
 
+### <a name="reqauthtype"></a> 5.1 Authenticatorタイプ毎の要件
+<!--
 ### <a name="reqauthtype"></a> 5.1 Requirements by Authenticator Type
+-->
 
+#### <a name="memsecret"></a> 5.1.1 記憶シークレット
+<!--
 #### <a name="memsecret"></a> 5.1.1 Memorized Secrets
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Memorized-secret.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>記憶シークレットAuthenticator — 一般的には<i>パスワード</i>や、数字ならば<i>PIN</i>として表現されているもの — は、ユーザによって決められ、記憶されるシークレットである。記憶シークレットは攻撃者が正しい値を推測したり秘密の値を特定できないように、十分に複雑かつ秘密にしておく必要がある。 記憶シークレットは <i>something you know</i> である。</td>
+    <!--
     <td>A Memorized Secret authenticator — commonly referred to as a <i>password</i> or, if numeric, a <i>PIN</i> — is a secret value intended to be chosen and memorized by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value. A memorized secret is <i>something you know</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
+#### 5.1.1.1 記憶シークレットAuthenticators
+<!--
 #### 5.1.1.1 Memorized Secret Authenticators
+-->
 
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber. Memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. If the CSP or verifier disallows a chosen memorized secret based on its appearance on a blacklist of compromised values, the subscriber SHALL be required to choose a different memorized secret. No other complexity requirements for memorized secrets SHOULD be imposed. A rationale for this is presented in [Appendix A](#appA) _Strength of Memorized Secrets_.
 
