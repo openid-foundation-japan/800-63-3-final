@@ -387,26 +387,26 @@ The CSP shall comply with its respective records retention policies in accordanc
 ### <a name="aal_privacy"></a>4.4 Privacy Requirements
 -->
 
-CSPは[SP 800-53](#SP800-53)で定義された適切に調整されたプライバシコントロール、または他の等価な業界標準を採用するものとする(SHALL)。
+CSPは[SP 800-53](#SP800-53)で定義された適切に調整されたプライバシコントロール，または他の等価な業界標準を採用するものとする(SHALL)．
 <!--
 The CSP SHALL employ appropriately-tailored privacy controls defined in [SP 800-53](#SP800-53) or equivalent industry standard.
 -->
 
-CSPは、追加の用途のために明確な通知を行い加入者から承諾を得なければ、Authentication実施、詐欺緩和、または法令遵守や法的手続き以外のいかなる目的でもSubscriberの情報を利用・開示しないものとする(SHALL NOT)。CSPは、同意をサービスの条件としてはならない(SHALL NOT)。情報を収集した際の元々の目的に利用が限定されていることを保証するための対策が講じられるものとする(SHALL)。このような情報の利用が、Authenticationや法令遵守、法的手続きに関連する用途に該当しないのであれば、CSPは通知を行い、Subscriberから同意を得るものとする(SHALL)。この通知は、[SP 800-63A](sp800-63a.html) Section 8.2の*Notice and Consent*に記載されているのと同じ原則に従うべき(SHOULD)であり、法律に固執し過ぎたプライバシポリシや一般的な利用規約に丸め込むべきではない(SHOULD NOT)。明示的な目的外の用途がある場合は、むしろSubscriberが追加の利用目的を理解するための意味のある方法、及び承諾または辞退する機会が提供されるべきである(SHOULD)。
+CSPは，追加の用途のために明確な通知を行い加入者から承諾を得なければ，Authentication実施，詐欺緩和，または法令遵守や法的手続き以外のいかなる目的でもSubscriberの情報を利用・開示しないものとする(SHALL NOT)．CSPは，同意をサービスの条件としてはならない(SHALL NOT)．情報を収集した際の元々の目的に利用が限定されていることを保証するための対策が講じられるものとする(SHALL)．このような情報の利用が，Authenticationや法令遵守，法的手続きに関連する用途に該当しないのであれば，CSPは通知を行い，Subscriberから同意を得るものとする(SHALL)．この通知は，[SP 800-63A](sp800-63a.html) Section 8.2の*Notice and Consent*に記載されているのと同じ原則に従うべき(SHOULD)であり，法律に固執し過ぎたプライバシポリシや一般的な利用規約に丸め込むべきではない(SHOULD NOT)．明示的な目的外の用途がある場合は，むしろSubscriberが追加の利用目的を理解するための意味のある方法，及び承諾または辞退する機会が提供されるべきである(SHOULD)．
 
 <!--
 CSPs SHALL NOT use or disclose information about subscribers for any purpose other than conducting authentication, related fraud mitigation, or to comply with law or legal process, unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. CSPs SHALL NOT make consent a condition of the service. Care SHALL be taken to ensure that use of such information is limited to its original purpose for collection. If the use of such information does not fall within uses related to authentication or to comply with law or legal process, the CSP SHALL provide notice and obtain consent from the subscriber. This notice SHOULD follow the same principles as described in *Notice and Consent* in [SP 800-63A](sp800-63a.html) Section 8.2 and SHOULD NOT be rolled up into a legalistic privacy policy or general terms and conditions. Rather, if there are uses outside the bounds of these explicit purposes, the subscriber SHOULD be provided with a meaningful way to understand the purpose for additional uses, and the opportunity to accept or decline.
 -->
 
-CSPが政府機関または民間のプロバイダであるかどうかにかかわらず、次の要件がAuthenticationサービスを提供・利用する政府機関に対して適用される:
+CSPが政府機関または民間のプロバイダであるかどうかにかかわらず，次の要件がAuthenticationサービスを提供・利用する政府機関に対して適用される:
 <!--
 Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to an agency offering or using the authentication service:
 -->
 
-* 政府機関は、Authenticatorの発行・維持を目的としたPIIの収集が*Privacy Act of 1974* [[Privacy Act]](#PrivacyAct) ([Section 9.4](#agency-privacy)参照)の要件をもたらすかどうか明確にするため、各機関のSenior Agency Official for Privacy (SAOP)と協議するものとする(SHALL)。
-* 政府機関は、必要に応じてそのような収集活動を対象とするSystem of Records Notice (SORN)を公開するものとする(SHALL)。
-* 政府機関は、Authenticatorの発行・維持を目的としたPIIの収集が*E-Government Act of 2002* [[E-Gov]](#E-Gov)の要件をもたらすかどうか明確にするため、各機関のSAOPと協議するものとする(SHALL)。
-* 政府機関は、必要に応じてそのような収集活動を対象とするPrivacy Impact Assement(PIA)を公開するものとする(SHALL)。
+* 政府機関は，Authenticatorの発行・維持を目的としたPIIの収集が*Privacy Act of 1974* [[Privacy Act]](#PrivacyAct) ([Section 9.4](#agency-privacy)参照)の要件をもたらすかどうか明確にするため，各機関のSenior Agency Official for Privacy (SAOP)と協議するものとする(SHALL)．
+* 政府機関は，必要に応じてそのような収集活動を対象とするSystem of Records Notice (SORN)を公開するものとする(SHALL)．
+* 政府機関は，Authenticatorの発行・維持を目的としたPIIの収集が*E-Government Act of 2002* [[E-Gov]](#E-Gov)の要件をもたらすかどうか明確にするため，各機関のSAOPと協議するものとする(SHALL)．
+* 政府機関は，必要に応じてそのような収集活動を対象とするPrivacy Impact Assement(PIA)を公開するものとする(SHALL)．
 
 <!--
 1. The agency SHALL consult with their Senior Agency Official for Privacy (SAOP) and conduct an analysis to determine whether the collection of PII to issue or maintain authenticators triggers the requirements of the *Privacy Act of 1974* [[Privacy Act]](#PrivacyAct) (see [Section 9.4](#agency-privacy)).
