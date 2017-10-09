@@ -30,12 +30,12 @@ https://doi.org/10.6028/NIST.SP.800-63-3
     <td>Paul A. Grassi<br>Michael E. Garcia<br><i>Applied Cybersecurity Division</i><br><i>Information Technology Laboratory</i></td>
     <td>James L. Fenton<br><i>Altmode Networks</i><br><i>Los Altos, CA</i></td>
   </tr>
+  <tr>
+    <td></td>
+    <td><strong>翻訳者:</strong><br>Nov Matake<br><i>YAuth.jp LLC</i></td>
+  </tr>
 </table>
 
-### 翻訳者
-
-Nov Matake  
-*YAuth.jp LLC*
 
 This publication is available free of charge from:  
 https://doi.org/10.6028/NIST.SP.800-63-3  

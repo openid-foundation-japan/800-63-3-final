@@ -37,7 +37,7 @@ In the manual registration model, the IdP and RP manually provision configuratio
 
 </div>
 
-As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps: 
+As shown in [Figure 5-2](#63cSec5-Figure2), manual registration involves three steps:
 
 1. The RP's system administrator shares the RP's attributes with the IdP's system administrator, who associates those attributes with the RP.
 
@@ -64,7 +64,7 @@ In the dynamic registration model of federation, it is possible for relationship
 
 </div>
 
-As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps: 
+As shown in [Figure 5-3](#63cSec5-Figure3), dynamic registration involves four steps:
 
 1. Discover. The RP goes to a well-known location at the IdP to find the IdP's metadata.
 
