@@ -170,12 +170,19 @@ Federation Authority は, IdP の設定データを公開したり RP 向けに 
 
 #### <a name="proxied"></a> 5.1.4 Proxied Federation
 
-In a proxied federation, communication between the IdP and the RP is intermediated in a way that prevents direct communication between the two parties. There are multiple methods to achieve this effect. Common configurations include:
+Proxied Federation では, IdP と RP の通信は2者間の直接通信を妨げる形で仲介される. これを実現する方法は複数あるが, 共通事項として以下のような項目が挙げられる.
 
-* A third party that acts as a federation proxy (or *broker*)
-* A network of nodes that distributes the communications
+<!-- In a proxied federation, communication between the IdP and the RP is intermediated in a way that prevents direct communication between the two parties. There are multiple methods to achieve this effect. Common configurations include: -->
 
-Where proxies are used, they function as an IdP on one side and an RP on the other. Therefore, all normative requirements that apply to IdPs and RPs SHALL apply to proxies in their respective roles.
+* 第三者が Federation Proxy (または *Broker*) として動作する.
+* 通信を振り分けるノードの Network が存在する.
+
+<!-- * A third party that acts as a federation proxy (or *broker*)
+* A network of nodes that distributes the communications -->
+
+Proxy を利用する場合, 当該 Proxy は一方で IdP として振る舞い, もう一方では RP として振る舞う. したがって, IdP と RP に求められる全ての Normative 要件が, 当該 Proxy にも課せられる (SHALL).
+
+<!-- Where proxies are used, they function as an IdP on one side and an RP on the other. Therefore, all normative requirements that apply to IdPs and RPs SHALL apply to proxies in their respective roles. -->
 
 <a name="63cSec5-Figure5"></a>
 
@@ -185,9 +192,13 @@ Where proxies are used, they function as an IdP on one side and an RP on the oth
 **Figure 5-5 Federation Proxy**
 </div>
 
-A proxied federation model can provide several benefits. Federation proxies can simplify technical integration between the RP and IdP by providing a common interface for integration. Additionally, to the extent a proxy effectively blinds the RP and IdP from each other, it can provide some business confidentiality for organizations that want to guard their subscriber lists from each other. Proxies can also mitigate some of the privacy risks described in [Section 5.2](#privacy-reqs) below.
+Proxied Federation モデルにはいくつかの利点がある. Federation Proxy においてインテグレーションのための共通インターフェースを提供することで, RP と IdP の技術的インテグレーションを単純化することができる. さらに, Proxy が RP と IdP を互いに効果的にブラインドことで, Subscriber のリストを相互に保護したい組織間でのビジネス上の機密性を実現することもできる. また, Proxy は [Section 5.2](#privacy-reqs) に述べるようにいくらかのプライバシーリスクを低減することもできる.
 
-See [Section 9.5](#blinding) for further information on blinding techniques, their uses, and limitations.
+<!-- A proxied federation model can provide several benefits. Federation proxies can simplify technical integration between the RP and IdP by providing a common interface for integration. Additionally, to the extent a proxy effectively blinds the RP and IdP from each other, it can provide some business confidentiality for organizations that want to guard their subscriber lists from each other. Proxies can also mitigate some of the privacy risks described in [Section 5.2](#privacy-reqs) below. -->
+
+ブラインディング技術とその利用, 限界に関しては, [Section 9.5](#blinding) に詳しい.
+
+<!-- See [Section 9.5](#blinding) for further information on blinding techniques, their uses, and limitations. -->
 
 ### <a name="privacy-reqs"></a> 5.2 Privacy Requirements
 
