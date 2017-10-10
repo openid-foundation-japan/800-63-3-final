@@ -43,9 +43,16 @@ This section provides the detailed requirements specific to each type of authent
 #### 5.1.1.1 Memorized Secret Authenticators
 -->
 
+記憶シークレットは，Subscriberが決定する場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)、全て数字でもよい(MAY)．
+CSPやVerifierが指定された記憶シークレットがセキュリティ侵害を受けたブラックリストに出現するかどうかに基づいて拒否した場合，Subscriberは別の記憶シークレット値を選ぶよう要求されるものとする(SHALL)．記憶シークレットの複雑さに関する他の要件を課すべきではない(SHOULD)．本件についての論拠は[Appendix A](#appA)の _Strength of Memorized Secrets_ に記載されている．
+<!--
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber. Memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. If the CSP or verifier disallows a chosen memorized secret based on its appearance on a blacklist of compromised values, the subscriber SHALL be required to choose a different memorized secret. No other complexity requirements for memorized secrets SHOULD be imposed. A rationale for this is presented in [Appendix A](#appA) _Strength of Memorized Secrets_.
+-->
 
+#### <a name="memsecretver"></a> 5.1.1.2 記憶シークレットVerifiers
+<!--
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
+-->
 
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit subscriber-chosen memorized secrets at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets. Unicode [[ISO/ISC 10646]](#ISOIEC10646) characters SHOULD be accepted as well. To make allowances for likely mistyping, verifiers MAY replace multiple consecutive space characters with a single space character prior to verification, provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
 
