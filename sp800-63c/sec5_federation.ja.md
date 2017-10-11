@@ -214,22 +214,40 @@ IdP は, ある RP における Subscriber の活動情報をいかなる主体�
 
 <!-- The IdP SHALL NOT disclose information on subscriber activities at an RP to any party, nor use the subscriber's information for any purpose other than federated authentication, related fraud mitigation, to comply with law or legal process, or in the case of a specific user request, to transmit the information. The IdP SHOULD employ technical measures, such as the use of pairwise pseudonymous identifiers described in [Section 6.3](#ppi) or privacy-enhancing cryptographic protocols, to provide unlinkability and discourage subscriber activity tracking and profiling. -->
 
-An IdP MAY disclose information on subscriber activities to other RPs within the federation for security purposes, such as communication of compromised subscriber accounts.
+IdP は, 例えば毀損した Subscriber アカウントの情報などのSubscriber の活動情報を, セキュリティー目的で Federation 範囲内の他の RP に開示してもよい (MAY).
 
-The following requirements apply specifically to federal agencies:
+<!-- An IdP MAY disclose information on subscriber activities to other RPs within the federation for security purposes, such as communication of compromised subscriber accounts. -->
 
-1. The agency SHALL consult with their Senior Agency Official for Privacy (SAOP) to conduct an analysis determining whether the requirements of the Privacy Act are triggered by the agency that is acting as an IdP, by the agency that is acting as an RP, or both (see [Section 9.4](#agency-privacy)).
+以下の要件は, 特に政府機関に適用される.
+
+<!-- The following requirements apply specifically to federal agencies: -->
+
+1. 機関は, 自身の Senior Agency Official for Privacy (SAOP) と協議し, Privacy Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方を起因として満たされるかを判断すべく分析を行うこととする (SHALL).
+
+2. 機関は, 適用可能な場合, System of Records Notice (SORN) のカバレッジを公表ないし割り出さなければならない (SHALL).
+
+3. 機関は, 自身の SAOP と協議し, E-Government Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方を起因として満たされるかを判断すべく分析を行うこととする (SHALL).
+
+4. 機関は, 適用可能な場合, Privacy Impact Assessment (PIA) のカバレッジを公表ないし割り出さなければならない (SHALL).
+
+<!-- 1. The agency SHALL consult with their Senior Agency Official for Privacy (SAOP) to conduct an analysis determining whether the requirements of the Privacy Act are triggered by the agency that is acting as an IdP, by the agency that is acting as an RP, or both (see [Section 9.4](#agency-privacy)).
 
 2. The agency SHALL publish or identify coverage by a System of Records Notice (SORN) as applicable.
 
 3. The agency SHALL consult with their SAOP to conduct an analysis determining whether the requirements of the E-Government Act are triggered by the agency that is acting as an IdP, the agency that is acting as an RP, or both.
 
-4. The agency SHALL publish or identify coverage by a Privacy Impact Assessment (PIA) as applicable.
+4. The agency SHALL publish or identify coverage by a Privacy Impact Assessment (PIA) as applicable. -->
 
 ### 5.3 <a name="federation-session"></a> Reauthentication and Session Requirements in Federated Environments
 
-In a federated environment, the RP manages its sessions separately from any sessions at the IdP. The session at the RP starts when the RP processes the federation protocol from the IdP. At the time of a federated login, the subscriber MAY have an existing session at the IdP which MAY be used as part of the authentication process to the RP. The IdP SHALL communicate any information it has regarding the time of the latest authentication event at the IdP, and the RP MAY use this information in determining its access policies. Depending on the capabilities of the federation protocol in use, the IdP SHOULD allow the RP to request that the subscriber re-authenticate at the IdP as part of a federation request.
+Federated な環境では, RP は自身の Session を IdP の Session とは別に管理する. RP の Session は RP が IdP からの Federation プロトコルを処理するタイミングで開始される. Federated ログイン時に, Subscriber が IdP にすでに Session を持っていることもあり (MAY), その Session が RP に対する Authentication プロセス中で利用されることもある (MAY). IdP は IdP での最新の Authentication イベントの時刻に関する情報を伝達せねばならず (SHALL), RP は自身のアクセスポリシー決定にこの情報を利用しても良い (MAY). 利用する Federation プロトコルの性能によっては, IdP は RP が IdP による Subscriber の Re-authenticate を Federation リクエスト中で要求できるようにすべきである (SHALL).
 
-Due to the distributed nature of a federated system, the subscriber is capable of terminating sessions with the IdP and RP independently of one another. The RP SHALL NOT assume that the subscriber has an active session at the IdP past the establishment of the federated log in. The IdP SHALL NOT assume that termination of the subscriber's session at the IdP will propagate to any sessions that subscriber would have at downstream RPs.
+<!-- In a federated environment, the RP manages its sessions separately from any sessions at the IdP. The session at the RP starts when the RP processes the federation protocol from the IdP. At the time of a federated login, the subscriber MAY have an existing session at the IdP which MAY be used as part of the authentication process to the RP. The IdP SHALL communicate any information it has regarding the time of the latest authentication event at the IdP, and the RP MAY use this information in determining its access policies. Depending on the capabilities of the federation protocol in use, the IdP SHOULD allow the RP to request that the subscriber re-authenticate at the IdP as part of a federation request. -->
 
-See [SP 800-63B Section 7](sp800-63b.html#sec7) for more information about session management requirements.
+Federated システムはその特徴として分散しているため, Subscriber は IdP と RP の Session を互いに独立して終了させることができる. RP は, Federated ログインができたからといって, Subscriber が IdP においてアクティブな Session を持っていると仮定してはならない (SHALL NOT). IdP は IdP における Subscriber Session の終了がダウンストリーム RP の任意の Subscriber Session に伝搬すると仮定してはならない (SHALL NOT).
+
+<!-- Due to the distributed nature of a federated system, the subscriber is capable of terminating sessions with the IdP and RP independently of one another. The RP SHALL NOT assume that the subscriber has an active session at the IdP past the establishment of the federated log in. The IdP SHALL NOT assume that termination of the subscriber's session at the IdP will propagate to any sessions that subscriber would have at downstream RPs. -->
+
+Session Management 要件に関する詳細は [SP 800-63B Section 7](sp800-63b.html#sec7) を参照のこと.
+
+<!-- See [SP 800-63B Section 7](sp800-63b.html#sec7) for more information about session management requirements. -->
