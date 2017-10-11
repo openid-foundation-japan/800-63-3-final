@@ -5,28 +5,51 @@
 
 *This section is normative.*
 
-An assertion used for authentication is a packaged set of attribute values or attribute references about or associated with an authenticated subscriber that is passed from the IdP to the RP in a federated identity system. Assertions contain a variety of information, including: assertion metadata, attribute values and attribute references about the subscriber, and other information that the RP can leverage (such as restrictions and expiration time). While the assertion's primary function is to authenticate the user to an RP, the information conveyed in the assertion can be used by the RP for a number of use cases &mdash; for example, authorization or personalization of a website. These guidelines do not restrict RP use cases nor the type of protocol or data payload used to federate an identity, provided the chosen solution meets all mandatory requirements contained herein.
+Authentication 目的で利用される Assertion は, Federated Identity システム内で IdP から RP に伝搬される, Authenticated Subscriber に関するもしくは Authenticated Subscriber に紐づいた, Attribute Value や Attribute Reference のパッケージ化されたセットである. Assertion は Assertion Metadata, Subscriber に関する Attribute Value や Attribute Reference, RP が利用できるその他の情報 (制約や有効期限など) など, 多様な情報を含む. Assertion の第一の機能は RP に対してユーザーを Authenticate することであるが, Assertion 経由で伝搬される情報は RP により多様なユースケースで利用されうる. 例としては, Web サイトにおける Authorization やパーソナライゼーションなどが挙げられる. 本ガイドライン群は, 選択されたソリューションがここに含まれるすべての必須要件を満たす限り, RP のユースケースや Identity を Federate するためのプロトコルタイプやデータタイプに関しては制限しない.
 
-Assertions MAY represent only an authentication event, or MAY also represent attribute values and attribute references regarding the subscriber.
+<!-- An assertion used for authentication is a packaged set of attribute values or attribute references about or associated with an authenticated subscriber that is passed from the IdP to the RP in a federated identity system. Assertions contain a variety of information, including: assertion metadata, attribute values and attribute references about the subscriber, and other information that the RP can leverage (such as restrictions and expiration time). While the assertion's primary function is to authenticate the user to an RP, the information conveyed in the assertion can be used by the RP for a number of use cases &mdash; for example, authorization or personalization of a website. These guidelines do not restrict RP use cases nor the type of protocol or data payload used to federate an identity, provided the chosen solution meets all mandatory requirements contained herein. -->
 
-All assertions SHALL include the following assertion metadata:
+Assertion は単一の Authentication イベントのみを表現することもあれば (MAY), Subscriber に関する Attribute Value や Attribute Reference を表現することもある (MAY).
 
-1. Subject: An identifier for the party that the assertion is about (i.e., the subscriber).
+<!-- Assertions MAY represent only an authentication event, or MAY also represent attribute values and attribute references regarding the subscriber. -->
+
+すべての Assertion は, 以下にあげる Assertion Metadata を含むこととする (SHALL).
+
+<!-- All assertions SHALL include the following assertion metadata: -->
+
+1. Subject: 当該 Assertion が指し示す主体の識別子. (i.e., Subscrier)
+2. Issuer: Assertion を発行した IdP の識別子.
+3. Audience: Assertion を利用することが想定される主体の識別子 (i.e., RP)
+4. Issuance: Assertion が IdP に発行された日時を示すタイムスタンプ.
+5. Expiration: Assertion の有効期限を示すタイムスタンプ. RP は有効期限が切れた Assertion を有効な Assertion として受け入れないこと (SHALL). (i.e., Assertion の有効期限切れであり, RP における Session の有効期限切れではない)
+6. Identifier: 当該 Assertion 自身を識別するランダムでユニークな値. Attacker による以前の Assertion の再利用を防ぐために利用される.
+7. Signature: IdP に紐づいた鍵の識別子や公開鍵を含んだ, Assertion 全体に対する Digital Signature もしくは Message Authentication Code (MAC).
+8. Authentication Time: (可能であれば) IdP が Primary Authentication Event を通じて Subscriber を認証した日時を示すタイムスタンプ.
+
+<!-- 1. Subject: An identifier for the party that the assertion is about (i.e., the subscriber).
 2. Issuer: An identifier for the IdP that issued the assertion.
 3. Audience: An identifier for the party intended to consume the assertion (i.e., the RP).
 4. Issuance: A timestamp indicating when the IdP issued the assertion.
 5. Expiration: A timestamp indicating when the assertion expires and SHALL no longer be accepted as valid by the RP (i.e., the expiration of the assertion and not the expiration of the session at the RP).
 6. Identifier: A value uniquely identifying this assertion, used to prevent attackers from replaying prior assertions.
 7. Signature: Digital signature or message authentication code (MAC), including key identifier or public key associated with the IdP, for the entire assertion.
-8. Authentication Time: A timestamp indicating when the IdP last verified the presence of the subscriber at the IdP through a primary authentication event (if available).
+8. Authentication Time: A timestamp indicating when the IdP last verified the presence of the subscriber at the IdP through a primary authentication event (if available). -->
 
-Assertions MAY also include the following information:
+Assertion はさらに以下の情報を含んでもよい (MAY).
 
-1. Key binding: Public key or key identifier of subscriber-held key to demonstrate their binding with the assertion described in [Section 6.1.2](#holderofkey).
+<!-- Assertions MAY also include the following information: -->
+
+1. Key binding: Subscriber が保持する鍵の Public Key ないしは識別子であり, [Section 6.1.2](#holderofkey) にあるように当該 Assertion と Subscriber が保持する鍵 との Binding を証明するために使われる.
+2. Attribute Value および Attribute Reference: Subscriber に関する情報.
+3. Attribute Metadata: 一つ以上の Subscriber Attribute に関する追加の情報. NIST Internal Report 8112 [[NISTIR 8112]](#nistir8112) に述べられているものなどが例として挙げられる.
+
+<!-- 1. Key binding: Public key or key identifier of subscriber-held key to demonstrate their binding with the assertion described in [Section 6.1.2](#holderofkey).
 2. Attribute values and attribute references: Information about the subscriber.
-3. Attribute metadata: Additional information about one or more subscriber attributes, such as that described in NIST Internal Report 8112 [[NISTIR 8112]](#nistir8112).
+3. Attribute metadata: Additional information about one or more subscriber attributes, such as that described in NIST Internal Report 8112 [[NISTIR 8112]](#nistir8112). -->
 
-Assertions SHOULD specify the AAL when an authentication event is being asserted and IAL when identity proofed attributes (or references based thereon) are being asserted. If not specified, the RP SHALL NOT assign any specific IAL or AAL to the assertion.
+Assertion は Authentication イベントが Assert された際の AAL と Identity Proofed Attribute (ないしはその Reference) が Assert された際の IAL を明記すべきである (SHOULD). もし明記がない場合, RP は当該 Assertion に対していかなる IAL, AAL も割り当ててはならない (SHALL NOT).
+
+<!-- Assertions SHOULD specify the AAL when an authentication event is being asserted and IAL when identity proofed attributes (or references based thereon) are being asserted. If not specified, the RP SHALL NOT assign any specific IAL or AAL to the assertion. -->
 
 An RP SHALL treat subject identifiers as not inherently globally unique. Instead, the value of the assertion's subject identifier is usually in a namespace under the assertion issuer's control. This allows an RP to talk to multiple IdPs without incorrectly conflating subjects from different IdPs.
 
