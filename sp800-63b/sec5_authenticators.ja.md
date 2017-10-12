@@ -10,7 +10,7 @@ _本セクションは標準である．_
 _This section is normative._
 -->
 
-本セクションでは、各Authenticatorタイプごとの要件詳細について記載する。[Section 4](#AAL_SEC4)で指定されたReauthentication要件及び[Section 5.2.5]に記載があるAAL3におけるVerifierなりすまし耐性の例外を除いて、各Authenticatorタイプ毎の技術要件はAuthenticatorが利用されるAALに関わらず同様である。
+本セクションでは，各Authenticatorタイプごとの要件詳細について記載する．[Section 4](#AAL_SEC4)で指定されたReauthentication要件及び[Section 5.2.5]に記載があるAAL3におけるVerifierなりすまし耐性の例外を除いて，各Authenticatorタイプ毎の技術要件はAuthenticatorが利用されるAALに関わらず同様である．
 
 <!--
 This section provides the detailed requirements specific to each type of authenticator. With the exception of reauthentication requirements specified in [Section 4](#AAL_SEC4) and the requirement for verifier impersonation resistance at AAL3 described in [Section 5.2.5](#verifimpers), the technical requirements for each of the authenticator types are the same regardless of the AAL at which the authenticator is used.
@@ -30,7 +30,7 @@ This section provides the detailed requirements specific to each type of authent
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Memorized-secret.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
-    <td>記憶シークレットAuthenticator — 一般的には<i>パスワード</i>や、数字ならば<i>PIN</i>として表現されているもの — は、ユーザによって決められ、記憶されるシークレットである。記憶シークレットは攻撃者が正しい値を推測したり秘密の値を特定できないように、十分に複雑かつ秘密にしておく必要がある。 記憶シークレットは <i>something you know</i> である。</td>
+    <td>記憶シークレットAuthenticator — 一般的には<i>パスワード</i>や，数字ならば<i>PIN</i>として表現されているもの — は，ユーザによって決められ，記憶されるシークレットである．記憶シークレットは攻撃者が正しい値を推測したり秘密の値を特定できないように，十分に複雑かつ秘密にしておく必要がある． 記憶シークレットは <i>something you know</i> である．</td>
     <!--
     <td>A Memorized Secret authenticator — commonly referred to as a <i>password</i> or, if numeric, a <i>PIN</i> — is a secret value intended to be chosen and memorized by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value. A memorized secret is <i>something you know</i>.</td>
     -->
@@ -43,7 +43,7 @@ This section provides the detailed requirements specific to each type of authent
 #### 5.1.1.1 Memorized Secret Authenticators
 -->
 
-記憶シークレットは，Subscriberが決定する場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)、全て数字でもよい(MAY)．
+記憶シークレットは，Subscriberが決定する場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)，全て数字でもよい(MAY)．
 CSPやVerifierが指定された記憶シークレットがセキュリティ侵害を受けたブラックリストに出現するかどうかに基づいて拒否した場合，Subscriberは別の記憶シークレット値を選ぶよう要求されるものとする(SHALL)．記憶シークレットの複雑さに関する他の要件を課すべきではない(SHOULD)．本件についての論拠は[Appendix A](#appA)の _Strength of Memorized Secrets_ に記載されている．
 <!--
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber. Memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. If the CSP or verifier disallows a chosen memorized secret based on its appearance on a blacklist of compromised values, the subscriber SHALL be required to choose a different memorized secret. No other complexity requirements for memorized secrets SHOULD be imposed. A rationale for this is presented in [Appendix A](#appA) _Strength of Memorized Secrets_.
@@ -53,6 +53,8 @@ Memorized secrets SHALL be at least 8 characters in length if chosen by the subs
 <!--
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
 -->
+
+Verifierは，Subscriberが決定した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが決定した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，最低8文字以上であることの確認に先立って，連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレット文字列の前後の切り詰めについては実施しないものとする(SHALL NOT)．前述の長さ要求を満たす目的で，それぞれのUnicode符号位置は単一文字としてカウントされるものとする(SHALL)．
 
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit subscriber-chosen memorized secrets at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets. Unicode [[ISO/ISC 10646]](#ISOIEC10646) characters SHOULD be accepted as well. To make allowances for likely mistyping, verifiers MAY replace multiple consecutive space characters with a single space character prior to verification, provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
 
