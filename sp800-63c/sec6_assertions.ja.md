@@ -69,39 +69,66 @@ Assertion のライフタイムは発行時から有効期限までの間であ�
 
 ### 6.1 Assertion Binding <a name="assertion-binding"></a>
 
-Assertion binding can be classified based on whether presentation by a claimant of an assertion, or an assertion reference, is sufficient for binding to the subscriber, or if the RP requires additional proof that the assertion is bound to the subscriber.
+Assertion Binding は, Assertion と Subscriber の紐付けを行うのに, Assertion の Claimant が Assertion ないしは Assertion Reference 提示すれば十分か, Assertion が Subscriber に紐づいていることを示す追加の証明を RP が要求するか, という点に基づいて分類することができる.
+
+<!-- Assertion binding can be classified based on whether presentation by a claimant of an assertion, or an assertion reference, is sufficient for binding to the subscriber, or if the RP requires additional proof that the assertion is bound to the subscriber. -->
 
 #### 6.1.1 Bearer Assertions <a name="bearer"></a>
 
-A bearer assertion can be presented by any party as proof of the bearer's identity. If an attacker can capture or manufacture a valid assertion or assertion reference representing a subscriber and can successfully present that assertion or reference to the RP, then the attacker could be able to impersonate the subscriber at that RP.
+Bearer Assertion は, いかなる主体でも, Bearer の Identity の証明として提示することができる. もし Attacker が, Subscriber を示す正当な Assertion ないし Assertion Reference を詐取・偽造でき, 当該 Assertion ないし Assertion Reference を RP に提示することができれば, Attacker は RP において Subscriber になりすますことができる.
 
-Note that mere possession of a bearer assertion or reference is not always enough to impersonate a subscriber. For example, if an assertion is presented in the back-channel federation model (described in [Section 7.1](#back-channel)), additional controls MAY be placed on the transaction (such as identification of the RP and assertion injection protections) that help further protect the RP from fraudulent activity.
+<!-- A bearer assertion can be presented by any party as proof of the bearer's identity. If an attacker can capture or manufacture a valid assertion or assertion reference representing a subscriber and can successfully present that assertion or reference to the RP, then the attacker could be able to impersonate the subscriber at that RP. -->
+
+Bearer Assertion や Bearer Assertion Reference を所有しているだけでは, Subscriber になりすますには必ずしも十分ではないことに注意すること. 例えば Assertion が Back-channel Federation モデル ([Section 7.1](#back-channel) 参照) において提示される場合, Transaction 中でさらなる統制 (RP の識別や Assertion インジェクション対策など) が行われており, RP が不正なアクティビティーから保護されていることもある (MAY).
+
+<!-- Note that mere possession of a bearer assertion or reference is not always enough to impersonate a subscriber. For example, if an assertion is presented in the back-channel federation model (described in [Section 7.1](#back-channel)), additional controls MAY be placed on the transaction (such as identification of the RP and assertion injection protections) that help further protect the RP from fraudulent activity. -->
 
 #### 6.1.2 <a name="holderofkey"></a>Holder-of-Key Assertions
-A holder-of-key assertion contains a reference to a key possessed by and representing the subscriber. The key referenced in a holder-of-key represents the subscriber, not any other party in the system including the browser, IdP, or RP. Note that the reference to the key is asserted (and signed) by the issuer of the assertion.
 
-When the RP receives the holder-of-key assertion, the subscriber proves possession of the key referenced in the assertion directly to the RP. While the subscriber could also have used a key-based means of authenticating to the IdP, the primary authentication at the IdP and the federated authentication at the RP are considered separately and are not assumed to use the same keys or related sessions.
+Holder-of-Key Assertion は Subscriber に所持され Subscriber を表現する鍵への参照を含む. Holder-of-Key Assertion 中の鍵の参照は Subscriber を示すものであり, ブラウザー, IdP, RP など当該システム中のいかなる他の主体をも示すものではない. 鍵への参照は Assertion の Issuer によって Assert (ないしは署名) されていることに注意.
 
-In proving possession of the subscriber's key to the RP, the claimant also proves with a certain degree of assurance that they are the rightful subject of the assertion. It is more difficult for an attacker to use a stolen holder-of-key assertion issued to a subscriber, since the attacker would need to steal the referenced key material as well.
+<!-- A holder-of-key assertion contains a reference to a key possessed by and representing the subscriber. The key referenced in a holder-of-key represents the subscriber, not any other party in the system including the browser, IdP, or RP. Note that the reference to the key is asserted (and signed) by the issuer of the assertion. -->
 
-The following requirements apply to all holder-of-key assertions:
+RP が Holder-of-Key Assertion を受け取ると, Subscriber は Assertion から参照された鍵を所有していることを直接 RP に証明する. Subscriber は IdP との間で鍵ベースの Authentication 方法を利用することもできるが, IdP 上の Primary Authentication と RP 上の Federated Authentication は独立したものとみなされ, 同じ鍵や関連した Session が利用されるとは想定されない.
 
-1. The subscriber SHALL prove possession of that key to the RP, in addition to presentation of the assertion itself.
+<!-- When the RP receives the holder-of-key assertion, the subscriber proves possession of the key referenced in the assertion directly to the RP. While the subscriber could also have used a key-based means of authenticating to the IdP, the primary authentication at the IdP and the federated authentication at the RP are considered separately and are not assumed to use the same keys or related sessions. -->
+
+Subscriber が RP に対して鍵所有証明を行うに際して, Claimant はさらに Assertion の正当な Subject であることをある程度の確からしさで証明することになる. Subscriber 向けに発行された Holder-of-Key Assertion に加え, そこから参照された鍵そのものを詐取する必要があるため, Attacker が詐取した Holder-of-Key Assertion を利用するのはより困難である.
+
+<!-- In proving possession of the subscriber's key to the RP, the claimant also proves with a certain degree of assurance that they are the rightful subject of the assertion. It is more difficult for an attacker to use a stolen holder-of-key assertion issued to a subscriber, since the attacker would need to steal the referenced key material as well. -->
+
+Holder-of-Key Assertion には以下のすべての要件が適用される.
+
+<!-- The following requirements apply to all holder-of-key assertions: -->
+
+1. Subscriber は, Assertion 自体の提示に加えて, RP に対して鍵所有証明を行う必要がある (SHALL).
+2. Subscriber が保持する鍵の参照を含み, 鍵所有証明がなされない場合, RP は当該 Assertion を [Bearer Assertion](#bearer) とみなさなければならない (SHALL).
+3. 所与の鍵への参照は, Assertion 内のその他の全ての情報と同レベルで信頼すること (SHALL).
+4. Assertion には, Holder-of-Key による提示で利用する Private Key や Symmetric Key を, 暗号化せずに含めてはならない (SHALL NOT).
+5. 当該鍵は Subscriber が IdP に Authentication する際に利用する鍵とは異なることもある (MAY).
+6. 当該鍵は Symmetric Key でもいいし Private Key に紐づいた Public Key でもいい (MAY).
+7. RP は Claimant が当該鍵を所有していることを IdP と連動して検証してもよい (MAY). これには, 暗号論的なチャレンジに対して Claimant が計算した署名や MAC を IdP に検証してもらう, などといった例が挙げられる.
+
+<!-- 1. The subscriber SHALL prove possession of that key to the RP, in addition to presentation of the assertion itself.
 2. An assertion containing a reference to a key held by the subscriber for which key possession has not been proven SHALL be considered a [bearer assertion](#bearer) by the RP.
 3. Reference to a given key SHALL be trusted at the same level as all other information within the assertion.
 4. The assertion SHALL NOT include an unencrypted private or symmetric key to be used with holder-of-key presentation.
 5. The key MAY be distinct from any key used by the subscriber to authenticate to the IdP.
 6. The key MAY be a symmetric key or a public key that corresponds to a private key.
-7. The RP MAY verify the claimant's possession of the key in conjunction with the IdP, for example, by requesting that the IdP verify a signature or MAC calculated by the claimant in response to a cryptographic challenge.
+7. The RP MAY verify the claimant's possession of the key in conjunction with the IdP, for example, by requesting that the IdP verify a signature or MAC calculated by the claimant in response to a cryptographic challenge. -->
 
 
 ### 6.2 Assertion Protection
 
-Independent of the binding mechanism (discussed in [Section 6.1](#assertion-binding)) or the federation model used to obtain them (described in [Section 5.1](#federation-model)), assertions SHALL include a set of protections to prevent attackers from manufacturing valid assertions or reusing captured assertions at disparate RPs. The protections required are dependent on the details of the use case being considered, and recommended protections are listed here.
+Biding メカニズム ([Section 6.1](#assertion-binding) 参照) や Federation モデル ([Section 5.1](#federation-model) 参照) とは独立して, Assertion は, Attacker が有効な Assertion を偽造したり, 詐取した Assertion を全く異なる RP に対して再利用するといった攻撃を防ぐための一連の保護策を施さなければならない (SHALL). 必要な保護策は考慮されるユースケースの詳細に依存しているが, ここでは推奨される保護策を列挙する.
+
+<!-- Independent of the binding mechanism (discussed in [Section 6.1](#assertion-binding)) or the federation model used to obtain them (described in [Section 5.1](#federation-model)), assertions SHALL include a set of protections to prevent attackers from manufacturing valid assertions or reusing captured assertions at disparate RPs. The protections required are dependent on the details of the use case being considered, and recommended protections are listed here. -->
 
 #### <a name="assertion-id"></a>6.2.1 Assertion Identifier
 
-Assertions SHALL be sufficiently unique to permit unique identification by the target RP. Assertions MAY accomplish this by use of an embedded nonce, issuance timestamp, assertion identifier, or a combination of these or other techniques.
+Assertion は, 対象となる RP が一意に識別できる程度に, 十分ユニークでなければならない (SHALL). Assertion は Nonce, 発行日時, Assertion Identifier やそれらの組み合わせを含めたり, その他のテクニックによってこのユニーク性を達成することができる (MAY).
+
+<!-- Assertions SHALL be sufficiently unique to permit unique identification by the target RP. Assertions MAY accomplish this by use of an embedded nonce, issuance timestamp, assertion identifier, or a combination of these or other techniques. -->
 
 #### 6.2.2 <a name="signed-assertion"></a>Signed Assertion
 
