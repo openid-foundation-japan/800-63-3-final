@@ -54,15 +54,30 @@ Memorized secrets SHALL be at least 8 characters in length if chosen by the subs
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
 -->
 
-Verifierは，Subscriberが決定した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが決定した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，最低8文字以上であることの確認に先立って，連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレット文字列の前後の切り詰めについては実施しないものとする(SHALL NOT)．前述の長さ要求を満たす目的で，それぞれのUnicode符号位置は単一文字としてカウントされるものとする(SHALL)．
+Verifierは，Subscriberが決定した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが決定した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，8文字以上であることの確認を行う前に，タイピングミスの類を考慮して連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレットの切り詰めについては実施しないものとする(SHALL NOT)．前述の記憶シークレットの長さ要件を満たすために，それぞれのUnicodeの符号位置は一文字としてカウントされるものとする(SHALL)．
 
+<!--
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit subscriber-chosen memorized secrets at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets. Unicode [[ISO/ISC 10646]](#ISOIEC10646) characters SHOULD be accepted as well. To make allowances for likely mistyping, verifiers MAY replace multiple consecutive space characters with a single space character prior to verification, provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
+-->
 
+もしUnicode文字が記憶シークレットとして許容されるならば，Verifierは，Unicode Standard Annex 15 [[UAX 15]](#UAX15) の Section 12.1で定義されている"Stablized Strings"のためのNFKCまたはNFKD正規化のいずれかを用いた正規化処理を適用すべきである(SHOULD)．この処理は記憶シークレットのバイト文字表現のハッシュ化の前に適用される．Unicode文字を含む記憶シークレットを決定したSubscriberは，いくつかのエンドポイントでは異なる表現になるかもしれない文字があることを通知されるべきであり(SHOULD)，それが彼らが正しく認証を行う能力に影響する可能性がある．
+
+<!--
 If Unicode characters are accepted in memorized secrets, the verifier SHOULD apply the Normalization Process for Stabilized Strings using either the NFKC or NFKD normalization defined in Section 12.1 of Unicode Standard Annex 15 [[UAX 15]](#UAX15). This process is applied before hashing the byte string representing the memorized secret. Subscribers choosing memorized secrets containing Unicode characters SHOULD be advised that some characters may be represented differently by some endpoints, which can affect their ability to authenticate successfully.
+-->
 
+記憶シークレットは，CSP(例えばEnrollment時など)またVerifier(ユーザが新しいPINを要求した時など)によりランダムに決定されるもので，最低6文字であるものとし(SHALL)，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を利用して生成されるものとする(SHALL)．
+
+<!--
 Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or by the verifier (e.g., when a user requests a new PIN) SHALL be at least 6 characters in length and SHALL be generated using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1).
+-->
 
+記憶シークレットVerifierは，Subscriberに対して，UnauthenticatedであるClaimantでも到達可能な「ヒント」を記録することを許可しないものとする(SHALL NOT)．
+記憶シークレットを選択する際，VerifierはSubscriberに対して特定のタイプの情報（例えば，「あなたが飼った最初のペットの名前はなんですか？」といったもの）の入力を求めないものとする(SHALL NOT)．
+
+<!--
 Memorized secret verifiers SHALL NOT permit the subscriber to store a "hint" that is accessible to an unauthenticated claimant. Verifiers SHALL NOT prompt subscribers to use specific types of information (e.g., "What was the name of your first pet?") when choosing memorized secrets.
+-->
 
 When processing requests to establish and change memorized secrets, verifiers SHALL compare the prospective secrets against a list that contains values known to be commonly-used, expected, or compromised. For example, the list MAY include, but is not limited to:
 
