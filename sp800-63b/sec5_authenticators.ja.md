@@ -79,12 +79,21 @@ Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or b
 Memorized secret verifiers SHALL NOT permit the subscriber to store a "hint" that is accessible to an unauthenticated claimant. Verifiers SHALL NOT prompt subscribers to use specific types of information (e.g., "What was the name of your first pet?") when choosing memorized secrets.
 -->
 
+記憶シークレットの設定，変更の要求を処理する際，Verifierは候補となっているシークレットの値を，一般的に利用されている値，予想されうる値，セキュリティ侵害を受けた値として知られている値を含むリストに対し，比較するものとする(SHALL)．例えば，以下のリストが含んでいるものでよい(MAY)が，限定するものではない:
+
+* 過去に漏洩した語彙集から得られるパスワード
+* 辞書に含まれる言葉
+* 繰り返しまたはシーケンシャルな文字 (例： 'aaaaaa'，'1234abcd')
+* サービス名や，ユーザ名，そこから派生するようなものなど，文脈で特定可能な単語
+
+<!--
 When processing requests to establish and change memorized secrets, verifiers SHALL compare the prospective secrets against a list that contains values known to be commonly-used, expected, or compromised. For example, the list MAY include, but is not limited to:
 
 * Passwords obtained from previous breach corpuses.
 * Dictionary words.
 * Repetitive or sequential characters (e.g. 'aaaaaa', '1234abcd').
 * Context-specific words, such as the name of the service, the username, and derivatives thereof.
+-->
 
 If the chosen secret is found in the list, the CSP or verifier SHALL advise the subscriber that they need to select a different secret, SHALL provide the reason for rejection, and SHALL require the subscriber to choose a different value.
 
