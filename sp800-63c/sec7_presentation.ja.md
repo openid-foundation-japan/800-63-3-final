@@ -67,7 +67,7 @@ Network Transaction がより多く必要となる一方, やりとりされる�
 
 <!-- More network transactions are required in the back-channel method, but the information is limited to only those parties that need it. Since an RP is expecting to get an assertion only from the IdP directly, the attack surface is reduced. Consequently, it is more difficult to inject assertions directly into the RP. -->
 
-RP は, Cross-Site Scripting やその他のテクニックによる, 偽造ないしキャプチャーされた Assertion Reference のインジェクションに対する保護策を施すこととする (SHALL).
+RP は, Cross-Site Scripting 対策やその他のテクニックを利用し, 偽造ないしキャプチャーされた Assertion Reference のインジェクションから自身を保護すること (SHALL).
 
 <!-- The RP SHALL protect itself against injection of manufactured or captured assertion references by use of cross-site scripting protection or other accepted techniques. -->
 
@@ -75,20 +75,35 @@ RP は Assertion に含まれる要素について, 以下のような点を含�
 
 <!-- Elements within the assertion SHALL be validated by the RP, including: -->
 
+- *Issuer Verification*: Assertion が RP の期待する IdP から発行されている旨を保証すること.
+- *Signature Validation*: Assertion の署名が, 当該 Assertion を送信した IdP に関連する鍵と合致する旨を保証すること.
+- *Time Validation*: 有効期限と発行日時が現在日時に対して許容範囲内である旨を保証すること.
+- *Audience Restriction*: 当該 RP がこの Assertion の受信者として意図されている旨を保証すること.
+
+<!--
  - *Issuer verification*: ensuring the assertion was issued by the IdP the RP expects it to be from.
  - *Signature validation*: ensuring the signature of the assertion corresponds to the key related to the IdP sending the assertion.
  - *Time validation*: ensuring the expiration and issue times are within acceptable limits of the current timestamp.
  - *Audience restriction*: ensuring this RP is the intended recipient of the assertion.
+-->
 
-Conveyance of the assertion reference from the IdP to the subscriber, as well as from the subscriber to the RP, SHALL be made over an authenticated protected channel. Conveyance of the assertion reference from the RP to the IdP, as well as the assertion from the IdP to the RP, SHALL be made over an authenticated protected channel.
+IdP から Subscriber, Subscriber から RP へと Assertion Reference を送信する際には, Authenticated Protected Channel を利用すること (SHALL). RP から IdP に Assertion Reference を送信する際, IdP から RP に Assertion を送信する際も, Authenticated Protected Channel を利用すること (SHALL).
 
-When assertion references are presented, the IdP SHALL verify that the party presenting the assertion reference is the same party that requested the authentication. The IdP can do this by requiring the RP to authenticate itself when presenting the assertion reference to the IdP or through other similar means (see [RFC 7636](#RFC7636) for one protocol's method of RP identification).
+<!-- Conveyance of the assertion reference from the IdP to the subscriber, as well as from the subscriber to the RP, SHALL be made over an authenticated protected channel. Conveyance of the assertion reference from the RP to the IdP, as well as the assertion from the IdP to the RP, SHALL be made over an authenticated protected channel. -->
 
-Note that in a federation proxy described in [Section 5.1.4](#proxied), the IdP audience restricts the assertion reference and assertion to the proxy, and the proxy restricts any newly-created assertion references or assertions to the downstream RP.
+Assertion Reference を提示する際, IdP は Assertion Reference を提示している主体が Authentication を要求した主体と同一であることを検証すること (SHALL). IdP は, RP に対して Assertion Reference 提示時に自身を Authenticate するよう求めたり, その他の似たような方法により, これを実現することができる. (RP 識別手段となるプロトコルの一例としては [RFC 7636](#RFC7636) が参考になる)
+
+<!-- When assertion references are presented, the IdP SHALL verify that the party presenting the assertion reference is the same party that requested the authentication. The IdP can do this by requiring the RP to authenticate itself when presenting the assertion reference to the IdP or through other similar means (see [RFC 7636](#RFC7636) for one protocol's method of RP identification). -->
+
+[Section 5.1.4](#proxied) に述べる Federation Proxy では, IdP は Proxy に対して Assertion Reference と Assertion の Audience Restriction を行い, Proxy はダウンストリーム RP に対して新たに生成した Assertion Reference や Assertion の Audience Restriction を行うことに注意.
+
+<!-- Note that in a federation proxy described in [Section 5.1.4](#proxied), the IdP audience restricts the assertion reference and assertion to the proxy, and the proxy restricts any newly-created assertion references or assertions to the downstream RP. -->
 
 ### <a name="front-channel"></a> 7.2 Front-Channel Presentation
 
-In the *front-channel* model, the IdP creates an assertion and sends it to the subscriber after successful authentication. The assertion is used by the subscriber to authenticate to the RP, often through mechanisms within the subscriber's browser.
+*Front-Channel* モデルでは, IdP は Authentication 成功後 Assertion を生成し Subscriber に渡す. Subscriber は渡された Assertion を利用し, 大抵は Subscriber のブラウザ内のメカニズムを通じて, RP に自身を Authenticate する.
+
+<!-- In the *front-channel* model, the IdP creates an assertion and sends it to the subscriber after successful authentication. The assertion is used by the subscriber to authenticate to the RP, often through mechanisms within the subscriber's browser. -->
 
 
 <a name="63cSec7-Figure2"></a>
@@ -100,22 +115,41 @@ In the *front-channel* model, the IdP creates an assertion and sends it to the s
 
 </div>
 
-An assertion is visible to the subscriber in the front-channel method, which could potentially cause leakage of system information included in the assertion. Further, it is more difficult in this model for the RP to query the IdP for additional attributes after the presentation of the assertion.
+Front-Channel モデルでは, Assertion は Subscriber によって閲覧されうる. これは Assertion に含まれるシステム情報などの漏洩につながる可能性もある. さらにこのモデルでは, RP が IdP に Assertion 提示後に追加の Attribute を問い合わせることがより困難になる.
 
-Since the assertion is under the subscriber's control, the front-channel presentation method also allows the subscriber to submit a single assertion to unintended parties, perhaps by a browser replaying an assertion at multiple RPs. Even if the assertion is audience-restricted and rejected by unintended RPs, its presentation at unintended RPs could lead to leaking information about the subscriber and their online activities. Though it is possible to intentionally create an assertion designed to be presented to multiple RPs, this method can lead to lax audience restriction of the assertion itself, which in turn could lead to privacy and security breaches for the subscriber across these RPs. Such multi-RP use is not recommended. Instead, RPs are encouraged to fetch their own individual assertions.
+<!-- An assertion is visible to the subscriber in the front-channel method, which could potentially cause leakage of system information included in the assertion. Further, it is more difficult in this model for the RP to query the IdP for additional attributes after the presentation of the assertion. -->
 
-The RP SHALL protect itself against injection of manufactured or captured assertions by use of cross-site scripting protection or other accepted techniques.
+Assertion は Subscriber のコントロール下に置かれることから, Subscriber はブラウザをリプレイして Assertion を複数の RP に送りつけるなどの手段によって, Assertion を本来意図されない主体に送りつけることもできる. Assertion が Audience Restriction により意図しない RP に拒否されたとしても, 意図しない RP への Assertion の提示は Subscriber に関する情報や Subscriber のオンラインアクティビティの漏洩につながりうる. 意図して複数の RP に提示できるよう設計された Assertion を生成することも可能だが, そのような手法は当該 Assertion に対する Audience Restriction を緩め, 当該 RP 間における Subscriber のプライバシーおよびセキュリティー侵害につながりうる. よってそのような複数 RP に対する利用は推奨しない. RP はそれぞれ個別の Assertion を取得するよう推奨される.
 
-Elements within the assertion SHALL be validated by the RP including:
+<!-- Since the assertion is under the subscriber's control, the front-channel presentation method also allows the subscriber to submit a single assertion to unintended parties, perhaps by a browser replaying an assertion at multiple RPs. Even if the assertion is audience-restricted and rejected by unintended RPs, its presentation at unintended RPs could lead to leaking information about the subscriber and their online activities. Though it is possible to intentionally create an assertion designed to be presented to multiple RPs, this method can lead to lax audience restriction of the assertion itself, which in turn could lead to privacy and security breaches for the subscriber across these RPs. Such multi-RP use is not recommended. Instead, RPs are encouraged to fetch their own individual assertions. -->
 
+RP は, Cross-Site Scripting 対策やその他のテクニックを利用し, 偽造ないしキャプチャーされた Assertion のインジェクションから自身を保護すること (SHALL).
+
+<!-- The RP SHALL protect itself against injection of manufactured or captured assertions by use of cross-site scripting protection or other accepted techniques. -->
+
+RP は Assertion に含まれる要素について, 以下のような点を含めて確認すること.
+
+<!-- Elements within the assertion SHALL be validated by the RP including: -->
+
+- *Issuer Verification*: Assertion が RP の期待する IdP から発行されている旨を保証すること.
+- *Signature Validation*: Assertion の署名が, 当該 Assertion を生成した IdP に関連する鍵と合致する旨を保証すること.
+- *Time Validation*: 有効期限と発行日時が現在日時に対して許容範囲内である旨を保証すること.
+- *Audience Restriction*: 当該 RP がこの Assertion の受信者として意図されている旨を保証すること.
+
+<!--
  - *Issuer verification*: ensuring the assertion was issued by the expected IdP.
  - *Signature validation*: ensuring the signature of the assertion corresponds to the key related to the IdP making the assertion.
  - *Time validation*: ensuring the expiration and issue times are within acceptable limits of the current timestamp.
  - *Audience restriction*: ensuring this RP is the intended recipient of the assertion.
+-->
 
-Conveyance of the assertion from the IdP to the subscriber, as well as from the subscriber to the RP, SHALL be made over an authenticated protected channel.
+IdP から Subscriber, Subscriber から RP へと Assertion を送信する際には, Authenticated Protected Channel を利用すること (SHALL).
 
-Note that in a federation proxy described in [Section 5.1.4](#proxied), the IdP audience restricts the assertion to the proxy, and the proxy restricts any newly-created assertions to the downstream RP.
+<!-- Conveyance of the assertion from the IdP to the subscriber, as well as from the subscriber to the RP, SHALL be made over an authenticated protected channel. -->
+
+[Section 5.1.4](#proxied) に述べる Federation Proxy では, IdP は Proxy に対して Assertion の Audience Restriction を行い, Proxy はダウンストリーム RP に対して新たに生成した Assertion の Audience Restriction を行うことに注意.
+
+<!-- Note that in a federation proxy described in [Section 5.1.4](#proxied), the IdP audience restricts the assertion to the proxy, and the proxy restricts any newly-created assertions to the downstream RP. -->
 
 ### <a name="protecting-information"></a> 7.3 Protecting Information
 
