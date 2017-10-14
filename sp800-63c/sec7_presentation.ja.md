@@ -153,11 +153,20 @@ IdP から Subscriber, Subscriber から RP へと Assertion を送信する際�
 
 ### <a name="protecting-information"></a> 7.3 Protecting Information
 
-Communications between the IdP and the RP SHALL be protected in transit using an authenticated protected channel. Communications between the subscriber and either the IdP or the RP (usually through a browser) SHALL be made using an authenticated protected channel.
+IdP と RP の間の通信は, Authenticated Protected Channel を利用して保護すること (SHALL). Subscriber と IdP および RP それぞれとの間の通信 (通常はブラウザーを介して行われる) も Authenticated Protected Channel Channel を介して行うこと (SHALL).
 
-Note that the IdP may have access to information that may be useful to the RP in enforcing security policies, such as device identity, location, system health checks, and configuration management. If so, it may be a good idea to pass this information along to the RP within the bounds of the subscriber's privacy preferences described in [Section 9.2](#notice).
+<!-- Communications between the IdP and the RP SHALL be protected in transit using an authenticated protected channel. Communications between the subscriber and either the IdP or the RP (usually through a browser) SHALL be made using an authenticated protected channel. -->
 
-Additional attributes about the user MAY be included outside of the assertion itself as part of a separate authorized request from the RP to the IdP. The authorization for access to these attributes MAY be issued alongside the assertion itself. Splitting user information in this manner can aid in protecting user privacy and allow for limited disclosure of identifying attributes on top of the essential information in the authentication assertion itself.
+IdP は, RP がセキュリティポリシーを適用する際に有用な情報に Access できる可能性もある. こういった情報としては, Device Identity, 位置情報, システムヘルスチェック情報, 設定管理情報等があげられる. IdP がこういった情報を取得できる場合, Subscriber のプライバシーを侵害しない範囲内で, そういった情報を RP に渡すことも可能であろう. 詳細は [Section 9.2](#notice) を参照のこと.
 
-The RP SHALL, where feasible, request attribute references rather than full attribute values as described in [Section 9.3](#minimization). The IdP SHALL support attribute references.
+<!-- Note that the IdP may have access to information that may be useful to the RP in enforcing security policies, such as device identity, location, system health checks, and configuration management. If so, it may be a good idea to pass this information along to the RP within the bounds of the subscriber's privacy preferences described in [Section 9.2](#notice). -->
+
+
+ユーザーに関する追加の Attribute は, Assertion とは別に, RP から IdP への Authorized なリクエストを通じてやり取りされてもよい (MAY). こういった Attribute への Access に対する Authorization は, Assertion と一緒に発行することもできる (MAY). ユーザーに関する情報をこのように分離することで, ユーザーのプライバシー保護に役立ち, Authentication Assertion 自体に必須な情報に添える識別可能な Attribute を限定することも可能になる.
+
+<!-- Additional attributes about the user MAY be included outside of the assertion itself as part of a separate authorized request from the RP to the IdP. The authorization for access to these attributes MAY be issued alongside the assertion itself. Splitting user information in this manner can aid in protecting user privacy and allow for limited disclosure of identifying attributes on top of the essential information in the authentication assertion itself. -->
+
+RP は, [Section 9.3](#minimization) にあるように, 可能な限り完全な Attribute Value ではなく Attribute Reference を要求し (SHALL), IdP は Attribute Reference をサポートすること (SHALL).
+
+<!-- The RP SHALL, where feasible, request attribute references rather than full attribute values as described in [Section 9.3](#minimization). The IdP SHALL support attribute references. -->
 
