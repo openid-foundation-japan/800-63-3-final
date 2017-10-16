@@ -165,6 +165,7 @@ When a multi-factor authenticator is used, any of the following MAY be used:
 * 多要素 OTP デバイス ([Section 5.1.5](#multifactorOTP))
 * 多要素暗号ソフトウェア ([Section 5.1.8](#mfcs))
 * 多要素暗号デバイス ([Section 5.1.9](#mfcd))
+
 <!--
 * Multi-Factor OTP Device ([Section 5.1.5](#multifactorOTP))
 * Multi-Factor Cryptographic Software ([Section 5.1.8](#mfcs))
