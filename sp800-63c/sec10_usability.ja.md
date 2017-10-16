@@ -6,23 +6,39 @@
 
 *This section is informative.*
 
-[ISO/IEC 9241-11](#ISO9241-11) defines usability as the "extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use." This definition focuses on users, goals, and context of use as key elements necessary for achieving effectiveness, efficiency and satisfaction. A holistic approach considering these key elements is necessary to achieve usability.
+[ISO/IEC 9241-11](#ISO9241-11) はユーザビリティーを "特定のユーザーが特定の利用コンテキストにおいて,  有効, 効率的かつ満足できる程度に特定の目的を達成するためにプロダクトを利用できる程度" と定義している. この定義は, 有効性, 効率性, 満足度を達成するために必要な主要因として, ユーザーと目標, 利用コンテキストに着目している. ユーザビリティーを達成するには, これらのキー要素を考慮した全体的アプローチが必要である.
 
-From the usability perspective, one of the major potential benefits of federated identity systems is to address the problem of user fatigue associated with managing multiple authenticators. While this has historically been a problem with usernames and passwords, the increasing need for users to manage many authenticators — whether physical or digital — presents a usability challenge.
+<!-- [ISO/IEC 9241-11](#ISO9241-11) defines usability as the "extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use." This definition focuses on users, goals, and context of use as key elements necessary for achieving effectiveness, efficiency and satisfaction. A holistic approach considering these key elements is necessary to achieve usability. -->
 
-While many other approaches to authentication have been researched extensively and have well-established usability guidelines, federated identity is more nascent and, therefore, lacks the depth and conclusiveness of research findings. As ongoing usability research matures, usability guidelines for federated identity systems will have stronger supporting data. For example, additional data is needed to support guidance on the translation of technical attribute names and values into user-friendly language.
+ユーザビリティーの観点からは, Federated Identity システムの最大の潜在的メリットの一つとして, 複数の Authentictor を管理することに関連するユーザーの疲労という問題への取り組みがあげられる. 歴史的にこれはユーザーネームとパスワードの問題であったが, ユーザーが Authenticator を管理する必要性が向上するにつれ, それが物理的なものでもデジタルなものでも, ユーザビリティーの課題が立ちはだかるようになった.
 
-As stated in the usability sections in 800-63A and 800-63B, overall user experience is critical to the success of any authentication method. This is especially true for federated identity systems as federation is a less familiar user interaction paradigm for many users. Users' prior authentication experiences may influence their expectations.
+<!-- From the usability perspective, one of the major potential benefits of federated identity systems is to address the problem of user fatigue associated with managing multiple authenticators. While this has historically been a problem with usernames and passwords, the increasing need for users to manage many authenticators — whether physical or digital — presents a usability challenge. -->
 
-The overall user experience with federated identity systems should be as smooth and easy as possible. This can be accomplished by following usability standards (such as the ISO 25060 series of standards) and established best practices for user interaction design.
+多くの他の Authentication へのアプローチが, 広範囲に研究され, かつ確立されたユーザビリティーガイドラインを持っているが, Federated Identity はより新しく, 従って研究結果の深さと決定性が不足している. 進行中のユーサビリティー研究が成熟するにつれ, Federated Identity システムに関するユーザビリティーガイドラインはより強力な支援データを持つこととなろう. 例えば, 技術的 Attribute の名前と値をユーザーフレンドリーな言語に翻訳するガイダンスを指示するには, さらなるデータが必要である.
+
+<!-- While many other approaches to authentication have been researched extensively and have well-established usability guidelines, federated identity is more nascent and, therefore, lacks the depth and conclusiveness of research findings. As ongoing usability research matures, usability guidelines for federated identity systems will have stronger supporting data. For example, additional data is needed to support guidance on the translation of technical attribute names and values into user-friendly language. -->
+
+800-63A と 800-63B のユーサビリティーセクションで述べたように, いかなる Authentication 手法においても全体のユーザーエクスペリエンスは不可欠である. Federation は多くのユーザーにとってまだ慣れないインタラクションパラダイムであるため, これは Federated Identity システムにおいては特に当てはまる. ユーザーの過去の Authentication 経験は, ユーザーの期待に影響を及ぼしうる.
+
+<!-- As stated in the usability sections in 800-63A and 800-63B, overall user experience is critical to the success of any authentication method. This is especially true for federated identity systems as federation is a less familiar user interaction paradigm for many users. Users' prior authentication experiences may influence their expectations. -->
+
+Federated Identity システムにおける全体のユーザーエクスペリエンスは, 可能な限りスムーズかつ容易であるべきである. これは以下のユーザビリティー標準 (ISO 25060 シリーズの標準など) やユーザーインタラクションデザインのための確立されたベストプラクティスによって達成できる.
+
+<!-- The overall user experience with federated identity systems should be as smooth and easy as possible. This can be accomplished by following usability standards (such as the ISO 25060 series of standards) and established best practices for user interaction design. -->
 
 ASSUMPTIONS
 
-In this section, the term "users" means "claimants" or "subscribers." The terms "entity" and "entities" refer to the parties of federated systems.
+本セクションでは, "User" とは "Claimant" ないし "Subscriber" を意味し, "Entity" とは Federated システムに関与する主体を意味する.
 
-Guidelines and considerations are described from the users' perspective.
+<!-- In this section, the term "users" means "claimants" or "subscribers." The terms "entity" and "entities" refer to the parties of federated systems. -->
 
-Accessibility differs from usability and is out of scope for this volume. [Section 508](#Section508) was enacted to eliminate barriers in information technology and requires federal agencies to make their electronic and information technology public content accessible to people with disabilities. Refer to Section 508 law and standards for accessibility guidance.
+ガイドラインおよび考慮事項はユーザー視点で記述されている.
+
+<!-- Guidelines and considerations are described from the users' perspective. -->
+
+アクセシビリティーはユーザビリティーとは異なり, 本 Vol. の扱うところではない. [Section 508](#Section508) は情報技術の障壁を排除するために制定され, 連邦政府機関に対して, 電子的かつ情報技術を活用し障害者が公開コンテンツにアクセス可能になるよう求めている. アクセシビリティーガイドラインについては Section 508 の法と標準を参照のこと.
+
+<!-- Accessibility differs from usability and is out of scope for this volume. [Section 508](#Section508) was enacted to eliminate barriers in information technology and requires federal agencies to make their electronic and information technology public content accessible to people with disabilities. Refer to Section 508 law and standards for accessibility guidance. -->
 
 ### 10.1 General Usability Considerations
 
