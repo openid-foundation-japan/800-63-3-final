@@ -95,25 +95,25 @@ When processing requests to establish and change memorized secrets, verifiers SH
 * Context-specific words, such as the name of the service, the username, and derivatives thereof.
 -->
 
-もし選択したシークレットがリスト中に存在したら、CSPまたはVerifierはSubscriberに対して異なるシークレット値を選ぶ必要があるということを知らせるものとし(SHALL)、その理由を提供するものとし(SHALL)、そしてSubscriberに異なる値を選択するよう求められるものとする(SHALL)。
+もし選択したシークレットがリスト中に存在したら，CSPまたはVerifierはSubscriberに対して異なるシークレット値を選ぶ必要があるということを知らせるものとし(SHALL)，その理由を提供するものとし(SHALL)，そしてSubscriberに異なる値を選択するよう求められるものとする(SHALL)．
 
 <!--
 If the chosen secret is found in the list, the CSP or verifier SHALL advise the subscriber that they need to select a different secret, SHALL provide the reason for rejection, and SHALL require the subscriber to choose a different value.
 -->
 
-VerifierはSubscriberに対して、ユーザが強力な記憶シークレットを選択するのを支援するために、パスワード強度メーター [[Meters]](#meters) のようなガイダンスを行うべきである(SHOULD)。上記におリストに載っている記憶シークレットを拒否したのち、[[Blacklists]](#blacklists)化されている(そしておそらく非常に弱い)記憶シークレットからのささいな変更を思いとどまらせることは特に重要である。
+VerifierはSubscriberに対して，ユーザが強力な記憶シークレットを選択するのを支援するために，パスワード強度メーター [[Meters]](#meters) のようなガイダンスを行うべきである(SHOULD)．上記におリストに載っている記憶シークレットを拒否したのち，[[Blacklists]](#blacklists)化されている(そしておそらく非常に弱い)記憶シークレットからのささいな変更を思いとどまらせることは特に重要である．
 
 <!--
 Verifiers SHOULD offer guidance to the subscriber, such as a password-strength meter [[Meters]](#meters), to assist the user in choosing a strong memorized secret. This is particularly important following the rejection of a memorized secret on the above list as it discourages trivial modification of listed (and likely very weak) memorized secrets [[Blacklists]](#blacklists).
 -->
 
-Verifierは、[Section 5.2.2](#throttle)に記載されているように、Subscriberにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)。
+Verifierは，[Section 5.2.2](#throttle)に記載されているように，Subscriberのアカウントにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
 
 <!--
 Verifiers SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
 -->
 
-Verifierは他の構成ルール(例えば，異なる文字種の組み合わせ，一定の文字の繰り返し)を記憶シークレットに課すべきではない(SHOULD NOT)。Verifierは，記憶シークレットを任意で(例えば、定期的に)変更するよう要求すべきではない(SHOULD NOT)。しかしながらAuthenticatorが侵害されている証拠がある場合は，変更を強制するものとする(SHALL)．
+Verifierは他の構成ルール(例えば，異なる文字種の組み合わせ，一定の文字の繰り返し)を記憶シークレットに課すべきではない(SHOULD NOT)．Verifierは，記憶シークレットを任意で(例えば，定期的に)変更するよう要求すべきではない(SHOULD NOT)．しかしながらAuthenticatorが侵害されている証拠がある場合は，変更を強制するものとする(SHALL)．
 
 <!--
 Verifiers SHOULD NOT impose other composition rules (e.g., requiring mixtures of different character types or prohibiting consecutively repeated characters) for memorized secrets. Verifiers SHOULD NOT require memorized secrets to be changed arbitrarily (e.g., periodically). However, verifiers SHALL force a change if there is evidence of compromise of the authenticator.
@@ -124,20 +124,17 @@ VerifierはClaimantによる記憶シークレットを入力時に"ペースト
 Verifiers SHOULD permit claimants to use "paste" functionality when entering a memorized secret. This facilitates the use of password managers, which are widely used and in many cases increase the likelihood that users will choose stronger memorized secrets.
 -->
 
-Claimantが記憶シークレットを正しく入力することを支援するために、Verifierは，ドットやアスタリスク表示ではなく，入力され終わるまでシークレットを表示するオプションを提供すべき(SHOULD)である。こうすることで，Claimantは彼らのスクリーンが盗み見られる可能性が低い場所にいる場合に、入力内容を検証することができる。Verifierは更に，ユーザのデバイスに対して，入力が正しいことを確認する目的で個々の文字を入力後に短期間表示することを許可してもよい(MAY)．これは特にモバイルデバイスに当てはまる．
+Claimantが記憶シークレットを正しく入力することを支援するために，Verifierは，ドットやアスタリスク表示ではなく，入力され終わるまでシークレットを表示するオプションを提供すべき(SHOULD)である．こうすることで，Claimantは彼らのスクリーンが盗み見られる可能性が低い場所にいる場合に，入力内容を検証することができる．Verifierは更に，ユーザのデバイスに対して，入力が正しいことを確認する目的で個々の文字を入力後に短期間表示することを許可してもよい(MAY)．これは特にモバイルデバイスに当てはまる．
 <!--
 In order to assist the claimant in successfully entering a memorized secret, the verifier SHOULD offer an option to display the secret — rather than a series of dots or asterisks — until it is entered. This allows the claimant to verify their entry if they are in a location where their screen is unlikely to be observed. The verifier MAY also permit the user's device to display individual entered characters for a short time after each character is typed to verify correct entry. This is particularly applicable on mobile devices.
 -->
 
-VerifierはApproveされた暗号化を利用するものとし(SHALL)、記憶シークレットを要求する際には，盗聴や中間者攻撃を防止するためにAuthenticateされた保護チャネルを用いるものとする(SHALL)。
+VerifierはApproveされた暗号化を利用するものとし(SHALL)，記憶シークレットを要求する際には，盗聴や中間者攻撃を防止するためにAuthenticateされた保護チャネルを用いるものとする(SHALL)．
 <!--
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting memorized secrets in order to provide resistance to eavesdropping and MitM attacks.
 -->
 
-Verifierは、オフライン攻撃に対して耐性をもった形式で記憶シークレットを保存するものとする(SHALL)。シークレットは、 ソルトを追加したうえで適切な一方向の鍵導出関数を利用してハッシュされるものとする(SHALL)，鍵導出関数は，パスワード，ソルト，コストファクタを入力して，パスワードハッシュを生成する．
-
-例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のような承認済み(approved)のハッシュを用いてハッシュ化されるものとする(SHALL)。
-ソルト値は32ビット以上のランダム値で、承認済み(approved)の乱数生成器を用いて生成され、ハッシュ結果とともに記録される。少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)。ハッシュAuthenticatorから分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC)は、記録済みハッシュ化Authenticatorに対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)。パスワードハッシュのファイルを入手した攻撃者によってパスワード推測の試行に費用がかかるようにする．そのためパスワード推測攻撃のコストは高い，もしくは非常に法外なものになる．適切な鍵導出関数の例としてPassword-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132)及びBalloon [[BALLOON]](#balloon)がある．攻撃コストを増加させることができるため，memory-hardな関数が利用されるべきである(SHOULD)．鍵導出関数はapproveされた一方向関数が用いられるべき(SHOULD)であり，例えば，Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1)，[SP 800-107](#SP800-107)のapproveされたハッシュ関数の何れか，Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202)，CMAC [[SP 800-38B]](#SP800-38B)，Keccak Message Authentication Code (KMAC)，Customizable SHAKE (cSHAKE)，ParallelHash [[SP 800-185]](#SP800-185)などがある．鍵導出関数からの出力を選択する際，根拠となる一方向関数の出力と長さが同じであるべきである(SHOULD)．
+Verifierは，オフライン攻撃に対して耐性をもった形式で記憶シークレットを保存するものとする(SHALL)．シークレットは， ソルトを追加したうえで適切な一方向の鍵導出関数を利用してハッシュされるものとする(SHALL)，鍵導出関数は，パスワード，ソルト，コストファクタを入力して，パスワードハッシュを生成する．例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のような承認済み(approved)のハッシュを用いてハッシュ化されるものとする(SHALL)．ソルト値は32ビット以上のランダム値で，承認済み(approved)の乱数生成器を用いて生成され，ハッシュ結果とともに記録される．少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)．ハッシュAuthenticatorから分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC)は，記録済みハッシュ化Authenticatorに対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)．パスワードハッシュのファイルを入手した攻撃者によってパスワード推測の試行に費用がかかるようにする．そのためパスワード推測攻撃のコストは高い，もしくは非常に法外なものになる．適切な鍵導出関数の例としてPassword-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132)及びBalloon [[BALLOON]](#balloon)がある．攻撃コストを増加させることができるため，memory-hardな関数が利用されるべきである(SHOULD)．鍵導出関数はapproveされた一方向関数が用いられるべき(SHOULD)であり，例えば，Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1)，[SP 800-107](#SP800-107)のapproveされたハッシュ関数の何れか，Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202)，CMAC [[SP 800-38B]](#SP800-38B)，Keccak Message Authentication Code (KMAC)，Customizable SHAKE (cSHAKE)，ParallelHash [[SP 800-185]](#SP800-185)などがある．鍵導出関数からの出力を選択する際，根拠となる一方向関数の出力と長さが同じであるべきである(SHOULD)．
 
 <!--
 Verifiers SHALL store memorized secrets in a form that is resistant to offline attacks. Memorized secrets SHALL be salted and hashed using a suitable one-way key derivation function. Key derivation functions take a password, a salt, and a cost factor as inputs then generate a password hash. Their purpose is to make each password guessing trial by an attacker who has obtained a password hash file expensive and therefore the cost of a guessing attack high or prohibitive. Examples of suitable key derivation functions include Password-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132) and Balloon [[BALLOON]](#balloon). A memory-hard function SHOULD be used because it increases the cost of an attack. The key derivation function SHALL use an approved one-way function such as Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1), any approved hash function in [SP 800-107](#SP800-107), Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202), CMAC [[SP 800-38B]](#SP800-38B) or Keccak Message Authentication Code (KMAC), Customizable SHAKE (cSHAKE), or ParallelHash [[SP 800-185]](#SP800-185). The chosen output length of the key derivation function SHOULD be the same as the length of the underlying one-way function output.
@@ -158,33 +155,64 @@ For PBKDF2, the cost factor is an iteration count: the more times the PBKDF2 fun
 In addition, verifiers SHOULD perform an additional iteration of a key derivation function using a salt value that is secret and known only to the verifier. This salt value, if used, SHALL be generated by an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1) and provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The secret salt value SHALL be stored separately from the hashed memorized secrets (e.g., in a specialized device like a hardware security module). With this additional iteration, brute-force attacks on the hashed memorized secrets are impractical as long as the secret salt value remains secret.
 -->
 
+#### <a name="lookupsecrets"></a> 5.1.2 ルックアップシークレット
+<!--
 #### <a name="lookupsecrets"></a> 5.1.2 Look-Up Secrets
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Look-up-secrets.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>ルックアップシークレットAuthenticatorは物理的または電子的なレコードであり，ClaimantとCSPとの間で共有されているシークレット一式を記録するものである．Claimantは，Verifierからの入力要求に答えるために必要とされる適切なシークレットを検索するためにAuthenticatorを利用する．例えば，VerifierはClaimantに対して，カード上に印字された表形式の数字または文字列のうち特定の一部を提示するよう求められるかもしれない．ルックアップシークレットの一般的な適用としては，Subscriberによって保存され，別のAuthenticatorが紛失したり機能しなくなった際に用いる"リカバリキー"の利用がある．ルックアップシークレットは<i>something you have</i>である．</td>
+    <!--
     <td>A look-up secret authenticator is a physical or electronic record that stores a set of secrets shared between the claimant and the CSP. The claimant uses the authenticator to look up the appropriate secret(s) needed to respond to a prompt from the verifier. For example, the verifier may ask a claimant to provide a specific subset of the numeric or character strings printed on a card in table format. A common application of look-up secrets is the use of "recovery keys" stored by the subscriber for use in the event another authenticator is lost or malfunctions. A look-up secret is <i>something you have</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
+#### <a name="lusa"></a>5.1.2.1 ルックアップシークレットAuthenticator
+<!--
 #### <a name="lusa"></a>5.1.2.1 Look-Up Secret Authenticators
+-->
+
+CSPがルックアップシークレットAuthenticatorを生成する際，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いてシークレットのリストを生成するものとし(SHALL)，Subscriberに対してAuthenticatorを安全に届けるものとする(SHALL)．ルックアップシークレットは最低20ビットのエントロピーを持つものとする(SHALL)．
+<!--
 CSPs creating look-up secret authenticators SHALL use an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1) to generate the list of secrets and SHALL deliver the authenticator securely to the subscriber. Look-up secrets SHALL have at least 20 bits of entropy.
+-->
 
+ルックアップシークレットは，CSPの人間の手での配布，Subscriberの住所宛への配送，またはオンラインでの配布が行われてもよい(MAY)，もし配布がオンラインで行われるならば，ルックアップシークレットはpost-enrollment binding要件[Section 6.1.2](#post-enroll-bind)を満たすセキュアチャネル上で配布されるものとする(SHALL)．
+<!--
 Look-up secrets MAY be distributed by the CSP in person, by postal mail to the subscriber's address of record, or by online distribution. If distributed online, look-up secrets SHALL be distributed over a secure channel in accordance with the post-enrollment binding requirements in [Section 6.1.2](#post-enroll-bind).
+-->
 
+もしAuthenticatorがルックアップシークレットを連続してリストから利用する場合，Subscriberは一度認証に成功した場合に限ってシークレットを破棄してもよい(MAY)．
+<!--
 If the authenticator uses look-up secrets sequentially from a list, the subscriber MAY dispose of used secrets, but only after a successful authentication.
+-->
 
 #### 5.1.2.2 Look-Up Secret Verifiers
 
+ルックアップシークレットのVerifierはClaimantに対して，彼らのAuthenticatorから得られる次のシークレット，または特定の(例:付番された)シークレットの入力を促すものとする(SHALL)．Authenticatorから得られたシークレットは1度しか正常に利用できないものとする(SHALL)．もしルックアップシークレットが格子状のカードから得られる場合，格子の各セルは1度だけ利用するものとする(SHALL)．
+<!--
 Verifiers of look-up secrets SHALL prompt the claimant for the next secret from their authenticator or for a specific (e.g., numbered) secret. A given secret from an authenticator SHALL be used successfully only once. If the look-up secret is derived from a grid card, each cell of the grid SHALL be used only once.
+-->
 
+Verifierは，オフライン攻撃へ対策する形式でルックアップシークレットを保存するものとする(SHALL)．112ビット以上のエントロピーを持ったルックアップシークレットは，[Section 5.1.1.2](#memsecretver)に記載されているようにapproveされた一方向関数でハッシュ化されるものとする(SHALL)．112ビット未満のエントロピーを持ったルックアップシークレットは[Section 5.1.1.2](#memsecretver)に記載されているように，ソルトを追加したうえで適切な一方向の鍵導出関数を用いてハッシュされるものとする．ソルト値は32ビット以上の長さで，保存されたハッシュ間でソルト値の衝突が最小化されるように任意に選択されるものとする(SHALL)．ソルト値及び結果のハッシュはいずれもルックアップシークレット毎に保存されるものとする(SHALL)．
+<!--
 Verifiers SHALL store look-up secrets in a form that is resistant to offline attacks. Look-up secrets having at least 112 bits of entropy SHALL be hashed with an approved one-way function as described in [Section 5.1.1.2](#memsecretver). Look-up secrets with fewer than 112 bits of entropy SHALL be salted and hashed using a suitable one-way key derivation function, also described in [Section 5.1.1.2](#memsecretver). The salt value SHALL be at least 32 in bits in length and arbitrarily chosen so as to minimize salt value collisions among stored hashes. Both the salt value and the resulting hash SHALL be stored for each look-up secret.
+-->
 
+64ビット未満のエントロピーを持つルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，Subscriberのアカウントにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+<!--
 For look-up secrets that have less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
+-->
 
+VerifierはApproveされた暗号化を利用するものとし(SHALL)，ルックアップシークレットを要求する際には，盗聴や中間者攻撃を防止する目的で，Authenticateされた保護チャネルを利用するものとする(SHALL)．
+<!--
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting look-up secrets in order to provide resistance to eavesdropping and MitM attacks.
+-->
 
 #### <a name="out-of-band"></a> 5.1.3 Out-of-Band Devices
 
