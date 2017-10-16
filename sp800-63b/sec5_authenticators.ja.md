@@ -30,7 +30,7 @@ This section provides the detailed requirements specific to each type of authent
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Memorized-secret.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
-    <td>記憶シークレットAuthenticator — 一般的には<i>パスワード</i>や，数字ならば<i>PIN</i>として表現されているもの — は，ユーザによって決められ，記憶されるシークレットである．記憶シークレットは攻撃者が正しい値を推測したり秘密の値を特定できないように，十分に複雑かつ秘密にしておく必要がある． 記憶シークレットは <i>something you know</i> である．</td>
+    <td>記憶シークレットAuthenticator — 一般的には<i>パスワード</i>や，数字ならば<i>PIN</i>として表現されているもの — は，ユーザによって選択され，記憶されるシークレットである．記憶シークレットは攻撃者が正しい値を推測したり秘密の値を特定できないように，十分に複雑かつ秘密にしておく必要がある． 記憶シークレットは <i>something you know</i> である．</td>
     <!--
     <td>A Memorized Secret authenticator — commonly referred to as a <i>password</i> or, if numeric, a <i>PIN</i> — is a secret value intended to be chosen and memorized by the user. Memorized secrets need to be of sufficient complexity and secrecy that it would be impractical for an attacker to guess or otherwise discover the correct secret value. A memorized secret is <i>something you know</i>.</td>
     -->
@@ -43,7 +43,7 @@ This section provides the detailed requirements specific to each type of authent
 #### 5.1.1.1 Memorized Secret Authenticators
 -->
 
-記憶シークレットは，Subscriberが決定する場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)，全て数字でもよい(MAY)．
+記憶シークレットは，Subscriberにより選択されば場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)，全て数字でもよい(MAY)．
 CSPやVerifierが指定された記憶シークレットがセキュリティ侵害を受けたブラックリストに出現するかどうかに基づいて拒否した場合，Subscriberは別の記憶シークレット値を選ぶよう要求されるものとする(SHALL)．記憶シークレットの複雑さに関する他の要件を課すべきではない(SHOULD)．本件についての論拠は[Appendix A](#appA)の _Strength of Memorized Secrets_ に記載されている．
 <!--
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber. Memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. If the CSP or verifier disallows a chosen memorized secret based on its appearance on a blacklist of compromised values, the subscriber SHALL be required to choose a different memorized secret. No other complexity requirements for memorized secrets SHOULD be imposed. A rationale for this is presented in [Appendix A](#appA) _Strength of Memorized Secrets_.
@@ -54,25 +54,25 @@ Memorized secrets SHALL be at least 8 characters in length if chosen by the subs
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
 -->
 
-Verifierは，Subscriberが決定した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが決定した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，8文字以上であることの確認を行う前に，タイピングミスの類を考慮して連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレットの切り詰めについては実施しないものとする(SHALL NOT)．前述の記憶シークレットの長さ要件を満たすために，それぞれのUnicodeの符号位置は一文字としてカウントされるものとする(SHALL)．
+Verifierは，Subscriberが選択した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが選択した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，8文字以上であることの確認を行う前に，タイピングミスの類を考慮して連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレットの切り詰めについては実施しないものとする(SHALL NOT)．前述の記憶シークレットの長さ要件を満たすために，それぞれのUnicodeの符号位置は一文字としてカウントされるものとする(SHALL)．
 
 <!--
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit subscriber-chosen memorized secrets at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets. Unicode [[ISO/ISC 10646]](#ISOIEC10646) characters SHOULD be accepted as well. To make allowances for likely mistyping, verifiers MAY replace multiple consecutive space characters with a single space character prior to verification, provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
 -->
 
-もしUnicode文字が記憶シークレットとして許容されるならば，Verifierは，Unicode Standard Annex 15 [[UAX 15]](#UAX15) の Section 12.1で定義されている"Stablized Strings"のためのNFKCまたはNFKD正規化のいずれかを用いた正規化処理を適用すべきである(SHOULD)．この処理は記憶シークレットのバイト文字表現のハッシュ化の前に適用される．Unicode文字を含む記憶シークレットを決定したSubscriberは，いくつかのエンドポイントでは異なる表現になるかもしれない文字があることを通知されるべきであり(SHOULD)，それが彼らが正しく認証を行う能力に影響する可能性がある．
+もしUnicode文字が記憶シークレットとして許容されるならば，Verifierは，Unicode Standard Annex 15 [[UAX 15]](#UAX15) の Section 12.1で定義されている"Stablized Strings"のためのNFKCまたはNFKD正規化のいずれかを用いた正規化処理を適用すべきである(SHOULD)．この処理は記憶シークレットのバイト文字表現のハッシュ化の前に適用される．Unicode文字を含む記憶シークレットを選択したSubscriberは，いくつかのエンドポイントでは異なる表現になるかもしれない文字があり，それが彼らが正しく認証を行う能力に影響する可能性があるということをことを通知されるべきである(SHOULD)．
 
 <!--
 If Unicode characters are accepted in memorized secrets, the verifier SHOULD apply the Normalization Process for Stabilized Strings using either the NFKC or NFKD normalization defined in Section 12.1 of Unicode Standard Annex 15 [[UAX 15]](#UAX15). This process is applied before hashing the byte string representing the memorized secret. Subscribers choosing memorized secrets containing Unicode characters SHOULD be advised that some characters may be represented differently by some endpoints, which can affect their ability to authenticate successfully.
 -->
 
-記憶シークレットは，CSP(例えばEnrollment時など)またVerifier(ユーザが新しいPINを要求した時など)によりランダムに決定されるもので，最低6文字であるものとし(SHALL)，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を利用して生成されるものとする(SHALL)．
+記憶シークレットは，CSP(例えばEnrollment時など)やVerifier(ユーザが新しいPINを要求した時など)によりランダムに選択されるもので，最低6文字であるものとし(SHALL)，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を利用して生成されるものとする(SHALL)．
 
 <!--
 Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or by the verifier (e.g., when a user requests a new PIN) SHALL be at least 6 characters in length and SHALL be generated using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1).
 -->
 
-記憶シークレットVerifierは，Subscriberに対して，UnauthenticatedであるClaimantでも到達可能な「ヒント」を記録することを許可しないものとする(SHALL NOT)．
+記憶シークレットVerifierは，Subscriberに対して，UnauthenticatedでないClaimantでも到達可能な「ヒント」を記録することを許可しないものとする(SHALL NOT)．
 記憶シークレットを選択する際，VerifierはSubscriberに対して特定のタイプの情報（例えば，「あなたが飼った最初のペットの名前はなんですか？」といったもの）の入力を求めないものとする(SHALL NOT)．
 
 <!--
@@ -95,27 +95,68 @@ When processing requests to establish and change memorized secrets, verifiers SH
 * Context-specific words, such as the name of the service, the username, and derivatives thereof.
 -->
 
+もし選択したシークレットがリスト中に存在したら、CSPまたはVerifierはSubscriberに対して異なるシークレット値を選ぶ必要があるということを知らせるものとし(SHALL)、その理由を提供するものとし(SHALL)、そしてSubscriberに異なる値を選択するよう求められるものとする(SHALL)。
+
+<!--
 If the chosen secret is found in the list, the CSP or verifier SHALL advise the subscriber that they need to select a different secret, SHALL provide the reason for rejection, and SHALL require the subscriber to choose a different value.
+-->
 
+VerifierはSubscriberに対して、ユーザが強力な記憶シークレットを選択するのを支援するために、パスワード強度メーター [[Meters]](#meters) のようなガイダンスを行うべきである(SHOULD)。上記におリストに載っている記憶シークレットを拒否したのち、[[Blacklists]](#blacklists)化されている(そしておそらく非常に弱い)記憶シークレットからのささいな変更を思いとどまらせることは特に重要である。
+
+<!--
 Verifiers SHOULD offer guidance to the subscriber, such as a password-strength meter [[Meters]](#meters), to assist the user in choosing a strong memorized secret. This is particularly important following the rejection of a memorized secret on the above list as it discourages trivial modification of listed (and likely very weak) memorized secrets [[Blacklists]](#blacklists).
+-->
 
+Verifierは、[Section 5.2.2](#throttle)に記載されているように、Subscriberにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)。
+
+<!--
 Verifiers SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
+-->
 
+Verifierは他の構成ルール(例えば，異なる文字種の組み合わせ，一定の文字の繰り返し)を記憶シークレットに課すべきではない(SHOULD NOT)。Verifierは，記憶シークレットを任意で(例えば、定期的に)変更するよう要求すべきではない(SHOULD NOT)。しかしながらAuthenticatorが侵害されている証拠がある場合は，変更を強制するものとする(SHALL)．
+
+<!--
 Verifiers SHOULD NOT impose other composition rules (e.g., requiring mixtures of different character types or prohibiting consecutively repeated characters) for memorized secrets. Verifiers SHOULD NOT require memorized secrets to be changed arbitrarily (e.g., periodically). However, verifiers SHALL force a change if there is evidence of compromise of the authenticator.
+-->
 
+VerifierはClaimantによる記憶シークレットを入力時に"ペースト"機能を利用することを許可すべきである(SHOULD)．これはパスワードマネージャの利用を促進し，広く利用されるようになることで多くの場合ユーザがより強力な記憶シークレットを選択する可能性を増加させる．．
+<!--
 Verifiers SHOULD permit claimants to use "paste" functionality when entering a memorized secret. This facilitates the use of password managers, which are widely used and in many cases increase the likelihood that users will choose stronger memorized secrets.
+-->
 
+Claimantが記憶シークレットを正しく入力することを支援するために、Verifierは，ドットやアスタリスク表示ではなく，入力され終わるまでシークレットを表示するオプションを提供すべき(SHOULD)である。こうすることで，Claimantは彼らのスクリーンが盗み見られる可能性が低い場所にいる場合に、入力内容を検証することができる。Verifierは更に，ユーザのデバイスに対して，入力が正しいことを確認する目的で個々の文字を入力後に短期間表示することを許可してもよい(MAY)．これは特にモバイルデバイスに当てはまる．
+<!--
 In order to assist the claimant in successfully entering a memorized secret, the verifier SHOULD offer an option to display the secret — rather than a series of dots or asterisks — until it is entered. This allows the claimant to verify their entry if they are in a location where their screen is unlikely to be observed. The verifier MAY also permit the user's device to display individual entered characters for a short time after each character is typed to verify correct entry. This is particularly applicable on mobile devices.
+-->
 
+VerifierはApproveされた暗号化を利用するものとし(SHALL)、記憶シークレットを要求する際には，盗聴や中間者攻撃を防止するためにAuthenticateされた保護チャネルを用いるものとする(SHALL)。
+<!--
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting memorized secrets in order to provide resistance to eavesdropping and MitM attacks.
+-->
 
+Verifierは、オフライン攻撃に対して耐性をもった形式で記憶シークレットを保存するものとする(SHALL)。シークレットは、 ソルトを追加したうえで適切な一方向の鍵導出関数を利用してハッシュされるものとする(SHALL)，鍵導出関数は，パスワード，ソルト，コストファクタを入力して，パスワードハッシュを生成する．
+
+例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のような承認済み(approved)のハッシュを用いてハッシュ化されるものとする(SHALL)。
+ソルト値は32ビット以上のランダム値で、承認済み(approved)の乱数生成器を用いて生成され、ハッシュ結果とともに記録される。少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)。ハッシュAuthenticatorから分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC)は、記録済みハッシュ化Authenticatorに対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)。パスワードハッシュのファイルを入手した攻撃者によってパスワード推測の試行に費用がかかるようにする．そのためパスワード推測攻撃のコストは高い，もしくは非常に法外なものになる．適切な鍵導出関数の例としてPassword-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132)及びBalloon [[BALLOON]](#balloon)がある．攻撃コストを増加させることができるため，memory-hardな関数が利用されるべきである(SHOULD)．鍵導出関数はapproveされた一方向関数が用いられるべき(SHOULD)であり，例えば，Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1)，[SP 800-107](#SP800-107)のapproveされたハッシュ関数の何れか，Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202)，CMAC [[SP 800-38B]](#SP800-38B)，Keccak Message Authentication Code (KMAC)，Customizable SHAKE (cSHAKE)，ParallelHash [[SP 800-185]](#SP800-185)などがある．鍵導出関数からの出力を選択する際，根拠となる一方向関数の出力と長さが同じであるべきである(SHOULD)．
+
+<!--
 Verifiers SHALL store memorized secrets in a form that is resistant to offline attacks. Memorized secrets SHALL be salted and hashed using a suitable one-way key derivation function. Key derivation functions take a password, a salt, and a cost factor as inputs then generate a password hash. Their purpose is to make each password guessing trial by an attacker who has obtained a password hash file expensive and therefore the cost of a guessing attack high or prohibitive. Examples of suitable key derivation functions include Password-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132) and Balloon [[BALLOON]](#balloon). A memory-hard function SHOULD be used because it increases the cost of an attack. The key derivation function SHALL use an approved one-way function such as Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1), any approved hash function in [SP 800-107](#SP800-107), Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202), CMAC [[SP 800-38B]](#SP800-38B) or Keccak Message Authentication Code (KMAC), Customizable SHAKE (cSHAKE), or ParallelHash [[SP 800-185]](#SP800-185). The chosen output length of the key derivation function SHOULD be the same as the length of the underlying one-way function output.
+-->
 
+ソルトは少なくとも32ビットの長さで，保存されたハッシュ間でソフト値の衝突が最小化されるように任意に選択されたものとする(SHALL)．ソルト値及び結果のハッシュはいずれも記憶シークレットAuthenticatorを利用してSubscriber毎に保存されるものとする(SHALL)．
+<!--
 The salt SHALL be at least 32 bits in length and be chosen arbitrarily so as to minimize salt value collisions among stored hashes. Both the salt value and the resulting hash SHALL be stored for each subscriber using a memorized secret authenticator.
+-->
 
+PBKDF2において，コストファクタは繰り返し回数である: PBKDF2関数が繰り返し適用される回数が増加すれば，パスワードハッシュの計算時間が必要となる．すなわち，繰り返し回数は検証サーバのパフォーマンスが許す限り大きくするべきであり(SHOULD)，概ね10,000以上とすべきである．
+<!--
 For PBKDF2, the cost factor is an iteration count: the more times the PBKDF2 function is iterated, the longer it takes to compute the password hash. Therefore, the iteration count SHOULD be as large as verification server performance will allow, typically at least 10,000 iterations.
+-->
 
+加えて，Verifierは，自身だけが知っているシークレットをソルト値として用いた鍵導出関数の適用を追加で実施すべきである(SHOULD)．もし可能ならばソルト値はApproveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1)を利用して生成されるべき(SHOULD)であり，[SP 800-131A](#SP800-131A)の最新版で指定されている最小のセキュリティ強度(本書の公開日時点では112ビット)を少なくとも備えるべき(SHOULD)である．このシークレットソルト値は，ハッシュ化された記憶シークレットとは別に(例えば，ハードウェアセキュリティモジュールなどの特別なデバイスの中に)保存されるものとする(SHALL)．この追加の適用により，シークレットソルト値が秘密である限り，記憶シークレットのハッシュに対するブルートフォース攻撃は非現実的である．
+<!--
 In addition, verifiers SHOULD perform an additional iteration of a key derivation function using a salt value that is secret and known only to the verifier. This salt value, if used, SHALL be generated by an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1) and provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The secret salt value SHALL be stored separately from the hashed memorized secrets (e.g., in a specialized device like a hardware security module). With this additional iteration, brute-force attacks on the hashed memorized secrets are impractical as long as the secret salt value remains secret.
+-->
 
 #### <a name="lookupsecrets"></a> 5.1.2 Look-Up Secrets
 
