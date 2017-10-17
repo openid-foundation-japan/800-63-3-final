@@ -149,15 +149,32 @@ Identity の特性の多くは, Federation 内, および Federation 間の両�
 
 #### 10.2.2 User Perspectives of Trust and Benefits
 
+ユーザーによる Federation Identity システムの選択には, 多くの要素が影響を及ぼしうる. どのような技術においても, ユーザーはある要素を他より重視しうる. ある技術を選択する決断の前に, ユーザーはしばしば知覚されるメリットとリスクをはかりにかける. ユーザーがよく理解した上で決断できるように, IdP と RP が十分な情報を提供するのは, 非常に重要である. 信頼と信頼階層 (Tiers of Trust) というコンセプトは, Federated Identity システムの基本原理であり, ユーザーによる選択を促進する可能性がある. 最後に, ユーザーエクスペリエンスが向上すると, Federation に対するユーザーの需要が増加し, RP による Federation の選択も増加する可能性がある.
 
-Many factors can influence user adoption of federated identity systems. As with any technology, users may value some factors more than others. Users often weigh perceived benefits versus risks before making technology adoption decisions. It is critical that IdPs and RPs provide users with sufficient information to enable them to make informed decisions. The concepts of trust and tiers of trust — fundamental principles in federated identity systems — can drive user adoption. Finally, a positive user experience may also result in increased user demand for federation, triggering increased adoption by RPs.
+<!-- Many factors can influence user adoption of federated identity systems. As with any technology, users may value some factors more than others. Users often weigh perceived benefits versus risks before making technology adoption decisions. It is critical that IdPs and RPs provide users with sufficient information to enable them to make informed decisions. The concepts of trust and tiers of trust — fundamental principles in federated identity systems — can drive user adoption. Finally, a positive user experience may also result in increased user demand for federation, triggering increased adoption by RPs. -->
 
-This sub-section is focused primarily on user trust and user perceptions of benefits versus risks.
+本サブセクションは, 主にユーザーの信頼とユーザーによるメリットとリスクの知覚に焦点を当てる.
 
-To encourage user adoption, IdPs and RPs need to establish and build trust with users and provide them with an understanding of the benefits and risks of adoption. The following factors should be considered:
+<!-- This sub-section is focused primarily on user trust and user perceptions of benefits versus risks. -->
 
-* Allow users to control their information disclosure and provide explicit consent through the appropriate use of notifications (see SP 800-63C, Section 9.2, Notice and Consent). Balancing the content, size, and frequency of notifications is necessary to avoid thoughtless user click-through.
+ユーザーによる採用を促進するため, IdP と RP はユーザーとの信頼を確立おこび構築し, ユーザーに採用によるメリットとリスクを理解させる必要がある. 考慮点としては以下のようなものが挙げられる.
 
+<!-- To encourage user adoption, IdPs and RPs need to establish and build trust with users and provide them with an understanding of the benefits and risks of adoption. The following factors should be considered: -->
+
+ユーザーが自身の情報の開示をコントロールし, 適切な通知により明示的同意を行えるようにする (SP 800-63C, Section 9.2, Notice and Consent 参照). 通知の内容, サイズ, 頻度のバランスは, ユーザーが何も考えずにクリックスルーしてしまうことを避けるために必須である.
+
+<!-- * Allow users to control their information disclosure and provide explicit consent through the appropriate use of notifications (see SP 800-63C, Section 9.2, Notice and Consent). Balancing the content, size, and frequency of notifications is necessary to avoid thoughtless user click-through. -->
+
+* Attribute 共有のためには以下の点を考慮すること.
+  * ユーザーに共有される自身の Attribute および Attribute Value を検証する手段を提供すること. よくできたセキュリティープラクティスに従うこと ([Section 7](#presentation) 参照).
+  * オールオアナッシングアプローチではなく, ユーザーが部分的な Attribute リストに対して同意できるようにすること. ユーザーが全情報の共有に同意しない場合でも, ある程度のオンライン Access を可能にすること.
+  * ユーザーが共有済 Attribute リストへの同意を更新できるようにすること.
+  * ユーザーに提示される不必要な情報を最小化すること. 例えば, Authentication レスポンスの一部として共有されるとしても, システムにより生成された Attribute (Pairwise Pseudonymous Identifier など) を見せないなど.
+  * ユーザーのステップおよびナビゲーションを最小化すること. 例えば, Attribute 共有の同意をプロトコルに組み込み, Federated Transaction 外の機能としないなど. OAuth や OpenID Connect といった標準にこういった例が見られる.
+  * ユーザーが IdP により不正な Attribute 情報を付与された状況から回復できるよう, 効果的かつ効率的な是正手段を提供すること ([Section 7](#presentation) 参照).
+  * ユーザーに Attribute 共有の同意を要求する回数を最小化すること. 同意要求の頻度を限定することで, 何度も同じ Attribute の共有要求を受けることによるユーザーのフラストレーションを避けることができる.
+
+<!--
 * For attribute sharing, consider the following:
   * Provide a means for users to verify those attributes and attribute values that will be shared. Follow good security practices (see [Section 7](#presentation)).
   * Enable users to consent to a partial list of attributes, rather than an all-or-nothing approach. Allow users some degree of online access, even if the user does not consent to share all information.
@@ -166,12 +183,20 @@ To encourage user adoption, IdPs and RPs need to establish and build trust with 
   * Minimize user steps and navigation. For example, build attribute consent into the protocols so they're not a feature external to the federated transaction. Examples can be found in standards such as OAuth or OpenID Connect.
   * Provide effective and efficient redress methods such that a user can recover from invalid attribute information claimed by the IdP (see [Section 7](#presentation)).
   * Minimize the number of times a user is required to consent to attribute sharing. Limiting the frequency of consent requests avoids user frustration from multiple requests to share the same attribute.
+-->
 
-* Collect information for constrained usage only, and minimize information disclosure (see [Section 9.3](#minimization)). User trust is eroded by unnecessary and superfluous information collection and disclosure or user tracking without explicit user consent. For example, only request attributes from the user that are relevant to the current transaction, not for all possible transactions a user may or may not access at the RP.
+* 制約内の利用目的のためにのみ情報を収集し, 情報開示を最小化すること ([Section 9.3](#minimization) 参照). ユーザーの明示的な同意なしに不必要かつ過剰な情報の収集や開示, またはユーザーのトラッキングを行うと, ユーザーの信頼は失われる. 例えば, ユーザーに対して現在の Transaction に関連する Attribute のみを要求し, RP でユーザーが Access するかどうかわからないすべてのありうる Transaction のために Attribute を要求しないようにするなど.
 
-* Clearly and honestly communicate potential benefits and risks of using federated identity to users. Benefits that users value include time savings, ease of use, reduced number of passwords to manage, and increased convenience.
+<!-- * Collect information for constrained usage only, and minimize information disclosure (see [Section 9.3](#minimization)). User trust is eroded by unnecessary and superfluous information collection and disclosure or user tracking without explicit user consent. For example, only request attributes from the user that are relevant to the current transaction, not for all possible transactions a user may or may not access at the RP. -->
 
-User concern over risk can negatively influence willingness to adopt federated identity systems. Users may have trust concerns, privacy concerns, security concerns, and single-point-of-failure concerns. For example, users may be fearful of losing access to multiple accounts if a single IdP is unavailable, either temporarily or permanently. Additionally, users may be concerned or confused about learning a new authentication process. In order to foster the adoption of federated identity systems, the perceived benefits must outweigh the perceived risks.
+* Federated Identity を利用することによる潜在的利点とリスクを, ユーザーに明確かつ正直に伝えること. ユーザーが価値を感じる利点としては, 時間節約, 使いやすさ, 管理するパスワード数の減少, 利便性向上などがある.
+
+<!-- * Clearly and honestly communicate potential benefits and risks of using federated identity to users. Benefits that users value include time savings, ease of use, reduced number of passwords to manage, and increased convenience. -->
+
+
+リスクに対するユーザーの懸念は, Federated Identity システムの選択意欲に悪影響を与えうる. ユーザーは, 信頼, プライバシー, セキュリティー, Single-point-of-failure といった点において, 懸念を抱く可能性がある. 例えば, ひとつの IdP が一時的または永続的に利用不可となった場合, ユーザーは複数のアカウントへの Access を失うおそれがある. さらに, ユーザーは新しい Authentication プロセスを学ぶことに懸念を抱いたり混乱する可能性もある. Federated Identity システムの選択を促進するには, 知覚されるメリットが知覚されるリスクを上回らねばならない.
+
+<!-- User concern over risk can negatively influence willingness to adopt federated identity systems. Users may have trust concerns, privacy concerns, security concerns, and single-point-of-failure concerns. For example, users may be fearful of losing access to multiple accounts if a single IdP is unavailable, either temporarily or permanently. Additionally, users may be concerned or confused about learning a new authentication process. In order to foster the adoption of federated identity systems, the perceived benefits must outweigh the perceived risks. -->
 
 #### 10.2.3 User Models and Beliefs
 
