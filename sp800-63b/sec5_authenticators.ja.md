@@ -214,12 +214,27 @@ VerifierはApproveされた暗号化を利用するものとし(SHALL)，ルッ�
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting look-up secrets in order to provide resistance to eavesdropping and MitM attacks.
 -->
 
+#### <a name="out-of-band"></a> 5.1.3 アウトオブバンドデバイス
+<!--
 #### <a name="out-of-band"></a> 5.1.3 Out-of-Band Devices
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Out-of-band-OOB.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>アウトオブバンドAuthenticatorは，一意にアドレス可能，かつセカンダリチャネルと呼ばれる異なる通信チャネルを介してVerifierと安全に通信することができる物理デバイスである．デバイスはClaimantによって所有及び制御されており，E-Authenticationのためのプライマリチャネルと分離されたセカンダリチャネルを介したプライベートな通信をサポートしている．アウトオブバンドAuthenticatorは<i>something you have</i>である．<br><br>
+
+アウトオブバンドAuthenticatorは以下の方法の1つで動作する: <br><br>
+
+- Claimantはアウトオブバンドデバイスによってセカンダリチャネルを介して受け取ったシークレットを，プライマリチャネルを使ってVerifierに送信する．例えば，Claimantは自身のモバイルデバイス上でシークレットを受信し，それ(一般的には数字6桁のコード)を自身のAuthenticationセッションに対して入力してもよい．<br><br>
+
+- Claimantはプライマリチャネルを介して受け取ったシークレットを，アウトオブバンドデバイスに対して送信し，セカンダリチャネルを介してVerifierに対して送信する．例えば，Claimantは自身のAuthenticationセッション上で確認したシークレットを，モバイルデバイス上のアプリケーション対して入力したり，バーコード・QRコードといった技術を利用して送信を行ってもよい．<br><br>
+
+- Claimantはプライマリチャネルとセカンダリチャネルから得たシークレットを比較し，セカンダリチャネルを介したAuthenticationを確認する．<br><br>
+
+シークレットの目的は安全にAuthentication操作をプライマリとセカンダリのチャネルに結びつけることである．プライマリ通信チャネルを介してレスポンスをする場合，シークレットはアウトオブバンドデバイスをClaimantが制御していることもまた証明していることになる．</td> 
+    <!--
     <td>An out-of-band authenticator is a physical device that is uniquely addressable and can communicate securely with the verifier over a distinct communications channel, referred to as the secondary channel. The device is possessed and controlled by the claimant and supports private communication over this secondary channel, separate from the primary channel for e-authentication. An out-of-band authenticator is <i>something you have</i>.<br><br>
 
 The out-of-band authenticator can operate in one of the following ways: <br><br>
@@ -231,29 +246,60 @@ The out-of-band authenticator can operate in one of the following ways: <br><br>
 - The claimant compares secrets received from the primary channel and the secondary channel and confirms the authentication via the secondary channel.<br><br>
 
 The secret's purpose is to securely bind the authentication operation on the primary and secondary channel. When the response is via the primary communication channel, the secret also establishes the claimant's control of the out-of-band device.</td>
+-->
   </tr>
   </table>
   </div>
 
+#### <a name="ooba"></a> 5.1.3.1 アウトオブバンドAuthenticator
+<!--
 #### <a name="ooba"></a> 5.1.3.1 Out-of-Band Authenticators
+-->
 
+アウトオブバンドAuthenticatorはアウトオブバンドシークレットやAuthenticationリクエストを取得するためにVerifierとの分離された通信チャネルを確立するものとする(SHALL)．このチャネルはプライマリ通信チャネルとの関係においてアウトオブバンドであるとし，(同じデバイス上で終端されている場合でさえも)，Claimantの認可なしに一方から他方に対して情報が漏洩することがないようなデイバイスであることを前提とする．
+<!--
 The out-of-band authenticator SHALL establish a separate channel with the verifier in order to retrieve the out-of-band secret or authentication request. This channel is considered to be out-of-band with respect to the primary communication channel (even if it terminates on the same device) provided the device does not leak information from one channel to the other without the authorization of the claimant.
+-->
 
+アウトオブバンドデバイスは一意にアドレス可能であるべきであり(SHOULD)，セカンダリチャネルを介した通信は，公衆回線交換網(PSTN)を介して送信されない場合は暗号化されているものとする(SHALL)．PSTNに固有な追加のAuthenticator要件に対しては，[Section 5.1.3.3](#pstnOOB)を参照すること．Voice-over-IP(VoIP)やEmailなど，特定デバイスの所有を証明を行わない方式は，アウトオブバンドAuthenticationを行う目的では利用しないものとする(SHALL)．
+<!--
 The out-of-band device SHOULD be uniquely addressable and communication over the secondary channel SHALL be encrypted unless sent via the public switched telephone network (PSTN). For additional authenticator requirements specific to the PSTN, see [Section 5.1.3.3](#pstnOOB). Methods that do not prove possession of a specific device, such as voice-over-IP (VOIP) or email, SHALL NOT be used for out-of-band authentication.
+-->
 
+アウトオブバンドAuthenticatorは，Verifierとの通信において以下に記載する方法の1つを用いて，一意に自身の真正性を証明するものとする(SHALL):
+<!--
 The out-of-band authenticator SHALL uniquely authenticate itself in one of the following ways when communicating with the verifier:
+-->
 
+- Approveされた暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．利用する鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
+<!--
 - Establish an authenticated protected channel to the verifier using approved cryptography. The key used SHALL be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, TEE, secure element).
+-->
 
+- SIMカードまたはデバイスを一意に識別する等価な方法を用いて公衆携帯電話網に対してAuthenticateする．この方法はPSTN(SMSまたは音声)を介してアウトオブバンドデバイスに対してVerifierからシークレットが送信される場合に限り用いるものとする(SHALL)．
+<!--
 - Authenticate to a public mobile telephone network using a SIM card or equivalent that uniquely identifies the device. This method SHALL only be used if a secret is being sent from the verifier to the out-of-band device via the PSTN (SMS or voice).
+-->
 
+もしVerifierからアウトオブバンドデバイスに対してシークレットが送信されるならば，デバイスは所有者によってデバイスがロックされている(例:表示するために，PINやパスコード入力，またはバイオメトリックの入力が必要とされる)間はAuthenticationシークレットを表示すべきではない(SHOULD NOT)．しかしながらAuthenticatorはロックされたデバイス上でAuthenticationシークレットを受信したことを表示すべきである(SHOULD)．
+<!--
 If a secret is sent by the verifier to the out-of-band device, the device SHOULD NOT display the authentication secret while it is locked by the owner (i.e., requires an entry of a PIN, passcode, or biometric to view). However, authenticators SHOULD indicate the receipt of an authentication secret on a locked device.
+-->
 
+もしアウトオブバンド認証機がセカンダリ通信チャネルを介して承認メッセージを送信するならば(Claimantがプライマリ通信チャネルに対して受け取ったシークレットを送信するよりもむしろ)，次のうち1つを実施するものとする(SHALL):
+<!--
 If the out-of-band authenticator sends an approval message over the secondary communication channel — rather than by the claimant transferring a received secret to the primary communication channel — it SHALL do one of the following:
+-->
 
+* Authenticatorはプライマリチャネルから得たシークレットを転送することを許容するものとし(SHALL)，Authenticationトランザクションに対する承認と関連付けるために，セカンダリチャネルを介してVerifierに対して送信するものとする(SHALL)．Claimantは送信を手動で実施，またはバーコード・QRコードといった技術を利用して送信を行ってもよい(MAY)．
+<!--
 * The authenticator SHALL accept transfer of the secret from the primary channel which it SHALL send to the verifier over the secondary channel to associate the approval with the authentication transaction. The claimant MAY perform the transfer manually or use a technology such as a barcode or QR code to effect the transfer.
+-->
 
+* Authenticatorはセカンダリチャネルを介してVerifierから受け取ったシークレットを提示し，Claimantに対してプライマリチャネルのシークレットとの一貫性を検証するよう促した上で，Claimantから「はい/いいえ」の応答を受け入れるものとする(SHALL)．
+<!--
 * The authenticator SHALL present a secret received via the secondary channel from the verifier and prompt the claimant to verify the consistency of that secret with the primary channel, prior to accepting a yes/no response from the claimant. It SHALL then send that response to the verifier.
+-->
 
 #### 5.1.3.2 Out-of-Band Verifiers
 
