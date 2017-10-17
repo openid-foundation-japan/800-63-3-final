@@ -97,31 +97,55 @@ Federated Identity システムは以下を満たすべきである.
 
 ### 10.2 Specific Usability Considerations
 
-This section addresses the specific usability considerations that have been identified with federated identity systems. This section does not attempt to present exhaustive coverage of all usability factors related to federated identity systems. Rather it is focused on the larger, more pervasive themes in the usability literature, primarily users' perspectives on identity, user adoption, trust, and perceptions of federated identity space. In some cases, implementation examples are provided. However, specific solutions are not prescribed. The implementations mentioned are examples to encourage innovative technological approaches to address specific usability needs. See standards for system design and coding, specifications, APIs, and current best practices (such as OpenID and OAuth) for additional examples. Implementations are sensitive to many factors that prevent a one-size-fits-all solution.
+本セクションでは Federated Identity システムに対する特別なユーザビリティー上の考慮点を扱う. 本セクションは, Federated Identity システムに関連する全てのユーザビリティー要素を網羅的にカバーすることを意図するものではない. ここでは, ユーザビリティーに関する文献におけるより大きくより普及したテーマである, ユーザーの Identity に対する捉え方, ユーザーの選択, 信頼, Federated Identity 空間の認識に焦点を当てる. 場合によっては実装例が提供されることもあるが, 特定のソリューションを規定することはない. 言及される実装は, 特定のユーザビリティー上のニーズに対応する革新的な技術的アプローチを推奨するための例である. さらなる例については, システム設計とコーディング, 仕様, API, 最新のベストプラクティス (OpenID や OAuth など) の標準を参照のこと. 各実装は多くの要因に対して敏感であり, ワンサイズフィットオーフなソリューションは存在しない.
+
+<!-- This section addresses the specific usability considerations that have been identified with federated identity systems. This section does not attempt to present exhaustive coverage of all usability factors related to federated identity systems. Rather it is focused on the larger, more pervasive themes in the usability literature, primarily users' perspectives on identity, user adoption, trust, and perceptions of federated identity space. In some cases, implementation examples are provided. However, specific solutions are not prescribed. The implementations mentioned are examples to encourage innovative technological approaches to address specific usability needs. See standards for system design and coding, specifications, APIs, and current best practices (such as OpenID and OAuth) for additional examples. Implementations are sensitive to many factors that prevent a one-size-fits-all solution. -->
 
 #### 10.2.1 User Perspectives on Online Identity
 
-Even when users are familiar with federated identity systems, there are different approaches to federated identity (especially in terms of privacy and the sharing of information) that make it necessary to establish reliable expectations for how users' data are treated. Users and implementers have different concepts of identity. Users think of identity as logging in and gaining access to their own private space. Implementers think of identity in terms of authenticators and assertions, assurance levels, and the necessary set of identity attributes to provide a service. Given this disconnect between users' and implementers' concepts of identity, it is essential to help users form an accurate concept of identity as it applies to federated identity systems. A good model of identity provides users a foundation for understanding the benefits and risks of federated systems and encourage user adoption and trust of these systems.
+ユーザーが Federated Identity システムに慣れ親しんでいたとしても, (特にプライバシーと情報共有の点で) Federated Identity に対する異なるアプローチも存在し, そこではユーザーのデータ処理方法に対する信頼性の高い期待を確立する必要がある. ユーザーと実装者は異なる Identity の概念を持つ. ユーザーはログインして自身のプライベートな空間への Access を得るものとして Identity を捉えるが, 実装者は Authenticator と Assertion, Assurance Level, サービス提供に必要な一式の Identity Attribute という視点で Identity を捉える. このように, ユーザーと実装者では Identity の捉え方が異なるため, ユーザーが Federated Identity システムに適用される Identity の概念を正確に理解できるよう手助けすることが不可欠である. 優れた Identity モデルは, ユーザーが Federated システムの利点とリスクを理解し, こういったシステムを選択および信頼するよう促すための基礎となる.
 
-Many properties of identity have implications for how users manage identities, both within and among federations. Just as users manage multiple identities based on context outside of cyberspace, users must learn to manage their identity in a federated environment. Therefore, it must be clear to users how identity and context are used. The following factors should be considered:
+<!-- Even when users are familiar with federated identity systems, there are different approaches to federated identity (especially in terms of privacy and the sharing of information) that make it necessary to establish reliable expectations for how users' data are treated. Users and implementers have different concepts of identity. Users think of identity as logging in and gaining access to their own private space. Implementers think of identity in terms of authenticators and assertions, assurance levels, and the necessary set of identity attributes to provide a service. Given this disconnect between users' and implementers' concepts of identity, it is essential to help users form an accurate concept of identity as it applies to federated identity systems. A good model of identity provides users a foundation for understanding the benefits and risks of federated systems and encourage user adoption and trust of these systems. -->
 
-* Provide users the requisite context and scope in order to distinguish among different user roles. For example, whether the user is acting on their own behalf or on behalf of another, such as their employer.
+Identity の特性の多くは, Federation 内, および Federation 間の両方で, ユーザーがどのように Identity を管理するかに影響を及ぼす. サイバースペースの外でコンテキストに基づいて複数の Identity を管理するのと同じように, ユーザーは自身の Identity を Federated な環境で管理するすべを学ぶ必要がある. したがって, Identity とコンテキストがどのように扱われるのかは, ユーザーに対して明確でなければならない. そのため, 以下の点が考慮されるべきである.
 
-* Provide users unique, meaningful, and descriptive identifiers to distinguish among entities.
+<!-- Many properties of identity have implications for how users manage identities, both within and among federations. Just as users manage multiple identities based on context outside of cyberspace, users must learn to manage their identity in a federated environment. Therefore, it must be clear to users how identity and context are used. The following factors should be considered: -->
 
-* Provide users with information on data ownership and those authorized to make changes. Identities, and the data associated with them, can sometimes be updated and changed by multiple actors. For example, some healthcare data is updated and owned by the patient, while some data is only updated by a hospital or doctor's practice.
+* 異なるユーザーの役割を区別するため, ユーザーに必要なコンテキストとスコープを提供する. 例えば, ユーザーが自身の代理として行動しているのか, 自身の雇用主など他者の代理として行動しているのかなど.
 
-* Provide users with the ability to easily verify, view, and update attributes. Identities and user roles are dynamic and not static; they change over time (e.g., age, health, and financial data). The ability to update attributes or make attribute release decisions may or may not be offered at the same time. Ensure the process for how users can change attributes is well known, documented, and easy to perform.
+<!-- * Provide users the requisite context and scope in order to distinguish among different user roles. For example, whether the user is acting on their own behalf or on behalf of another, such as their employer. -->
 
-* Provide users means for updating data, even if the associated entity no longer exists.
+* Entity を区別するため, ユーザーにユニークで意味のある記述的な識別子を提供する.
 
-* Provide users means to delete their identities completely, removing all information about themselves, including transaction history. Consider applicable audit, legal, or policy constraints that may preclude such action. In certain cases, full deactivation is more appropriate than deletion.
+<!-- * Provide users unique, meaningful, and descriptive identifiers to distinguish among entities. -->
 
-* Provide users with clear, easy-to-find, site/application data retention policy information.
+* ユーザーにデータ所有権とデータ変更権限のある Authorized なユーザーに関する情報を提供する. Identity およびそれに関連するデータは, 複数の主体によって更新・変更可能な場合もある. 例えば, ヘルスケアデータは患者のものであるが, 一部のデータは病院や医師の診療にのってのみ更新される.
 
-* Provide users with appropriate anonymity and pseudonymity options, and the ability to switch among such identity options as desired, in accordance with an organization's data access policies.
+<!-- * Provide users with information on data ownership and those authorized to make changes. Identities, and the data associated with them, can sometimes be updated and changed by multiple actors. For example, some healthcare data is updated and owned by the patient, while some data is only updated by a hospital or doctor's practice. -->
 
-* Provide means for users to manage each IdP to RP connection, including complete separation as well as the removal of RP access to one or more attributes.
+* ユーザーが簡単に Attribute を検証, 閲覧, 更新できるようにする. Identity とユーザーの役割はスタティックではなくダイナミックなものであり, 時間経過 (e.g., 年齢, 健康および金融データ) とともに変わりうる. Attribute を更新したり Attribute 提供の決定を行う機能は, 同時に提供されることもあればそうでないこともある. ユーザーが Attribute を変更するプロセスがよく知られており, ドキュメント化され, 容易に実行できることを保証すること.
+
+<!-- * Provide users with the ability to easily verify, view, and update attributes. Identities and user roles are dynamic and not static; they change over time (e.g., age, health, and financial data). The ability to update attributes or make attribute release decisions may or may not be offered at the same time. Ensure the process for how users can change attributes is well known, documented, and easy to perform. -->
+
+* 関連する Entity がすでに存在しない場合でも, ユーザーにデータをアップデートする手段を提供すること.
+
+<!-- * Provide users means for updating data, even if the associated entity no longer exists. -->
+
+* ユーザーが, 自身の Identity を完全に消去したり, Transaction 履歴を含む自身に関するすべての情報を消去したりできるようにすること. そういったアクションを妨げる可能性のある, 適用可能な監査, 法律, ポリシー上の制約を考慮すること. 場合によっては, 消去よりも完全な無効化の方が適切なこともある.
+
+<!-- * Provide users means to delete their identities completely, removing all information about themselves, including transaction history. Consider applicable audit, legal, or policy constraints that may preclude such action. In certain cases, full deactivation is more appropriate than deletion. -->
+
+* ユーザーに, 明確かつみつけやすい, サイト / アプリケーションのデータ保持ポリシー情報を提供すること.
+
+<!-- * Provide users with clear, easy-to-find, site/application data retention policy information. -->
+
+* 組織のデータ Access ポリシーにしたがって, ユーザーに適切な Anonymity (匿名性) や Pseudonymity (仮名性) オプションを提供し, 要望に応じてそういった Identity オプションを切り替えられるようにすること.
+
+<!-- * Provide users with appropriate anonymity and pseudonymity options, and the ability to switch among such identity options as desired, in accordance with an organization's data access policies. -->
+
+* ユーザーに各 IdP および RP 間のコネクションを管理する手段を提供すること. これには, 完全な分断, 特定の RP の1つ以上の Attribute への Access 権限の削除を含む.
+
+<!-- * Provide means for users to manage each IdP to RP connection, including complete separation as well as the removal of RP access to one or more attributes. -->
 
 #### 10.2.2 User Perspectives of Trust and Benefits
 
