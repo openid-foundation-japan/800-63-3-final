@@ -42,30 +42,57 @@ ASSUMPTIONS
 
 ### 10.1 General Usability Considerations
 
-Federated identity systems should:
+Federated Identity システムは以下を満たすべきである.
 
+<!-- Federated identity systems should: -->
+
+* ユーザーの負担 (e.g., フラストレーション, 学習カーブ) を最小化する.
+  * 必要なユーザーアクション数を最小化する.
+  * ユーザーが素早く容易に同一 IdP 上の複数のアカウントを選択できるようにする. 例えば [Account Chooser](http://openid.net/wg/ac/) のようなアプローチでは, ユーザーが IdP リストから自身が利用したい IdP を選択するところから Federation プロセスを開始するのではなく, ユーザーが最近 Access したアカウントリストからアカウント選択を可能にしている.
+  * ユーザーの負担の最小化とユーザーが十分に理解した上での決断を可能にする十分な情報提供の必要性のバランスを取る.
+
+<!--
 * Minimize user burden (e.g., frustration, learning curve)
   * Minimize the number of user actions required.
   * Allow users to quickly and easily select among multiple accounts with a single IdP. For example, approaches such as [Account Chooser](http://openid.net/wg/ac/) allow users to select from a list of accounts they have accessed in the recent past, rather than start the federation process by selecting their IdP from a list of potential IdPs.
   * Balance minimizing user burden with the need to provide sufficient information to enable users to make informed decisions.
+-->
 
-* Minimize the use of unfamiliar technical jargon and details (e.g., users do not need to know the terms IdP and RP if the basic concepts are clearly explained).
+* 使い慣れていない技術用語や詳細の使用を最小限に抑える. (e.g., 基本的なコンセプトが明確に説明できれば, ユーザーは IdP や RP といった用語を知る必要はない.)
 
-* Strive for a consistent and integrated user experience across the IdP and RP.
+<!-- * Minimize the use of unfamiliar technical jargon and details (e.g., users do not need to know the terms IdP and RP if the basic concepts are clearly explained). -->
 
-* Help users establish an understanding of identity by providing resources to users such as graphics, illustrations, FAQs, tutorials and examples. Resources  should explain how users' information is treated and how transacting parties (e.g., RPs, IdPs, and brokers) relate to each other.
+* IdP と RP で一貫性のある統合されたユーザーエクスペリエンスを目指す.
 
-* Provide clear, honest, and meaningful communications to users (i.e., communications should be explicit and easy to understand).
+<!-- * Strive for a consistent and integrated user experience across the IdP and RP. -->
 
-* Provide users online services independent of location and device.
+* グラフィックス, イラスト, FAQ, チュートリアル, 例などのリソースを提供し, ユーザーが Identity を理解するのを助ける. そういったリソースでは, ユーザーの情報がどのように取り扱われ, Transaction に携わる各主体 (e.g., RP, IdP, および Broker) がどのように相互関与するかを説明すべきである.
 
-* Make trust relationships explicit to users to facilitate informed trust decisions. Trust relationships are often dynamic and context dependent. Users may be more likely to trust some IdPs and RPs with certain attributes or transactions more than others. For example, users may be more hesitant to use federated identity systems on websites that contain valuable personal information (such as financial or health). Depending on the perceived sensitivity of users' personal data, users may be less comfortable with social network providers as IdPs since people are often concerned with the broadcasting nature of social networking implementations.
+<!-- * Help users establish an understanding of identity by providing resources to users such as graphics, illustrations, FAQs, tutorials and examples. Resources  should explain how users' information is treated and how transacting parties (e.g., RPs, IdPs, and brokers) relate to each other. -->
 
-* Follow the usability considerations specified in [SP 800-63A, Section 9](sp800-63a.html#sec9) for any user-facing information.
+* 明確, 正直かつ有意義なユーザーとのコミュニケーションを行う. (i.e., コミュニケーションは明白で理解しやすいべきである)
 
-* Clearly communicate how and where to acquire technical assistance. For example, provide users with information such as a link to an online self-service feature, chat sessions or a phone number for help desk support. Avoid redirecting users back and forth among transacting parties (e.g., RPs, IdPs, and brokers) to receive technical assistance.
+<!-- * Provide clear, honest, and meaningful communications to users (i.e., communications should be explicit and easy to understand). -->
 
-* Perform integrative and continuous usability evaluations with representative users and realistic tasks in an appropriate context to ensure success of federated identity systems from the users' perspectives.
+* 場所やデバイスに関係なくユーザーにオンラインサービスを提供する.
+
+<!-- * Provide users online services independent of location and device. -->
+
+* 十分に理解した上での信頼の決定を容易にするため, ユーザーに対して信頼関係を明白にする. 信頼関係はしばしばダイナミックでコンテキスト依存である. ユーザーは, 特定の Attribute を持っていたり特定の Transaction において, ある IdP および RP を他より信頼するかもしれない. 例えば, 貴重な Personal Information (金融情報や健康情報など) を含んだ Web サイトでは, ユーザーは Federated Identity システムの利用をためらうかもしれない. ユーザーが知覚する Personal Data のセンシティブさによって, ユーザーはソーシャルネットワークプロバイダーを IdP として使いたがらないこともある. これは人々がしばしばソーシャルネットワーキング実装のブロードキャスト的性質を気にするからであろう.
+
+<!-- * Make trust relationships explicit to users to facilitate informed trust decisions. Trust relationships are often dynamic and context dependent. Users may be more likely to trust some IdPs and RPs with certain attributes or transactions more than others. For example, users may be more hesitant to use federated identity systems on websites that contain valuable personal information (such as financial or health). Depending on the perceived sensitivity of users' personal data, users may be less comfortable with social network providers as IdPs since people are often concerned with the broadcasting nature of social networking implementations. -->
+
+* ユーザーが触れるすべての情報について, [SP 800-63A, Section 9](sp800-63a.html#sec9) に示すユーザービリティー上の考慮点に従う.
+
+<!-- * Follow the usability considerations specified in [SP 800-63A, Section 9](sp800-63a.html#sec9) for any user-facing information. -->
+
+* どこでどのようにして技術的な支援を得ることができるかを明確に伝える. 例えば, ユーザーにオンラインセルフサービス機能へのリンクや, ヘルプデスクサポートのためのチャットや電話番号を提供する. Transaction に関わる主体間 (e.g., RP, IdP, および Broker) でユーザーをたらい回しにするような技術的支援は避けること.
+
+<!-- * Clearly communicate how and where to acquire technical assistance. For example, provide users with information such as a link to an online self-service feature, chat sessions or a phone number for help desk support. Avoid redirecting users back and forth among transacting parties (e.g., RPs, IdPs, and brokers) to receive technical assistance. -->
+
+* 適切なコンテキストで, 代表的なユーザーと現実的なタスクに対して, 統合的かつ継続的なユーザビリティー評価を行い, Federated Identity システムをユーザー視点で成功していることを保証する.
+
+<!-- * Perform integrative and continuous usability evaluations with representative users and realistic tasks in an appropriate context to ensure success of federated identity systems from the users' perspectives. -->
 
 
 ### 10.2 Specific Usability Considerations
