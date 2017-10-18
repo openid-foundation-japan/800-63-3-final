@@ -165,7 +165,7 @@ NIST SP 800-63-3 は SP 800-63-2 の大幅なアップデートと再構成を�
 - 事前登録済の Knowledge Token (Autnenticator) は, (時として非常に弱い) パスワードの特別な形態という認識のもと **削除** した.
 - Authenticator の紛失や盗難時のアカウントリカバリーに関する要件を定めた.
 - Out-of-band Authenticator 用の有効なチャネルとしての Email を **削除** した.
-- Re-authentication やセッションマネージメントに関するより深い議論を追加した.
+- Re-authentication や Session 管理に関するより深い議論を追加した.
 - Identity Federation に関するより深い議論を追加し, Federation コンテキストにおける Assertion の再構成を行った.
 
 <!-- - Renamed to "Digital Identity Guidelines" to properly represent the scope includes identity proofing and federation, and to support expanding the scope to include device identity, or machine-to-machine authentication in future revisions.
