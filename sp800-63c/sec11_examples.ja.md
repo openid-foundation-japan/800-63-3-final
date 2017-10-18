@@ -11,25 +11,47 @@
 
 ### 11.1 Security Assertion Markup Language (SAML)
 
-SAML is an XML-based framework for creating and exchanging authentication and attribute information between trusted entities over the internet. As of this writing, the latest specification for [SAML](#SAML) is SAML v2.0, issued 15 March 2005.
+SAML は, Authentication および Attribute 情報を生成し, 信頼関係のある Entity 間で Internet 越しにやりとりする XML ベースのフレームワークである. 本執筆時点で最新の [SAML](#SAML) 仕様は, 2005/03/15 発行の SAML v2.0 である.
 
-The building blocks of SAML include:
+<!-- SAML is an XML-based framework for creating and exchanging authentication and attribute information between trusted entities over the internet. As of this writing, the latest specification for [SAML](#SAML) is SAML v2.0, issued 15 March 2005. -->
 
+SAML の構成要素を以下に示す.
+
+<!-- The building blocks of SAML include: -->
+
+- Assertion の構造を定義する Assertion XML Schema.
+- Assertion および Artifact ([Section 7.1](#back-channel) で述べたインダイレクトモードで使われる Assertion Reference) をリクエストする際に利用する SAML Protocol.
+- 根底となる通信プロトコル (HTTP や SOAP など) を定義し, SAML Assertion の転送に利用する Binding.
+
+<!--
 - The Assertions XML schema, which defines the structure of the assertion.
 - The SAML Protocols, which are used to request assertions and artifacts (the assertion references used in the indirect model described in [Section 7.1](#back-channel)).
 - The Bindings, which define the underlying communication protocols (such as HTTP or SOAP), and can be used to transport the SAML assertions.
+-->
 
-The three components above define a SAML profile that corresponds to a particular use case such as "Web Browser SSO".
+上記の3要素により, "Web Browser SSO" といった特定のユースケースに対応した SAML プロファイルが定義される.
 
-SAML Assertions are encoded in an XML schema and can carry up to three types of statements:
+<!-- The three components above define a SAML profile that corresponds to a particular use case such as "Web Browser SSO". -->
 
--   *Authentication statements* include information about the assertion issuer, the authenticated subscriber, validity period, and other authentication information. For example, an Authentication Assertion would state the subscriber "John" was authenticated using a password at 10:32pm on 06-06-2004.
+SAML Assertion は XML Schema にエンコードされ, 3つのタイプのステートメントを伝搬する.
 
--   *Attribute statements* contain specific additional characteristics related to the subscriber. For example, subject "John" is associated with attribute "Role" with value "Manager".
+<!-- SAML Assertions are encoded in an XML schema and can carry up to three types of statements: -->
 
--   *Authorization statements* identify the resources the subscriber has permission to access. These resources may include specific devices, files, and information on specific web servers. For example, subject "John" for action "Read" on "Webserver1002" given evidence "Role".
+- *Authentication Statement*: Assertion Issuer, Authenticated Subscriber, 有効期間およびその他の Authentication に関する情報を含む. 例えば, ある Authentication Assertion は Subscriber "John" が 2004/06/06 10:32pm にパスワードを使って Authenticate されたことを示すであろう.
 
-Authorization statements are beyond the scope of this document and will not be discussed.
+<!-- -   *Authentication statements* include information about the assertion issuer, the authenticated subscriber, validity period, and other authentication information. For example, an Authentication Assertion would state the subscriber "John" was authenticated using a password at 10:32pm on 06-06-2004. -->
+
+- *Attribute Statement*: Subscriber に関する特定の追加特性を含む. 例えば, "John" という Subject に対して, "Role" という Attribute に対して "Manager" という値が付与されている, など.
+
+<!-- -   *Attribute statements* contain specific additional characteristics related to the subscriber. For example, subject "John" is associated with attribute "Role" with value "Manager". -->
+
+- *Authorization Statement*: Subscriber が Access 権を持つリソースを示す. こういったリソースとしては, 特定のデバイス, ファイル, 特定の Web サーバー上の情報などが挙げられる. 例えば, "John" という Subject が, "Role" を拠り所として, "Webserver1002" 上で "Read" というアクションを行える, など.
+
+<!-- -   *Authorization statements* identify the resources the subscriber has permission to access. These resources may include specific devices, files, and information on specific web servers. For example, subject "John" for action "Read" on "Webserver1002" given evidence "Role". -->
+
+Authorization Statement は本ドキュメントの扱うところではなく, ここでは議論しない.
+
+<!-- Authorization statements are beyond the scope of this document and will not be discussed. -->
 
 ### 11.2 Kerberos Tickets <a name="kerberos"></a>
 
