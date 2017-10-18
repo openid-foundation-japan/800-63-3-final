@@ -54,19 +54,19 @@ Memorized secrets SHALL be at least 8 characters in length if chosen by the subs
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
 -->
 
-Verifierは，Subscriberが選択した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが選択した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，8文字以上であることの確認を行う前に，タイピングミスの類を考慮して連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレットの切り詰めについては実施しないものとする(SHALL NOT)．前述の記憶シークレットの長さ要件を満たすために，それぞれのUnicodeの符号位置は一文字としてカウントされるものとする(SHALL)．
+Verifierは，Subscriberが選択した記憶シークレットに対して最低8文字であることを要求するものとする(SHALL)．Verifierは，Subscriberが選択した記憶シークレットに対して最低64文字を許可すべきである(SHOULD)．すべての印字可能なASCII [[RFC 20]](#RFC20) 文字(スペースも同様)は記憶シークレットとして許容されるべきである(SHOULD)．Unicode[[ISO/ISC 10646]](#ISOIEC10646)文字も同様に許容されるべきである(SHOULD)．Verifierは，8文字以上であることの検証を行う前に，タイピングミスの類を考慮して連続した複数のスペースまたは全てのスペースを除去してもよい(MAY)．シークレットの切り詰めについては実施しないものとする(SHALL NOT)．前述の記憶シークレットの長さ要件を満たすために，それぞれのUnicodeの符号位置は一文字としてカウントされるものとする(SHALL)．
 
 <!--
 Verifiers SHALL require subscriber-chosen memorized secrets to be at least 8 characters in length. Verifiers SHOULD permit subscriber-chosen memorized secrets at least 64 characters in length. All printing ASCII [[RFC 20]](#RFC20) characters as well as the space character SHOULD be acceptable in memorized secrets. Unicode [[ISO/ISC 10646]](#ISOIEC10646) characters SHOULD be accepted as well. To make allowances for likely mistyping, verifiers MAY replace multiple consecutive space characters with a single space character prior to verification, provided that the result is at least 8 characters in length. Truncation of the secret SHALL NOT be performed. For purposes of the above length requirements, each Unicode code point SHALL be counted as a single character.
 -->
 
-もしUnicode文字が記憶シークレットとして許容されるならば，Verifierは，Unicode Standard Annex 15 [[UAX 15]](#UAX15) の Section 12.1で定義されている"Stablized Strings"のためのNFKCまたはNFKD正規化のいずれかを用いた正規化処理を適用すべきである(SHOULD)．この処理は記憶シークレットのバイト文字表現のハッシュ化の前に適用される．Unicode文字を含む記憶シークレットを選択したSubscriberは，いくつかのエンドポイントでは異なる表現になるかもしれない文字があり，それが彼らが正しく認証を行う能力に影響する可能性があるということをことを通知されるべきである(SHOULD)．
+もしUnicode文字が記憶シークレットとして許容されるならば，Verifierは，Unicode Standard Annex 15 [[UAX 15]](#UAX15) の Section 12.1で定義されている"Stablized Strings"のためのNFKCまたはNFKD正規化のいずれかを用いた正規化処理を適用すべきである(SHOULD)．この処理は記憶シークレットのバイト文字表現のハッシュ化の前に適用される．Unicode文字を含む記憶シークレットを選択したSubscriberは，いくつかのエンドポイントでは異なる表現になるかもしれない文字があり，それが彼らが正しくAuthenticationを行う能力に影響する可能性があるということをことを通知されるべきである(SHOULD)．
 
 <!--
 If Unicode characters are accepted in memorized secrets, the verifier SHOULD apply the Normalization Process for Stabilized Strings using either the NFKC or NFKD normalization defined in Section 12.1 of Unicode Standard Annex 15 [[UAX 15]](#UAX15). This process is applied before hashing the byte string representing the memorized secret. Subscribers choosing memorized secrets containing Unicode characters SHOULD be advised that some characters may be represented differently by some endpoints, which can affect their ability to authenticate successfully.
 -->
 
-記憶シークレットは，CSP(例えばEnrollment時など)やVerifier(ユーザが新しいPINを要求した時など)によりランダムに選択されるもので，最低6文字であるものとし(SHALL)，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を利用して生成されるものとする(SHALL)．
+記憶シークレットは，CSP(例えばEnrollment時など)やVerifier(ユーザが新しいPINを要求した時など)によりランダムに選択されるもので，最低6文字であるものとし(SHALL)，Approve済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を利用して生成されるものとする(SHALL)．
 
 <!--
 Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or by the verifier (e.g., when a user requests a new PIN) SHALL be at least 6 characters in length and SHALL be generated using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1).
@@ -107,7 +107,7 @@ VerifierはSubscriberに対して，ユーザが強力な記憶シークレッ�
 Verifiers SHOULD offer guidance to the subscriber, such as a password-strength meter [[Meters]](#meters), to assist the user in choosing a strong memorized secret. This is particularly important following the rejection of a memorized secret on the above list as it discourages trivial modification of listed (and likely very weak) memorized secrets [[Blacklists]](#blacklists).
 -->
 
-Verifierは，[Section 5.2.2](#throttle)に記載されているように，Subscriberのアカウントにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
 
 <!--
 Verifiers SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
@@ -129,18 +129,18 @@ Claimantが記憶シークレットを正しく入力することを支援する
 In order to assist the claimant in successfully entering a memorized secret, the verifier SHOULD offer an option to display the secret — rather than a series of dots or asterisks — until it is entered. This allows the claimant to verify their entry if they are in a location where their screen is unlikely to be observed. The verifier MAY also permit the user's device to display individual entered characters for a short time after each character is typed to verify correct entry. This is particularly applicable on mobile devices.
 -->
 
-VerifierはApproveされた暗号化を利用するものとし(SHALL)，記憶シークレットを要求する際には，盗聴や中間者攻撃を防止するためにAuthenticateされた保護チャネルを用いるものとする(SHALL)．
+VerifierはApprove済み暗号化を利用するものとし(SHALL)，記憶シークレットを要求する際には，盗聴や中間者攻撃を防止するためにAuthenticateされた保護チャネルを用いるものとする(SHALL)．
 <!--
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting memorized secrets in order to provide resistance to eavesdropping and MitM attacks.
 -->
 
-Verifierは，オフライン攻撃に対して耐性をもった形式で記憶シークレットを保存するものとする(SHALL)．シークレットは， ソルトを追加したうえで適切な一方向の鍵導出関数を利用してハッシュされるものとする(SHALL)，鍵導出関数は，パスワード，ソルト，コストファクタを入力して，パスワードハッシュを生成する．例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のような承認済み(approved)のハッシュを用いてハッシュ化されるものとする(SHALL)．ソルト値は32ビット以上のランダム値で，承認済み(approved)の乱数生成器を用いて生成され，ハッシュ結果とともに記録される．少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)．ハッシュAuthenticatorから分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC)は，記録済みハッシュ化Authenticatorに対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)．パスワードハッシュのファイルを入手した攻撃者によってパスワード推測の試行に費用がかかるようにする．そのためパスワード推測攻撃のコストは高い，もしくは非常に法外なものになる．適切な鍵導出関数の例としてPassword-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132)及びBalloon [[BALLOON]](#balloon)がある．攻撃コストを増加させることができるため，memory-hardな関数が利用されるべきである(SHOULD)．鍵導出関数はapproveされた一方向関数が用いられるべき(SHOULD)であり，例えば，Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1)，[SP 800-107](#SP800-107)のapproveされたハッシュ関数の何れか，Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202)，CMAC [[SP 800-38B]](#SP800-38B)，Keccak Message Authentication Code (KMAC)，Customizable SHAKE (cSHAKE)，ParallelHash [[SP 800-185]](#SP800-185)などがある．鍵導出関数からの出力を選択する際，根拠となる一方向関数の出力と長さが同じであるべきである(SHOULD)．
+Verifierは，オフライン攻撃に対して耐性をもった形式で記憶シークレットを保存するものとする(SHALL)．シークレットは， ソルトを追加したうえで適切な一方向の鍵導出関数を利用してハッシュされるものとする(SHALL)，鍵導出関数は，パスワード，ソルト，コストファクタを入力して，パスワードハッシュを生成する．例えば[[SP800-132]](#SP800-132)で記載されているPBKDF2のようなApprove済みハッシュを用いてハッシュ化されるものとする(SHALL)．ソルト値は32ビット以上のランダム値で，承認済み(approved)の乱数生成器を用いて生成され，ハッシュ結果とともに記録される．少なくとも繰り返し10000回のハッシュ関数を適用すべきである(SHOULD)．ハッシュAuthenticatorから分離されて記録される鍵(例:ハードウェアセキュリティモジュール中)を用いる鍵付ハッシュ関数(例:HMAC)は，記録済みハッシュ化Authenticatorに対する辞書攻撃に対する更なる対抗方法として利用されるべきである(SHOULD)．パスワードハッシュのファイルを入手した攻撃者によってパスワード推測の試行に費用がかかるようにする．そのためパスワード推測攻撃のコストは高い，もしくは非常に法外なものになる．適切な鍵導出関数の例としてPassword-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132)及びBalloon [[BALLOON]](#balloon)がある．攻撃コストを増加させることができるため，memory-hardな関数が利用されるべきである(SHOULD)．鍵導出関数はApprove済み一方向関数が用いられるべき(SHOULD)であり，例えば，Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1)，[SP 800-107](#SP800-107)のApprove済みハッシュ関数の何れか，Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202)，CMAC [[SP 800-38B]](#SP800-38B)，Keccak Message Authentication Code (KMAC)，Customizable SHAKE (cSHAKE)，ParallelHash [[SP 800-185]](#SP800-185)などがある．鍵導出関数からの出力を選択する際，根拠となる一方向関数の出力と長さが同じであるべきである(SHOULD)．
 
 <!--
 Verifiers SHALL store memorized secrets in a form that is resistant to offline attacks. Memorized secrets SHALL be salted and hashed using a suitable one-way key derivation function. Key derivation functions take a password, a salt, and a cost factor as inputs then generate a password hash. Their purpose is to make each password guessing trial by an attacker who has obtained a password hash file expensive and therefore the cost of a guessing attack high or prohibitive. Examples of suitable key derivation functions include Password-based Key Derivation Function 2 (PBKDF2) [[SP 800-132]](#SP800-132) and Balloon [[BALLOON]](#balloon). A memory-hard function SHOULD be used because it increases the cost of an attack. The key derivation function SHALL use an approved one-way function such as Keyed Hash Message Authentication Code (HMAC) [[FIPS 198-1]](#FIPS198-1), any approved hash function in [SP 800-107](#SP800-107), Secure Hash Algorithm 3 (SHA-3) [[FIPS 202]](#FIPS202), CMAC [[SP 800-38B]](#SP800-38B) or Keccak Message Authentication Code (KMAC), Customizable SHAKE (cSHAKE), or ParallelHash [[SP 800-185]](#SP800-185). The chosen output length of the key derivation function SHOULD be the same as the length of the underlying one-way function output.
 -->
 
-ソルトは少なくとも32ビットの長さで，保存されたハッシュ間でソフト値の衝突が最小化されるように任意に選択されたものとする(SHALL)．ソルト値及び結果のハッシュはいずれも記憶シークレットAuthenticatorを利用してSubscriber毎に保存されるものとする(SHALL)．
+ソルトは少なくとも32ビットの長さで，保存されたハッシュ間でソルト値の衝突が最小化されるように任意に選択されたものとする(SHALL)．ソルト値及び結果のハッシュはいずれも記憶シークレットAuthenticatorを利用してSubscriber毎に保存されるものとする(SHALL)．
 <!--
 The salt SHALL be at least 32 bits in length and be chosen arbitrarily so as to minimize salt value collisions among stored hashes. Both the salt value and the resulting hash SHALL be stored for each subscriber using a memorized secret authenticator.
 -->
@@ -150,7 +150,7 @@ PBKDF2において，コストファクタは繰り返し回数である: PBKDF2
 For PBKDF2, the cost factor is an iteration count: the more times the PBKDF2 function is iterated, the longer it takes to compute the password hash. Therefore, the iteration count SHOULD be as large as verification server performance will allow, typically at least 10,000 iterations.
 -->
 
-加えて，Verifierは，自身だけが知っているシークレットをソルト値として用いた鍵導出関数の適用を追加で実施すべきである(SHOULD)．もし可能ならばソルト値はApproveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1)を利用して生成されるべき(SHOULD)であり，[SP 800-131A](#SP800-131A)の最新版で指定されている最小のセキュリティ強度(本書の公開日時点では112ビット)を少なくとも備えるべき(SHOULD)である．このシークレットソルト値は，ハッシュ化された記憶シークレットとは別に(例えば，ハードウェアセキュリティモジュールなどの特別なデバイスの中に)保存されるものとする(SHALL)．この追加の適用により，シークレットソルト値が秘密である限り，記憶シークレットのハッシュに対するブルートフォース攻撃は非現実的である．
+加えて，Verifierは，自身だけが知っているシークレットをソルト値として用いた鍵導出関数の適用を追加で実施すべきである(SHOULD)．もし可能ならばソルト値はApprove済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1)を利用して生成されるべき(SHOULD)であり，[SP 800-131A](#SP800-131A)の最新版で指定されている最小のセキュリティ強度(本書の公開日時点では112ビット)を少なくとも備えるべき(SHOULD)である．このシークレットソルト値は，ハッシュ化された記憶シークレットとは別に(例えば，ハードウェアセキュリティモジュールなどの特別なデバイスの中に)保存されるものとする(SHALL)．この追加の適用により，シークレットソルト値が秘密である限り，記憶シークレットのハッシュに対するブルートフォース攻撃は非現実的である．
 <!--
 In addition, verifiers SHOULD perform an additional iteration of a key derivation function using a salt value that is secret and known only to the verifier. This salt value, if used, SHALL be generated by an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1) and provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The secret salt value SHALL be stored separately from the hashed memorized secrets (e.g., in a specialized device like a hardware security module). With this additional iteration, brute-force attacks on the hashed memorized secrets are impractical as long as the secret salt value remains secret.
 -->
@@ -177,7 +177,7 @@ In addition, verifiers SHOULD perform an additional iteration of a key derivatio
 #### <a name="lusa"></a>5.1.2.1 Look-Up Secret Authenticators
 -->
 
-CSPがルックアップシークレットAuthenticatorを生成する際，Approveされた乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いてシークレットのリストを生成するものとし(SHALL)，Subscriberに対してAuthenticatorを安全に届けるものとする(SHALL)．ルックアップシークレットは最低20ビットのエントロピーを持つものとする(SHALL)．
+CSPがルックアップシークレットAuthenticatorを生成する際，Approve済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いてシークレットのリストを生成するものとし(SHALL)，Subscriberに対してAuthenticatorを安全に届けるものとする(SHALL)．ルックアップシークレットは最低20ビットのエントロピーを持つものとする(SHALL)．
 <!--
 CSPs creating look-up secret authenticators SHALL use an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1) to generate the list of secrets and SHALL deliver the authenticator securely to the subscriber. Look-up secrets SHALL have at least 20 bits of entropy.
 -->
@@ -187,7 +187,7 @@ CSPs creating look-up secret authenticators SHALL use an approved random bit gen
 Look-up secrets MAY be distributed by the CSP in person, by postal mail to the subscriber's address of record, or by online distribution. If distributed online, look-up secrets SHALL be distributed over a secure channel in accordance with the post-enrollment binding requirements in [Section 6.1.2](#post-enroll-bind).
 -->
 
-もしAuthenticatorがルックアップシークレットを連続してリストから利用する場合，Subscriberは一度認証に成功した場合に限ってシークレットを破棄してもよい(MAY)．
+もしAuthenticatorがルックアップシークレットを連続してリストから利用する場合，Subscriberは一度Authenticationに成功した場合に限ってシークレットを破棄してもよい(MAY)．
 <!--
 If the authenticator uses look-up secrets sequentially from a list, the subscriber MAY dispose of used secrets, but only after a successful authentication.
 -->
@@ -199,17 +199,17 @@ If the authenticator uses look-up secrets sequentially from a list, the subscrib
 Verifiers of look-up secrets SHALL prompt the claimant for the next secret from their authenticator or for a specific (e.g., numbered) secret. A given secret from an authenticator SHALL be used successfully only once. If the look-up secret is derived from a grid card, each cell of the grid SHALL be used only once.
 -->
 
-Verifierは，オフライン攻撃へ対策する形式でルックアップシークレットを保存するものとする(SHALL)．112ビット以上のエントロピーを持ったルックアップシークレットは，[Section 5.1.1.2](#memsecretver)に記載されているようにapproveされた一方向関数でハッシュ化されるものとする(SHALL)．112ビット未満のエントロピーを持ったルックアップシークレットは[Section 5.1.1.2](#memsecretver)に記載されているように，ソルトを追加したうえで適切な一方向の鍵導出関数を用いてハッシュされるものとする．ソルト値は32ビット以上の長さで，保存されたハッシュ間でソルト値の衝突が最小化されるように任意に選択されるものとする(SHALL)．ソルト値及び結果のハッシュはいずれもルックアップシークレット毎に保存されるものとする(SHALL)．
+Verifierは，オフライン攻撃へ対策する形式でルックアップシークレットを保存するものとする(SHALL)．112ビット以上のエントロピーを持ったルックアップシークレットは，[Section 5.1.1.2](#memsecretver)に記載されているようにApprove済み一方向関数でハッシュ化されるものとする(SHALL)．112ビット未満のエントロピーを持ったルックアップシークレットは[Section 5.1.1.2](#memsecretver)に記載されているように，ソルトを追加したうえで適切な一方向の鍵導出関数を用いてハッシュされるものとする．ソルト値は32ビット以上の長さで，保存されたハッシュ間でソルト値の衝突が最小化されるように任意に選択されるものとする(SHALL)．ソルト値及び結果のハッシュはいずれもルックアップシークレット毎に保存されるものとする(SHALL)．
 <!--
 Verifiers SHALL store look-up secrets in a form that is resistant to offline attacks. Look-up secrets having at least 112 bits of entropy SHALL be hashed with an approved one-way function as described in [Section 5.1.1.2](#memsecretver). Look-up secrets with fewer than 112 bits of entropy SHALL be salted and hashed using a suitable one-way key derivation function, also described in [Section 5.1.1.2](#memsecretver). The salt value SHALL be at least 32 in bits in length and arbitrarily chosen so as to minimize salt value collisions among stored hashes. Both the salt value and the resulting hash SHALL be stored for each look-up secret.
 -->
 
-64ビット未満のエントロピーを持つルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，Subscriberのアカウントにおける認証失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+64ビット未満のエントロピーを持つルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
 <!--
 For look-up secrets that have less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
 -->
 
-VerifierはApproveされた暗号化を利用するものとし(SHALL)，ルックアップシークレットを要求する際には，盗聴や中間者攻撃を防止する目的で，Authenticateされた保護チャネルを利用するものとする(SHALL)．
+VerifierはApprove済み暗号化を利用するものとし(SHALL)，ルックアップシークレットを要求する際には，盗聴や中間者攻撃を防止する目的で，Authenticateされた保護チャネルを利用するものとする(SHALL)．
 <!--
 The verifier SHALL use approved encryption and an authenticated protected channel when requesting look-up secrets in order to provide resistance to eavesdropping and MitM attacks.
 -->
@@ -271,7 +271,7 @@ The out-of-band device SHOULD be uniquely addressable and communication over the
 The out-of-band authenticator SHALL uniquely authenticate itself in one of the following ways when communicating with the verifier:
 -->
 
-- Approveされた暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．利用する鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
+- Approve済み暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．利用する鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
 <!--
 - Establish an authenticated protected channel to the verifier using approved cryptography. The key used SHALL be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, TEE, secure element).
 -->
@@ -286,7 +286,7 @@ The out-of-band authenticator SHALL uniquely authenticate itself in one of the f
 If a secret is sent by the verifier to the out-of-band device, the device SHOULD NOT display the authentication secret while it is locked by the owner (i.e., requires an entry of a PIN, passcode, or biometric to view). However, authenticators SHOULD indicate the receipt of an authentication secret on a locked device.
 -->
 
-もしアウトオブバンド認証機がセカンダリ通信チャネルを介して承認メッセージを送信するならば(Claimantがプライマリ通信チャネルに対して受け取ったシークレットを送信するよりもむしろ)，次のうち1つを実施するものとする(SHALL):
+もしアウトオブバンドAuthenticatorがセカンダリ通信チャネルを介して承認メッセージを送信するならば(Claimantがプライマリ通信チャネルに対して受け取ったシークレットを送信するよりもむしろ)，次のうち1つを実施するものとする(SHALL):
 <!--
 If the out-of-band authenticator sends an approval message over the secondary communication channel — rather than by the claimant transferring a received secret to the primary communication channel — it SHALL do one of the following:
 -->
@@ -301,19 +301,42 @@ If the out-of-band authenticator sends an approval message over the secondary co
 * The authenticator SHALL present a secret received via the secondary channel from the verifier and prompt the claimant to verify the consistency of that secret with the primary channel, prior to accepting a yes/no response from the claimant. It SHALL then send that response to the verifier.
 -->
 
+#### 5.1.3.2 アウトオブバンドVerifier
+<!--
 #### 5.1.3.2 Out-of-Band Verifiers
+-->
 
+PSTNに特有の追加の検証要件は，[Section 5.1.3.3](#pstnOOB)を参照すること．
+<!--
 For additional verification requirements specific to the PSTN, see [Section 5.1.3.3](#pstnOOB).
+-->
 
+アウトオブバンド検証がセキュアなアプリケーション(例:スマートフォン上)を利用して行われる場合，Verifierはデバイスに対してPush通知を行ってもよい(MAY)．VerifierはAuthenticateされた保護チャネルの確立を待ち，Authenticatorの識別キーを検証する．Authenticatorは識別キー自身を記録しないものとする(SHALL NOT)が，Authenticatorを一意に識別するためにハッシュのような検証方法(例えばApprove済みのハッシュ関数や，識別キーの所持証明)を用いるものとする(SHALL)．Authenticateされると，VerifierはAuthenticationシークレットをAuthenticatorに対して送信する．
+<!--
 If out-of-band verification is to be made using a secure application, such as on a smart phone, the verifier MAY send a push notification to that device. The verifier then waits for the establishment of an authenticated protected channel and verifies the authenticator's identifying key. The verifier SHALL NOT store the identifying key itself, but SHALL use a verification method (e.g., an approved hash function or proof of possession of the identifying key) to uniquely identify the authenticator. Once authenticated, the verifier transmits the authentication secret to the authenticator.
+-->
 
+アウトオブバンドAuthenticatorの種別に応じて，以下のうち1つを行うものとする(SHALL):
+<!--
 Depending on the type of out-of-band authenticator, one of the following SHALL take place:
+-->
 
+* シークレットをプライマリチャネルに送出: VerifierはSubscriberのAuthenticatorを持つデバイスに対してAuthenticationの準備を示すシグナルを送信してもよい(MAY)．そのうえで，アウトオブバンドAuthenticatorに対してランダムなシークレットを送信するものとする(SHALL)．Verifierはプライマリ通信チャネル上でシークレットが返却されるのを待つものとする(SHALL)．
+<!--
 * Transfer of secret to primary channel: The verifier MAY signal the device containing the subscriber's authenticator to indicate readiness to authenticate. It SHALL then transmit a random secret to the out-of-band authenticator. The verifier SHALL then wait for the secret to be returned on the primary communication channel.
+-->
 
+* シークレットをセカンダリチャネルに送出: VerifierはランダムなAuthenticationシークレットをプライマリチャネル経由でClaimantに対して表示するものとする(SHALL)．そのうえで，セカンダリチャネル上でClaimantのアウトオブバンドAuthenticatorからシークレットが返却されるのを待つものとする(SHALL)．
+<!--
 * Transfer of secret to secondary channel: The verifier SHALL display a random authentication secret to the claimant via the primary channel. It SHALL then wait for the secret to be returned on the secondary channel from the claimant's out-of-band authenticator.
+-->
 
+* ClaimantによるシークレットのVerifier: VerifierはランダムなAuthenticationシークレットをプライマリチャネル経由でClaimantに対して表示するものとし(SHALL)，セカンダリチャネルを介してアウトオブバンドAuthenticatorに対して同じシークレットを送信しClaimantに提示するものとする(SHALL)．そのうえで，セカンダリチャネルを介した承認(非承認)メッセージを待つものとする(SHALL)．
+<!--
 * Verification of secrets by claimant: The verifier SHALL display a random authentication secret to the claimant via the primary channel, and SHALL send the same secret to the out-of-band authenticator via the secondary channel for presentation to the claimant. It SHALL then wait for an approval (or disapproval) message via the secondary channel.
+-->
+
+全てのケースにおいて，10分以内に完了しないAuthenticationは不正とみなすものとする(SHALL)．
 
 In all cases, the authentication SHALL be considered invalid if not completed within 10 minutes. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given authentication secret only once during the validity period.
 
