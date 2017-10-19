@@ -1,8 +1,8 @@
 # Site settings
-title: SP 800-63 Digital Identity Guidelines
+title: SP 800-63 Digital Identity Guidelines (翻訳版)
 description: "NIST Special Publication 800-63 Digital Identity Guidelines"
-baseurl: "/800-63-3" # the subpath of your site, e.g. /blog
-url: "https://pages.nist.gov/" # the base hostname & protocol for your site
+baseurl: "/800-63-3-final" # the subpath of your site, e.g. /blog
+url: "https://openid-foundation-japan.github.io/" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
