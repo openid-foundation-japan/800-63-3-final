@@ -69,7 +69,7 @@ Assertion のライフタイムは発行時から有効期限までの間であ�
 
 ### 6.1 Assertion Binding <a name="assertion-binding"></a>
 
-Assertion Binding は, Assertion と Subscriber の紐付けを行うのに, Assertion の Claimant が Assertion ないしは Assertion Reference 提示すれば十分か, Assertion が Subscriber に紐づいていることを示す追加の証明を RP が要求するか, という点に基づいて分類することができる.
+Assertion Binding は, Assertion と Subscriber の紐付けを行うのに, Assertion の Claimant が Assertion ないしは Assertion Reference を提示すれば十分か, Assertion が Subscriber に紐づいていることを示す追加の証明を RP が要求するか, という点に基づいて分類することができる.
 
 <!-- Assertion binding can be classified based on whether presentation by a claimant of an assertion, or an assertion reference, is sufficient for binding to the subscriber, or if the RP requires additional proof that the assertion is bound to the subscriber. -->
 
