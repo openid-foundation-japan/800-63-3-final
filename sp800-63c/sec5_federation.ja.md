@@ -222,11 +222,11 @@ IdP は, 例えば毀損した Subscriber アカウントの情報などのSubsc
 
 <!-- The following requirements apply specifically to federal agencies: -->
 
-1. 機関は, 自身の Senior Agency Official for Privacy (SAOP) と協議し, Privacy Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方を起因として満たされるかを判断すべく分析を行うこととする (SHALL).
+1. 機関は, 自身の Senior Agency Official for Privacy (SAOP) と協議し, Privacy Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方に適用されるかどうか判断すべく分析を行うこととする (SHALL).
 
 2. 機関は, 適用可能な場合, System of Records Notice (SORN) のカバレッジを公表ないし割り出さなければならない (SHALL).
 
-3. 機関は, 自身の SAOP と協議し, E-Government Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方を起因として満たされるかを判断すべく分析を行うこととする (SHALL).
+3. 機関は, 自身の SAOP と協議し, E-Government Act の要件が, IdP として機能する機関か RP として機能する機関, またはその両方に適用されるか判断すべく分析を行うこととする (SHALL).
 
 4. 機関は, 適用可能な場合, Privacy Impact Assessment (PIA) のカバレッジを公表ないし割り出さなければならない (SHALL).
 
