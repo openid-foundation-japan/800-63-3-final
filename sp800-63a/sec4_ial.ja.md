@@ -180,9 +180,13 @@ _This section is normative._
 
 _This section is normative._
 
-IAL2 allows for **remote** or **in-person** identity proofing. IAL2 supports a wide range of acceptable identity proofing techniques in order to increase user adoption, decrease false negatives (legitimate applicants that cannot successfully complete identity proofing), and detect to the best extent possible the presentation of fraudulent identities by a malicious applicant.
+IAL2 では **Remote** および **In-person** (対面) での Identity Proofing を許可している. IAL2 は, より多くのユーザーに選択され, フォルスネガティブ (Identity Proofing を通過できない正当な Applicant) を削減し, 悪意ある Applicant による不正な Identity の提示を可能な限り検出するため, 広範囲の受け入れ可能な Identity Proofing テクニックをサポートする.
 
-A CSP SHALL proof according to the requirements in [Section 4.4.1](#normal) or [Section 4.4.2](#referee). A CSP SHOULD implement identity proofing in accordance with [Section 4.4.1](#normal). Depending on the population the CSP serves, the CSP MAY implement identity proofing in accordance with [Section 4.4.2](#referee).
+<!-- IAL2 allows for **remote** or **in-person** identity proofing. IAL2 supports a wide range of acceptable identity proofing techniques in order to increase user adoption, decrease false negatives (legitimate applicants that cannot successfully complete identity proofing), and detect to the best extent possible the presentation of fraudulent identities by a malicious applicant. -->
+
+CSP は [Section 4.4.1](#normal) ないしは [Section 4.4.2](#referee) の要件に従って Proofing を行わなければならない (SHALL). CSP は [Section 4.4.1](#normal) に従って Identity Proofing を実装すべきである (SHOULD). CSP がサービスを提供する対象によっては, CSP は [Section 4.4.2](#referee) に従って Identity Proofing を実装してもよい (MAY).
+
+<!-- A CSP SHALL proof according to the requirements in [Section 4.4.1](#normal) or [Section 4.4.2](#referee). A CSP SHOULD implement identity proofing in accordance with [Section 4.4.1](#normal). Depending on the population the CSP serves, the CSP MAY implement identity proofing in accordance with [Section 4.4.2](#referee). -->
 
 #### <a name="normal"></a>4.4.1 IAL2 Conventional Proofing Requirements
 
