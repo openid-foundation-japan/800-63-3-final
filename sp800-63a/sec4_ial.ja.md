@@ -97,9 +97,40 @@ _This section is normative._
 
 ### <a name="genProofReqs"></a> 4.2 General Requirements
 
+IAL2 ないしは IAL3 で Identity Proofing を行う CSP には, 以下の要件が課せられる.
 
-The following requirements apply to any CSP performing identity proofing at IAL2 or IAL3.
+<!-- The following requirements apply to any CSP performing identity proofing at IAL2 or IAL3. -->
 
+<div class="text-left" markdown="0">
+  <ol type="1" start="1">
+    <li>Identity Proofing は, サービスまたはメリットに Access するための適格性や資格を決定するために実施してはならない (SHALL NOT).</li>
+    <li><a name="4.2-r2"></a>PII の収集は, Claimed Identity の存在確認, および Identity Resolution, Validation, Verification のために Identity Evidence を提示している Applicant と Claimed Identity との関連づけに必要最小限な程度に制限すること (SHALL). この PII には, Identity Evidence を Authoritative Source と関連づける Attribute や, RP が Authorization の決定を行うために利用する Attribute を含みうる (MAY).</li>
+    <li><a name="4.2-r3"></a>CSP は, 収集時に Applicaint に明示的な通知を行い, Identity Proofing に必要な Attribute の収集・記録管理の目的を知らせなければならない (SHALL). これには, Identity Proofing プロセスを完了するためにどの Attribute が任意でありどの Attribute が必須であるかや, Attribute を提供しない場合の影響といった情報を含む.</li>
+    <li><a name="4.2-r4"></a>CSP は, Identity Proofing プロセスにおいて収集・管理することとなった Attribute を, CSP が明確な通知を行い Subscriber からの同意を得た場合を除き, Identity Proofing, Authentication, Attribute Assertion, 法律や法的プロセスに従う以外の目的で利用してはならない (SHALL NOT). CSP はこういった追加の目的をサービス提供条件としてはならない (SHALL NOT).</li>
+    <li><a name="4.2-r5"></a>CSP は, Identity Proofing を起因とする Applicant からの苦情や問題の是正のためのメカニズムを提供しなければならない (SHALL). また CSP は, そのメカニズムによって苦情や問題の解決が有効になされているか, 評価しなければならない (SHALL).</li>
+    <li><a name="4.2-r6"></a>The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities. The *practice statement* SHALL include control information detailing how the CSP handles proofing errors that result in an applicant not being successfully enrolled. For example, the number of retries allowed, proofing alternatives (e.g., in-person if remote fails), or fraud counter-measures when anomalies are detected.</li>
+    <li><a name="4.2-r7"></a>The CSP SHALL maintain a record, including audit logs, of all steps taken to verify the identity of the applicant and SHALL record the types of identity evidence presented in the proofing process. The CSP SHALL conduct a risk management process, including assessments of privacy and security risks to determine:</li>
+      <ol type="a" start="a">
+        <li>Any steps that it will take to verify the identity of the applicant beyond any mandatory requirements specified herein;</li>
+        <li>The PII, including any biometrics, images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing (Note: Specific federal requirements may apply.); and</li>
+        <li>The schedule of retention for these records (Note: CSPs may be subject to specific retention policies in accordance with applicable laws, regulations, or policies, including any National Archives and Records Administration (NARA) records retention schedules that may apply).</li>
+      </ol>
+    <li><a name="4.2-r8"></a>All PII collected as part of the enrollment process SHALL be protected to ensure confidentiality, integrity, and attribution of the information source.</li>
+    <li><a name="4.2-r9"></a>The entire proofing transaction, including transactions that involve a third party, SHALL occur over an authenticated protected channel.</li>
+    <li><a name="4.2-r10"></a>The CSP SHOULD obtain additional confidence in identity proofing using fraud mitigation measures (e.g., inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, checking vital statistic repositories such as the Death Master File <a href="sp800-63a.html#dmf">[DMF]</a>, so long as any additional mitigations do not substitute for the mandatory requirements contained herein. In the event the CSP uses fraud mitigation measures, the CSP SHALL conduct a privacy risk assessment for these mitigation measures. Such assessments SHALL include any privacy risk mitigations (e.g., risk acceptance or transfer, limited retention, use limitations, notice) or other technological mitigations (e.g., cryptography), and be documented per requirement 4.2(7) above.</li>
+    <li><a name="4.2-r11"></a>In the event a CSP ceases to conduct identity proofing and enrollment processes, the CSP SHALL be responsible for fully disposing of or destroying any sensitive data including PII, or its protection from unauthorized access for the duration of retention.</li>
+    <li><a name="4.2-r12"></a>Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to the agency offering or using the proofing service:</li>
+      <ol type="a" start="a">
+        <li>The agency SHALL consult with their Senior Agency Official for Privacy (SAOP) to conduct an analysis determining whether the collection of PII to conduct identity proofing triggers Privacy Act requirements.</li>
+        <li>The agency SHALL publish a System of Records Notice (SORN) to cover such collection, as applicable.</li>
+        <li>The agency SHALL consult with their SAOP to conduct an analysis determining whether the collection of PII to conduct identity proofing triggers E-Government Act of 2002 requirements.</li>
+        <li>The agency SHALL publish a Privacy Impact Assessment (PIA) to cover such collection, as applicable.</li>
+      </ol>
+    <li><a name="4.2-r13"></a>The CSP SHOULD NOT collect the Social Security Number (SSN) unless it is necessary for performing identity resolution, and identity resolution cannot be accomplished by collection of another attribute or combination of attributes.</li>
+  </ol>
+</div>
+
+<!--
 <div class="text-left" markdown="0">
   <ol type="1" start="1">
     <li>Identity proofing SHALL NOT be performed to determine suitability or entitlement to gain access to services or benefits.</li>
@@ -129,7 +160,7 @@ The following requirements apply to any CSP performing identity proofing at IAL2
     <li><a name="4.2-r13"></a>The CSP SHOULD NOT collect the Social Security Number (SSN) unless it is necessary for performing identity resolution, and identity resolution cannot be accomplished by collection of another attribute or combination of attributes.</li>
   </ol>
 </div>
-
+-->
 
 ### 4.3 Identity Assurance Level 1
 
