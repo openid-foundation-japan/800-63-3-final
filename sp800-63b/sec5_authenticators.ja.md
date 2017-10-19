@@ -336,11 +336,15 @@ Depending on the type of out-of-band authenticator, one of the following SHALL t
 * Verification of secrets by claimant: The verifier SHALL display a random authentication secret to the claimant via the primary channel, and SHALL send the same secret to the out-of-band authenticator via the secondary channel for presentation to the claimant. It SHALL then wait for an approval (or disapproval) message via the secondary channel.
 -->
 
-全てのケースにおいて，10分以内に完了しないAuthenticationは不正とみなすものとする(SHALL)．
-
+全てのケースにおいて，10分以内に完了しないAuthenticationは不正とみなすものとする(SHALL)．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは特定のAuthenticationシークレットを確認期間の間で一度だけ受け付けるものとする(SHALL)．
+<!--
 In all cases, the authentication SHALL be considered invalid if not completed within 10 minutes. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given authentication secret only once during the validity period.
+-->
 
+Verifierは，Approve済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いて少なくとも20ビットのエントロピーでランダムなAuthenticationシークレットを生成するものとする(SHALL)．もし認証シークレットが64ビット未満のエントロピーを持つ場合は，ルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+<!--
 The verifier SHALL generate random authentication secrets with at least 20 bits of entropy using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1). If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
+-->
 
 #### <a name="pstnOOB"></a> 5.1.3.3 Authentication using the Public Switched Telephone Network
 
