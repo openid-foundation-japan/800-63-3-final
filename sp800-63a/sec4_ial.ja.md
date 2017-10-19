@@ -108,25 +108,25 @@ IAL2 ないしは IAL3 で Identity Proofing を行う CSP には, 以下の要�
     <li><a name="4.2-r3"></a>CSP は, 収集時に Applicaint に明示的な通知を行い, Identity Proofing に必要な Attribute の収集・記録管理の目的を知らせなければならない (SHALL). これには, Identity Proofing プロセスを完了するためにどの Attribute が任意でありどの Attribute が必須であるかや, Attribute を提供しない場合の影響といった情報を含む.</li>
     <li><a name="4.2-r4"></a>CSP は, Identity Proofing プロセスにおいて収集・管理することとなった Attribute を, CSP が明確な通知を行い Subscriber からの同意を得た場合を除き, Identity Proofing, Authentication, Attribute Assertion, 法律や法的プロセスに従う以外の目的で利用してはならない (SHALL NOT). CSP はこういった追加の目的をサービス提供条件としてはならない (SHALL NOT).</li>
     <li><a name="4.2-r5"></a>CSP は, Identity Proofing を起因とする Applicant からの苦情や問題の是正のためのメカニズムを提供しなければならない (SHALL). また CSP は, そのメカニズムによって苦情や問題の解決が有効になされているか, 評価しなければならない (SHALL).</li>
-    <li><a name="4.2-r6"></a>The identity proofing and enrollment processes SHALL be performed according to an applicable written policy or *practice statement* that specifies the particular steps taken to verify identities. The *practice statement* SHALL include control information detailing how the CSP handles proofing errors that result in an applicant not being successfully enrolled. For example, the number of retries allowed, proofing alternatives (e.g., in-person if remote fails), or fraud counter-measures when anomalies are detected.</li>
-    <li><a name="4.2-r7"></a>The CSP SHALL maintain a record, including audit logs, of all steps taken to verify the identity of the applicant and SHALL record the types of identity evidence presented in the proofing process. The CSP SHALL conduct a risk management process, including assessments of privacy and security risks to determine:</li>
+    <li><a name="4.2-r6"></a>Identity Proofing と Enrollmet プロセスは, 適用可能な書面によるポリシー, または Identity を検証するための特定の手続きを規定する <i>practice statement</i> に従って行うこととする (SHALL). <i>practice statement</i> は, CSP がどのように Applicant の登録失敗につながるような Proofing エラーを取り扱うかを詳説する制御情報を含むこと (SHALL). これには例えば, 許容されるリトライ回数, 代替の Proofing 方法 (e.g., Remote が失敗した場合は対面), 異常検知時の不正対策などが含まれる.</li>
+    <li><a name="4.2-r7"></a>CSP は, 監査ログを含む Applicant の Identity を検証する際のすべての手続きの記録を管理するものとし (SHALL), Proofing プロセスにおいて提示された Identity Evidence のタイプを記録するものとする (SHALL). CSL は, プライバシーおよびセキュリティーに関する Risk Assessment を含む Risk Management プロセスを実施し, 以下の項目を定めること.</li>
       <ol type="a" start="a">
-        <li>Any steps that it will take to verify the identity of the applicant beyond any mandatory requirements specified herein;</li>
-        <li>The PII, including any biometrics, images, scans, or other copies of the identity evidence that the CSP will maintain as a record of identity proofing (Note: Specific federal requirements may apply.); and</li>
-        <li>The schedule of retention for these records (Note: CSPs may be subject to specific retention policies in accordance with applicable laws, regulations, or policies, including any National Archives and Records Administration (NARA) records retention schedules that may apply).</li>
+        <li>ここで指定された必須要件を超えて, Applicant の Identity を検証するために必要なステップ.</li>
+        <li>Biometrics, 画像, スキャン, その他 Identity Evidence のコピーを含む PII. CSP はこれらを Identity Proofing の記録として管理することになる. (Note: 特別な連邦政府要件が課せられることもある)</li>
+        <li>これらの記録の保持スケジュール. (Note: CSP には, 適用可能な National Archives and Records Administration (NARA) 記録保持スケジュールを含む, 適用可能な法律, 規則, ポリシーに従って, 特定の保持ポリシーが課せられることもある)</li>
       </ol>
-    <li><a name="4.2-r8"></a>All PII collected as part of the enrollment process SHALL be protected to ensure confidentiality, integrity, and attribution of the information source.</li>
-    <li><a name="4.2-r9"></a>The entire proofing transaction, including transactions that involve a third party, SHALL occur over an authenticated protected channel.</li>
-    <li><a name="4.2-r10"></a>The CSP SHOULD obtain additional confidence in identity proofing using fraud mitigation measures (e.g., inspecting geolocation, examining the device characteristics of the applicant, evaluating behavioral characteristics, checking vital statistic repositories such as the Death Master File <a href="sp800-63a.html#dmf">[DMF]</a>, so long as any additional mitigations do not substitute for the mandatory requirements contained herein. In the event the CSP uses fraud mitigation measures, the CSP SHALL conduct a privacy risk assessment for these mitigation measures. Such assessments SHALL include any privacy risk mitigations (e.g., risk acceptance or transfer, limited retention, use limitations, notice) or other technological mitigations (e.g., cryptography), and be documented per requirement 4.2(7) above.</li>
-    <li><a name="4.2-r11"></a>In the event a CSP ceases to conduct identity proofing and enrollment processes, the CSP SHALL be responsible for fully disposing of or destroying any sensitive data including PII, or its protection from unauthorized access for the duration of retention.</li>
-    <li><a name="4.2-r12"></a>Regardless of whether the CSP is an agency or private sector provider, the following requirements apply to the agency offering or using the proofing service:</li>
+    <li><a name="4.2-r8"></a>Enrollmet プロセスにおいて収集されたすべての PII は, Confidentiality (機密性), Integrity (完全性), 情報源の帰属を保証するよう保護すること (SHALL).</li>
+    <li><a name="4.2-r9"></a>第三者が関与する Transaction を含み, Proofing Transaction 全体を Authenticated Protected Channel 上で実行すること (SHALL).</li>
+    <li><a name="4.2-r10"></a>CSP は, 追加の対策がここで規定される必須要件に代わるものでない限り, 不正防止策 (e.g., ジオロケーションの検査, Applicant のデバイス特性の調査, 行動特性の評価, Death Master File <a href="sp800-63a.html#dmf">[DMF]</a> などのバイタル統計レポジトリーのチェック) を用いて Identity Proofing の信頼性を向上させるべきである (SHOULD). CSP が不正防止策を行う場合, CSP はこれらの防止策に関してプライバシー Risk Assessment を行うこと (SHALL). こういったアセスメントには, プライバシーリスク軽減策 (e.g., リスクの受容や転嫁, 制限付き保持, 使用制限, 通知), その他の技術的対策 (e.g., 暗号化), 上記 4.2(7) に記載された対策などが含まれる.</li>
+    <li><a name="4.2-r11"></a>CSP が Identity Proogin および Enrollment プロセスを終える場合, CSP は PII は PII を含むセンシティブデータの完全な廃棄または破棄, または保持期間中の Unauthorized な Access からの保護を行う責任を持つ (SHALL).</li>
+    <li><a name="4.2-r12"></a>CSP が政府機関か民間のプロバイダーかに関わらず, Proofing サービスを提供したり利用するには以下の要件が適用される.</li>
       <ol type="a" start="a">
-        <li>The agency SHALL consult with their Senior Agency Official for Privacy (SAOP) to conduct an analysis determining whether the collection of PII to conduct identity proofing triggers Privacy Act requirements.</li>
-        <li>The agency SHALL publish a System of Records Notice (SORN) to cover such collection, as applicable.</li>
-        <li>The agency SHALL consult with their SAOP to conduct an analysis determining whether the collection of PII to conduct identity proofing triggers E-Government Act of 2002 requirements.</li>
-        <li>The agency SHALL publish a Privacy Impact Assessment (PIA) to cover such collection, as applicable.</li>
+        <li>機関は, Senior Agency Official for Privacy (SAOP) と協議し, Identity Proofing を実施するための PII 収集において Privacy Act 要件が適用されるかどうか判断するための分析を行うこと (SHALL).</li>
+        <li>機関は, 該当する場合は System of Records Notice (SORN) を公開し, そういった収集について記載すること.</li>
+        <li>機関は, SOAP と協議し, Identity Proofing を実施するための PII 収集において E-Government Act of 2002 要件が適用されるかどうか判断するための分析を行うこと (SHALL).</li>
+        <li>機関は, 該当する場合は Privacy Impact Assessment (PIA) を公開し, そういった収集について記載すること.</li>
       </ol>
-    <li><a name="4.2-r13"></a>The CSP SHOULD NOT collect the Social Security Number (SSN) unless it is necessary for performing identity resolution, and identity resolution cannot be accomplished by collection of another attribute or combination of attributes.</li>
+    <li><a name="4.2-r13"></a>CSP は, Identity Resolution に必要でない限り, また Identity Resolution がその他の Attribute または Attribute の組み合わせによって実現不可能でない限り, Social Security Number (SSN) を収集すべきではない (SHOULD NOT).</li>
   </ol>
 </div>
 
@@ -166,9 +166,15 @@ IAL2 ないしは IAL3 で Identity Proofing を行う CSP には, 以下の要�
 
 _This section is normative._
 
+1. IAL1 のみをサポートする CSP は Attribute を確認したり検証してはならない (SHALL NOT).
+2. CSP はサービス提供のために Applicant に0個以上の Self-asserted Attribute を要求してもよい (MAY).
+3. IAL2 や IAL3 の CSP は, ユーザーの同意があれば, IAL1 を必要とする RP をサポートすべきである (SHOULD).
+
+<!--
 1. A CSP that supports only IAL1 CSP SHALL NOT validate and verify attributes.
 2. The CSP MAY request zero or more self-asserted attributes from the applicant to support their service offering.
 3. An IAL2 or IAL3 CSP SHOULD support RPs that only require IAL1, if the user consents.
+-->
 
 ### 4.4 Identity Assurance Level 2
 
