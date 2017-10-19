@@ -43,25 +43,48 @@ Replying Party (RP) が Transaction を実行する Subscriber に関して何�
 
 ## 2.1 Expected Outcomes of Identity Proofing
 
-When a subject is identity proofed, the expected outcomes are:
+Subject に対して Identity Proofing を行う際には, 以下のようなことが期待される.
 
+<!-- When a subject is identity proofed, the expected outcomes are: -->
+
+* Claimed Identity を, CSP がサービスを提供するユーザー集団のコンテキストにおいて, 単一かつユニークな Identity に帰着させる.
+* 提供された全てのエビデンスが正しく本物である (e.g., 偽造・悪用されていない) ことを確認する.
+* Claimed Identity が現実世界に存在することを確認する.
+* Claimed Identity が Identity Evidence を提示した現実世界の人間と関連づいていることを検証する.
+
+<!--
 * Resolve a claimed identity to a single, unique identity within the context of the population of users the CSP serves.
 * Validate that all supplied evidence is correct and genuine (e.g., not counterfeit or misappropriated).
 * Validate that the claimed identity exists in the real world.
 * Verify that the claimed identity is associated with the real person supplying the identity evidence.
+-->
 
 ## 2.2 Identity Assurance Levels
 
-Assurance in a subscriber's identity is described using one of three IALs:
+Subscriber の Identity に関する Assurance は以下の3つの IAL を利用して記述される.
 
-**IAL1**: There is no requirement to link the applicant to a specific real-life identity. Any attributes provided in conjunction with the subject's activities are self-asserted or should be treated as self-asserted (including attributes a CSP asserts to an RP). Self-asserted attributes are neither validated nor verified.
+<!-- Assurance in a subscriber's identity is described using one of three IALs: -->
 
-**IAL2**: Evidence supports the real-world existence of the claimed identity and verifies that the applicant is appropriately associated with this real-world identity. IAL2 introduces the need for either remote or physically-present identity proofing. Attributes could be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. A CSP that supports IAL2 can support IAL1 transactions if the user consents.
+**IAL1**: Applicant を現実世界の特定の Identity 紐づける必要はない. Subject の行動に関連して提供される Attribute は, Self-asserted であるか, Self-asserted として扱われるべきである (CSP が RP に対して Assert する Attribute を含む). Self-asserted Attribute は確認も検証もされない.
 
-**IAL3**: Physical presence is required for identity proofing. Identifying attributes must be verified by an authorized and trained CSP representative. As with IAL2, attributes could be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. A CSP that supports IAL3 can support IAL1 and IAL2 identity attributes if the user consents.
+<!-- **IAL1**: There is no requirement to link the applicant to a specific real-life identity. Any attributes provided in conjunction with the subject's activities are self-asserted or should be treated as self-asserted (including attributes a CSP asserts to an RP). Self-asserted attributes are neither validated nor verified. -->
 
-At IAL2 and IAL3, pseudonymity in federated environments is enabled by limiting the number of attributes sent from the CSP to the RP, or the way they are presented. For example, if a RP needs a valid birthdate but no other personal details, the RP should leverage a CSP to request just the birthdate of the subscriber. Wherever possible, the RP should ask the CSP for an attribute reference. For example, if a RP needs to know if a claimant is older than 18 they should request a boolean value, not the entire birthdate, to evaluate age. Conversely, it may be beneficial to the user that uses a high assurance CSP for transactions at lower assurance levels.  For example, a user may maintain an IAL3 identity, yet should be able to use their CSP for IAL2 and IAL1 transactions.
+**IAL2**: エビデンスにより, Claimed Identity が現実世界に存在することを示す材料とし, Applicant が現実世界の当該 Identity と適切に関連づけられていることを証明する. IAL2 では Remote ないしは対面での Identity Proofing が必要となる. Attribute は RP に対して CSP によって Assert されることもあり, Pseudonymous Identity が検証済 Attribute を持つこともサポートされる. IAL2 をサポートする CSP は, ユーザーの同意があれば IAL1 の Transaction をサポートしてもよい.
 
-Since the individual will have undergone an identity proofing process at enrollment, transactions with respect to individual interactions with the CSP may not necessarily be pseudonymous.
+<!-- **IAL2**: Evidence supports the real-world existence of the claimed identity and verifies that the applicant is appropriately associated with this real-world identity. IAL2 introduces the need for either remote or physically-present identity proofing. Attributes could be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. A CSP that supports IAL2 can support IAL1 transactions if the user consents. -->
 
-Detailed requirements for each of the IALs are given in [Section 4](#ial-section) and [Section 5](#ipv-section).
+**IAL3**: 対面での Identity Proofing が必要である. 識別に用いる Attribute は Authorized かつ訓練を受けた CSP の代理人によって検証される必要がある. IAL2 と同様, Attribute は RP に対して CSP によって Assert されることもあり, Pseudonymous Identity が検証済 Attribute を持つこともサポートされる. IAL3 をサポートする CSP は, ユーザーの同意があれば IAL1 および IAL2 の Transaction をサポートしてもよい.
+
+<!-- **IAL3**: Physical presence is required for identity proofing. Identifying attributes must be verified by an authorized and trained CSP representative. As with IAL2, attributes could be asserted by CSPs to RPs in support of pseudonymous identity with verified attributes. A CSP that supports IAL3 can support IAL1 and IAL2 identity attributes if the user consents. -->
+
+IAL2 と IAL3 では, CSP から RP に送信する Attribute の数やその提示方法を制限することで, Federated 環境での Pseudonymity が実現可能である. 例えば, RP が正確な誕生日のみを必要とし, その他の個人の詳細については知らなくて良い時, RP は CSP に Subscriber の誕生日のみを要求すべきである. また可能であれば, RP は CSP に Attribute Reference を要求すべきである. 例えば, RP が Subscriber が18歳以上かどうか知る必要がある場合, RP は完全な誕生日ではなく真偽値のみを要求すべきである. 逆に言えば, より低い Assurance Level の Transaction によいて, より高い Assurance を持つ CSP を利用することは, ユーザーにとって有益たりうる. 例えば, ユーザーは IAL3 の Identity を管理し, その CSP を IAL2 や IAL1 の Transaction においても利用できるべきである.
+
+<!-- At IAL2 and IAL3, pseudonymity in federated environments is enabled by limiting the number of attributes sent from the CSP to the RP, or the way they are presented. For example, if a RP needs a valid birthdate but no other personal details, the RP should leverage a CSP to request just the birthdate of the subscriber. Wherever possible, the RP should ask the CSP for an attribute reference. For example, if a RP needs to know if a claimant is older than 18 they should request a boolean value, not the entire birthdate, to evaluate age. Conversely, it may be beneficial to the user that uses a high assurance CSP for transactions at lower assurance levels.  For example, a user may maintain an IAL3 identity, yet should be able to use their CSP for IAL2 and IAL1 transactions. -->
+
+当該個人は Enrollment 時に Identity Proofing プロセスを経るであろうから, CSP との個別のインタラクションに関する Transaction は必ずしも Pseudonymous とは限らない.
+
+<!-- Since the individual will have undergone an identity proofing process at enrollment, transactions with respect to individual interactions with the CSP may not necessarily be pseudonymous. -->
+
+各 IAL の詳細な要件は [Section 4](#ial-section) および [Section 5](#ipv-section) で述べる.
+
+<!-- Detailed requirements for each of the IALs are given in [Section 4](#ial-section) and [Section 5](#ipv-section). -->
