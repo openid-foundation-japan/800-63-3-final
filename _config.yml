@@ -23,8 +23,8 @@ exclude:
 - LICENSE.md
 
 # GitHub information
-org_name: usnistgov
-repo_name: 800-63-3
+org_name: openid-foundation-japan
+repo_name: 800-63-3-final
 
 # Navigation
 # List links that should appear in the site sidebar here
