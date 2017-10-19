@@ -273,7 +273,7 @@ Subscriber の Authenticator を発行もしくは登録し, Subscriber に電�
 
 #### Cross-site Request Forgery (CSRF)
 
-RP に対して Authenticate されている Subscriber が, セキュアなセッションをつうじて Attacker のウェブサイトに接続する場合に発生する Attack であり, 加入者が無意識のうちに望まないアクションを RP 上で実行してしまうことになる.
+RP に対して Authenticate されている Subscriber が, セキュアな Session をつうじて Attacker のウェブサイトに接続する場合に発生する Attack であり, 加入者が無意識のうちに望まないアクションを RP 上で実行してしまうことになる.
 
 <!-- An attack in which a subscriber currently authenticated to an RP and connected through a secure session browses to an attacker's website, causing the subscriber to unknowingly invoke unwanted actions at the RP. -->
 
@@ -648,11 +648,11 @@ Presentation Attack の自動検知. Presentation Attack Detection 手法のサ�
 
 #### Protected Session
 
-2者間でやりとりされるメッセージを, Session Key と呼ばれる Shared Secret を用いて暗号化し, Integrity を保護するセッション.
+2者間でやりとりされるメッセージを, Session Key と呼ばれる Shared Secret を用いて暗号化し, Integrity を保護する Session.
 
 <!-- A session wherein messages between two participants are encrypted and integrity is protected using a set of shared secrets called session keys. -->
 
-当該セッション内で, ある主体が Session Key に加えて1つ以上の Authenticator を所有していることを証明し, もう一方の主体が当該 Authenticator に紐づく Identity を検証できる場合, 当該主体は *Authenticated* であると言う. もし両主体が共に Authenticated となる場合, この Protected Session は *Mutually Authenticated* であると言える.
+当該 Session 内で, ある主体が Session Key に加えて1つ以上の Authenticator を所有していることを証明し, もう一方の主体が当該 Authenticator に紐づく Identity を検証できる場合, 当該主体は *Authenticated* であると言う. もし両主体が共に Authenticated となる場合, この Protected Session は *Mutually Authenticated* であると言える.
 
 <!-- A participant is said to be *authenticated* if, during the session, they prove possession of one or more authenticators in addition to the session keys, and if the other party can verify the identity associated with the authenticator(s). If both participants are authenticated, the protected session is said to be *mutually authenticated*. -->
 
