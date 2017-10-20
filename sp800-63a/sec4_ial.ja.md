@@ -202,7 +202,7 @@ CSP は以下を Applicant から収集すること (SHALL).
 
 <!-- The CSP SHALL collect the following from the applicant: -->
 
-1. **もし** エビデンスの Issuing Source が発行時の Identity Proofing イベントにおいて, SUPERIOR あるいは STRONG なエビデンスを2つ以上利用して Claimed Identity の確認を行っており, **かつ** CSP が直接 Issuing Source との間でそのエビデンスを確認したのであれば, そのようなプロセスを経て発行された SUPERIOR ないしは STRONG なエビデンスを1つ. **もしくは**
+1. **もし** エビデンスの Issuing Source が, 発行時の Identity Proofing イベントにおいて, SUPERIOR あるいは STRONG なエビデンスを2つ以上利用して Claimed Identity の確認を行っており, **かつ** CSP が直接 Issuing Source との間でそのエビデンスを確認したのであれば, そのようなプロセスを経て発行された SUPERIOR ないしは STRONG なエビデンスを1つ. **もしくは**
 2. STRONG なエビデンスを2つ. **もしくは**
 3. STRONG なエビデンスを1つと FAIR なエビデンスを2つ.
 
@@ -317,7 +317,7 @@ CSP は Non-repudiation (否認防止) や Re-proofing を目的として Biomet
 
 #### 4.4.1.8 Security Controls
 
-CSP は, [SP 800-53](#SP800-53) やそれに相当する連邦政府標準 (e.g., [FEDRAMP](#FEDRAMP)) や業界標準に定められた, Moderate ないしは Hight 基準のセキュリティー制御策から, 制御強化を含み, 適切に調整されたセキュリティー制御策を採用しなければならない (SHALL). CSP は *moderate-impact* システムやそれに相当するものに対する Assurance 関連の最低限の制御策が実施されていることを保証しなければならない (SHALL).
+CSP は, [SP 800-53](#SP800-53) やそれに相当する連邦政府標準 (e.g., [FEDRAMP](#FEDRAMP)) や業界標準に定められた, Moderate ないしは High 基準のセキュリティー制御策から, 制御強化を含み, 適切に調整されたセキュリティー制御策を採用しなければならない (SHALL). CSP は *moderate-impact* システムやそれに相当するものに対する Assurance 関連の最低限の制御策が実施されていることを保証しなければならない (SHALL).
 
 <!-- The CSP SHALL employ appropriately tailored security controls, to include control enhancements, from the moderate or high baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *moderate-impact* systems or equivalent are satisfied. -->
 
@@ -331,76 +331,132 @@ CSP は, [SP 800-53](#SP800-53) やそれに相当する連邦政府標準 (e.g.
 
 _This section is normative._
 
-IAL3 adds additional rigor to the steps required at IAL2, to include providing further evidence of superior strength, and is subject to additional and specific processes (including the use of biometrics) to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages. Biometrics are used to detect fraudulent enrollments, duplicate enrollments, and as a mechanism to re-establish binding to a credential. In addition, identity proofing at IAL3 is performed in-person (to include supervised remote). See [Section 5.3.3](#vip) for more details.
+IAL3 では IAL2 よりさらに厳格であり, さらに強度の高いエビデンスの提供が求められると共に, なりすましや不正, その他の有害なダメージから当該 Identity および RP を保護する特定の追加プロセス (Biometrics の利用を含む) も求められることになる. Biometrics は, 不正な Enrollment や 重複した Enrollment を検出するために利用され, Credential への紐付けを再確立する手段としても利用される. 加えて, IAL3 での Identity Proofing は対面 (監視下にある Remote を含む) で行われる. 詳細は [Section 5.3.3](#vip) を参照のこと.
+
+<!-- IAL3 adds additional rigor to the steps required at IAL2, to include providing further evidence of superior strength, and is subject to additional and specific processes (including the use of biometrics) to further protect the identity and RP from impersonation, fraud, or other significantly harmful damages. Biometrics are used to detect fraudulent enrollments, duplicate enrollments, and as a mechanism to re-establish binding to a credential. In addition, identity proofing at IAL3 is performed in-person (to include supervised remote). See [Section 5.3.3](#vip) for more details. -->
 
 #### 4.5.1 Resolution Requirements
 
-Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements.
+PII の収集は, Identity をユニークに導出するために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
+
+<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements. -->
 
 #### 4.5.2 Evidence Collection Requirements
 
-The CSP SHALL collect the following from the applicant:
+CSP は以下を Applicant から収集すること (SHALL).
 
+<!-- The CSP SHALL collect the following from the applicant: -->
+
+1. 2つの SUPERIOR なエビデンス. **もしくは**
+2. **もし** STRONG なエビデンスの Issuing Source が, 発行時の Identity Proofing イベントにおいて, SUPERIOR あるいは STRONG なエビデンスを2つ以上利用して Claimed Identity の確認を行っており, **かつ** CSP が直接 Issuing Source との間でそのエビデンスを確認したのであれば,  SUPERIOR なエビデンスとそのようなプロセスを経て発行された STRONG なエビデンスを1つずつ.
+3. STRONG なエビデンスを2つと FAIR なエビデンスを1つ.
+
+<!--
 1. Two pieces of SUPERIOR evidence; **OR**
 2. One piece of SUPERIOR evidence and one piece of STRONG evidence **if** the issuing source of the STRONG evidence, during its identity proofing event, confirmed the claimed identity by collecting two or more forms of SUPERIOR or STRONG evidence **and** the CSP validates the evidence directly with the issuing source; **OR**
 3. Two pieces of STRONG evidence plus one piece of FAIR evidence.
+-->
 
-See [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) for more information on acceptable identity evidence.
+
+受け入れ可能な Identity Evidence についての詳細は [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) を参照のこと.
+
+<!-- See [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) for more information on acceptable identity evidence. -->
 
 #### <a name="4-5-3"></a>4.5.3 Validation Requirements
 
-The CSP SHALL validate identity evidence as follows:
+CSP は Identity Evidence を以下のように確認すること (SHALL).
 
-Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented. For example, if two forms of STRONG identity evidence are presented, each piece of evidence will be validated at a strength of STRONG.
+<!-- The CSP SHALL validate identity evidence as follows: -->
 
-See [Section 5.2.2 Validating Identity Evidence](#evidence_validation) for more information on validating identity evidence
+それぞれのエビデンスは, 提示されたエビデンスと同じ強度のプロセスによって確認すること. 例えば2つの STRONG な Identity Evidence が提示された場合は, それぞれを STRONG な強度で確認することとなる.
+
+<!-- Each piece of evidence must be validated with a process that is able to achieve the same strength as the evidence presented. For example, if two forms of STRONG identity evidence are presented, each piece of evidence will be validated at a strength of STRONG. -->
+
+Identity Evidence の確認についての詳細は [Section 5.2.2 Validating Identity Evidence](#evidence_validation) を参照のこと.
+
+<!-- See [Section 5.2.2 Validating Identity Evidence](#evidence_validation) for more information on validating identity evidence -->
 
 #### 4.5.4 Verification Requirements
 
-The CSP SHALL verify identity evidence as follows:
 
+CSP は Identity Evidence を以下のように検証すること.
+
+<!-- The CSP SHALL verify identity evidence as follows: -->
+
+1. 最低限, Applicant と Identity Evidence の紐付けは, 強度 SUPERIOR を達成できるプロセスによって検証しなければならない.
+2. KBV は対面 (物理的ないしは監視下における Remote) の Identity 検証のために利用してはならない (SHALL NOT).
+
+<!--
 1. At a minimum, the applicant's binding to identity evidence must be verified by a process that is able to achieve a strength of SUPERIOR.
 2. KBV SHALL NOT be used for in-person (physical or supervised remote) identity verification.
+-->
 
-See [Section 5.3 Identity Verification](#verify) for more information on acceptable identity evidence.
+Identity Evidence の検証についての詳細は [Section 5.2.2 Validating Identity Evidence](#evidence_validation) を参照のこと.
+
+<!-- NOTE: 多分原文が間違ってコピペしてる. -->
+<!-- See [Section 5.3 Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
 #### 4.5.5 Presence Requirements
 
-The CSP SHALL perform all identity proofing steps with the applicant in-person. See [Section 5.3.3](#vip) for more details.
+CSP は Identity Proofing の全ステップを Applicant と対面で行うこと (SHALL). 詳細は [Section 5.3.3](#vip) を参照のこと.
 
+<!-- The CSP SHALL perform all identity proofing steps with the applicant in-person. See [Section 5.3.3](#vip) for more details. -->
 
 #### <a name="4-5-6"></a>4.5.6 Address Confirmation
 
+1. CSP は Address of Record を確認しなければならない (SHALL). CSP は, 提示された有効な Identity Evidence のいずれかに記載された住所の確認を通じて, Address of Record の確認を行うべきである (SHOULD). CSP は, Applicant が提供した, いかなる有効な Identity Evidence にも記載されていない情報の確認を通じて, Address of Record の確認を行ってもよい (MAY).
+2. Self-asserted な住所データは, 確認に用いてはならない (SHALL NOT).
+3. 確認された Address of Record に Proofing の通知を送らねばならない (SHALL).
+4. Subscriber と Authenticator の紐付けが後日発生する場合は, CSP は Enrollment コードを直接 Subscriber に提示してもよい (MAY). Enrollment コードは最大7日間まで有効なものとする (SHALL).
+
+<!--
 1. The CSP SHALL confirm address of record. The CSP SHOULD confirm address of record through validation of the address contained on any supplied, valid piece of identity evidence. The CSP MAY confirm address of record by validating information supplied by the applicant, not contained on any supplied, valid piece of identity evidence.
 2. Self-asserted address data SHALL NOT be used for confirmation.
 3. A notification of proofing SHALL be sent to the confirmed address of record.
 4. The CSP MAY provide an enrollment code directly to the subscriber if binding to an authenticator will occur at a later time. The enrollment code SHALL be valid for a maximum of 7 days.
+-->
 
 #### <a name="4-5-7"></a>4.5.7 Biometric Collection
 
-The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image, fingerprints) for the purposes of non-repudiation and re-proofing. See Section 5.2.3 of [SP 800-63B](sp800-63b.html) for more detail on biometric collection.
+
+CSP は, Non-repudiation (否認防止) や Re-proofing を目的として, Proofing 時に Biometrics サンプルを収集・記録すること (SHALL). Biometrics 収集に関する詳細は [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) を参照のこと.
+
+<!-- The CSP SHALL collect and record a biometric sample at the time of proofing (e.g., facial image, fingerprints) for the purposes of non-repudiation and re-proofing. See Section 5.2.3 of [SP 800-63B](sp800-63b.html) for more detail on biometric collection. -->
 
 #### 4.5.8 Security Controls
 
-The CSP SHALL employ appropriately tailored security controls, to include control enhancements, from the high baseline of security controls defined in [SP 800-53](#SP800-53) or an equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *high-impact* systems or equivalent are satisfied.
+CSP は, [SP 800-53](#SP800-53) やそれに相当する連邦政府標準 (e.g., [FEDRAMP](#FEDRAMP)) や業界標準に定められた, High 基準のセキュリティー制御策から, 制御強化を含み, 適切に調整されたセキュリティー制御策を採用しなければならない (SHALL). CSP は *high-impact* システムやそれに相当するものに対する Assurance 関連の最低限の制御策が実施されていることを保証しなければならない (SHALL).
+
+<!-- The CSP SHALL employ appropriately tailored security controls, to include control enhancements, from the high baseline of security controls defined in [SP 800-53](#SP800-53) or an equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *high-impact* systems or equivalent are satisfied. -->
 
 ### <a name="enrollmentcode"></a> 4.6 Enrollment Code
 
 _This section is normative._
 
-An enrollment code allows the CSP to confirm that the applicant controls an address of record, as well as offering the applicant the ability to reestablish binding to their enrollment record. Binding NEED NOT be completed in the same session as the original identity proofing transaction.
+Enrollment コードにより, CSP は Applicant が Address of Record を管理下に置いていることを確認できるほか, Applicant と Enrollment レコードの再紐付けを行えるようにもなる. この紐付けは, もととなる Identity Proofing Transaction と同一の Session で完了する必要はない (NEET NOT).
 
-An enrollment code SHALL be comprised of one of the following:
+<!-- An enrollment code allows the CSP to confirm that the applicant controls an address of record, as well as offering the applicant the ability to reestablish binding to their enrollment record. Binding NEED NOT be completed in the same session as the original identity proofing transaction. -->
 
+Enrollment コードは以下の特徴を持つこと (SHALL).
+
+<!-- An enrollment code SHALL be comprised of one of the following: -->
+
+1. 最低限, 6文字の英数字, またはそれ相当のエントロピーを持つもの. 例えば, 承認された乱数生成器を使って生成されたコードや, 物理ハードウェア Authenticator のシリアル番号.
+2. ランダムな6文字の英数字と同じかそれ以上のエントロピーを持つデータを含んだ, QR コードなどの機械可読光学ラベル.
+
+<!--
 1. Minimally, a random six character alphanumeric or equivalent entropy. For example, a code generated using an approved random number generator or a serial number for a physical hardware authenticator.
 2. A machine-readable optical label, such as a QR Code, that contains data of similar or higher entropy as a random six character alphanumeric.
-
+-->
 
 ### 4.7 Summary of Requirements
 
 _This section is informative._
 
-[Table 4-1](#63aSec4-Table1) summarizes the requirements for each of the authenticator assurance levels:
+[Table 4-1](#63aSec4-Table1) は各 Identity Assurance Level の要件を要約したものである.
+
+<!-- NOTE: 多分原文が間違ってコピペしてる. -->
+<!-- [Table 4-1](#63aSec4-Table1) summarizes the requirements for each of the authenticator assurance levels: -->
 
 <a name="63aSec4-Table1"></a>
 
@@ -412,6 +468,18 @@ _This section is informative._
 
 Requirement | IAL1 | IAL2 | IAL3
 ------------|-------|-------|-------
+Presence | 要件なし | 対面および非監視下の Remote | 対面および監視下の Remote
+Resolution | 要件なし | Identity Resolution に必要最低限な Attribute.<br><br>KBV により信頼を高めてもよい. | IAL2 同様
+Evidence | Identity Evidence は収集しない | Issuing Source が実施した Proofing および検証の強度次第で, 1つの SUPERIOR もしくは STRONG なエビデンス, もしくは<br><br>2つの STRONG なエビデンス, もしくは<br><br>1つの STRONG なエビデンスと2つの FAIR なエビデンス. | 2つの SUPERIOR なエビデンス, もしくは<br><br>Issuing Source が実施した Proofing および検証の強度次第で, 1つの SUPERIOR もしくは STRONG なエビデンス, もしくは<br><br>2つの STRONG なエビデンスと1つの FAIR なエビデンス.
+Validation | 確認なし | それぞれのエビデンスを, エビデンスと同じ強度のプロセスで確認しなければならない. | IAL2 同様
+Verification | 検証なし | STRONGの強度のプロセスによって検証する. | SUPERIOR の強度のプロセスによって検証される.
+Address Confirmation | 要件なし | 必須. Enrollment コードを任意の Address of Record に送信する. 通知は Enrollment コードとは別の経路で送信する. | 必須. Proofing の通知は郵便住所に対して送信する.
+Biometric Collection | No | Optional | Mandatory
+Security Controls | N/A | [SP 800-53](#SP800-53) Moderate 基準 (もしくはそれ相当の連邦 / 業界標準). | [SP 800-53](#SP800-53) High 基準 (もしくはそれ相当の連邦 / 業界標準).
+
+<!--
+Requirement | IAL1 | IAL2 | IAL3
+------------|-------|-------|-------
 Presence|No requirements|In-person and unsupervised remote.|In-person and supervised remote.
 Resolution|No requirements|The minimum attributes necessary to accomplish identity resolution.<br><br>KBV may be used for added confidence.| Same as IAL2.
 Evidence|No identity evidence is collected| One piece of SUPERIOR or STRONG evidence depending on strength of original proof and validation occurs with issuing source, or<br><br> Two pieces of STRONG evidence, or <br><br> One piece of STRONG evidence plus two (2) pieces of FAIR evidence.|Two pieces of SUPERIOR evidence, or<br><br> One piece of SUPERIOR evidence and one piece of STRONG evidence depending on strength of original proof and validation occurs with issuing source, or<br><br> Two pieces of STRONG evidence plus one piece of FAIR evidence.
@@ -420,3 +488,4 @@ Verification| No verification |Verified by a process that is able to achieve a s
 Address Confirmation|No requirements for address confirmation|Required. Enrollment code sent to any address of record. Notification sent by means different from enrollment code.|Required. Notification of proofing to postal address.
 Biometric Collection|No|Optional|Mandatory
 Security Controls|N/A|[SP 800-53](#SP800-53) Moderate Baseline (or equivalent federal or industry standard).|[SP 800-53](#SP800-53) High Baseline (or equivalent federal or industry standard).
+-->
