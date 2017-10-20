@@ -192,43 +192,95 @@ CSP は [Section 4.4.1](#normal) ないしは [Section 4.4.2](#referee) の要�
 
 #### 4.4.1.1 Resolution Requirements
 
-Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity in a given context. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements.
+PII の収集は, 所与のコンテキストにおいてある Identity をユニークに導出するために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
+
+<!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity in a given context. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements. -->
 
 #### 4.4.1.2 Evidence Collection Requirements
 
-The CSP SHALL collect the following from the applicant:
+CSP は以下を Applicant から収集すること (SHALL).
 
+<!-- The CSP SHALL collect the following from the applicant: -->
+
+1. **もし** エビデンスの Issuing Source が発行時の Identity Proofing イベントにおいて, SUPERIOR あるいは STRONG なエビデンスを2つ以上利用して Claimed Identity の確認を行っており, **かつ** CSP が直接 Issuing Source との間でそのエビデンスを確認したのであれば, そのようなプロセスを経て発行された SUPERIOR ないしは STRONG なエビデンスを1つ. **もしくは**
+2. STRONG なエビデンスを2つ. **もしくは**
+3. STRONG なエビデンスを1つと FAIR なエビデンスを2つ.
+
+<!--
 1. One piece of SUPERIOR or STRONG evidence **if** the evidence's issuing source, during its identity proofing event, confirmed the claimed identity by collecting two or more forms of SUPERIOR or STRONG evidence **and** the CSP validates the evidence directly with the issuing source; **OR**
 2. Two pieces of STRONG evidence; **OR**
 3. One piece of STRONG evidence plus two pieces of FAIR evidence.
+-->
 
-See [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) for more information on acceptable identity evidence.
+受け入れ可能な Identity Evidence についての詳細は [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) を参照のこと.
+
+<!-- See [Section 5.2.1 Identity Evidence Quality Requirements](#evidence-quality) for more information on acceptable identity evidence. -->
 
 #### <a name="4-4-1-3"></a>4.4.1.3 Validation Requirements
 
-The CSP SHALL validate identity evidence as follows:
+CSP は Identity Evidence を以下のように確認すること (SHALL).
 
-Each piece of evidence SHALL be validated with a process that can achieve the same strength as the evidence presented. For example, if two forms of STRONG identity evidence are presented, each piece of evidence will be validated at a strength of STRONG.
+<!-- The CSP SHALL validate identity evidence as follows: -->
 
-See [Section 5.2.2 Validating Identity Evidence](#evidence_validation) for more information on validating identity evidence.
+それぞれのエビデンスは, 提示されたエビデンスと同じ強度のプロセスによって確認すること (SHALL). 例えば2つの STRONG な Identity Evidence が提示された場合は, それぞれを STRONG な強度で確認することとなる.
+
+<!-- Each piece of evidence SHALL be validated with a process that can achieve the same strength as the evidence presented. For example, if two forms of STRONG identity evidence are presented, each piece of evidence will be validated at a strength of STRONG. -->
+
+Identity Evidence の確認についての詳細は [Section 5.2.2 Validating Identity Evidence](#evidence_validation) を参照のこと.
+
+<!-- See [Section 5.2.2 Validating Identity Evidence](#evidence_validation) for more information on validating identity evidence. -->
 
 #### 4.4.1.4 Verification Requirements
 
-The CSP SHALL verify identity evidence as follows:
+CSP は Identity Evidence を以下のように検証すること.
 
+<!-- The CSP SHALL verify identity evidence as follows: -->
+
+1. 最低限, Applicant と Identity Evidence の紐付けは, 強度 STRONG を達成できるプロセスによって検証しなければならない.
+2. Knowledge-Based Verification (KBV) は対面 (物理的ないしは監視下における Remote) の Identity 検証のために利用してはならない (SHALL NOT).
+
+<!--
 1. At a minimum, the applicant's binding to identity evidence must be verified by a process that is able to achieve a strength of STRONG.
 2. Knowledge-based verification (KBV) SHALL NOT be used for in-person (physical or supervised remote) identity verification.
+-->
 
-See [Section 5.3 Identity Verification](#verify) for more information on acceptable identity evidence.
+Identity Evidence の検証についての詳細は [Section 5.2.2 Validating Identity Evidence](#evidence_validation) を参照のこと.
+
+<!-- NOTE: 多分原文が間違ってコピペしてる. -->
+<!-- See [Section 5.3 Identity Verification](#verify) for more information on acceptable identity evidence. -->
 
 #### 4.4.1.5 Presence Requirements
 
-The CSP SHALL support in-person or remote identity proofing. The CSP SHOULD offer both in-person and remote proofing.
+CSP は対面ないしは Remote での Identity Proofing をサポートすること (SHALL). CSP は両方を提供すべきである (SHOULD).
+
+<!-- The CSP SHALL support in-person or remote identity proofing. The CSP SHOULD offer both in-person and remote proofing. -->
 
 #### <a name="4-4-1-6"></a> 4.4.1.6 Address Confirmation
 
 <div class="text-left" markdown="0">
 
+<ol type="1" start="1">
+  <li>有効な住所確認用のレコードは, Issuing Source ないしは Authoritative Source によるものでなければならない.</li>
+  <li>CSP は Address of Record を確認しなければならない (SHALL). CSP は, 提示された有効な Identity Evidence のいずれかに記載された住所の確認を通じて, Address of Record の確認を行うべきである (SHOULD). CSP は, Applicant が提供した, いかなる有効な Identity Evidence にも記載されていない情報の確認を通じて, Address of Record の確認を行ってもよい (MAY).</li>
+  <li>記録時に未確認な Self-asserted の住所データは, 確認に用いてはならない (SHALL NOT).</li>
+  <li><strong>CSP が対面 での Proofing (物理的ないしは監視下における Remote) を行う場合は</strong></li>
+    <ol type="a" start="a">
+      <li>CSP は確認された Address of Record に対して Proofing の通知を送るべきである (SHOULD).</li>
+      <li>Subscriber と Authenticator の紐付けが後日発生する場合は, CSP は Enrollment コードを直接 Subscriber に提示してもよい (MAY).</li>
+      <li>Enrollment コードは最大7日間まで有効なものとする (SHALL).</li>
+    </ol>
+  <li><strong>CSP が Remote の Proofing (非監視下) を行う場合</strong></li>
+    <ol type="a" start="a">
+      <li>CSP は確認された Applicant の Address of Record に Enrollment コードを送信しなければならない (SHALL).</li>
+      <li>Applicant は Identity Proofing プロセスを完了するために有効な Enrollment コードを提示しなければならない (SHALL)</li>
+      <li>CSP はレコード中の確認済郵便住所に Enrollment コードを送信すべきである (SHOULD). CSP は, 確認済であれば, 携帯電話 (SMS ないしは音声), 固定電話, Email に Enrollment コードを送信してもよい (MAY).</li>
+      <li>Enrollment コードが Authentication Factor としての用途も兼ねている場合は, 一度利用されたものはリセットすること (SHALL).</li>
+      <li>郵便住所に送信された Enrollment コードは最大10日間まで有効なものとする (SHALL). ただし郵送先住所が United States と地続きでない場所の場合, 例外的に30日間まで有効期間を延長してもよい (MAY). 電話で送信された Enrollment コードは最大10分間まで有効なものとする (SHALL). Email で送信された Enrollment コードは最大24時間まで有効なものとする (SHALL).</li>
+      <li>CSP は, Enrollment コードと Proofing の通知を, それぞれ異なる Address of Record に送信するよう保証すること (SHALL). 例えば, もし CSP が Enrollment コードを確認済の電話番号に送ったとすれば, Proofing 通知は, 確認済の郵便住所や, 確認および検証済みの運転免許証のようなエビデンスに記載された郵便住所に送ることになろう.</li>
+    </ol>
+</ol>
+
+<!--
 <ol type="1" start="1">
   <li>Valid records to confirm address SHALL be issuing source(s) or authoritative source(s).</li>
   <li>The CSP SHALL confirm address of record. The CSP SHOULD confirm address of record through validation of the address contained on any supplied, valid piece of identity evidence. The CSP MAY confirm address of record by validating information supplied by the applicant that is not contained on any supplied piece of identity evidence.</li>
@@ -236,35 +288,44 @@ The CSP SHALL support in-person or remote identity proofing. The CSP SHOULD offe
   <li><strong>If CSP performs in-person proofing (physical or supervised remote):</strong></li>
     <ol type="a" start="a">
       <li>The CSP SHOULD send a notification of proofing to a confirmed address of record.</li>
-        <li>The CSP MAY provide an enrollment code directly to the subscriber if binding to an authenticator will occur at a later time.</li>
-        <li>The enrollment code SHALL be valid for a maximum of 7 days.</li>
-      </ol>
+      <li>The CSP MAY provide an enrollment code directly to the subscriber if binding to an authenticator will occur at a later time.</li>
+      <li>The enrollment code SHALL be valid for a maximum of 7 days.</li>
+    </ol>
   <li><strong>If the CSP performs remote proofing (unsupervised):</strong></li>
     <ol type="a" start="a">
       <li>The CSP SHALL send an enrollment code to a confirmed address of record for the applicant.</li>
-      <li>The applicant SHALL present a valid enrollment code to complete the identity proofing process.</li>q
+      <li>The applicant SHALL present a valid enrollment code to complete the identity proofing process.</li>
       <li>The CSP SHOULD send the enrollment code to the postal address that has been validated in records. The CSP MAY send the enrollment code to a mobile telephone (SMS or voice), landline telephone, or email if it has been validated in records.</li>
       <li>If the enrollment code is also intended to be an authentication factor, it SHALL be reset upon first use.</li>
       <li>Enrollment codes sent to a postal address of record SHALL be valid for a maximum of 10 days but MAY be made valid up to 30 days via an exception process to accommodate addresses outside the contiguous United States. Enrollment codes sent by telephone SHALL be valid for a maximum of 10 minutes. Enrollment codes sent via email SHALL be valid for a maximum of 24 hours.</li>
       <li>The CSP SHALL ensure the enrollment code and notification of proofing are sent to different addresses of record. For example, if the CSP sends an enrollment code to a phone number validated in records, a proofing notification will be sent to the postal address validated in records or obtained from validated and verified evidence, such as a driver's license.</li>
     </ol>
 </ol>
+-->
 
 </div>
 
-> Note: Postal address is the preferred method of sending any communications, including enrollment code and notifications, with the applicant. However, these guidelines support any confirmed address of record, whether physical or digital.
+> Note: 郵便住所は, Enrollment コードの通知を含む, Applicant との間のあらゆるコミュニケーションを行う手段として選好される. しかしながら, 本ガイドライン群は, 物理的であってもデジタルであっても, あらゆる確認済 Address of Record をサポートする.
+
+<!-- > Note: Postal address is the preferred method of sending any communications, including enrollment code and notifications, with the applicant. However, these guidelines support any confirmed address of record, whether physical or digital. -->
 
 #### <a name="4-4-1-7"></a>4.4.1.7 Biometric Collection
 
-The CSP MAY collect biometrics for the purposes of non-repudiation and re-proofing. See [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) for more detail on biometric collection.
+CSP は Non-repudiation (否認防止) や Re-proofing を目的として Biometrics を収集してもよい (MAY). Biometrics 収集に関する詳細は [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) を参照のこと.
+
+<!-- The CSP MAY collect biometrics for the purposes of non-repudiation and re-proofing. See [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) for more detail on biometric collection. -->
 
 #### 4.4.1.8 Security Controls
 
-The CSP SHALL employ appropriately tailored security controls, to include control enhancements, from the moderate or high baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *moderate-impact* systems or equivalent are satisfied.
+CSP は, [SP 800-53](#SP800-53) やそれに相当する連邦政府標準 (e.g., [FEDRAMP](#FEDRAMP)) や業界標準に定められた, Moderate ないしは Hight 基準のセキュリティー制御策から, 制御強化を含み, 適切に調整されたセキュリティー制御策を採用しなければならない (SHALL). CSP は *moderate-impact* システムやそれに相当するものに対する Assurance 関連の最低限の制御策が実施されていることを保証しなければならない (SHALL).
+
+<!-- The CSP SHALL employ appropriately tailored security controls, to include control enhancements, from the moderate or high baseline of security controls defined in [SP 800-53](#SP800-53) or equivalent federal (e.g., [FEDRAMP](#FEDRAMP)) or industry standard. The CSP SHALL ensure that the minimum assurance-related controls for *moderate-impact* systems or equivalent are satisfied. -->
 
 #### <a name="referee"></a>4.4.2 IAL2 Trusted Referee Proofing Requirements
 
-In instances where an individual cannot meet the identity evidence requirements specified in [Section 4.4.1](#normal), the agency MAY use a trusted referee to assist in identity proofing the applicant. See [Section 5.3.4](#trustref) for more details.
+個人が [Section 4.4.1](#normal) に規定された Identity Evidence 要件を満たすことができない場合, 機関は信頼できる身元保証人に Applicant の Identity Proofing を手伝わせてもよい (MAY).
+
+<!-- In instances where an individual cannot meet the identity evidence requirements specified in [Section 4.4.1](#normal), the agency MAY use a trusted referee to assist in identity proofing the applicant. See [Section 5.3.4](#trustref) for more details. -->
 
 ### <a name="ial3-requirements"></a> 4.5 Identity Assurance Level 3
 
