@@ -6,7 +6,7 @@
 
 _This section contains both normative and informative material._
 
-本ドキュメントは, Applicant に対する Identity Proofing および Enrollment プロセスによって, Identity Evidence と Attribute の収集が行われ, ある集団ないしはコンテキストの中でユニークかつ単一の Identity に帰着し, 確認および検証が行われるまでの, 共通のパターンについて記述する. 最適な IAL の選択については [SP 800-63-3](sp800-63-3.html) Section 6.1 を参照のこと. CSP はこういった Attribute を Authenticator に紐づけるかもしれない ([SP 800-63B](sp800-63b.html) 参照).
+本ドキュメントは, Applicant に対する Identity Proofing および Enrollment プロセスによって, Identity Evidence と Attribute の収集が行われ, ある集団ないしはコンテキストの中でユニークかつ単一の Identity として識別可能になり, 確認および検証が行われるまでの, 共通のパターンについて記述する. 最適な IAL の選択については [SP 800-63-3](sp800-63-3.html) Section 6.1 を参照のこと. CSP はこういった Attribute を Authenticator に紐づけるかもしれない ([SP 800-63B](sp800-63b.html) 参照).
 
 <!-- This document describes the common pattern in which an applicant undergoes an identity proofing and enrollment process whereby their identity evidence and attributes are collected, uniquely resolved to a single identity within a given population or context, then validated and verified. See [SP 800-63-3](sp800-63-3.html) Section 6.1 for details on how to choose the most appropriate IAL. A CSP may then bind these attributes to an authenticator (described in [SP 800-63B](sp800-63b.html)). -->
 
@@ -192,7 +192,7 @@ CSP は [Section 4.4.1](#normal) ないしは [Section 4.4.2](#referee) の要�
 
 #### 4.4.1.1 Resolution Requirements
 
-PII の収集は, 所与のコンテキストにおいてある Identity をユニークに導出するために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
+PII の収集は, 所与のコンテキストにおいてある Identity をユニークに識別可能にするために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity in a given context. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements. -->
 
@@ -337,7 +337,7 @@ IAL3 では IAL2 よりさらに厳格であり, さらに強度の高いエビ�
 
 #### 4.5.1 Resolution Requirements
 
-PII の収集は, Identity をユニークに導出するために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
+PII の収集は, Identity をユニークに識別可能にするために必要最低限な範囲に限定すること (SHALL). これにはデータの照会の助けとなるような Attribute の収集を含んでも良い (MAY). 一般的な Resolution 要件は [Section 5.1](#resolve) を参照のこと.
 
 <!-- Collection of PII SHALL be limited to the minimum necessary to resolve to a unique identity record. This MAY include the collection of attributes that assist in data queries. See [Section 5.1](#resolve) for general resolution requirements. -->
 

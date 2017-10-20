@@ -6,18 +6,29 @@
 
 _This section is normative._
 
-This section lists the requirements to resolve, validate, and verify an identity and any supplied identity evidence. The requirements are intended to ensure the claimed identity is the actual identity of the subject attempting to enroll with the CSP and that scalable attacks affecting a large population of enrolled individuals require greater time and cost than the value of the resources the system is protecting.
+本セクションでは, Identity および提示された Identity Evidence の導出, 確認, 検証に関する要件を示す. これらの要件は, Claimed Identity が CSP に Enroll しようとしている Subject の実際の Identity であり, 多数の Enroll 済の個人に影響を及ぼしうるスケーラブルな攻撃がシステムによって保護されているリソースの価値よりも大きな時間およびコストを必要とすることを, 確実にするためのものである.
+
+<!-- This section lists the requirements to resolve, validate, and verify an identity and any supplied identity evidence. The requirements are intended to ensure the claimed identity is the actual identity of the subject attempting to enroll with the CSP and that scalable attacks affecting a large population of enrolled individuals require greater time and cost than the value of the resources the system is protecting. -->
 
 ### <a name="resolve"></a>5.1 Identity Resolution
 
-The goal of identity resolution is to uniquely distinguish an individual within a given population or context. Effective identity resolution uses the smallest set of attributes necessary to resolve to a unique individual. It provides the CSP an important starting point in the overall identity proofing process, to include the initial detection of potential fraud, but in no way represents a complete and successful identity proofing transaction.
+Identity Resolution のゴールは, ある個人を所与の集団やコンテキスト内でユニークに区別することである. 効率的に Identity Resolution が行えれば, 最小の Attribute セットによって固有の個人を識別可能になる. これは CSP にとって Identity Proofing プロセス全体の重大な出発点であり, 潜在的な不正の初期検出を含むが, 決してそれ単体では完全かつ成功した Identity Proofing Transaction にはならない.
 
+<!-- The goal of identity resolution is to uniquely distinguish an individual within a given population or context. Effective identity resolution uses the smallest set of attributes necessary to resolve to a unique individual. It provides the CSP an important starting point in the overall identity proofing process, to include the initial detection of potential fraud, but in no way represents a complete and successful identity proofing transaction. -->
+
+1. Proofing プロセスで利用される情報の完全一致によるマッチングは困難である. CSP は, 適切なマッチングアルゴリズムを用いて, 多様な Identity Evidence, Issuing Source および Authoritative Source にまたがった Personal Information やその他関連する Proofing データの差異を把握することができる (MAY). 使用するマッチングアルゴリズムとルールは公開すべきであり, 少なくとも関連する利益共同体には提示されるべきである (SHOULD). 例えば, それらは文書化されたポリシーや [Section 4.2](#genProofReqs) で言及された _practice statement_ に含めることができる.
+2. KBV (Knowledge-Based Authentication とも呼ばれる) は, 歴史的に, 公開データベースから得られた情報に対して Applicant の知識をテストすることによって, Claimed Identity を検証するために使用されてきた. CSP は KBV を使って, ユニークな Claimed Identity を識別可能にしてもよい (MAY).
+
+<!--
 1.  Exact matches of information used in the proofing process can be difficult to achieve. The CSP MAY employ appropriate matching algorithms to account for differences in personal information and other relevant proofing data across multiple forms of identity evidence, issuing sources, and authoritative sources. Matching algorithms and rules used SHOULD be available publicly or, at minimum, to the relevant community of interest. For example, they may be included as part of the written policy or _practice statement_ referred to in [Section 4.2](#genProofReqs).
 2.  KBV (sometimes referred to as knowledge-based authentication) has historically been used to verify a claimed identity by testing the knowledge of the applicant against information obtained from public databases. The CSP MAY use KBV to resolve to a unique, claimed identity.
+-->
 
 ### <a name="validate"></a>5.2 Identity Evidence Collection and Validation
 
-The goal of identity validation is to collect the most appropriate identity evidence (e.g., a passport or driver's license) from the applicant and determine its authenticity, validity, and accuracy. Identity validation is made up of three process steps: collecting the appropriate identity evidence, confirming the evidence is genuine and authentic, and confirming the data contained on the identity evidence is valid, current, and related to a real-life subject.
+Identity Validation のゴールは, Applicant からもっとも適切な Identity Evidence を収集し, その Authenticity, 正当性, 正確性を判断することである. Identity Validation は, 適切な Identity Evidence の収集, 当該エビデンスが本物かつ正当であることの確認, Identity Evidence に含まれるデータが正当, 最新, かつ現実世界の Subject に関連していることの確認, の3ステップからなる.
+
+<!-- The goal of identity validation is to collect the most appropriate identity evidence (e.g., a passport or driver's license) from the applicant and determine its authenticity, validity, and accuracy. Identity validation is made up of three process steps: collecting the appropriate identity evidence, confirming the evidence is genuine and authentic, and confirming the data contained on the identity evidence is valid, current, and related to a real-life subject. -->
 
 #### <a name="evidence-quality"></a> 5.2.1 Identity Evidence Quality Requirements
 
@@ -68,7 +79,7 @@ Once the CSP obtains the identity evidence, the accuracy, authenticity, and inte
 |Strong| - The evidence has been confirmed as genuine:<br>&nbsp;&nbsp;&nbsp;&nbsp;- using appropriate technologies, confirming the integrity of physical security features and that the evidence is not fraudulent or inappropriately modified. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- by trained personnel and appropriate technologies, confirming the integrity of the physical security features and that the evidence is not fraudulent or inappropriately modified.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- by confirmation of the integrity of cryptographic security features.<br><br> - All personal details and evidence details have been confirmed as valid by comparison with information held or published by the issuing source or authoritative source(s).|
 |Superior| - The evidence has been confirmed as genuine by trained personnel and appropriate technologies including the integrity of any physical and cryptographic security features.<br><br> - All personal details and evidence details from the evidence have been confirmed as valid by comparison with information held or published by the issuing source or authoritative source(s).|
 
-Training requirements for personnel validating evidence SHALL be based on the policies, guidelines, or requirements of the CSP or RP. 
+Training requirements for personnel validating evidence SHALL be based on the policies, guidelines, or requirements of the CSP or RP.
 
 ### 5.3 <a name="verify"></a> Identity Verification
 
@@ -119,8 +130,8 @@ The following requirements apply to the identity verification steps for IAL2 and
 		  		<li>The CSP SHALL NOT use KBV questions for which the answers do not change (e.g., "What was your first car?").</li>
 		  		<li>The CSP SHALL ensure that any KBV question does not reveal PII that the applicant has not already provided, nor personal information that, when combined with other information in a KBV session, could result in unique identification.</li>
 	  		</ol>
-	</ol>	
-</div>	
+	</ol>
+</div>
 
 
 #### <a name="vip"></a>5.3.3 In-person Proofing Requirements
@@ -143,7 +154,7 @@ Supervised remote identity proofing and enrollment transactions SHALL meet the f
 
 1. The CSP SHALL monitor the entire identity proofing session, from which the applicant SHALL NOT depart — for example, by a continuous high-resolution video transmission of the applicant.
 2. The CSP SHALL have a live operator participate remotely with the applicant for the entirety of the identity proofing session.
-3. The CSP SHALL require all actions taken by the applicant during the identity proofing session to be clearly visible to the remote operator. 
+3. The CSP SHALL require all actions taken by the applicant during the identity proofing session to be clearly visible to the remote operator.
 4. The CSP SHALL require that all digital verification of evidence (e.g., via chip or wireless technologies) be performed by integrated scanners and sensors.
 5. The CSP SHALL require operators to have undergone a training program to detect potential fraud and to properly perform a virtual in-process proofing session.
 6. The CSP SHALL employ physical tamper detection and resistance features appropriate for the environment in which it is located. For example, a kiosk located in a restricted area or one where it is monitored by a trusted individual requires less tamper detection than one that is located in a semi-public area such as a shopping mall concourse.
