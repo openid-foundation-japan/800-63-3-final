@@ -726,73 +726,194 @@ The unencrypted key and activation secret or biometric sample — and any biomet
 The requirements for a multi-factor cryptographic device verifier are identical to those for a single-factor cryptographic device verifier, described in [Section 5.1.7.2](#sfcdv). Verification of the authenticator output from a multi-factor cryptographic device proves use of the activation factor.
 -->
 
+#### 5.2. 一般Authenticator要件
+<!--
 #### 5.2 General Authenticator Requirements
+-->
 
 #### 5.2.1 Physical Authenticators
 
+CSPはSubscriberに対して，Authenticatorの盗難や紛失を正しく防止する方法について指示するものとする(SHALL)．CSPはSubscriberから認証機の盗難や紛失の疑いがある旨の通知に対し，直ちにAuthenticatorを無効化，停止するメカニズムを備えるものとする(SHALL)．
+<!--
 CSPs SHALL provide subscriber instructions on how to appropriately protect the authenticator against theft or loss. The CSP SHALL provide a mechanism to revoke or suspend the authenticator immediately upon notification from subscriber that loss or theft of the authenticator is suspected.
+-->
 
+#### <a name="throttle"></a>5.2.2 レート制限 (スロットリング)
+<!--
 #### <a name="throttle"></a>5.2.2 Rate Limiting (Throttling)
+-->
 
+[Section 5.1](#reqauthtype)のAuthenticatorタイプの説明で要求される場合，Verifierはオンライン推測攻撃に対抗するための制御を実装するものとする(SHALL)．指定されたAuthenticatorの説明に記載がなければ，Verifierはオンライン攻撃者に対し，同一アカウントで100回以上の連続した認証失敗試行を制限をするものとする(SHALL)．
+<!--
 When required by the authenticator type descriptions in [Section 5.1](#reqauthtype), the verifier SHALL implement controls to protect against online guessing attacks. Unless otherwise specified in the description of a given authenticator, the verifier SHALL limit consecutive failed authentication attempts on a single account to no more than 100.
+-->
 
+レート制限の結果として攻撃者が正しいclaimantをロックアウトさせる頻度を減少させるために用いられる追加のテクニックを用いてもよい(MAY)．追加テクニックは以下を含む:
+<!--
 Additional techniques MAY be used to reduce the likelihood that an attacker will lock the legitimate claimant out as a result of rate limiting. These include:
+-->
 
+- Claimantに対して，Authentication試行前にCAPTCHAの入力を要求する．
+
+<!--
 - Requiring the claimant to complete a CAPTCHA before attempting authentication.
+-->
 
+- Claimantに対して認証失敗後に一定期間待つように要求し，連続する認証失敗の最大回数に近づくにつれてその時間を(例えば30秒から1時間まで)増加させる．
+
+<!--
 - Requiring the claimant to wait following a failed attempt for a period of time that increases as the account approaches its maximum allowance for consecutive failed attempts (e.g., 30 seconds up to an hour).
+-->
 
+- Subscriberが以前Authenticationに成功したことがあるIPアドレスのホワイトリストからのみ行われるAuthentication要求だけを受理する．
+
+<!--
 - Accepting only authentication requests that come from a white list of IP addresses from which the subscriber has been successfully authenticated before.
+-->
 
+- ユーザの振る舞いが通常の範疇にあるかないかを特定するリスクベースまたは適応型Authenticationの手法を活用する．
+
+<!--
 - Leveraging other risk-based or adaptive authentication techniques to identify user behavior that falls within, or out of, typical norms.
+-->
 
+SubscriberがAuthenticationに成功した場合，Verifierは同一IPアドレスからの以前の失敗したAuthenticationの試行を無視すべきである(SHOULD)．
+
+<!--
 When the subscriber successfully authenticates, the verifier SHOULD disregard any previous failed attempts for that user from the same IP address.
+-->
 
+#### <a name="biometric_use"></a>5.2.3 バイオメトリクスの利用
+<!--
 #### <a name="biometric_use"></a>5.2.3 Use of Biometrics
+-->
 
+Authenticationにおけるバイオメトリクス(*something you are*)の利用は，物理的な特性(例：指紋，虹彩，顔の特徴)及び振る舞い特性(例：タイピングのリズム)の両方を測定法を含んでいる．[Section 5.2.9](#intent)に記載されているAuthentication意思を確認する範囲とは差があるかもしれないが，両方の分類ともに，異なるバイオメトリック計測手段とみなされる．
+<!--
 The use of biometrics (*something you are*) in authentication includes both measurement of physical characteristics (e.g., fingerprint, iris, facial characteristics) and behavioral characteristics (e.g., typing cadence). Both classes are considered biometric modalities, although different modalities may differ in the extent to which they establish authentication intent as described in [Section 5.2.9](#intent).
+-->
 
+様々な理由で，本書はAuthenticationにおけるバイオメトリクスの利用を限定的にサポートする．それらは以下のとおりである:
+<!--
 For a variety of reasons, this document supports only limited use of biometrics for authentication. These reasons include:
+-->
 
+- バイオメトリックのFalse Match Rate(FMR)は，それ自身ではSubscriberのAuthenticationにおける確実性を与えるものではない．更に，FMRはスプーフィング攻撃を考慮したものではない．
+
+<!--
 - The biometric False Match Rate (FMR) does not provide confidence in the authentication of the subscriber by itself. In addition, FMR does not account for spoofing attacks.
+-->
+
+- バイオメトリックの比較は確率的なものであるが，他のAuthentication要素は決定的なものである．
+
+<!--
 - Biometric comparison is probabilistic, whereas the other authentication factors are deterministic.
+-->
+
+- バイオメトリックのテンプレート保護スキームは，他のAuthentication要素(例: PKI証明書やパスワード)に相当するバイオメトリッククレデンシャルを無効化するための手段を提供する．しかしながら，そのようなソリューションの可用性は制限されており，これらの手段を試験するための標準も策定中の段階である．
+
+<!--
 - Biometric template protection schemes provide a method for revoking biometric credentials that is comparable to other authentication factors (e.g., PKI certificates and passwords). However, the availability of such solutions is limited, and standards for testing these methods are under development.
+-->
+
+- バイオメトリック特性はシークレットにはならない．それらはオンラインで取得したり，知識のあるなしに関わらず誰かが携帯電話のカメラで(例えば顔の)写真を取ることができ，誰かが触った物から(例えば潜在的に指紋を)採取することができ，高精細な画像から(例えば虹彩パターンを)キャプチャすることができる．生体検知のようなPresentation attack detaction(PAD)技術は，これらの種別の攻撃リスクを緩和することができるが，センサーやバイオメトリック処理はCSPとSubscriberのニーズに合うようにPADを適切に実施していることを保証する必要がある．
+
+<!--
 - Biometric characteristics do not constitute secrets. They can be obtained online or by taking a picture of someone with a camera phone (e.g., facial images) with or without their knowledge, lifted from objects someone touches (e.g., latent fingerprints), or captured with high resolution images (e.g., iris patterns). While presentation attack detection (PAD) technologies (e.g., liveness detection) can mitigate the risk of these types of attacks, additional trust in the sensor or biometric processing is required to ensure that PAD is operating in accordance with the needs of the CSP and the subscriber.
+-->
 
+したがって，Authenticationにおける制限されたバイオメトリクスの利用は，以下の要件とガイドラインの下でサポートされる:
+<!--
 Therefore, the limited use of biometrics for authentication is supported with the following requirements and guidelines:
+-->
 
+バイオメトリクスは物理的なAuthenticatorを用いた多要素Authentication(*something you have*)の一部としてのみ利用されるものとする(SHALL)．
+<!--
 Biometrics SHALL be used only as part of multi-factor authentication with a physical authenticator (*something you have*).
+-->
 
+センサ(またはセンサ置き換え耐性のあるセンサーを持ったエンドポイント)とVerifier間のAuthenticateされた保護チャネルが確立され(SHALL)，センサーまたはエンドポイントが設置され(SHALL)，Claimantからバイオメトリック標本を取得するのに先立ってセンサーまたはエンドポイントがAuthenticateされているものとする(SHALL)．
+<!--
 An authenticated protected channel between sensor (or an endpoint containing a sensor that resists sensor replacement) and verifier SHALL be established and the sensor or endpoint SHALL be established and the sensor or endpoint authenticated prior to capturing the biometric sample from the claimant.
+-->
 
+バイオメトリックシステムは，FMR [[ISO/IEC 2382-37]](#ISOIEC2382-37)は1000分の1より優れたレートで運用されるものとする．このFMRは[[ISO/IEC 30107-1]](#ISOIEC30107-1)で定義されているConformant attack(すなわちZero-effort imporster attempt)の条件下で達成されるものとする(SHALL)．
+<!--
 The biometric system SHALL operate with an FMR [[ISO/IEC 2382-37]](#ISOIEC2382-37) of 1 in 1000 or better. This FMR SHALL be achieved under conditions of a conformant attack (i.e., zero-effort impostor attempt) as defined in [[ISO/IEC 30107-1]](#ISOIEC30107-1).
+-->
 
+バイオメトリックシステムは，PADを実装すべきである(SHOULD)．バイオメトリックシステムを配備を目的として実施するテストでは，各関連攻撃タイプ(すなわち種類)に対して少なくとも90%の耐性があることを示すべきである(SHOULD)．ここでの耐性はプレゼンテーション攻撃の失敗回数をプレゼンテーション攻撃の試行回数で割ったものとして定義される．プレゼンテーション攻撃耐性のテストは，[[ISO/IEC 30107-3]](#ISOIEC30107-3)の12条に従い行われるものとする(SHALL)．PADはClaimantのデバイス上でローカルに実施されても，または中央のVerifierによって実施されてもよい(MAY)．
+<!--
 The biometric system SHOULD implement PAD. Testing of the biometric system to be deployed SHOULD demonstrate at least 90% resistance to presentation attacks for each relevant attack type (i.e., species), where resistance is defined as the number of thwarted presentation attacks divided by the number of trial presentation attacks. Testing of presentation attack resistance SHALL be in accordance with Clause 12 of [[ISO/IEC 30107-3]](#ISOIEC30107-3). The PAD decision MAY be made either locally on the claimant's device or by a central verifier.
+-->
 
+>注釈: PADはガイドラインの将来の版では必須要件としてみなされる．
+<!--
 >Note: PAD is being considered as a mandatory requirement in future editions of this guideline.
+-->
 
+バイオメトリックシステム5回の連続したAuthentication試行の失敗を許容するものとする(SHALL)．もしPADが上記の要件を満たして実装されている場合は，10回の連続したAuthentication試行の失敗を許容するものとする(SHALL)．一度上限に達すると，バイオメトリックAuthenticatorは以下の何れかであるものとする(SHALL): 
+<!--
 The biometric system SHALL allow no more than 5 consecutive failed authentication attempts or 10 consecutive failed attempts if PAD meeting the above requirements is implemented. Once that limit has been reached, the biometric authenticator SHALL either:
+-->
 
+- 次回の試行までに少なくとも30秒の遅延を課し，試行回数が増える毎に指数関数的に遅延を増加させる(例えば，後続の失敗する試行の前に1分，その次の試行では2分)か，
+
+<!--
 - Impose a delay of at least 30 seconds before the next attempt, increasing exponentially with each successive attempt (e.g., 1 minute before the following failed attempt, 2 minutes before the second following attempt), or
+-->
+
+- もし既に利用可能な代替手段があるのであれば，バイオメトリックユーザAuthenticationを無効化し，もう一つの要素(例えば，異なるバイオメトリック計測手段や，まだ要求されていない要素であればPIN/パスコード)の利用を試みる．
+
+<!--
 - Disable the biometric user authentication and offer another factor (e.g., a different biometric modality or a PIN/Passcode if it is not already a required factor) if such an alternative method is already available.
+-->
 
+Verifierはセンサー及びポイントのパフォーマンス，一貫性，真正性について決定するものとする(SHALL)．この決定を行うために容認できる方法として以下があるが，限定はされていない:
+<!--
 The verifier SHALL make a determination of sensor and endpoint performance, integrity, and authenticity. Acceptable methods for making this determination include, but are not limited to:
+-->
 
+* センサー及びエンドポイントのAuthentication．
+* 承認済みの適格性認定機関による認定．
+* [Section 5.2.4](#attestation)に記載されている署名済みメタデータの実効時照会(例: アテステーション)
+
+<!--
 * Authentication of the sensor or endpoint.
 * Certification by an approved accreditation authority.
 * Runtime interrogation of signed metadata (e.g., attestation) as described in [Section 5.2.4](#attestation).
+-->
 
+バイオメトリックの比較はClaimantのデバイス上でローカルに実施されるか，中央のVerifierで実施される．中央のVerifierでの大規模な攻撃の可能性が増加しつつあるため，ローカルでの比較が好ましい．
+<!--
 Biometric comparison can be performed locally on claimant's device or at a central verifier. Since the potential for attacks on a larger scale is greater at central verifiers, local comparison is preferred.
+-->
 
+もし比較が中央で実施される場合:
+<!--
 If comparison is performed centrally:
+-->
 
+* Authenticationとしてのバイオメトリック利用はApproveされた暗号理論を用いて特定される一つ以上の特定デバイスに限定されるものとする(SHALL)．バイオメトリックがまだメインのAuthentication鍵をアンロックしていないのであれば，分離している鍵がデバイスの特定のために利用されるものとする(SHALL)．
+* バイオメトリックの破棄は，[ISO/IEC 24745](#ISO24745)中のバイオメトリックテンプレート保護と呼ばれており，実装するものとする(SHALL)．
+* 全てのバイオメトリクスの送信はAuthenticateされた保護チャネルを介して行われる．．
+
+<!--
 * Use of the biometric as an authentication factor SHALL be limited to one or more specific devices that are identified using approved cryptography. Since the biometric has not yet unlocked the main authentication key, a separate key SHALL be used for identifying the device.
 * Biometric revocation, referred to as biometric template protection in [ISO/IEC 24745](#ISO24745), SHALL be implemented.
 * All transmission of biometrics SHALL be over the authenticated protected channel.
+-->
 
+Authenticationプロセス中で収集されたバイオメトリック標本は，ユーザの同意の下で，研究目的で比較アルゴリズムの学習に利用してもよい(MAY)．バイオメトリック標本及び信号処理により生成されたプローブのようなバイオメトリック標本に由来する任意のバイオメトリックデータは，学習や派生した研究データが得られた後は直ちにゼロ埋めされるものとする(SHALL)．
+
+<!--
 Biometric samples collected in the authentication process MAY be used to train comparison algorithms or — with user consent — for other research purposes. Biometric samples and any biometric data derived from the biometric sample such as a probe produced through signal processing SHALL be zeroized immediately after any training or research data has been derived.
+-->
 
+バイオメトリクスは，[SP 800-63A](sp800-63a.html)で記載されている全てのEnrollmentプロセスフェーズにおいて，Enrollmentの否認を防ぐため，また関与する同一個人であることを検証するために利用される．
+<!--
 Biometrics are also used in some cases to prevent repudiation of enrollment and to verify that the same individual participates in all phases of the enrollment process as described in [SP 800-63A](sp800-63a.html).
+-->
 
 #### <a name="attestation"></a>5.2.4 Attestation
 
