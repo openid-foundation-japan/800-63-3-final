@@ -142,12 +142,8 @@ Identity Verification のゴールは, Claimed Identity とエビデンスを提
 | Unacceptable | - エビデンスは未検証, もしくは検証できない. Applicant が Claimed Identity の所有者であることが確認できない. |
 | Weak | - Applicant は Claimed Identity を裏付けるために提出されたエビデンスへの Access 権限を持っていることが確認された. |
 | Fair | - Applicant が Claimed Identity の所有者であることが, 以下のように確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;- KBV. 詳細は [Section 5.3.2.](#kbv) を参照のこと.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- Applicant と, Claimed Identity を裏付けるために提示されたものの中でもっとも強度の高い Identity Evidence との, 物理的な比較. Remote で物理比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- Applicant と Identity Evidence の Biometric 比較. Remote で Biometric 比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL). |
-| Strong | - Applicant が Claimed Identity の所有者であることが, 以下のように確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;
-
-- The applicant's ownership of the claimed identity has been confirmed by: <br>&nbsp;&nbsp;&nbsp;&nbsp;
-  - physical comparison, using appropriate technologies, to a photograph, to the strongest piece of identity evidence provided to support the claimed identity. Physical comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use). <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;
-  - biometric comparison, using appropriate technologies, of the applicant to the strongest piece of identity evidence provided to support the claimed identity. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
-|Superior| - The applicant's ownership of the claimed identity has been confirmed by biometric comparison of the applicant to the strongest piece of identity evidence provided to support the claimed identity, using appropriate technologies. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
+| Strong | - Applicant が Claimed Identity の所有者であることが, 以下のように確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;- 適切なテクノロジーを利用した, Claimed Identity を裏付けるために提示されたものの中でもっとも強度の高い Identity Evidence に対する, 写真による物理比較. Remote で物理比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- 適切なテクノロジーを利用した, Applicant と Claimed Identity を裏付けるために提示されたものの中でもっとも強度の高い Identity Evidence との Biometric 比較. Remote で Biometric 比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL). |
+| Superior | - Applicant が Claimed Identity の所有者であることが, Applicant と Claimed Identity を裏付けるために提示されたものの中でもっとも強度の高い Identity Evidence との, 適切なテクノロジーを利用した Biometric 比較により確認された. Remote で Biometric 比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL). |
 
 <!--
 |Strength|Identity Verification Methods|
@@ -161,30 +157,55 @@ Identity Verification のゴールは, Claimed Identity とエビデンスを提
 
 #### <a name="kbv"></a>5.3.2 Knowledge-Based Verification Requirements
 
-The following requirements apply to the identity verification steps for IAL2 and IAL3. There are no restrictions for the use of KBV for identity resolution.
+IAL2 および IAL3 の Identity Verification では, 以下の要件が適用される. KBV を Identity Resolution に用いる場合は特に制約はない.
+
+<!-- The following requirements apply to the identity verification steps for IAL2 and IAL3. There are no restrictions for the use of KBV for identity resolution. -->
 
 <div class="text-left" markdown="0">
-	<ol type="1" start="1">
-		<li>The CSP SHALL NOT use KBV to verify an applicant's identity against more than one piece of validated identity evidence.</li>
-		<li>The CSP SHALL only use information that is expected to be known only to the applicant and the authoritative source, to include any information needed to begin the KBV process. Information accessible freely, for a fee in the public domain, or via the black market SHALL NOT be used.</li>
-		<li>The CSP SHALL allow a resolved and validated identity to opt out of KBV and leverage another process for verification.</li>
-		<li>The CSP SHOULD perform KBV by verifying knowledge of recent transactional history in which the CSP is a participant. The CSP SHALL ensure that transaction information has at least 20 bits of entropy. For example, to reach minimum entropy requirements, the CSP could ask the applicant for verification of the amount(s) and transaction numbers(s) of a micro-deposit(s) to a valid bank account, so long as the total number of digits is seven or greater.</li>
-		<li>The CSP MAY perform KBV by asking the applicant questions to demonstrate they are the owner of the claimed information. However, the following requirements apply:</li>
-			<ol type="a" start="a">
-				<li>KBV SHOULD be based on multiple authoritative sources.</li>  
-		  		<li>The CSP SHALL require a minimum of four KBV questions with each requiring a correct answer to successfully complete the KBV step.</li>
-		  		<li>The CSP SHOULD require free-form response KBV questions. The CSP MAY allow multiple choice questions, however, if multiple choice questions are provided, the CSP SHALL require a minimum of four answer options per question.</li>
-		  		<li>The CSP SHOULD allow two attempts for an applicant to complete the KBV. A CSP SHALL NOT allow more than three attempts to complete the KBV.</li>
-		  		<li>The CSP SHALL time out KBV sessions after two minutes of inactivity per question. In cases of session timeout, the CSP SHALL restart the entire KBV process and consider this a failed attempt.</li>
-		  		<li>The CSP SHALL NOT present a majority of diversionary KBV questions (i.e., those where "none of the above" is the correct answer).</li>
-		  		<li>The CSP SHOULD NOT ask the same KBV questions in subsequent attempts.</li>
-		  		<li>The CSP SHALL NOT ask a KBV question that provides information that could assist in answering any future KBV question in a single session or a subsequent session after a failed attempt.</li>
-		  		<li>The CSP SHALL NOT use KBV questions for which the answers do not change (e.g., "What was your first car?").</li>
-		  		<li>The CSP SHALL ensure that any KBV question does not reveal PII that the applicant has not already provided, nor personal information that, when combined with other information in a KBV session, could result in unique identification.</li>
-	  		</ol>
-	</ol>
+  <ol type="1" start="1">
+    <li>CSP は, 2つ以上の確認済 Identity Evidence に対して KBV を用いて Applicant の Identity 検証を行なってはならない (SHALL NOT).</li>
+    <li>CSP は, KBV プロセス開始に必要な情報を含め, Applicant と Authoritative Source のみが知っていると期待される情報のみを使用することとする (SHALL). 自由に取得可能な情報, パブリックドメインにおいて課金することで手に入る情報, ブラックマーケット経由で手に入る情報は使用しないこと (SHALL NOT).</li>
+    <li>CSP は, Resolution および Validation が完了した Identity に対して, Verification のために KBV 以外のプロセスを利用できるようなオプトアウト手段を提供すること (SHALL).</li>
+    <li>CSP は, CSP が参加していた最近の Transaction ヒストリーに関する知識を検証することで, KBV を行なうべきである (SHOULD). CSP は, Transaction 情報が最低限20ビットのエントロピーを持つよう保証すること (SHALL). 例えば, 最小のエントロピー要件に到達するには, Applicant に正規の銀行口座に対する少額デポジットのデポジット額および Transaction ナンバーを尋ねることで, 検証を行なうことができる. この例では全7桁以上の数値を聞くことになる.</li>
+    <li>The CSP MAY perform KBV by asking the applicant questions to demonstrate they are the owner of the claimed information. However, the following requirements apply:</li>
+      <ol type="a" start="a">
+        <li>KBV SHOULD be based on multiple authoritative sources.</li>
+          <li>The CSP SHALL require a minimum of four KBV questions with each requiring a correct answer to successfully complete the KBV step.</li>
+          <li>The CSP SHOULD require free-form response KBV questions. The CSP MAY allow multiple choice questions, however, if multiple choice questions are provided, the CSP SHALL require a minimum of four answer options per question.</li>
+          <li>The CSP SHOULD allow two attempts for an applicant to complete the KBV. A CSP SHALL NOT allow more than three attempts to complete the KBV.</li>
+          <li>The CSP SHALL time out KBV sessions after two minutes of inactivity per question. In cases of session timeout, the CSP SHALL restart the entire KBV process and consider this a failed attempt.</li>
+          <li>The CSP SHALL NOT present a majority of diversionary KBV questions (i.e., those where "none of the above" is the correct answer).</li>
+          <li>The CSP SHOULD NOT ask the same KBV questions in subsequent attempts.</li>
+          <li>The CSP SHALL NOT ask a KBV question that provides information that could assist in answering any future KBV question in a single session or a subsequent session after a failed attempt.</li>
+          <li>The CSP SHALL NOT use KBV questions for which the answers do not change (e.g., "What was your first car?").</li>
+          <li>The CSP SHALL ensure that any KBV question does not reveal PII that the applicant has not already provided, nor personal information that, when combined with other information in a KBV session, could result in unique identification.</li>
+        </ol>
+  </ol>
 </div>
 
+<!--
+<div class="text-left" markdown="0">
+  <ol type="1" start="1">
+    <li>The CSP SHALL NOT use KBV to verify an applicant's identity against more than one piece of validated identity evidence.</li>
+    <li>The CSP SHALL only use information that is expected to be known only to the applicant and the authoritative source, to include any information needed to begin the KBV process. Information accessible freely, for a fee in the public domain, or via the black market SHALL NOT be used.</li>
+    <li>The CSP SHALL allow a resolved and validated identity to opt out of KBV and leverage another process for verification.</li>
+    <li>The CSP SHOULD perform KBV by verifying knowledge of recent transactional history in which the CSP is a participant. The CSP SHALL ensure that transaction information has at least 20 bits of entropy. For example, to reach minimum entropy requirements, the CSP could ask the applicant for verification of the amount(s) and transaction numbers(s) of a micro-deposit(s) to a valid bank account, so long as the total number of digits is seven or greater.</li>
+    <li>The CSP MAY perform KBV by asking the applicant questions to demonstrate they are the owner of the claimed information. However, the following requirements apply:</li>
+      <ol type="a" start="a">
+        <li>KBV SHOULD be based on multiple authoritative sources.</li>  
+          <li>The CSP SHALL require a minimum of four KBV questions with each requiring a correct answer to successfully complete the KBV step.</li>
+          <li>The CSP SHOULD require free-form response KBV questions. The CSP MAY allow multiple choice questions, however, if multiple choice questions are provided, the CSP SHALL require a minimum of four answer options per question.</li>
+          <li>The CSP SHOULD allow two attempts for an applicant to complete the KBV. A CSP SHALL NOT allow more than three attempts to complete the KBV.</li>
+          <li>The CSP SHALL time out KBV sessions after two minutes of inactivity per question. In cases of session timeout, the CSP SHALL restart the entire KBV process and consider this a failed attempt.</li>
+          <li>The CSP SHALL NOT present a majority of diversionary KBV questions (i.e., those where "none of the above" is the correct answer).</li>
+          <li>The CSP SHOULD NOT ask the same KBV questions in subsequent attempts.</li>
+          <li>The CSP SHALL NOT ask a KBV question that provides information that could assist in answering any future KBV question in a single session or a subsequent session after a failed attempt.</li>
+          <li>The CSP SHALL NOT use KBV questions for which the answers do not change (e.g., "What was your first car?").</li>
+          <li>The CSP SHALL ensure that any KBV question does not reveal PII that the applicant has not already provided, nor personal information that, when combined with other information in a KBV session, could result in unique identification.</li>
+        </ol>
+  </ol>
+</div>
+-->
 
 #### <a name="vip"></a>5.3.3 In-person Proofing Requirements
 
