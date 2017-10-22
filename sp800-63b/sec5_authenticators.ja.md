@@ -107,7 +107,7 @@ VerifierはSubscriberに対して，ユーザが強力な記憶シークレッ�
 Verifiers SHOULD offer guidance to the subscriber, such as a password-strength meter [[Meters]](#meters), to assist the user in choosing a strong memorized secret. This is particularly important following the rejection of a memorized secret on the above list as it discourages trivial modification of listed (and likely very weak) memorized secrets [[Blacklists]](#blacklists).
 -->
 
-Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
 
 <!--
 Verifiers SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
@@ -204,7 +204,7 @@ Verifierは，オフライン攻撃へ対策する形式でルックアップシ
 Verifiers SHALL store look-up secrets in a form that is resistant to offline attacks. Look-up secrets having at least 112 bits of entropy SHALL be hashed with an approved one-way function as described in [Section 5.1.1.2](#memsecretver). Look-up secrets with fewer than 112 bits of entropy SHALL be salted and hashed using a suitable one-way key derivation function, also described in [Section 5.1.1.2](#memsecretver). The salt value SHALL be at least 32 in bits in length and arbitrarily chosen so as to minimize salt value collisions among stored hashes. Both the salt value and the resulting hash SHALL be stored for each look-up secret.
 -->
 
-64ビット未満のエントロピーを持つルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+64ビット未満のエントロピーを持つルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
 <!--
 For look-up secrets that have less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
 -->
@@ -261,7 +261,7 @@ The secret's purpose is to securely bind the authentication operation on the pri
 The out-of-band authenticator SHALL establish a separate channel with the verifier in order to retrieve the out-of-band secret or authentication request. This channel is considered to be out-of-band with respect to the primary communication channel (even if it terminates on the same device) provided the device does not leak information from one channel to the other without the authorization of the claimant.
 -->
 
-アウトオブバンドデバイスは一意にアドレス可能であるべきであり(SHOULD)，セカンダリチャネルを介した通信は，公衆回線交換網(PSTN)を介して送信されない場合は暗号化されているものとする(SHALL)．PSTNに固有な追加のAuthenticator要件に対しては，[Section 5.1.3.3](#pstnOOB)を参照すること．Voice-over-IP(VoIP)やEmailなど，特定デバイスの所有を証明を行わない方式は，アウトオブバンドAuthenticationを行う目的では利用しないものとする(SHALL)．
+アウトオブバンドデバイスは一意にアドレス可能であるべきであり(SHOULD)，セカンダリチャネルを介した通信は，公衆交換電話網(PSTN)を介して送信されない場合は暗号化されているものとする(SHALL)．PSTNに固有な追加のAuthenticator要件に対しては，[Section 5.1.3.3](#pstnOOB)を参照すること．Voice-over-IP(VoIP)やEmailなど，特定デバイスの所有を証明を行わない方式は，アウトオブバンドAuthenticationを行う目的では利用しないものとする(SHALL)．
 <!--
 The out-of-band device SHOULD be uniquely addressable and communication over the secondary channel SHALL be encrypted unless sent via the public switched telephone network (PSTN). For additional authenticator requirements specific to the PSTN, see [Section 5.1.3.3](#pstnOOB). Methods that do not prove possession of a specific device, such as voice-over-IP (VOIP) or email, SHALL NOT be used for out-of-band authentication.
 -->
@@ -271,7 +271,7 @@ The out-of-band device SHOULD be uniquely addressable and communication over the
 The out-of-band authenticator SHALL uniquely authenticate itself in one of the following ways when communicating with the verifier:
 -->
 
-- Approve済み暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．利用する鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
+- Approve済み暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
 <!--
 - Establish an authenticated protected channel to the verifier using approved cryptography. The key used SHALL be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, TEE, secure element).
 -->
@@ -322,70 +322,125 @@ Depending on the type of out-of-band authenticator, one of the following SHALL t
 -->
 
 * シークレットをプライマリチャネルに送出: VerifierはSubscriberのAuthenticatorを持つデバイスに対してAuthenticationの準備を示すシグナルを送信してもよい(MAY)．そのうえで，アウトオブバンドAuthenticatorに対してランダムなシークレットを送信するものとする(SHALL)．Verifierはプライマリ通信チャネル上でシークレットが返却されるのを待つものとする(SHALL)．
+
 <!--
 * Transfer of secret to primary channel: The verifier MAY signal the device containing the subscriber's authenticator to indicate readiness to authenticate. It SHALL then transmit a random secret to the out-of-band authenticator. The verifier SHALL then wait for the secret to be returned on the primary communication channel.
 -->
 
 * シークレットをセカンダリチャネルに送出: VerifierはランダムなAuthenticationシークレットをプライマリチャネル経由でClaimantに対して表示するものとする(SHALL)．そのうえで，セカンダリチャネル上でClaimantのアウトオブバンドAuthenticatorからシークレットが返却されるのを待つものとする(SHALL)．
+
 <!--
 * Transfer of secret to secondary channel: The verifier SHALL display a random authentication secret to the claimant via the primary channel. It SHALL then wait for the secret to be returned on the secondary channel from the claimant's out-of-band authenticator.
 -->
 
 * ClaimantによるシークレットのVerifier: VerifierはランダムなAuthenticationシークレットをプライマリチャネル経由でClaimantに対して表示するものとし(SHALL)，セカンダリチャネルを介してアウトオブバンドAuthenticatorに対して同じシークレットを送信しClaimantに提示するものとする(SHALL)．そのうえで，セカンダリチャネルを介した承認(非承認)メッセージを待つものとする(SHALL)．
+
 <!--
 * Verification of secrets by claimant: The verifier SHALL display a random authentication secret to the claimant via the primary channel, and SHALL send the same secret to the out-of-band authenticator via the secondary channel for presentation to the claimant. It SHALL then wait for an approval (or disapproval) message via the secondary channel.
 -->
 
 全てのケースにおいて，10分以内に完了しないAuthenticationは不正とみなすものとする(SHALL)．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは特定のAuthenticationシークレットを確認期間の間で一度だけ受け付けるものとする(SHALL)．
+
 <!--
 In all cases, the authentication SHALL be considered invalid if not completed within 10 minutes. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given authentication secret only once during the validity period.
 -->
 
-Verifierは，Approve済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いて少なくとも20ビットのエントロピーでランダムなAuthenticationシークレットを生成するものとする(SHALL)．もし認証シークレットが64ビット未満のエントロピーを持つ場合は，ルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗の回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+Verifierは，Approve済み乱数生成器 [[SP 800-90Ar1]](#SP800-90Ar1) を用いて少なくとも20ビットのエントロピーでランダムなAuthenticationシークレットを生成するものとする(SHALL)．もし認証シークレットが64ビット未満のエントロピーを持つ場合は，ルックアップシークレットに対して，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+
 <!--
 The verifier SHALL generate random authentication secrets with at least 20 bits of entropy using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1). If the authentication secret has less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
 -->
 
+
+#### <a name="pstnOOB"></a> 5.1.3.3 公衆交換電話網を利用するAuthenticator
+<!--
 #### <a name="pstnOOB"></a> 5.1.3.3 Authentication using the Public Switched Telephone Network
+-->
 
+アウトオブバンドでの検証を目的としたPSTNの利用は，本セクション及び [Section 5.2.10](#restricted) に記載されているように制限されている(RESTRICTED)．もしアウトオブバンドでの検証がPSTNを用いて実施される場合は，Verifierは利用されている事前登録済みの電話番号が，特定の物理デバイスに紐付けられていることを検証するものとする(SHALL)．事前登録済みの電話番号の変更は，新しいAuthenticatorを結びつける行為とみなされ，[Section 6.1.2](#post-enroll-bind) に記載されている場合のみ発生するものとする(SHALL)．
+
+<!--
 Use of the PSTN for out-of-band verification is RESTRICTED as described in this section and in [Section 5.2.10](#restricted). If out-of-band verification is to be made using the PSTN, the verifier SHALL verify that the pre-registered telephone number being used is associated with a specific physical device. Changing the pre-registered telephone number is considered to be the binding of a new authenticator and SHALL only occur as described in [Section 6.1.2](#post-enroll-bind).
+-->
 
+Verifierは，デバイス入れ替え，SIM変更，番号ポーティング，あるいはその他にアウトオブバンドAuthenticationシークレットの配送にPSTNを利用する以前の異常な振る舞いのようなリスク指標を考慮すべきである(SHOULD)．
+<!--
 Verifiers SHOULD consider risk indicators such as device swap, SIM change, number porting, or other abnormal behavior before using the PSTN to deliver an out-of-band authentication secret.
+-->
 
+
+> 注記: [Section 5.2.10](#restricted)におけるAuthenticatorの制限に従い，NISTは脅威状況及びPSTNの技術的な運用の発展に基づき，PSTNの制限(RESTRICTED)状態を時間の経過とともに調整するかもしれない．
+<!--
 > NOTE: Consistent with the restriction of authenticators in [Section 5.2.10](#restricted), NIST may adjust the RESTRICTED status of the PSTN over time based on the evolution of the threat landscape and the technical operation of the PSTN.
+-->
 
+#### <a name="singlefactorOTP"></a> 5.1.4 単一要素OTPVerifier
+<!--
 #### <a name="singlefactorOTP"></a> 5.1.4 Single-Factor OTP Device
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>単一要素OTPデバイスはOTPの生成をサポートするデバイスである．単一要素OTPデバイスは，携帯電話のようなデバイスにインストールされたソフトウェアのOTP生成器及びハードウェアデバイスが含まれる．これらのデバイスは，OTPの生成のシードとして利用される組み込みのシークレットを保持しており，二要素目によるアクティベーションを必要としない．OTPはデバイス上で表示，手動でVerifierに対して入力され，そのことによりデバイスの所持と制御を証明する．OTPデバイスは例えば一度に6文字の表示を行うことがある．単一要素OTPデバイスは<i>something you have</i>である．<br><br>
+
+単一要素OTPデバイスはルックアップシークレットAuthenticatorと同様，暗号理論に基づいてAuthenticatorとVerifierがシークレットを生成し，Verifierによって比較されるという例外を除いて同様である．シークレットは，時間ベースのノンスまたはAuthenticatorとVerifierのカウンタに基づいて計算される.</td> 
+    <!--
     <td>A single-factor OTP device generates OTPs. This category includes hardware devices and software-based OTP generators installed on devices such as mobile phones. These devices have an embedded secret that is used as the seed for generation of OTPs and does not require activation through a second factor. The OTP is displayed on the device and manually input for transmission to the verifier, thereby proving possession and control of the device. An OTP device may, for example, display 6 characters at a time. A single-factor OTP device is <i>something you have</i>.<br><br>
 
 Single-factor OTP devices are similar to look-up secret authenticators with the exception that the secrets are cryptographically and independently generated by the authenticator and verifier and compared by the verifier. The secret is computed based on a nonce that may be time-based or from a counter on the authenticator and verifier.</td>
+-->
   </tr>
   </table>
   </div>
 
 #### <a name="sfotpa"></a>5.1.4.1 Single-Factor OTP Authenticators
 
+単一要素OTPAuthenticatorは2つの永続的な値を保持する.1つ目はデバイスの生存期間の間保持し続ける対象鍵である.2つ目は認証機が使われる都度変化する，またはリアルタイムクロックに基づいているノンスである.
+<!--
 Single-factor OTP authenticators contain two persistent values. The first is a symmetric key that persists for the device's lifetime. The second is a nonce that is either changed each time the authenticator is used or is based on a real-time clock.
+-->
 
+秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．ノンスは，デバイスの生存期間に渡りデバイスが操作される都度一意な値であることを確実にするために十分長いこととする(SHALL). OTP Authenticatorは - 特にソフトウェアベースのOTP生成器の場合 - 複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+<!--
 The secret key and its algorithm SHALL provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The nonce SHALL be of sufficient length to ensure that it is unique for each operation of the device over its lifetime. OTP authenticators — particularly software-based OTP generators — SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices.
+-->
 
+Authenticator出力は，鍵とノンスとを安全な方法で組み合わせ，Approveされたブロック暗号またはハッシュ関数を用いることで得られる．Authenticator出力は少なくとも(約20ビットのエントロピーの)6桁の数字になるよう切り詰めてもよい(MAY).
+<!--
 The authenticator output is obtained by using an approved block cipher or hash function to combine the key and nonce in a secure manner. The authenticator output MAY be truncated to as few as 6 decimal digits (approximately 20 bits of entropy).
+-->
 
+もしAuthenticator出力を生成するために利用されるノンスがリアルタイムクロックをベースとしている場合，ノンスは少なくとも2分毎に変化するものとする(SHALL).与えられたノンスと関連するOTP値は一度だけ受け入れられるものとする(SHALL).
+<!--
 If the nonce used to generate the authenticator output is based on a real-time clock, the nonce SHALL be changed at least once every 2 minutes. The OTP value associated with a given nonce SHALL be accepted only once.
+-->
 
+#### 5.1.4.2 単一要素OTP Verifier
+<!--
 #### 5.1.4.2 Single-Factor OTP Verifiers
+-->
 
+単一要素OTP Verifierは，AuthenticatorによるOTPの生成プロセスを実質的に再現する．Verifierは，Authenticatorが使う対称鍵を所持しており，セキュリティ侵害に対する強力な防御が行われているものとする(SHALL)．
+<!--
 Single-factor OTP verifiers effectively duplicate the process of generating the OTP used by the authenticator. As such, the symmetric keys used by authenticators are also present in the verifier, and SHALL be strongly protected against compromise.
+-->
 
+単一要素OTP AuthenticatorがSubscriberアカウントに紐付けられている時，Verifierまたは関連するCSPは，Authenticatorの出力を再現するために必要なシークレットを生成，交換または取得するためにApproveされた暗号理論を利用するものとする(SHALL)．．
+<!--
 When a single-factor OTP authenticator is being associated with a subscriber account, the verifier or associated CSP SHALL use approved cryptography to either generate and exchange or to obtain the secrets required to duplicate the authenticator output.
+-->
 
+Verifierは，OTPを収集する際の盗聴や中間者攻撃に対抗するために，Approveされた暗号化を利用し，Authenticateされた保護チャネルを利用するものとする(SHALL)．時間ベースのOTP[[RFC 6238]](#RFC6238)は，有効期間を定義するものとし(SHALL)，Authenticator自体の寿命までに予想される（何れの方向に対する）時刻ずれにネットワーク遅延とユーザによるOTP入力の許容時間を加えて決定される．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは指定された時間ベースのOTPを有効期間で一度だけ受け付けるものとする(SHALL)．
+<!--
 The verifier SHALL use approved encryption and an authenticated protected channel when collecting the OTP in order to provide resistance to eavesdropping and MitM attacks. Time-based OTPs [[RFC 6238]](#RFC6238) SHALL have a defined lifetime that is determined by the expected clock drift — in either direction — of the authenticator over its lifetime, plus allowance for network delay and user entry of the OTP. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given time-based OTP only once during the validity period.
+-->
 
+もしAuthenticator出力が64ビット未満のエントロピーを持つ場合は，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．
+<!--
 If the authenticator output has less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
+-->
 
 #### <a name="multifactorOTP"></a> 5.1.5 Multi-Factor OTP Devices
 
@@ -393,205 +448,472 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-otp-device.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>多要素OTPデバイスは，追加の認証要素によりアクティベートされた後にAuthenticationで使われるワンタイムパスワードを生成する．多要素OTPデバイスは，ハードウェアデバイス及び携帯電話のようなデバイスにインストールされたソフトウェアのOTP生成器が含まれる．Authenticationの2要素目は組み込みの入力パッド，組み込みのバイオメトリック(例：指紋)リーダ，USBポートなどのコンピュータに対するダイレクトなインタフェースを介して実現される．ワンタイムパスワードはデバイス上で表示，手動でVerifierに対して入力され，そのことによりデバイスの所持と制御を証明する．ワンタイムパスワードデバイスは例えば一度に6文字の表示を行うことがある．多要素OTPデバイスは<i>something you have</i>である．また，<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)．</td>
+<!--
     <td>A multi-factor OTP device generates OTPs for use in authentication after activation through an additional authentication factor. This includes hardware devices and software-based OTP generators installed on devices such as mobile phones. The second factor of authentication may be achieved through some kind of integral entry pad, an integral biometric (e.g., fingerprint) reader, or a direct computer interface (e.g., USB port). The OTP is displayed on the device and manually input for transmission to the verifier. For example, an OTP device may display 6 characters at a time, thereby proving possession and control of the device. The multi-factor OTP device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
 
+#### 5.1.5.1 <a name="mfotpa"></a>多要素OTP Authenticator
+<!--
 #### 5.1.5.1 <a name="mfotpa"></a>Multi-Factor OTP Authenticators
+-->
 
+多要素OTP Authenticatorは，Authenticatorからパスワードを得るために記憶シークレットの入力またはバイオメトリクスの利用を要求する点を除いて，単一要素OTP Authenticator([Section 5.1.4.1](#sfotpa)参照)と同じ方法で動作する．いずれの場合でも追加要素の入力が必要であるものとする(SHALL)．
+<!--
 Multi-factor OTP authenticators operate in a similar manner to single-factor OTP authenticators (see [Section 5.1.4.1](#sfotpa)), except that they require the entry of either a memorized secret or the use of a biometric to obtain the OTP from the authenticator. Each use of the authenticator SHALL require the input of the additional factor.
+-->
 
+アクティベーション情報に加えて，多要素OTP Authenticatorは2つの永続的な値を含んでいる．1つ目はデバイスの有効期間の間永続する対称鍵である．2つ目は，Authenticator利用の都度変化する，またはリアルタイムクロックに基づいているノンスである．
+<!--
 In addition to activation information, multi-factor OTP authenticators contain two persistent values. The first is a symmetric key that persists for the device's lifetime. The second is a nonce that is either changed each time the authenticator is used or is based on a real-time clock.
+-->
 
+秘密鍵とそのアルゴリズムは少なくとも[[SP 800-131A]](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．ノンスは，デバイスの生存期間に渡りデバイスが操作される都度一意な値であることを確実にするために十分長いこととする(SHALL). OTP Authenticatorは - 特にソフトウェアベースのOTP生成器の場合 - 複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+<!--
 The secret key and its algorithm SHALL provide at least the minimum security strength specified in the latest revision of [[SP 800-131A]](#SP800-131A) (112 bits as of the date of this publication). The nonce SHALL be of sufficient length to ensure that it is unique for each operation of the device over its lifetime. OTP authenticators — particularly software-based OTP generators — SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices.
+-->
 
+Authenticator出力は，鍵とノンスとを安全な方法で組み合わせ，Approveされたブロック暗号またはハッシュ関数を用いることで得られる．Authenticator出力は少なくとも(約20ビットのエントロピーの)6桁の数字になるよう切り詰めてもよい(MAY)．
+<!--
 The authenticator output is obtained by using an approved block cipher or hash function to combine the key and nonce in a secure manner. The authenticator output MAY be truncated to as few as 6 decimal digits (approximately 20 bits of entropy).
+-->
 
+もしAuthenticator出力を生成するために利用されるノンスがリアルタイムクロックをベースとしている場合，ノンスは少なくとも2分毎に変化するものとする(SHALL)．与えられたノンスと関連するOTP値は一度だけ受け入れられるものとする(SHALL)．
+<!--
 If the nonce used to generate the authenticator output is based on a real-time clock, the nonce SHALL be changed at least once every 2 minutes. The OTP value associated with a given nonce SHALL be accepted only once.
+-->
 
+Authenticatorのアクティベーションのために利用される記憶シークレットは，ランダムに選ばれた最低6文字の数字または[Section 5.1.1.2](#memsecretver)に記載されているものと同等な複雑さを備えた他の記憶シークレットであるものとし(SHALL)，[Section 5.2.2](#throttle)に記載されているようにレート制限が行われるものとする(SHALL)．バイオメトリックのアクティベーション要素は，[Section 5.2.3](#biometric_use)の要件を満たすものとし(SHALL)，連続するAuthentication失敗回数に制限がある．
+<!--
 A memorized secret used by the authenticator for activation SHALL be a randomly-chosen numeric secret at least 6 decimal digits in length or other memorized secret of comparable complexity as described in [Section 5.1.1.2](#memsecretver) and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on the number of consecutive authentication failures.
+-->
 
+暗号化されていない秘密鍵とアクティベーションシークレット，またはバイオメトリック標本（及び信号処理により生成されたプローブのようなバイオメトリック標本に由来する任意のバイオメトリックデータ）は，パスワード生成が終わると直ちにゼロ埋めされるものとする(SHALL)．
+<!--
 The unencrypted secret key and activation secret or biometric sample (and any biometric data derived from the biometric sample such as a probe produced through signal processing) SHALL be zeroized immediately after a password has been generated.
+-->
 
+#### 5.1.5.2 多要素OTP Verifier
+<!--
 #### 5.1.5.2 Multi-Factor OTP Verifiers
+-->
 
+多要素OTP Verifierは，AuthenticatorによるOTPの生成プロセスを実質的に再現するが，2要素目の要求は行わない．例えば，Authenticatorが用いる対象鍵は，セキュリティ侵害に対して強力な防御が行われているものとする(SHALL)．
+<!--
 Multi-factor OTP verifiers effectively duplicate the process of generating the OTP used by the authenticator, but without the requirement that a second factor be provided. As such, the symmetric keys used by authenticators SHALL be strongly protected against compromise.
+-->
 
+多要素OTP AuthenticatorがSubscriberアカウントに紐付けられている時，Verifierまたは関連するCSPは，Authenticatorの出力を再現するために必要なシークレットを生成，交換または取得するためにApproveされた暗号理論を利用するものとする(SHALL)．VerifierまたはCSPは，Authenticatorの出所によって，Authenticatorが多要素デバイスであることを証明するものとする(SHALL)．それが多要素Authenticatorであるという信頼できる報告がない場合、Verifierは[Section 5.1.4](#singlefactorOTP)に従いAuthenticatorを単一要素として扱うものとする(SHALL)．
+<!--
 When a multi-factor OTP authenticator is being associated with a subscriber account, the verifier or associated CSP SHALL use approved cryptography to either generate and exchange or to obtain the secrets required to duplicate the authenticator output. The verifier or CSP SHALL also establish, via the authenticator source, that the authenticator is a multi-factor device. In the absence of a trusted statement that it is a multi-factor device, the verifier SHALL treat the authenticator as single-factor, in accordance with [Section 5.1.4](#singlefactorOTP).
+-->
 
+Verifierは，OTPを収集する際の盗聴や中間者攻撃に対抗するために，Approveされた暗号化を利用し，Authenticateされた保護チャネルを利用するものとする(SHALL)．時間ベースのOTP[[RFC 6238]](#RFC6238)は，有効期間を定義するものとし(SHALL)，Authenticator自体の寿命までに予想される（何れの方向に対する）時刻ずれにネットワーク遅延とユーザによるOTP入力の許容時間を加えて決定される．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは指定された時間ベースのOTPを有効期間で一度だけ受け付けるものとする(SHALL)．あるOTPの使い回しによりClaimantのAuthenticationが拒否されるような場合には，VerifierはClaimantに対して，攻撃者が先回りしてAuthenticationを行うことができる可能性があることを警告してもよい(MAY)．Verifierは，あるOTPの使い回しが試みられた既存セッションのSubscriberに対して同様に警告してもよい(MAY)．
+<!--
 The verifier SHALL use approved encryption and an authenticated protected channel when collecting the OTP in order to provide resistance to eavesdropping and MitM attacks. Time-based OTPs [[RFC 6238]](#RFC6238) SHALL have a defined lifetime that is determined by the expected clock drift — in either direction — of the authenticator over its lifetime, plus allowance for network delay and user entry of the OTP. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given time-based OTP only once during the validity period. In the event a claimant's authentication is denied due to duplicate use of an OTP, verifiers MAY warn the claimant in case an attacker has been able to authenticate in advance. Verifiers MAY also warn a subscriber in an existing session of the attempted duplicate use of an OTP.
+-->
 
+もしAuthenticator出力またはアクティベーションシークレットが64ビット未満のエントロピーを持つ場合は，Verifierは，[Section 5.2.2](#throttle)に記載されているように，SubscriberのアカウントにおけるAuthentication失敗回数を効果的に制限するレート制限の仕組みを実装するものとする(SHALL)．バイオメトリックのアクティベーション要素は，[Section 5.2.3](#biometric_use)の要件を満たすものとし(SHALL)，連続するAuthentication失敗回数に制限がある．
+<!--
 If the authenticator output or activation secret has less than 64 bits of entropy, the verifier SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), including limits on the number of consecutive authentication failures.
+-->
 
+#### <a name="sfcs"></a> 5.1.6 単一要素暗号ソフトウェア
+<!--
 #### <a name="sfcs"></a> 5.1.6 Single-Factor Cryptographic Software
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>単一要素ソフトウェア暗号Authenticatorは、ディスクあるいは"ソフト"媒体に記録された暗号鍵である．Authenticationは鍵の所有と制御を証明することで行われる．Authenticator出力は特定の暗号プロトコルに強く依存し、一般的にはある種の署名付メッセージになっている．単一要素ソフトウェア暗号Authenticatorは<i>something you have</i>である．</td>
+    <!--
     <td>A single-factor software cryptographic authenticator is a cryptographic key stored on disk or some other "soft" media. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The single-factor software cryptographic authenticator is <i>something you have</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
 
+#### <a name="sfcsa"></a>5.1.6.1 単一要素暗号ソフトウェアAuthenticator
 #### <a name="sfcsa"></a>5.1.6.1 Single-Factor Cryptographic Software Authenticators
 
+単一要素暗号ソフトウェアAuthenticatorは、Authenticatorで一意な秘密鍵を保持している．鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPMまたは可能であればTEE)に記録されるものとする(SHALL)．デバイス上のソフトウェアコンポーネントがアクセス要求を行ったときのみ鍵にアクセスできるよう制限するアクセス制御を用いて、鍵は許可のない暴露から強力に保護されているものとする(SHALL)．単一要素暗号ソフトウェアAuthenticatorは，複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+<!--
 Single-factor software cryptographic authenticators encapsulate a secret key that is unique to the authenticator. The key SHALL be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, or TEE if available). The key SHALL be strongly protected against unauthorized disclosure by the use of access controls that limit access to the key to only those software components on the device requiring access. Single-factor cryptographic software authenticators SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices.
+-->
 
+#### 5.1.6.2 単一要素暗号ソフトウェアVerifier
+<!--
 #### 5.1.6.2 Single-Factor Cryptographic Software Verifiers
+-->
 
+単一要素暗号ソフトウェアVerifierに対する要件は，[Section 5.1.7.2](#sfcdv) に記載されている単一要素暗号デバイスVerifierに対する要件と同一である．
+<!--
 The requirements for a single-factor cryptographic software verifier are identical to those for a single-factor cryptographic device verifier, described in [Section 5.1.7.2](#sfcdv).
+-->
 
+#### <a name="sfcd"></a> 5.1.7 単一要素暗号デバイス
+<!--
 #### <a name="sfcd"></a> 5.1.7 Single-Factor Cryptographic Devices
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Single-factor-crypto.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>単一要素暗号デバイスは，保護された暗号鍵を用いた暗号操作，及びユーザエンドポイントに対する直接コネクションを介してAuthenticator出力を提供するハードウェアデバイスである．デバイスは組み込みの対象暗号鍵，非対称暗号鍵を利用し，Authenticationの2要素目を用いたアクティベーションを要求しない．AuthenticationはAuthenticationプロトコルを介してデバイスの所持証明を行うことにより達成される．Authenticator出力はユーザエンドポイントに対する直接接続により提供され，特定の暗号デバイスとプロトコルに強く依存し，典型的にはある種の署名付メッセージになっている．単一要素暗号デバイスは<i>something you have</i>である．</td>
+<!--
     <td>A single-factor cryptographic device is a hardware device that performs cryptographic operations using protected cryptographic key(s) and provides the authenticator output via direct connection to the user endpoint. The device uses embedded symmetric or asymmetric cryptographic keys, and does not require activation through a second factor of authentication. Authentication is accomplished by proving possession of the device via the authentication protocol. The authenticator output is provided by direct connection to the user endpoint and is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. A single-factor cryptographic device is <i>something you have</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
+#### 5.1.7.1 <a name="sfcda"></a>単一要素暗号デバイスAuthenticator
+<!--
 #### 5.1.7.1 <a name="sfcda"></a>Single-Factor Cryptographic Device Authenticators
+-->
 
+単一要素暗号デバイスAuthenticatorは秘密鍵を格納しており，その鍵はデバイスで一意かつエクスポートされない(つまりデバイスから除去することができない)ものとする(SHALL NOT)．Authenticatorは，通常はUSBポートなどのコンピュータに対するダイレクトなインタフェースを介して提供されるチャレンジノンスに署名することで動作する．暗号デバイスはソフトウェアを含んでいるが，全ての組み込みソフトウェアがCSP(または発行者)の制御下にあるという点，及びAuthenticator全体でAuthentication時のAALにおけるFIPS 140要件に適合する必要がある点において，暗号ソフトウェアAuthenticatorとは異なる．
+<!--
 Single-factor cryptographic device authenticators encapsulate a secret key that is unique to the device and SHALL NOT be exportable (i.e., it cannot be removed from the device). The authenticator operates by signing a challenge nonce presented through a direct computer interface (e.g., a USB port). Although cryptographic devices contain software, they differ from cryptographic software authenticators in that all embedded software is under control of the CSP or issuer and that the entire authenticator is subject to all applicable FIPS 140 requirements at the AAL being authenticated.
+-->
 
+秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)．Approveされた暗号理論が利用されるものとする(SHALL)．
+<!--
 The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The challenge nonce SHALL be at least 64 bits in length. Approved cryptography SHALL be used.
+-->
 
+単一要素暗号デバイスAuthenticatorは動作するために(ボタンを押すなどの)物理的な入力を必要とすべきである(SHOULD)．これにより，デバイスが接続している先がセキュリティ侵害をうけているような場合に起こりうる，デバイスの意図しない動作を防止することができる．
+<!--
 Single-factor cryptographic device authenticators SHOULD require a physical input (e.g., the pressing of a button) in order to operate. This provides defense against unintended operation of the device, which might occur if the endpoint to which it is connected is compromised.
+-->
 
+#### 5.1.7.2 <a name="sfcdv"></a>単一要素暗号デバイスVerifier
+<!--
 #### 5.1.7.2 <a name="sfcdv"></a>Single-Factor Cryptographic Device Verifiers
+-->
 
+単一要素暗号デバイスVerifierはチャレンジノンスを生成して，対応するAuthenticatorに送信する．また，Authenticator出力をデバイスの所有を検証するために用いる．Authenticator出力は特定の暗号デバイスとプロトコルに強く依存し，典型的にはある種の署名付メッセージになっている．
+<!--
 Single-factor cryptographic device verifiers generate a challenge nonce, send it to the corresponding authenticator, and use the authenticator output to verify possession of the device. The authenticator output is highly dependent on the specific cryptographic device and protocol, but it is generally some type of signed message.
+-->
 
+Verifierは，各Authenticatorに対応する対象鍵または非対称暗号鍵を保持している．どちらのタイプの鍵も改変に対して保護されているものとし(SHALL)，対象鍵については追加で許可のない暴露に対して保護されているものとする(SHALL)．
+<!--
 The verifier has either symmetric or asymmetric cryptographic keys corresponding to each authenticator. While both types of keys SHALL be protected against modification, symmetric keys SHALL additionally be protected against unauthorized disclosure.
+-->
 
+チャレンジノンスは少なくとも64ビット長であるとし(SHALL)，Authenticatorの有効期間を通じて一意，または統計上一意(したがって，Approveされた乱数生成器[[SP 800-90Ar1]](#SP800-90Ar1)を用いて生成されたもの)であるとする(SHALL)．
+<!--
 The challenge nonce SHALL be at least 64 bits in length, and SHALL either be unique over the authenticator's lifetime or statistically unique (i.e., generated using an approved random bit generator [[SP 800-90Ar1]](#SP800-90Ar1)). The verification operation SHALL use approved cryptography.
+-->
 
+#### <a name="mfcs"></a> 5.1.8 多要素暗号ソフトウェア
+<!--
 #### <a name="mfcs"></a> 5.1.8 Multi-Factor Cryptographic Software
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-software-crypto.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>多要素ソフトウェア暗号Authenticatorは，ディスクあるいは"ソフト"媒体に記録された暗号鍵であり，Authenticationの2要素目を用いたアクティベーションを必要とする．Authenticationは鍵の所有と制御を証明することで行われる．Authenticator出力は特定の暗号プロトコルに強く依存し，一般的にはある種の署名付メッセージになっている．多要素ソフトウェア暗号Authenticatorは<i>something you have</i>であり，<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)．</td>
+    <!--
     <td>A multi-factor software cryptographic authenticator is a cryptographic key stored on disk or some other "soft" media that requires activation through a second factor of authentication. Authentication is accomplished by proving possession and control of the key. The authenticator output is highly dependent on the specific cryptographic protocol, but it is generally some type of signed message. The multi-factor software cryptographic authenticator is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
+#### <a name="mfcsa"></a>5.1.8.1 多要素暗号ソフトウェアAuthenticators
+<!--
 #### <a name="mfcsa"></a>5.1.8.1 Multi-Factor Cryptographic Software Authenticators
+-->
 
+多要素暗号ソフトウェアAuthenticatorは秘密鍵を格納しており，その鍵はデバイスで一意であり記憶シークレットやバイオメトリックなどの追加の要素の入力を経たときだけアクセスできる．鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE)に記録されるべきである(SHOULD)．デバイス上のソフトウェアコンポーネントがアクセス要求を行ったときのみ鍵にアクセスできるよう制限するアクセス制御を用いて、鍵は許可のない暴露から強力に保護されているものとする(SHALL)．多要素暗号ソフトウェアAuthenticatorは，複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+
+<!--
 Multi-factor software cryptographic authenticators encapsulate a secret key that is unique to the authenticator and is accessible only through the input of an additional factor, either a memorized secret or a biometric. The key SHOULD be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, TEE). The key SHALL be strongly protected against unauthorized disclosure by the use of access controls that limit access to the key to only those software components on the device requiring access. Multi-factor cryptographic software authenticators SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices.
+-->
 
+Authenticatorを用いた各Authentication操作には両方の要素の入力を必要とするものとする(SHALL)．
+<!--
 Each authentication operation using the authenticator SHALL require the input of both factors.
+-->
 
+Authenticatorのアクティベーションのために利用される記憶シークレットは，最低6文字の数字または同等な複雑さを備えたものとし(SHALL)，[Section 5.2.2](#throttle)に記載されているようにレート制限が行われるものとする(SHALL)．バイオメトリックのアクティベーション要素は，[Section 5.2.3](#biometric_use)の要件を満たすものとし(SHALL)，連続するAuthentication失敗回数に対する制限を含むものとする．
+<!--
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits in length, or equivalent complexity, and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), and SHALL include limits on the allowable number of consecutive authentication failures.
+-->
 
+暗号化されていない秘密鍵とアクティベーションシークレット，またはバイオメトリック標本（及び信号処理により生成されたプローブのようなバイオメトリック標本に由来する任意のバイオメトリックデータ）は，Authenticationトランザクションが行われたら直ちにゼロ埋めされるものとする(SHALL)．
+<!--
 The unencrypted key and activation secret or biometric sample — and any biometric data derived from the biometric sample such as a probe produced through signal processing — SHALL be zeroized immediately after an authentication transaction has taken place.
+-->
 
+#### 5.1.8.2 多要素暗号ソフトウェアVerifier
+<!--
 #### 5.1.8.2 Multi-Factor Cryptographic Software Verifiers
+-->
 
+多要素暗号ソフトウェアVerifierに対する要件は，[Section 5.1.7.2](#sfcdv) に記載されている単一要素暗号デバイスVerifierに対する要件と同一である．
+多要素暗号ソフトウェアAuthenticator出力を検証することで，アクティベーション要素の使用の証明となる．
+<!--
 The requirements for a multi-factor cryptographic software verifier are identical to those for a single-factor cryptographic device verifier, described in [Section 5.1.7.2](#sfcdv). Verification of the output from a multi-factor cryptographic software authenticator proves use of the activation factor.
+-->
 
+#### 5.1.9 <a name="mfcd"></a> 多要素暗号デバイス
+<!--
 #### 5.1.9 <a name="mfcd"></a> Multi-Factor Cryptographic Devices
+-->
 
 <div class="text-left" markdown="1">
 <table style="width:100%">
   <tr>
     <td><img src="sp800-63b/media/Multi-factor-crypto-device.png" alt="authenticator" style="width: 100px;height: 100px;min-width:100px;min-height:100px;"/></td>
+    <td>多要素暗号デバイスは，1つ以上の保護された暗号鍵を用いた暗号操作を行うハードウェアデバイスであり，2要素目を用いたアクティベーションを要求する．Authenticationはデバイスの所持と鍵の制御を証明することで実現される．Authenticator出力はユーザエンドポイントに対する直接接続を介して提供され，特定の暗号デバイスとプロトコルに強く依存し，典型的にはある種の署名付メッセージになっている．多要素暗号デバイスは<i>something you have</i>であり，<i>something you know</i>または<i>something you are</i>のどちらかによってアクティベートされるものとする(SHALL)．</td>
+<!--
     <td>A multi-factor cryptographic device is a hardware device that performs cryptographic operations using one or more protected cryptographic keys and requires activation through a second authentication factor. Authentication is accomplished by proving possession of the device and control of the key. The authenticator output is provided by direct connection to the user endpoint and is highly dependent on the specific cryptographic device and protocol, but it is typically some type of signed message. The multi-factor cryptographic device is <i>something you have</i>, and it SHALL be activated by either <i>something you know</i> or <i>something you are</i>.</td>
+    -->
   </tr>
   </table>
   </div>
 
-
+#### 5.1.9.1 多要素暗号デバイスAuthenticator
+<!--
 #### 5.1.9.1 Multi-Factor Cryptographic Device Authenticators
+-->
 
+多要素暗号デバイスAuthenticatorは耐タンパ性を有するハードウェアを用いて秘密鍵を格納しており，その鍵はデバイスで一意であり記憶シークレットやバイオメトリックなどの追加の要素の入力を経たときだけアクセスできる．鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE)に記録されるべきである(SHOULD)．デバイス上のソフトウェアコンポーネントがアクセス要求を行ったときのみ鍵にアクセスできるよう制限するアクセス制御を用いて、鍵は許可のない暴露から強力に保護されているものとする(SHALL)．多要素暗号ソフトウェアAuthenticatorは，複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+<!--
 Multi-factor cryptographic device authenticators use tamper-resistant hardware to encapsulate a secret key that is unique to the authenticator and accessible only through the input of an additional factor, either a memorized secret or a biometric. The authenticator operates by signing a challenge nonce presented through a direct computer interface (e.g., a USB port). Although cryptographic devices contain software, they differ from cryptographic software authenticators in that all embedded software is under control of the CSP or issuer, and that the entire authenticator is subject to any applicable FIPS 140 requirements at the selected AAL.
+-->
 
+秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)．Approveされた暗号理論が利用されるものとする(SHALL)．
+<!--
 The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The challenge nonce SHALL be at least 64 bits in length. Approved cryptography SHALL be used.
 
+Authenticatorを用いた各Authentication操作には追加の要素の入力を必要とすべきである(SOULD)．追加要素の入力は，デバイスへの直接入力かハードウェア接続(例：USB，スマートカード)を介して実施されてもよい(MAY)．
+<!--
 Each authentication operation using the authenticator SHOULD require the input of the additional factor. Input of the additional factor MAY be accomplished via either direct input on the device or via a hardware connection (e.g., USB, smartcard).
+-->
 
+Authenticatorのアクティベーションのために利用される記憶シークレットは，最低6文字の数字または同等な複雑さを備えたものとし(SHALL)，[Section 5.2.2](#throttle)に記載されているようにレート制限が行われるものとする(SHALL)．バイオメトリックのアクティベーション要素は，[Section 5.2.3](#biometric_use)の要件を満たすものとし(SHALL)，連続するAuthentication失敗回数に対する制限を含むものとする．
+<!--
 Any memorized secret used by the authenticator for activation SHALL be at least 6 decimal digits in length, or equivalent complexity, and SHALL be rate limited as specified in [Section 5.2.2](#throttle). A biometric activation factor SHALL meet the requirements of [Section 5.2.3](#biometric_use), and SHALL include limits on the number of consecutive authentication failures.
+-->
 
+暗号化されていない秘密鍵とアクティベーションシークレット，またはバイオメトリック標本（及び信号処理により生成されたプローブのようなバイオメトリック標本に由来する任意のバイオメトリックデータ）は，Authenticationトランザクションが行われたら直ちにメモリが上書きされるものとする(SHALL)．
+<!--
 The unencrypted key and activation secret or biometric sample — and any biometric data derived from the biometric sample such as a probe produced through signal processing — SHALL be overwritten in memory immediately after an authentication transaction has taken place.
+-->
 
+#### <a name="mfcdv"></a>5.1.9.2多要素暗号デバイスVerifier
+<!--
 #### <a name="mfcdv"></a>5.1.9.2 Multi-Factor Cryptographic Device Verifiers
+-->
 
+多要素暗号デバイスVerifierに対する要件は，[Section 5.1.7.2](#sfcdv) に記載されている単一要素暗号デバイスVerifierに対する要件と同一である．
+多要素暗号デバイスAuthenticator出力を検証することで，アクティベーション要素の使用の証明となる．
+<!--
 The requirements for a multi-factor cryptographic device verifier are identical to those for a single-factor cryptographic device verifier, described in [Section 5.1.7.2](#sfcdv). Verification of the authenticator output from a multi-factor cryptographic device proves use of the activation factor.
+-->
 
+#### 5.2. 一般Authenticator要件
+<!--
 #### 5.2 General Authenticator Requirements
+-->
 
 #### 5.2.1 Physical Authenticators
 
+CSPはSubscriberに対して，Authenticatorの盗難や紛失を正しく防止する方法について指示するものとする(SHALL)．CSPはSubscriberから認証機の盗難や紛失の疑いがある旨の通知に対し，直ちにAuthenticatorを無効化，停止するメカニズムを備えるものとする(SHALL)．
+<!--
 CSPs SHALL provide subscriber instructions on how to appropriately protect the authenticator against theft or loss. The CSP SHALL provide a mechanism to revoke or suspend the authenticator immediately upon notification from subscriber that loss or theft of the authenticator is suspected.
+-->
 
+#### <a name="throttle"></a>5.2.2 レート制限 (スロットリング)
+<!--
 #### <a name="throttle"></a>5.2.2 Rate Limiting (Throttling)
+-->
 
+[Section 5.1](#reqauthtype)のAuthenticatorタイプの説明で要求される場合，Verifierはオンライン推測攻撃に対抗するための制御を実装するものとする(SHALL)．指定されたAuthenticatorの説明に記載がなければ，Verifierはオンライン攻撃者に対し，同一アカウントで100回以上の連続した認証失敗試行を制限をするものとする(SHALL)．
+<!--
 When required by the authenticator type descriptions in [Section 5.1](#reqauthtype), the verifier SHALL implement controls to protect against online guessing attacks. Unless otherwise specified in the description of a given authenticator, the verifier SHALL limit consecutive failed authentication attempts on a single account to no more than 100.
+-->
 
+レート制限の結果として攻撃者が正しいclaimantをロックアウトさせる頻度を減少させるために用いられる追加のテクニックを用いてもよい(MAY)．追加テクニックは以下を含む:
+<!--
 Additional techniques MAY be used to reduce the likelihood that an attacker will lock the legitimate claimant out as a result of rate limiting. These include:
+-->
 
+- Claimantに対して，Authentication試行前にCAPTCHAの入力を要求する．
+
+<!--
 - Requiring the claimant to complete a CAPTCHA before attempting authentication.
+-->
 
+- Claimantに対して認証失敗後に一定期間待つように要求し，連続する認証失敗の最大回数に近づくにつれてその時間を(例えば30秒から1時間まで)増加させる．
+
+<!--
 - Requiring the claimant to wait following a failed attempt for a period of time that increases as the account approaches its maximum allowance for consecutive failed attempts (e.g., 30 seconds up to an hour).
+-->
 
+- Subscriberが以前Authenticationに成功したことがあるIPアドレスのホワイトリストからのみ行われるAuthentication要求だけを受理する．
+
+<!--
 - Accepting only authentication requests that come from a white list of IP addresses from which the subscriber has been successfully authenticated before.
+-->
 
+- ユーザの振る舞いが通常の範疇にあるかないかを特定するリスクベースまたは適応型Authenticationの手法を活用する．
+
+<!--
 - Leveraging other risk-based or adaptive authentication techniques to identify user behavior that falls within, or out of, typical norms.
+-->
 
+SubscriberがAuthenticationに成功した場合，Verifierは同一IPアドレスからの以前の失敗したAuthenticationの試行を無視すべきである(SHOULD)．
+
+<!--
 When the subscriber successfully authenticates, the verifier SHOULD disregard any previous failed attempts for that user from the same IP address.
+-->
 
+#### <a name="biometric_use"></a>5.2.3 バイオメトリクスの利用
+<!--
 #### <a name="biometric_use"></a>5.2.3 Use of Biometrics
+-->
 
+Authenticationにおけるバイオメトリクス(*something you are*)の利用は，物理的な特性(例：指紋，虹彩，顔の特徴)及び振る舞い特性(例：タイピングのリズム)の両方を測定法を含んでいる．[Section 5.2.9](#intent)に記載されているAuthentication意思を確認する範囲とは差があるかもしれないが，両方の分類ともに，異なるバイオメトリック計測手段とみなされる．
+<!--
 The use of biometrics (*something you are*) in authentication includes both measurement of physical characteristics (e.g., fingerprint, iris, facial characteristics) and behavioral characteristics (e.g., typing cadence). Both classes are considered biometric modalities, although different modalities may differ in the extent to which they establish authentication intent as described in [Section 5.2.9](#intent).
+-->
 
+様々な理由で，本書はAuthenticationにおけるバイオメトリクスの利用を限定的にサポートする．それらは以下のとおりである:
+<!--
 For a variety of reasons, this document supports only limited use of biometrics for authentication. These reasons include:
+-->
 
+- バイオメトリックのFalse Match Rate(FMR)は，それ自身ではSubscriberのAuthenticationにおける確実性を与えるものではない．更に，FMRはスプーフィング攻撃を考慮したものではない．
+
+<!--
 - The biometric False Match Rate (FMR) does not provide confidence in the authentication of the subscriber by itself. In addition, FMR does not account for spoofing attacks.
+-->
+
+- バイオメトリックの比較は確率的なものであるが，他のAuthentication要素は決定的なものである．
+
+<!--
 - Biometric comparison is probabilistic, whereas the other authentication factors are deterministic.
+-->
+
+- バイオメトリックのテンプレート保護スキームは，他のAuthentication要素(例: PKI証明書やパスワード)に相当するバイオメトリッククレデンシャルを無効化するための手段を提供する．しかしながら，そのようなソリューションの可用性は制限されており，これらの手段を試験するための標準も策定中の段階である．
+
+<!--
 - Biometric template protection schemes provide a method for revoking biometric credentials that is comparable to other authentication factors (e.g., PKI certificates and passwords). However, the availability of such solutions is limited, and standards for testing these methods are under development.
+-->
+
+- バイオメトリック特性はシークレットにはならない．それらはオンラインで取得したり，知識のあるなしに関わらず誰かが携帯電話のカメラで(例えば顔の)写真を取ることができ，誰かが触った物から(例えば潜在的に指紋を)採取することができ，高精細な画像から(例えば虹彩パターンを)キャプチャすることができる．生体検知のようなPresentation attack detaction(PAD)技術は，これらの種別の攻撃リスクを緩和することができるが，センサーやバイオメトリック処理はCSPとSubscriberのニーズに合うようにPADを適切に実施していることを保証する必要がある．
+
+<!--
 - Biometric characteristics do not constitute secrets. They can be obtained online or by taking a picture of someone with a camera phone (e.g., facial images) with or without their knowledge, lifted from objects someone touches (e.g., latent fingerprints), or captured with high resolution images (e.g., iris patterns). While presentation attack detection (PAD) technologies (e.g., liveness detection) can mitigate the risk of these types of attacks, additional trust in the sensor or biometric processing is required to ensure that PAD is operating in accordance with the needs of the CSP and the subscriber.
+-->
 
+したがって，Authenticationにおける制限されたバイオメトリクスの利用は，以下の要件とガイドラインの下でサポートされる:
+<!--
 Therefore, the limited use of biometrics for authentication is supported with the following requirements and guidelines:
+-->
 
+バイオメトリクスは物理的なAuthenticatorを用いた多要素Authentication(*something you have*)の一部としてのみ利用されるものとする(SHALL)．
+<!--
 Biometrics SHALL be used only as part of multi-factor authentication with a physical authenticator (*something you have*).
+-->
 
+センサ(またはセンサ置き換え耐性のあるセンサーを持ったエンドポイント)とVerifier間のAuthenticateされた保護チャネルが確立され(SHALL)，センサーまたはエンドポイントが設置され(SHALL)，Claimantからバイオメトリック標本を取得するのに先立ってセンサーまたはエンドポイントがAuthenticateされているものとする(SHALL)．
+<!--
 An authenticated protected channel between sensor (or an endpoint containing a sensor that resists sensor replacement) and verifier SHALL be established and the sensor or endpoint SHALL be established and the sensor or endpoint authenticated prior to capturing the biometric sample from the claimant.
+-->
 
+バイオメトリックシステムは，FMR [[ISO/IEC 2382-37]](#ISOIEC2382-37)は1000分の1より優れたレートで運用されるものとする．このFMRは[[ISO/IEC 30107-1]](#ISOIEC30107-1)で定義されているConformant attack(すなわちZero-effort imporster attempt)の条件下で達成されるものとする(SHALL)．
+<!--
 The biometric system SHALL operate with an FMR [[ISO/IEC 2382-37]](#ISOIEC2382-37) of 1 in 1000 or better. This FMR SHALL be achieved under conditions of a conformant attack (i.e., zero-effort impostor attempt) as defined in [[ISO/IEC 30107-1]](#ISOIEC30107-1).
+-->
 
+バイオメトリックシステムは，PADを実装すべきである(SHOULD)．バイオメトリックシステムを配備を目的として実施するテストでは，各関連攻撃タイプ(すなわち種類)に対して少なくとも90%の耐性があることを示すべきである(SHOULD)．ここでの耐性はプレゼンテーション攻撃の失敗回数をプレゼンテーション攻撃の試行回数で割ったものとして定義される．プレゼンテーション攻撃耐性のテストは，[[ISO/IEC 30107-3]](#ISOIEC30107-3)の12条に従い行われるものとする(SHALL)．PADはClaimantのデバイス上でローカルに実施されても，または中央のVerifierによって実施されてもよい(MAY)．
+<!--
 The biometric system SHOULD implement PAD. Testing of the biometric system to be deployed SHOULD demonstrate at least 90% resistance to presentation attacks for each relevant attack type (i.e., species), where resistance is defined as the number of thwarted presentation attacks divided by the number of trial presentation attacks. Testing of presentation attack resistance SHALL be in accordance with Clause 12 of [[ISO/IEC 30107-3]](#ISOIEC30107-3). The PAD decision MAY be made either locally on the claimant's device or by a central verifier.
+-->
 
+>注釈: PADはガイドラインの将来の版では必須要件としてみなされる．
+<!--
 >Note: PAD is being considered as a mandatory requirement in future editions of this guideline.
+-->
 
+バイオメトリックシステム5回の連続したAuthentication試行の失敗を許容するものとする(SHALL)．もしPADが上記の要件を満たして実装されている場合は，10回の連続したAuthentication試行の失敗を許容するものとする(SHALL)．一度上限に達すると，バイオメトリックAuthenticatorは以下の何れかであるものとする(SHALL): 
+<!--
 The biometric system SHALL allow no more than 5 consecutive failed authentication attempts or 10 consecutive failed attempts if PAD meeting the above requirements is implemented. Once that limit has been reached, the biometric authenticator SHALL either:
+-->
 
+- 次回の試行までに少なくとも30秒の遅延を課し，試行回数が増える毎に指数関数的に遅延を増加させる(例えば，後続の失敗する試行の前に1分，その次の試行では2分)か，
+
+<!--
 - Impose a delay of at least 30 seconds before the next attempt, increasing exponentially with each successive attempt (e.g., 1 minute before the following failed attempt, 2 minutes before the second following attempt), or
+-->
+
+- もし既に利用可能な代替手段があるのであれば，バイオメトリックユーザAuthenticationを無効化し，もう一つの要素(例えば，異なるバイオメトリック計測手段や，まだ要求されていない要素であればPIN/パスコード)の利用を試みる．
+
+<!--
 - Disable the biometric user authentication and offer another factor (e.g., a different biometric modality or a PIN/Passcode if it is not already a required factor) if such an alternative method is already available.
+-->
 
+Verifierはセンサー及びポイントのパフォーマンス，一貫性，真正性について決定するものとする(SHALL)．この決定を行うために容認できる方法として以下があるが，限定はされていない:
+<!--
 The verifier SHALL make a determination of sensor and endpoint performance, integrity, and authenticity. Acceptable methods for making this determination include, but are not limited to:
+-->
 
+* センサー及びエンドポイントのAuthentication．
+* 承認済みの適格性認定機関による認定．
+* [Section 5.2.4](#attestation)に記載されている署名済みメタデータの実効時照会(例: アテステーション)
+
+<!--
 * Authentication of the sensor or endpoint.
 * Certification by an approved accreditation authority.
 * Runtime interrogation of signed metadata (e.g., attestation) as described in [Section 5.2.4](#attestation).
+-->
 
+バイオメトリックの比較はClaimantのデバイス上でローカルに実施されるか，中央のVerifierで実施される．中央のVerifierでの大規模な攻撃の可能性が増加しつつあるため，ローカルでの比較が好ましい．
+<!--
 Biometric comparison can be performed locally on claimant's device or at a central verifier. Since the potential for attacks on a larger scale is greater at central verifiers, local comparison is preferred.
+-->
 
+もし比較が中央で実施される場合:
+<!--
 If comparison is performed centrally:
+-->
 
+* Authenticationとしてのバイオメトリック利用はApproveされた暗号理論を用いて特定される一つ以上の特定デバイスに限定されるものとする(SHALL)．バイオメトリックがまだメインのAuthentication鍵をアンロックしていないのであれば，分離している鍵がデバイスの特定のために利用されるものとする(SHALL)．
+* バイオメトリックの破棄は，[ISO/IEC 24745](#ISO24745)中のバイオメトリックテンプレート保護と呼ばれており，実装するものとする(SHALL)．
+* 全てのバイオメトリクスの送信はAuthenticateされた保護チャネルを介して行われる．．
+
+<!--
 * Use of the biometric as an authentication factor SHALL be limited to one or more specific devices that are identified using approved cryptography. Since the biometric has not yet unlocked the main authentication key, a separate key SHALL be used for identifying the device.
 * Biometric revocation, referred to as biometric template protection in [ISO/IEC 24745](#ISO24745), SHALL be implemented.
 * All transmission of biometrics SHALL be over the authenticated protected channel.
+-->
 
+Authenticationプロセス中で収集されたバイオメトリック標本は，ユーザの同意の下で，研究目的で比較アルゴリズムの学習に利用してもよい(MAY)．バイオメトリック標本及び信号処理により生成されたプローブのようなバイオメトリック標本に由来する任意のバイオメトリックデータは，学習や派生した研究データが得られた後は直ちにゼロ埋めされるものとする(SHALL)．
+
+<!--
 Biometric samples collected in the authentication process MAY be used to train comparison algorithms or — with user consent — for other research purposes. Biometric samples and any biometric data derived from the biometric sample such as a probe produced through signal processing SHALL be zeroized immediately after any training or research data has been derived.
+-->
 
+バイオメトリクスは，[SP 800-63A](sp800-63a.html)で記載されている全てのEnrollmentプロセスフェーズにおいて，Enrollmentの否認を防ぐため，また関与する同一個人であることを検証するために利用される．
+<!--
 Biometrics are also used in some cases to prevent repudiation of enrollment and to verify that the same individual participates in all phases of the enrollment process as described in [SP 800-63A](sp800-63a.html).
+-->
 
 #### <a name="attestation"></a>5.2.4 Attestation
 
