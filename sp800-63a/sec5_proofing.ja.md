@@ -68,13 +68,23 @@ Identity Validation のゴールは, Applicant からもっとも適切な Ident
 
 #### <a name="evidence_validation"></a> 5.2.2 Validating Identity Evidence
 
-Once the CSP obtains the identity evidence, the accuracy, authenticity, and integrity of the evidence and related information is checked against authoritative sources in order to determine that the presented evidence:  
+ひとたb Identity Evidence を取得すると, CSP はその正確さ, Authenticity, Integrity, および関連情報を Authoritative Source に照会し, 提示されたエビデンスに対して以下の項目を判断する.
 
+<!-- Once the CSP obtains the identity evidence, the accuracy, authenticity, and integrity of the evidence and related information is checked against authoritative sources in order to determine that the presented evidence:   -->
+
+* 偽造されていない真正なものであること.
+* 正しい情報が記載されていること.
+* 実在する Subject に関する情報が記載されていること.
+
+<!--
 * Is genuine, authentic, and not a counterfeit, fake, or forgery;
 * Contains information that is correct; and
-* Contains information that relates to a real-life subject.  
+* Contains information that relates to a real-life subject.
+-->
 
-[Table 5-2](#63aSec5-Table2) lists strengths, ranging from unacceptable to superior, of identity validation performed by the CSP to validate the evidence presented for the current proofing session and the information contained therein.
+[Table 5-2](#63aSec5-Table2) には, 当該 Proofing Session において提示されたエビデンス, およびそこに記載された情報のに対する, CSP が実施する Identity Validation に関しての, Unacceptable から Superior までの強度を列挙する.
+
+<!-- [Table 5-2](#63aSec5-Table2) lists strengths, ranging from unacceptable to superior, of identity validation performed by the CSP to validate the evidence presented for the current proofing session and the information contained therein. -->
 
 <a name="63aSec5-Table2"></a>
 
@@ -86,21 +96,37 @@ Once the CSP obtains the identity evidence, the accuracy, authenticity, and inte
 
 |Strength|Method(s) performed by the CSP|
 |:---:|:------------------------------|
+| Unacceptable | - Evidence は未確認, もしくは確認できない. |
+| Weak | - エビデンスから得られるすべての個人に関する詳細は, Authoritative Source が保有ないしは公開している情報と比較して正当性が確認された. |
+| Fair | - 当該エビデンスは<br>&nbsp;&nbsp;&nbsp;&nbsp;- 詳細が Issuing Source ないしは Authoritative Source が保有ないしは公開している情報と比較して正当性が確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- 適切なテクノロジーによって, 物理セキュリティー機能の Integrity が確認され, 当該エビデンスが不正・改ざんされておらず, 本物であることが確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR** <br>&nbsp;&nbsp;&nbsp;&nbsp;- 当該エビデンスが, 訓練を受けた担当者により真正であると確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR** <br>&nbsp;&nbsp;&nbsp;&nbsp;- 暗号論的セキュリティー機能の Integrity が確認され, 当該エビデンスが真正であると確認された. |
+| Strong | - 以下のように当該エビデンスが真正であると確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;- 適切なテクノロジーによって, 物理セキュリティー機能の Integrity が確認され, 当該エビデンスが不正・改ざんされていないことを確認した.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- 訓練を受けた担当者もしくは適切なテクノロジーによって, 物理セキュリティー機能の Integrity が確認され, 当該エビデンスが不正・改ざんされていないことを確認した.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- 暗号論的セキュリティー機能の Integrity を確認した.<br><br>- エビデンスから得られるすべての個人およびエビデンスに関する詳細は, Issuing Source ないしは Authoritative Source が保有ないしは公開している情報と比較して正当性が確認された. |
+| Superior | - 訓練を受けた担当者, および物理セキュリティーと暗号論的セキュリティー機能の Integrity を含む適切なテクノロジーによって, 当該エビデンスが真正であると確認された.<br><br>- エビデンスから得られるすべての個人およびエビデンスに関する詳細は, Issuing Source ないしは Authoritative Source が保有ないしは公開している情報と比較して正当性が確認された. |
+
+<!--
+|Strength|Method(s) performed by the CSP|
+|:---:|:------------------------------|
 |Unacceptable|- Evidence validation was not performed, or validation of the evidence failed.|
 |Weak|- All personal details from the evidence have been confirmed as valid by comparison with information held or published by an authoritative source.|
 |Fair| - The evidence:<br>&nbsp;&nbsp;&nbsp;&nbsp;- details have been confirmed as valid by comparison with information held or published by the issuing source or authoritative source(s).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- has been confirmed as genuine using appropriate technologies, confirming the integrity of physical security features and that the evidence is not fraudulent or inappropriately modified.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR** <br>&nbsp;&nbsp;&nbsp;&nbsp;- The evidence has been confirmed as genuine by trained personnel. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR** <br>&nbsp;&nbsp;&nbsp;&nbsp;- The issued evidence has been confirmed as genuine by confirmation of the integrity of cryptographic security features.|
 |Strong| - The evidence has been confirmed as genuine:<br>&nbsp;&nbsp;&nbsp;&nbsp;- using appropriate technologies, confirming the integrity of physical security features and that the evidence is not fraudulent or inappropriately modified. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- by trained personnel and appropriate technologies, confirming the integrity of the physical security features and that the evidence is not fraudulent or inappropriately modified.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- by confirmation of the integrity of cryptographic security features.<br><br> - All personal details and evidence details have been confirmed as valid by comparison with information held or published by the issuing source or authoritative source(s).|
 |Superior| - The evidence has been confirmed as genuine by trained personnel and appropriate technologies including the integrity of any physical and cryptographic security features.<br><br> - All personal details and evidence details from the evidence have been confirmed as valid by comparison with information held or published by the issuing source or authoritative source(s).|
+-->
 
-Training requirements for personnel validating evidence SHALL be based on the policies, guidelines, or requirements of the CSP or RP.
+担当者がエビデンスを確認する際の訓練に関する要件は, CSP ないしは RP のポリシー, ガイドライン, 要件に基づくこと (SHALL).
+
+<!-- Training requirements for personnel validating evidence SHALL be based on the policies, guidelines, or requirements of the CSP or RP. -->
 
 ### 5.3 <a name="verify"></a> Identity Verification
 
-The goal of identity verification is to confirm and establish a linkage between the claimed identity and the real-life existence of the subject presenting the evidence.
+Identity Verification のゴールは, Claimed Identity とエビデンスを提示している現実世界に存在する Subject との紐付けを, 確認および確立することである.
+
+<!-- The goal of identity verification is to confirm and establish a linkage between the claimed identity and the real-life existence of the subject presenting the evidence. -->
 
 #### 5.3.1 Identity Verification Methods
 
-[Table 5-3](#63aSec5-Table3) details the verification methods necessary to achieve a given identity verification strength. The CSP SHALL adhere to the requirements in [Section 5.3.2](#kbv) if KBV is used to verify an identity.
+[Table 5-3](#63aSec5-Table3) には, ある Identity Verification 強度を達成するために必要な検証手段が詳説されている. CSP は, Identity 検証に KBV を利用する際は, [Section 5.3.2](#kbv) の要件に従うこと (SHALL).
+
+<!-- [Table 5-3](#63aSec5-Table3) details the verification methods necessary to achieve a given identity verification strength. The CSP SHALL adhere to the requirements in [Section 5.3.2](#kbv) if KBV is used to verify an identity. -->
 
 
 <a name="63aSec5-Table3"></a>
@@ -113,12 +139,25 @@ The goal of identity verification is to confirm and establish a linkage between 
 
 |Strength|Identity Verification Methods|
 |:---:|:------------------------------|
+| Unacceptable | - エビデンスは未検証, もしくは検証できない. Applicant が Claimed Identity の所有者であることが確認できない. |
+| Weak | - Applicant は Claimed Identity を裏付けるために提出されたエビデンスへの Access 権限を持っていることが確認された. |
+| Fair | - Applicant が Claimed Identity の所有者であることが, 以下のように確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;- KBV. 詳細は [Section 5.3.2.](#kbv) を参照のこと.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- Applicant と, Claimed Identity を裏付けるために提示されたものの中でもっとも強度の高い Identity Evidence との, 物理的な比較. Remote で物理比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- Applicant と Identity Evidence の Biometric 比較. Remote で Biometric 比較を行なう際は, [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use) に示すすべての要件に従うこと (SHALL). |
+| Strong | - Applicant が Claimed Identity の所有者であることが, 以下のように確認された.<br>&nbsp;&nbsp;&nbsp;&nbsp;
+
+- The applicant's ownership of the claimed identity has been confirmed by: <br>&nbsp;&nbsp;&nbsp;&nbsp;
+  - physical comparison, using appropriate technologies, to a photograph, to the strongest piece of identity evidence provided to support the claimed identity. Physical comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use). <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;
+  - biometric comparison, using appropriate technologies, of the applicant to the strongest piece of identity evidence provided to support the claimed identity. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
+|Superior| - The applicant's ownership of the claimed identity has been confirmed by biometric comparison of the applicant to the strongest piece of identity evidence provided to support the claimed identity, using appropriate technologies. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
+
+<!--
+|Strength|Identity Verification Methods|
+|:---:|:------------------------------|
 |Unacceptable|- Evidence verification was not performed or verification of the evidence failed. Unable to confirm that the applicant is the owner of the claimed identity.|
 |Weak|- The applicant has been confirmed as having access to the evidence provided to support the claimed identity.|
 |Fair| - The applicant's ownership of the claimed identity has been confirmed by:<br>&nbsp;&nbsp;&nbsp;&nbsp;- KBV. See [Section 5.3.2.](#kbv) for more details. <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- a physical comparison of the applicant to the strongest piece of identity evidence provided to support the claimed identity. Physical comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use). <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- biometric comparison of the applicant to the identity evidence. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use). |
 |Strong| - The applicant's ownership of the claimed identity has been confirmed by: <br>&nbsp;&nbsp;&nbsp;&nbsp;- physical comparison, using appropriate technologies, to a photograph, to the strongest piece of identity evidence provided to support the claimed identity. Physical comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use). <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**OR**<br>&nbsp;&nbsp;&nbsp;&nbsp;- biometric comparison, using appropriate technologies, of the applicant to the strongest piece of identity evidence provided to support the claimed identity. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
 |Superior| - The applicant's ownership of the claimed identity has been confirmed by biometric comparison of the applicant to the strongest piece of identity evidence provided to support the claimed identity, using appropriate technologies. Biometric comparison performed remotely SHALL adhere to all requirements as specified in [[SP 800-63B, Section 5.2.3.]](sp800-63b.html#biometric_use).|
-
+-->
 
 #### <a name="kbv"></a>5.3.2 Knowledge-Based Verification Requirements
 
