@@ -788,7 +788,7 @@ When the subscriber successfully authenticates, the verifier SHOULD disregard an
 #### <a name="biometric_use"></a>5.2.3 Use of Biometrics
 -->
 
-Authenticationにおけるバイオメトリクス(*something you are*)の利用は，物理的な特性(例：指紋，虹彩，顔の特徴)及び振る舞い特性(例：タイピングのリズム)の両方を測定法を含んでいる．[Section 5.2.9](#intent)に記載されているAuthentication意思を確認する範囲とは差があるかもしれないが，両方の分類ともに，異なるバイオメトリック計測手段とみなされる．
+Authenticationにおけるバイオメトリクス(*something you are*)の利用は，物理的な特性(例：指紋，虹彩，顔の特徴)及び振る舞い特性(例：タイピングのリズム)の両方を測定法を含んでいる．[Section 5.2.9](#intent)に記載されているAuthentication意図を確認する範囲とは差があるかもしれないが，両方の分類ともに，異なるバイオメトリック計測手段とみなされる．
 <!--
 The use of biometrics (*something you are*) in authentication includes both measurement of physical characteristics (e.g., fingerprint, iris, facial characteristics) and behavioral characteristics (e.g., typing cadence). Both classes are considered biometric modalities, although different modalities may differ in the extent to which they establish authentication intent as described in [Section 5.2.9](#intent).
 -->
@@ -915,75 +915,190 @@ Biometric samples collected in the authentication process MAY be used to train c
 Biometrics are also used in some cases to prevent repudiation of enrollment and to verify that the same individual participates in all phases of the enrollment process as described in [SP 800-63A](sp800-63a.html).
 -->
 
+#### <a name="attestation"></a>5.2.4 アテステーション
+<!--
 #### <a name="attestation"></a>5.2.4 Attestation
+-->
 
+アテステーションは，直接接続されているAuthenticatorやAuthentication操作に参加するエンドポイントに関してVerifierに対して伝達される情報のことである．アテステーションにより伝達される情報は次を含んでもよい(MAY)が，限定はされていない:
+
+<!--
 An attestation is information conveyed to the verifier regarding a directly-connected authenticator or the endpoint involved in an authentication operation. Information conveyed by attestation MAY include, but is not limited to:
+-->
 
+* Authenticatorやエンドポイントの出所(例えば，製造元やサプライヤ認定など)，健康および一貫性．
+* Authenticatorのセキュリティ機能
+* バイオメトリックセンサーのセキュリティや性能特性
+* センサー計測手段
+
+<!--
 * The provenance (e.g., manufacturer or supplier certification), health, and integrity of the authenticator and endpoint.
 * Security features of the authenticator.
 * Security and performance characteristics of biometric sensor(s).
 * Sensor modality.
+-->
 
+このアテステーションが署名される場合，少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるデジタル署名を用いて署名されるものとする(SHALL)．
+<!--
 If this attestation is signed, it SHALL be signed using a digital signature that provides at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication).
+-->
 
+アテステーション情報は，VerifierのリスクベースAuthenticationの判断の一部に利用してもよい(MAY)．
+<!--
 Attestation information MAY be used as part of a verifier's risk-based authentication decision.
+-->
 
+#### <a name="verifimpers"></a>5.2.5 Verifierなりすまし耐性
+<!--
 #### <a name="verifimpers"></a>5.2.5 Verifier Impersonation Resistance
+-->
 
+Verifierなりすまし攻撃は，しばしばフィッシング攻撃と呼ばれ，VerifierやRPになりすまして不用心なClaimantを騙して詐欺サイトに対してAuthenticateさせる試みである．SP 800-63の以前の版では，Verifierなりすまし攻撃に対するプロトコル耐性は，中間者攻撃への強い耐性と呼ばれていた．
+<!--
 Verifier impersonation attacks, sometimes referred to as "phishing attacks," are attempts by fraudulent verifiers and RPs to fool an unwary claimant into authenticating to an impostor website. In prior versions of SP 800-63, protocols resistant to verifier-impersonation attacks were also referred to as "strongly MitM resistant."
+-->
 
+Verifierなりすまし耐性のあるAuthenticationプロトコルは，Authenticateされた保護チャネルをVerifierとの間に確立するものとする(SHALL)．Authenticateされた保護チャネルを確立する際にネゴシエートされたチャネル識別子は強く，変更できない形で(例えば，Verifierが知っている公開鍵に対する，Claimantが制御している秘密鍵を用いて2つの値を署名することにより)Authenticator出力に結び付けられるものとする(SHALL)．Verifierは署名またはVerifierなりすまし耐性を確認するための情報を確認するものとする(SHALL)．このようにすることで，不正なVerifierが，実際のVerifierを表す証明書を得た場合でさえも，異なるAuthenticateされた保護チャネルでAuthenticationを再生することを防止できる．
+<!--
 A verifier impersonation-resistant authentication protocol SHALL establish an authenticated protected channel with the verifier. It SHALL then strongly and irreversibly bind a channel identifier that was negotiated in establishing the authenticated protected channel to the authenticator output (e.g., by signing the two values together using a private key controlled by the claimant for which the public key is known to the verifier). The verifier SHALL validate the signature or other information used to prove verifier impersonation resistance. This prevents an impostor verifier, even one that has obtained a certificate representing the actual verifier, from replaying that authentication on a different authenticated protected channel.
+-->
 
+Verifierなりすまし耐性が要求された場合に，それを確立するためにApproveされた暗号アルゴリズムが利用されるものとする(SHALL)．この目的で利用される鍵は，少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．
+<!--
 Approved cryptographic algorithms SHALL be used to establish verifier impersonation resistance where it is required. Keys used for this purpose SHALL provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication).
+-->
 
+Verifierなりすまし耐性のあるAuthenticationプロトコルの例としては，Client-authenticated TLSがある．クライアントは，ネゴシエーション済みの特定TLSコネクション対して一意なプロトコルから予めメッセージを受取り，そのメッセージと共にAuthenticator出力に対して署名を行う．
+<!--
 One example of a verifier impersonation-resistant authentication protocol is client-authenticated TLS, because the client signs the authenticator output along with earlier messages from the protocol that are unique to the particular TLS connection being negotiated.
+-->
 
+アウトオブバンドAuthenticatorやOTP Authenticatorのような，Authenticator出力を手動入力するようなAuthenticatorでは，手動入力ではAuthenticator出力を特定のAuthenticateされたセッションに結びつけていないため，Verifierなりすまし耐性があるとは考えないものとする(SHALL NOT)．中間者攻撃の場合には，不正なVerifierはOTP Authenticator出力をVerifierに対して再生し，Authenticationが成功してしまう．
+<!--
 Authenticators that involve the manual entry of an authenticator output, such as out-of-band and OTP authenticators, SHALL NOT be considered verifier impersonation-resistant because the manual entry does not bind the authenticator output to the specific session being authenticated. In a MitM attack, an impostor verifier could replay the OTP authenticator output to the verifier and successfully authenticate.
+-->
 
+#### <a name="csp-verifier"></a>5.2.6 Verifier-CSP通信
+<!--
 #### <a name="csp-verifier"></a>5.2.6 Verifier-CSP Communications
+-->
 
+VerifierとCSPが個別のエンティティである場合([SP 800-63-3 Figure 4-1](sp800-63-3.html#63Sec4-Figure1)の点線で示されているように)，VerifierとCSPの間の通信は，(Client-authenticated TLS接続のような)Approveされた暗号理論を利用する相互にAuthenticateされたセキュアチャネルを介して行われるものとする(SHALL)．
+<!--
 In situations where the verifier and CSP are separate entities (as shown by the dotted line in [SP 800-63-3 Figure 4-1](sp800-63-3.html#63Sec4-Figure1)), communications between the verifier and CSP SHALL occur through a mutually-authenticated secure channel (such as a client-authenticated TLS connection) using approved cryptography.
+-->
 
+#### <a name="verifier-secrets"></a>5.2.7 Verifier侵害耐性
+<!--
 #### <a name="verifier-secrets"></a>5.2.7 Verifier-Compromise Resistance
+-->
 
+いくつかのAuthenticatorタイプを利用に際しては，VerifierがAuthenticatorシークレットのコピーを記録する必要がある．例えば，OTP Authenticator([Section 5.1.4](#singlefactorOTP)で記載)では，VerifierがClaimantから送信された値と比較するために，個別にAuthenticator出力を生成する必要がある．Verifierが侵害され，記録されているシークレットが窃取される可能性があるため，Verifierが永続的にAuthenticationに利用するシークレットを記録する必要のないAuthenticationプロトコルは，より強力であるとみなされ，ここでは*Verifier侵害耐性*があるものとして記載されている．そのようなVerifierが，全ての攻撃に耐性があるのではないことに注意すること．Verifierは，特定のAuthenticator出力を常に受け付けるように操作されるなど，異なる方法で侵害される可能性がある．
+<!--
 Use of some types of authenticators requires that the verifier store a copy of the authenticator secret. For example, an OTP authenticator (described in [Section 5.1.4](#singlefactorOTP)) requires that the verifier independently generate the authenticator output for comparison against the value sent by the claimant. Because of the potential for the verifier to be compromised and stored secrets stolen, authentication protocols that do not require the verifier to persistently store secrets that could be used for authentication are considered stronger, and are described herein as being *verifier compromise resistant*. Note that such verifiers are not resistant to all attacks. A verifier could be compromised in a different way, such as being manipulated into always accepting a particular authenticator output.
+-->
 
+Verifier侵害耐性は異なる方法で実現することができる．例えば:
+<!--
 Verifier compromise resistance can be achieved in different ways, for example:
+-->
 
+- 暗号Authenticatorを利用して，Authenticatorが保持する秘密鍵に対応する公開鍵をVerifierに記録する．
+
+<!--
 - Use a cryptographic authenticator that requires the verifier store a public key corresponding to a private key held by the authenticator.
+-->
 
+- 期待するAuthenticator出力をハッシュ形式で記録する．この方式は，例えばルックアップシークレット([Section 5.1.2](#lookupsecrets)に記載)で用いることができる．
+
+<!--
 - Store the expected authenticator output in hashed form. This method can be used with some look-up secret authenticators (described in [Section 5.1.2](#lookupsecrets)), for example.
+-->
 
+Verifier侵害耐性を考慮し，Verifierによって記録される公開鍵は，Approveされた暗号アルゴリズムの利用と関連付けられているものとし(SHALL)，少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．
+<!--
 To be considered verifier compromise resistant, public keys stored by the verifier SHALL be associated with the use of approved cryptographic algorithms and SHALL provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication).
+-->
 
+他のVerifier侵害耐性のあるシークレットは，Approveされた暗号アルゴリズムを利用するものとし(SHALL)，基礎となるシークレットは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．より複雑性の低いシークレット(例えば記憶シークレット)は，辞書の探索や全探索などを通してハッシュ処理を攻略できる可能性があるため，ハッシュされていてもVerifier侵害耐性を持つものと満たさないものとする(SHALL NOT)．
+<!--
 Other verifier compromise resistant secrets SHALL use approved hash algorithms and the underlying secrets SHALL have at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). Secrets (e.g., memorized secrets) having lower complexity SHALL NOT be considered verifier compromise resistant when hashed because of the potential to defeat the hashing process through dictionary lookup or exhaustive search.
+-->
 
+#### <a name="replay"></a>5.2.8 リプレイ耐性
+<!--
 #### <a name="replay"></a>5.2.8 Replay Resistance
+-->
 
+Authenticationプロセスは，以前のAuthenticationメッセージを記録し再生することでAuthenticationを成功させることが困難であるならば，リプレイアタックに耐性を持つ．リプレイ耐性は，Authenticator出力が保護チャネルに入力されるまえに窃取される可能性があるため，Authenticateされた保護チャネルのリプレイ耐性に加えて施されるものである．ノンスやチャレンジをトランザクションの"新鮮さ"を示すために用いるプロトコルは，再生されるメッセージが適切なノンスや時系列データを含んでおらず，Verifierが容易に過去のプロトコルメッセージが再生されたことを検知しうるため，リプレイ耐性があるといえる．
+<!--
 An authentication process resists replay attacks if it is impractical to achieve a successful authentication by recording and replaying a previous authentication message. Replay resistance is in addition to the replay-resistant nature of authenticated protected channel protocols, since the output could be stolen prior to entry into the protected channel. Protocols that use nonces or challenges to prove the "freshness" of the transaction are resistant to replay attacks since the verifier will easily detect when old protocol messages are replayed since they will not contain the appropriate nonces or timeliness data.
+-->
 
+リプレイ耐性のあるAuthenticatorの例として，OTPデバイス，暗号Authenticatorおよびルックアップシークレットがある．
+<!--
 Examples of replay-resistant authenticators are OTP devices, cryptographic authenticators, and look-up secrets.
+-->
 
+反対に記憶シークレットはAuthenticator出力がシークレットそのものであり，各Authenticationで入力されるため，リプレイ耐性があるものとはみなさない．
+<!--
 In contrast, memorized secrets are not considered replay resistant because the authenticator output — the secret itself — is provided for each authentication.
+-->
 
+#### <a name="intent"></a>5.2.9 Authentication意図
+<!--
 #### <a name="intent"></a>5.2.9 Authentication Intent
+-->
 
+Authenticationプロセスは，Subjectが明示的に各AuthenticationやReauthenticationの要求に応じる必要がある場合，意図を明らかにする．Authentication意図の目的は，直接接続された物理的なAuthenticator(例えば，多要素暗号デイバス)が，エンドポイント上でマルウェアなどによりSubjectが知らないうちに利用されることをより困難にすることである．Authentication意図はそのAuthenticatorそのものにより立証するものとする(SHALL)が，多要素暗号デバイスがそのAuthenticatorが利用されるエンドポイント上で，他のAuthentication要素を再入力することにより立証してもよい(MAY)．
+<!--
 An authentication process demonstrates intent if it requires the subject to explicitly respond to each authentication or reauthentication request. The goal of authentication intent is to make it more difficult for directly-connected physical authenticators (e.g., multi-factor cryptographic devices) to be used without the subject's knowledge, such as by malware on the endpoint. Authentication intent SHALL be established by the authenticator itself, although multi-factor cryptographic devices MAY establish intent by reentry of the other authentication factor on the endpoint with which the authenticator is used.
+-->
 
+Authentication意図は，いくつかの方法で立証してもよい(MAY)．Subjectの介入(例えばOTPデバイスから得たAuthenticator出力をClaimantが入力すること)を必要とするAuthenticationプロセスは意図を立証している．各AuthenticationやReauthentication操作に対して(例えばボタン押下や再挿入のような)ユーザアクションを必要とする暗号デバイスもまた意図を立証している．
+<!--
 Authentication intent MAY be established in a number of ways. Authentication processes that require the subject's intervention (e.g., a claimant entering an authenticator output from an OTP device) establish intent. Cryptographic devices that require user action (e.g., pushing a button or reinsertion) for each authentication or reauthentication operation are also establish intent.
+-->
 
+バイオメトリクスのプレゼンテーションは，計測手段に応じてAuthentication意図を立証したりしなかったりする．指紋のプレゼンテーションは通常は意図を立証するが，一方カメラを用いたClaimantの顔の観測は，一般的にはそうならない．行動バイオメトリクスは，Claimant側で特定のアクションを常に要求されるわけではないので，同様にAuthentication意図を立証する可能性は低い．
+<!--
 Depending on the modality, presentation of a biometric may or may not establish authentication intent. Presentation of a fingerprint would normally establish intent, while observation of the claimant's face using a camera normally would not by itself. Behavioral biometrics similarly are less likely to establish authentication intent because they do not always require a specific action on the claimant's part.
+-->
 
+#### <a name="restricted"></a> 5.2.10 制限された(RESTRICTED) Authenticator
+<!--
 #### <a name="restricted"></a> 5.2.10 Restricted Authenticators
+-->
 
+脅威の進化につれて，Authenticatorが攻撃に対抗する能力は一般的には減少する．一方で，いくつかのAuthenticatorの性能は改善するかもしれない &mdash; 例えば，根拠となる標準が改定されることで特定の攻撃に対抗する能力が増加する．
+<!--
 As threats evolve, authenticators' capability to resist attacks typically degrades. Conversely, some authenticators' performance may improve &mdash; for example, when changes to their underlying standards increases their ability to resist particular attacks.
+-->
 
+Authenticatorの性能におけるこれらの変更を考慮するために，NISTは追加の制限を，Authenticatorタイプや特定のクラスまたはAuthenticatorタイプのインスタンスに対して設けた．
+<!--
 To account for these changes in authenticator performance, NIST places additional restrictions on authenticator types or specific classes or instantiations of an authenticator type.
+-->
 
+制限された(RESTRICTED) Authenticatorを利用するには，実装した組織が，制限された(RESTRICTED) Authenticatorに関連するリスクを評価，理解，許容し，時間の経過とともにリスクが増加しうるということを認識する必要がある．組織の責任は，彼らのシステムおよび関連データにおけるリスクを許容できるレベルを決定し，過度なリスクを緩和する方法を定義することである．何れかの当事者に対するリスクが許容できないと組織が判断した時点で，Authenticatorは利用されないものとする(SHALL NOT)．
+<!--
 The use of a RESTRICTED authenticator requires that the implementing organization assess, understand, and accept the risks associated with that RESTRICTED authenticator and acknowledge that risk will likely increase over time. It is the responsibility of the organization to determine the level of acceptable risk for their system(s) and associated data and to define any methods for mitigating excessive risks. If at any time the organization determines that the risk to any party is unacceptable, then that authenticator SHALL NOT be used.
+-->
 
+更に，Authenticationエラーのリスクは一般的には，実装した組織，Authentication結果に依存する組織，Subscriberを含む複数の当事者が負うものである．組織が制限された(RESTRICTED) Authenticatorを採用すると，Subscriberがそのリスクを十分に理解していない，またリスクを統制する能力が制限されている可能性があり，Subscriberは追加のリスクにさらされることになる．その為，CSPは次のことを実施することとする(SHALL)．
+<!--
 Further, the risk of an authentication error is typically borne by multiple parties, including the implementing organization, organizations that rely on the authentication decision, and the subscriber. Because the subscriber may be exposed to additional risk when an organization accepts a RESTRICTED authenticator and that the subscriber may have a limited understanding of and ability to control that risk, the CSP SHALL:
+-->
 
+1. Subscriberに対して少なくとも1つの制限されていない代替Authenticatorを提示し，要求されるAALでAuthenticateできるようにする．
+
+2. Subscriberが理解しやすいように，制限されているAuthenticatorのセキュリティリスクと，制限されていない代替Authenticatorが利用可能であることを通知する．
+
+3. リスクアセスメントにおけるSubscriberに対する追加のリスクに対処する．
+
+4. 将来的にある地点で制限された(RESTRICTED) Authenticatorが許容可能でなくなる可能性を踏まえて移行プランを立て，[digital identity acceptance statement](sp800-63-3.html#daps)の内容ににこの移行プランを含めておく．
+
+<!--
 1. Offer subscribers at least one alternate authenticator that is not RESTRICTED and can be used to authenticate at the required AAL.
 
 2. Provide meaningful notice to subscribers regarding the security risks of the RESTRICTED authenticator and availability of alternative(s) that are not RESTRICTED.
@@ -991,3 +1106,4 @@ Further, the risk of an authentication error is typically borne by multiple part
 3. Address any additional risk to subscribers in its risk assessment.
 
 4. Develop a migration plan for the possibility that the RESTRICTED authenticator is no longer acceptable at some point in the future and include this migration plan in its [digital identity acceptance statement](sp800-63-3.html#daps).
+-->
