@@ -237,8 +237,19 @@ CSP は, Remote Proofing プロセスを採用し, 対面と同等レベルの�
 
 <!-- CSPs can employ remote proofing processes to achieve comparable levels of confidence and security to in-person events. The following requirements establish comparability between in-person transactions where the applicant is in the same physical location as the CSP to those where the applicant is remote. -->
 
-Supervised remote identity proofing and enrollment transactions SHALL meet the following requirements, in addition to the IAL3 validation and verification requirements specified in [Section 4.6](#ial3-requirements):
+Supervised Remote (監視下にある Remote での) Identity Proofing および Enrollment Transaction においては, [Section 4.6](#ial3-requirements) に示した IAL3 での Validation および Verification 要件に加えて, 以下の要件に従うこと (SHALL).
 
+<!-- Supervised remote identity proofing and enrollment transactions SHALL meet the following requirements, in addition to the IAL3 validation and verification requirements specified in [Section 4.6](#ial3-requirements): -->
+
+1. CSP は, Applicant が Session から離れることのないよう (SHALL NOT), 全体の Identity Proofing Session を監視すること (SHALL). これには例えば, Applicant の継続的な高解像度ビデオ伝送などの手段があげられる.
+2. CSP は, Identity Proofing Session 全体を通じて, Applicant から Remote でリアルタイムにオペレーターを関与させること (SHALL).
+3. CSP は, Identity Proofing Session 全体を通じて, Applicant が行った全てのアクションを, Remote オペレーターにはっきりと見えるようにすること (SHALL).
+4. CSP は, エビデンスに対するあらゆるデジタル検証 (e.g., チップやワイヤレス技術による) が, 統合されたスキャナーやセンサーによって実行されるようにすること (SHALL).
+5. CSP は, 潜在的な不正を検出し正しく仮想の対面 Proofing Session を実行するため, オペレーターに訓練プログラムを受けさせること (SHALL).
+6. CSP は, 環境に応じた適切な物理的改ざんの検出策および対抗策を施すこと (SHALL). 例えば, 制限されたエリアや信頼できる個人によって監視されているエリアにあるキオスクは, ショッピングモールのコンコースなどの半公開エリアにあるキオスクよりも, 改ざん検出の必要性は低い.
+7. CSP は, 全ての通信が双方向の Authenticated Protected Channel 経由で行われるよう保証すること (SHALL).
+
+<!--
 1. The CSP SHALL monitor the entire identity proofing session, from which the applicant SHALL NOT depart — for example, by a continuous high-resolution video transmission of the applicant.
 2. The CSP SHALL have a live operator participate remotely with the applicant for the entirety of the identity proofing session.
 3. The CSP SHALL require all actions taken by the applicant during the identity proofing session to be clearly visible to the remote operator.
@@ -246,6 +257,7 @@ Supervised remote identity proofing and enrollment transactions SHALL meet the f
 5. The CSP SHALL require operators to have undergone a training program to detect potential fraud and to properly perform a virtual in-process proofing session.
 6. The CSP SHALL employ physical tamper detection and resistance features appropriate for the environment in which it is located. For example, a kiosk located in a restricted area or one where it is monitored by a trusted individual requires less tamper detection than one that is located in a semi-public area such as a shopping mall concourse.
 7. The CSP SHALL ensure that all communications occur over a mutually authenticated protected channel.
+-->
 
 #### <a name="trustref"></a> 5.3.4 Trusted Referee Requirements
 
