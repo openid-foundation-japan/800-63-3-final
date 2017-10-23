@@ -167,18 +167,18 @@ IAL2 および IAL3 の Identity Verification では, 以下の要件が適用�
     <li>CSP は, KBV プロセス開始に必要な情報を含め, Applicant と Authoritative Source のみが知っていると期待される情報のみを使用することとする (SHALL). 自由に取得可能な情報, パブリックドメインにおいて課金することで手に入る情報, ブラックマーケット経由で手に入る情報は使用しないこと (SHALL NOT).</li>
     <li>CSP は, Resolution および Validation が完了した Identity に対して, Verification のために KBV 以外のプロセスを利用できるようなオプトアウト手段を提供すること (SHALL).</li>
     <li>CSP は, CSP が参加していた最近の Transaction ヒストリーに関する知識を検証することで, KBV を行なうべきである (SHOULD). CSP は, Transaction 情報が最低限20ビットのエントロピーを持つよう保証すること (SHALL). 例えば, 最小のエントロピー要件に到達するには, Applicant に正規の銀行口座に対する少額デポジットのデポジット額および Transaction ナンバーを尋ねることで, 検証を行なうことができる. この例では全7桁以上の数値を聞くことになる.</li>
-    <li>The CSP MAY perform KBV by asking the applicant questions to demonstrate they are the owner of the claimed information. However, the following requirements apply:</li>
+    <li>CSP は, Applicant が Claimed Identity の所有者であることを示す質問を投げかけ, KBV を実行しても良い. しかしながらその場合は以下の要件を満たすこと.</li>
       <ol type="a" start="a">
-        <li>KBV SHOULD be based on multiple authoritative sources.</li>
-          <li>The CSP SHALL require a minimum of four KBV questions with each requiring a correct answer to successfully complete the KBV step.</li>
-          <li>The CSP SHOULD require free-form response KBV questions. The CSP MAY allow multiple choice questions, however, if multiple choice questions are provided, the CSP SHALL require a minimum of four answer options per question.</li>
-          <li>The CSP SHOULD allow two attempts for an applicant to complete the KBV. A CSP SHALL NOT allow more than three attempts to complete the KBV.</li>
-          <li>The CSP SHALL time out KBV sessions after two minutes of inactivity per question. In cases of session timeout, the CSP SHALL restart the entire KBV process and consider this a failed attempt.</li>
-          <li>The CSP SHALL NOT present a majority of diversionary KBV questions (i.e., those where "none of the above" is the correct answer).</li>
-          <li>The CSP SHOULD NOT ask the same KBV questions in subsequent attempts.</li>
-          <li>The CSP SHALL NOT ask a KBV question that provides information that could assist in answering any future KBV question in a single session or a subsequent session after a failed attempt.</li>
-          <li>The CSP SHALL NOT use KBV questions for which the answers do not change (e.g., "What was your first car?").</li>
-          <li>The CSP SHALL ensure that any KBV question does not reveal PII that the applicant has not already provided, nor personal information that, when combined with other information in a KBV session, could result in unique identification.</li>
+        <li>KBV は複数の Authoritative Source に基づくこと.</li>
+          <li>CSP は最低限4つの質問を行い, それぞれが正解することをもって KBV ステップを成功とすること (SHALL).</li>
+          <li>CSP は自由回答方式の KBV 質問を行うべきである (SHOULD). CSP は選択式質問を行っても良いが (MAY), その場合は各質問に4つ以上の選択肢を用意すること (SHALL).</li>
+          <li>CSP は KBV を完了するために Applicant に2度の試行を許すべきである (SHOULD). CSP は3回以上の試行を許容してはならない (SHALL NOT).</li>
+          <li>CSP は各質問ごとに2分間の無反応状態があれば KBV Session をタイムアウトさせること (SHALL). Session がタイムアウトした場合, CSP は KBV プロセス全体をリスタートし, 当該試行は失敗と扱うこと (SHALL).</li>
+          <li>CSP は KBV の大部分を陽動となるような質問としてはならない (SHALL NOT). (i.e., "none of the above" が正解となるようなもの)</li>
+          <li>CSP は同じ KBV 質問を連続した試行において尋ねるべきではない (SHOULD NOT).</li>
+          <li>CSP は, 単一の Session ないしは失敗試行の次の Session において, 後の KBV 質問に役立つ情報を提供するような KBV 質問をしてはならない (SHALL NOT).</li>
+          <li>CSP は正解が不変な KBV 質問を利用してはならない (SHALL NOT). (e.g., "What was your first car?")</li>
+          <li>CSP は, いかなる KBV 質問も, Applicant がまだ提示していない PII や, KBV Session 中の他の情報と組み合わせて特定の個人の識別につながるような Personal Information を漏洩させることのないよう保証すること (SHALL).</li>
         </ol>
   </ol>
 </div>
@@ -209,19 +209,33 @@ IAL2 および IAL3 の Identity Verification では, 以下の要件が適用�
 
 #### <a name="vip"></a>5.3.3 In-person Proofing Requirements
 
-In-person proofing can be satisfied in two ways:
+対面の Proofing には, 以下の2通りの方法がある.
 
+<!-- In-person proofing can be satisfied in two ways: -->
+
+- オペレーターによる Applicant との物理的インタラクション.
+- [Section 5.3.3.2](#supervised) にある特別な要件に従った, オペレーターによる Applicant との Remote インタラクション.
+
+<!--
 - A physical interaction with the applicant, supervised by an operator.
 - An remote interaction with the applicant, supervised by an operator, based on the specific requirements in [Section 5.3.3.2](#supervised).
+-->
 
 #### 5.3.3.1 General Requirements
 
+1. CSP は, 不自然な材料の存在チェックのためにオペレーターに Biometric 情報源 (e.g., 指, 顔) を確認させ, Proofing プロセスの一部としてそのような検査を行うこと (SHALL).
+2. CSP は, 当該 Biometric が他の Subject ではなく当該 Applicant から収集されたことが保証される方法により Biometric を収集すること (SHALL). Biometric の実行要件については [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) を参照のこと.
+
+<!--
 1. The CSP SHALL have the operator view the biometric source (e.g., fingers, face) for presence of non-natural materials and perform such inspections as part of the proofing process.
 2. The CSP SHALL collect biometrics in such a way that ensures that the biometric is collected from the applicant, and not another subject. All biometric performance requirements in [SP 800-63B, Section 5.2.3](sp800-63b.html#biometric_use) apply.
+-->
 
 #### <a name="supervised"></a> 5.3.3.2 Requirements for Supervised Remote In-person Proofing
 
-CSPs can employ remote proofing processes to achieve comparable levels of confidence and security to in-person events. The following requirements establish comparability between in-person transactions where the applicant is in the same physical location as the CSP to those where the applicant is remote.
+CSP は, Remote Proofing プロセスを採用し, 対面と同等レベルの信頼性およびセキュリティーを実現することもできる. 以下の要件は, Applicant が CSP と物理的に同じ場所にいる対面での Transaction と, Applicant が Remote にいる場合の間の比較可能性を示している.
+
+<!-- CSPs can employ remote proofing processes to achieve comparable levels of confidence and security to in-person events. The following requirements establish comparability between in-person transactions where the applicant is in the same physical location as the CSP to those where the applicant is remote. -->
 
 Supervised remote identity proofing and enrollment transactions SHALL meet the following requirements, in addition to the IAL3 validation and verification requirements specified in [Section 4.6](#ial3-requirements):
 
