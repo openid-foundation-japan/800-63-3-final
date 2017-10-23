@@ -27,47 +27,49 @@ Authenticator を制御できる Attacker は Authenticator の所有者のよ�
 
 <div class="text-center" markdown="1">
 
-  **表 8-1 - Authenticator の脅威**
-  <!-- **Table 8-1  Authenticator Threats** -->
+**表 8-1 - Authenticator の脅威**
+<!-- **Table 8-1  Authenticator Threats** -->
 
 </div>
 
 
-| **Authenticator の脅威/攻撃**  | **説明**                                                                                                          | **例**                                                                                                    |
+| **Authenticator の脅威/攻撃**  | **説明**  | **例**  |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Assertion の製造または変更**    | Attacker が偽の Assertion を生成する                                                                                    | 危殆化した CSP が 正しくAuthenticate されていない Claimant の Identity を主張する                                             |
-|                           | Attacker が既存の Assertion を変更する                                                                                   | Authentication Assertion の AAL を変更する危殆化したプロキシ                                                            |
-| **盗難**                    | 物理的な Authenticator が Attacker によって盗難される                                                                         | ハードウェア暗号化デバイスが盗難される                                                                                      |
-|                           |                                                                                                                 | OTP デバイスが盗難される                                                                                           |
-|                           |                                                                                                                 | ルックアップシークレット Authenticator が盗難される                                                                        |
-|                           |                                                                                                                 | 携帯電話が盗難される                                                                                               |
-| **複製**                    | Subscriber の Authenticator が、本人の知識ごと、または知識なしに複製される                                                              | Password が書かれた紙が開示される                                                                                    |
-|                           |                                                                                                                 | 電子ファイルに格納されている Password がコピーされる                                                                          |
-|                           |                                                                                                                 | ソフトウェア PKI Authenticator (Private Key) がコピーされる                                                           |
-|                           |                                                                                                                 | ルックアップシークレット Authenticator がコピーされる                                                                       |
-|                           |                                                                                                                 | 偽造された Biometric Authenticator が製造される                                                                     |
-| **盗聴**                    | Subscriber が認証を行っているときに、 Authenticator Secret または Authenticator Output が攻撃者に暴露される                               | キーボードエントリーを監視して Memorized secret を取得する                                                                   |
-|                           |                                                                                                                 | キーストロークをロギングするソフトウェアによって、Memorized secret または Authenticator の出力を横取りする                                    |
-|                           |                                                                                                                 | PIN パッドデバイスから PIN がキャプチャされる                                                                              |
-|                           |                                                                                                                 | ハッシュされた Password が取得され、Attacker に別の Authentication で使用される (*pass-the-hash Attack*)                       |
-|                           | Out of band シークレットが、通信チャネルの危殆化によって Attacker に傍受される                                                              | Out of band シークレットが暗号化されていないWi-Fiで送信され、Attacker に受信される                                                   |
-| **オフライン クラッキング**          | Authenticator が、Authentication メカニズムの外側で解析メソッドによって明らかにされる                                                       | Software PKI authenticator が、Private Key の復号に使用する正しい Password を識別するための辞書 Attack を受ける                     |
-| **サイドチャネル Attack**        | Authenticator Secret が、 Authenticator の物理的特性を利用して明らかにされる。                                                       | 鍵がハードウェア Cryptographic Authenticator の差分電力解析によって明らかにされる                                                  |
-|                           |                                                                                                                 | Authenticator への無数の試行の応答時間の解析によって、 Cryptographic Authenticator シークレットが抽出される                              |
-| **Phishing または Pharming** | Attacker が Verifier や RP であると考えるように Subscriber をだますことで、Authenticator Output がキャプチャされる                           | Subscriber が Verifier に偽装した Web サイトに入力することで、Password が明らかにされる                                            |
-|                           |                                                                                                                 | 銀行 Subscriber が、銀行担当者に見せかけたフィッシャーからのメールに返信することで、Memorized Secret が明らかにされる                                |
-|                           |                                                                                                                 | Subscriber が DNS スプーフィングを介して偽の Verifier Webサイトにアクセスしてしまうことで、Memorized Secret が明らかにされる                    |
-| **Social Engineering**    | Attacker が、Subscriber 自身がAuthenticator Secret または Authenticator Output を明らかにするように説き伏せるために Subscriber と信頼関係を構築する | Subscriber の上司の代理として Password を聞いてきた同僚に対して Subscriber が Memorized Secret を明らかにする                         |
-|                           |                                                                                                                 | システム管理者を装った Attacker からの電話問い合わせによって、Subscriber が Memorized Secret を明らかにする                                |
-|                           |                                                                                                                 | Attacker が、犠牲者の携帯電話を Attacker にリダイレクトするようにモバイルオペレーターをやりこめることで、SMS経由の Out-of-band シークレットが Attacker に受信される |
-| **オンラインでの推測**             | Attacker が Verifier にオンラインで接続し、その Verifier のコンテキストで有効な Authenticator Output を推測しようと試行する                         | Memorized Secret を推測するためにオンライン辞書 Attack が利用される                                                           |
-|                           |                                                                                                                 | 正当な Claimant に登録された OTP デバイスの Authenticator Output を推測するために、オンラインでの推測が使用される                              |
-| **エンドポイントの危殆化**           | エンドポイント上の不正なコードが、接続された Authenticator への Remote Access を Subscriber 同意なしにプロキシする。                                 | エンドポイントに接続された Cryptographic Authenticator が、Remote から Attacker の Authenticate に使用される                     |
-|                           | エンドポイント上の不正なコードが、Verifier が意図していない Authentication を引き起こす                                                        | Authentication が、Subscriber ではなく Attacker のために行われる                                                       |
-|                           |                                                                                                                 | エンドポイント上の不正なアプリが SMS 経由で送信された Out-of-band シークレットを読みだし、Attacker がシークレットを Authenticate に使用する               |
-|                           | エンドポイント上の不正なコードが、 Multi-Factor ソフトウェア Cryptographic Authenticator を危殆化させる                                       | 不正なコードが Authentication をプロキシする、またはエンドポイントから Authenticator の鍵をエクスポートする                                    |
-| **認証されていない Binding**      | Attacker が彼らの管理下の Authenticator を Subscriber のアカウントにバインドさせる                                                     | Attacker が Subscriber への経路の途中で Authenticator やプロビジョニングキーを傍受する                                            |
-<!-- | **Authenticator Threat/Attack**  | **Description**  | **Examples** |
+| **Assertion の製造または変更**  | Attacker が偽の Assertion を生成する  | 危殆化した CSP が 正しくAuthenticate されていない Claimant の Identity を主張する  |
+| | Attacker が既存の Assertion を変更する  | Authentication Assertion の AAL を変更する危殆化したプロキシ  |
+| **盗難**  | 物理的な Authenticator が Attacker によって盗難される  | ハードウェア暗号化デバイスが盗難される  |
+| | | OTP デバイスが盗難される  |
+| | | ルックアップシークレット Authenticator が盗難される  |
+| | | 携帯電話が盗難される  |
+| **複製**  | Subscriber の Authenticator が、本人の知識ごと、または知識なしに複製される  | Password が書かれた紙が開示される  |
+|  |  | 電子ファイルに格納されている Password がコピーされる  |
+|  |  | ソフトウェア PKI Authenticator (Private Key) がコピーされる  |
+|  |  | ルックアップシークレット Authenticator がコピーされる  |
+|  |  | 偽造された Biometric Authenticator が製造される  |
+| **盗聴**  | Subscriber が認証を行っているときに、 Authenticator Secret または Authenticator Output が攻撃者に暴露される  | キーボードエントリーを監視して Memorized secret を取得する  |
+|  |  | キーストロークをロギングするソフトウェアによって、Memorized secret または Authenticator の出力を横取りする  |
+|  |  | PIN パッドデバイスから PIN がキャプチャされる  |
+|  |  | ハッシュされた Password が取得され、Attacker に別の Authentication で使用される (*pass-the-hash Attack*)  |
+|  | Out of band シークレットが、通信チャネルの危殆化によって Attacker に傍受される  | Out of band シークレットが暗号化されていないWi-Fiで送信され、Attacker に受信される  |
+| **オフライン クラッキング**  | Authenticator が、Authentication メカニズムの外側で解析メソッドによって明らかにされる  | Software PKI authenticator が、Private Key の復号に使用する正しい Password を識別するための辞書 Attack を受ける  |
+| **サイドチャネル Attack**  | Authenticator Secret が、 Authenticator の物理的特性を利用して明らかにされる。  | 鍵がハードウェア Cryptographic Authenticator の差分電力解析によって明らかにされる  |
+|  |  | Authenticator への無数の試行の応答時間の解析によって、 Cryptographic Authenticator シークレットが抽出される  |
+| **Phishing または Pharming** | Attacker が Verifier や RP であると考えるように Subscriber をだますことで、Authenticator Output がキャプチャされる  | Subscriber が Verifier に偽装した Web サイトに入力することで、Password が明らかにされる  |
+|  |  | 銀行 Subscriber が、銀行担当者に見せかけたフィッシャーからのメールに返信することで、Memorized Secret が明らかにされる  |
+|  |  | Subscriber が DNS スプーフィングを介して偽の Verifier Webサイトにアクセスしてしまうことで、Memorized Secret が明らかにされる  |
+| **Social Engineering**  | Attacker が、Subscriber 自身がAuthenticator Secret または Authenticator Output を明らかにするように説き伏せるために Subscriber と信頼関係を構築する | Subscriber の上司の代理として Password を聞いてきた同僚に対して Subscriber が Memorized Secret を明らかにする  |
+|  |  | システム管理者を装った Attacker からの電話問い合わせによって、Subscriber が Memorized Secret を明らかにする  |
+|  |  | Attacker が、犠牲者の携帯電話を Attacker にリダイレクトするようにモバイルオペレーターをやりこめることで、SMS経由の Out-of-band シークレットが Attacker に受信される |
+| **オンラインでの推測**  | Attacker が Verifier にオンラインで接続し、その Verifier のコンテキストで有効な Authenticator Output を推測しようと試行する  | Memorized Secret を推測するためにオンライン辞書 Attack が利用される  |
+|  |  | 正当な Claimant に登録された OTP デバイスの Authenticator Output を推測するために、オンラインでの推測が使用される  |
+| **エンドポイントの危殆化**  | エンドポイント上の不正なコードが、接続された Authenticator への Remote Access を Subscriber 同意なしにプロキシする。  | エンドポイントに接続された Cryptographic Authenticator が、Remote から Attacker の Authenticate に使用される  |
+|  | エンドポイント上の不正なコードが、Verifier が意図していない Authentication を引き起こす  | Authentication が、Subscriber ではなく Attacker のために行われる  |
+|  |  | エンドポイント上の不正なアプリが SMS 経由で送信された Out-of-band シークレットを読みだし、Attacker がシークレットを Authenticate に使用する  |
+|  | エンドポイント上の不正なコードが、 Multi-Factor ソフトウェア Cryptographic Authenticator を危殆化させる  | 不正なコードが Authentication をプロキシする、またはエンドポイントから Authenticator の鍵をエクスポートする  |
+| **認証されていない Binding**  | Attacker が彼らの管理下の Authenticator を Subscriber のアカウントにバインドさせる  | Attacker が Subscriber への経路の途中で Authenticator やプロビジョニングキーを傍受する  |
+
+<!--
+ | **Authenticator Threat/Attack**  | **Description**  | **Examples** |
 |------------------------------------|------------------|--------------|
 | **Assertion Manufacture or Modification** | The attacker generates a false assertion | Compromised CSP asserts identity of a claimant who has not properly authenticated |
 | | The attacker modifies an existing assertion | Compromised proxy that changes AAL of an authentication assertion |
@@ -100,7 +102,8 @@ Authenticator を制御できる Attacker は Authenticator の所有者のよ�
 | | Malicious code on the endpoint causes authentication to other than the intended verifier. | Authentication is performed on behalf of an attacker rather than the subscriber.
 | | | A malicious app on the endpoint reads an out-of-band secret sent via SMS and the attacker uses the secret to authenticate.
 | | Malicious code on the endpoint compromises a multi-factor software cryptographic authenticator. | Malicious code proxies authentication or exports authenticator keys from the endpoint.
-| **Unauthorized Binding** | An attacker is able to cause an authenticator under their control to be bound to a subscriber's account. | An attacker intercepts an authenticator or provisioning key en route to the subscriber. -->
+| **Unauthorized Binding** | An attacker is able to cause an authenticator under their control to be bound to a subscriber's account. | An attacker intercepts an authenticator or provisioning key en route to the subscriber.
+ -->
 
 ### 8.2 脅威を軽減するストラテジー
 <!-- ### 8.2 Threat Mitigation Strategies -->
@@ -110,32 +113,36 @@ Authenticator を制御できる Attacker は Authenticator の所有者のよ�
 <a name="63bSec8-Table2"></a>
 
 <div class="text-center" markdown="1">
-    **表 8-2 - Authenticator の脅威を軽減する**
-    <!-- **Table 8-2 Mitigating Authenticator Threats** -->
+
+**表 8-2 - Authenticator の脅威を軽減する**
+<!-- **Table 8-2 Mitigating Authenticator Threats** -->
+
 </div>
 
 
-| **Authenticator の脅威/攻撃**  | **脅威を軽減するメカニズム**                                                                    | **規約の参照**                                                                                      |
+| **Authenticator の脅威/攻撃**  | **脅威を軽減するメカニズム**  | **規約の参照**  |
 | ------------------------- | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **盗難**                    | Memorized Secret または Biometrics によってアクティブにされる必要がある Multi-Factor Authenticator を使用する | [4.2.1](#aal2types), [4.3.1](#aal3types)                                                       |
-|                           | Memorized Secret または Biometrics を含む Authenticator を組み合わせて使用する                       | [4.2.1](#aal2types), [4.3.1](#aal3types)                                                       |
-| **複製**                    | Authentication シークレットの抽出や複製が長期的に困難な Authenticator を使用する                             | [4.2.2](#aal2req), [4.3.2](#aal3req), [5.1.7.1](#sfcda)                                        |
-| **盗聴**                    | 特にキー ロガーなどのマルウェアに感染していないか、エンドポイントがセキュリティを確保できているか、使用する前に確かめる                        | [4.2.2](#aal2req)                                                                              |
-|                           | 信頼されていないワイヤレスネットワークを、暗号化されていないセカンダリの out-of-band の Authentication チャネルとして使用することを避ける | [5.1.3.1](#ooba)                                                                               |
-|                           | 認証され、保護されたチャネル経由で Authenticate を行う (例 : ブラウザーウィンドウのロックアイコンを確認する)                    | [4.1.2](#aal1req), [4.2.2](#aal2req), [4.3.2](#aal3req)                                        |
-|                           | *pass-the-hash* のようなリプレイ Attack に耐性のある Authentication プロトコルを使用する                    | [5.2.8](#replay)                                                                               |
-|                           | 信頼された入力と信頼された表示機能の Authentication エンドポイントを使用する                                      | [5.1.6.1](#sfcsa), [5.1.8.1](#mfcsa)                                                           |
-| **オフライン クラッキング**          | 高い Entropy の Authenticator Secret で Authenticator を使用する                             | [5.1.2.1](#lusa), [5.1.4.1](#sfotpa), [5.1.5.1](#mfotpa), [5.1.7.1](#sfcda), [5.1.9.1](#mfcda) |
-|                           | 鍵付きハッシュを含む、ソルト付き、ハッシュ化された状態で Memorized Secret を保存する                                 | [5.1.1.2](#memsecretver), [5.2.7](#verifier-secrets)                                           |
-| **サイドチャネル Attack**        | シークレットの値に関係なく消費電力とタイミングが一定に保たれるように設計された Authenticator アルゴリズムを使用する                   | [4.3.2](#aal3req)                                                                              |
-| **Phishing または Pharming** | Verifier Impersonation への防御が提供される Authenticator を使用する。                              | [5.2.5](#verifimpers)                                                                          |
-| **Social Engineering**    | カスタマーサービスエージェントなどの第三者による Social Engineering のリスクを引き起こす Authenticator の使用を避ける        | [6.1.2.1](#bindexisting), [6.1.2.3](#replacement)                                              |
-| **オンラインでの推測**             | 高い Entropy の出力を生成する Authenticator を使用する                                             | [5.1.2.1](#lusa), [5.1.7.1](#sfcda), [5.1.9.1](#mfcda)                                         |
-|                           | アクティベーションの試行に繰り返し失敗した後にはロックアップする Authenticator を使用する                                | [5.2.2](#throttle)                                                                             |
-| **エンドポイントの危殆化**           | Subscriber の物理的なアクションを必要とするハードウェア Authenticator を使用する                               | [5.2.9](#intent)                                                                               |
-|                           | ソフトウェアベースの鍵は Restricted-Access ストレージで保持する                                           | [5.1.3.1](#ooba), [5.1.6.1](#sfcsa), [5.1.8.1](#mfcsa)                                         |
-| **認証されていない Binding**      | Authenticator と 関連する鍵のプロビジョニングには MitM に体制のあるプロトコルを使用する                              | [6.1](#binding)                                                                                |
-<!-- | **Authenticator Threat/Attack** | **Threat Mitigation Mechanisms** | **Normative Reference(s)** |
+| **盗難**  | Memorized Secret または Biometrics によってアクティブにされる必要がある Multi-Factor Authenticator を使用する | [4.2.1](#aal2types), [4.3.1](#aal3types)  |
+|  | Memorized Secret または Biometrics を含む Authenticator を組み合わせて使用する  | [4.2.1](#aal2types), [4.3.1](#aal3types)  |
+| **複製**  | Authentication シークレットの抽出や複製が長期的に困難な Authenticator を使用する  | [4.2.2](#aal2req), [4.3.2](#aal3req), [5.1.7.1](#sfcda)  |
+| **盗聴**  | 特にキー ロガーなどのマルウェアに感染していないか、エンドポイントがセキュリティを確保できているか、使用する前に確かめる  | [4.2.2](#aal2req)  |
+|  | 信頼されていないワイヤレスネットワークを、暗号化されていないセカンダリの out-of-band の Authentication チャネルとして使用することを避ける | [5.1.3.1](#ooba)  |
+|  | 認証され、保護されたチャネル経由で Authenticate を行う (例 : ブラウザーウィンドウのロックアイコンを確認する)  | [4.1.2](#aal1req), [4.2.2](#aal2req), [4.3.2](#aal3req)  |
+|  | *pass-the-hash* のようなリプレイ Attack に耐性のある Authentication プロトコルを使用する  | [5.2.8](#replay)  |
+|  | 信頼された入力と信頼された表示機能の Authentication エンドポイントを使用する  | [5.1.6.1](#sfcsa), [5.1.8.1](#mfcsa)  |
+| **オフライン クラッキング**  | 高い Entropy の Authenticator Secret で Authenticator を使用する  | [5.1.2.1](#lusa), [5.1.4.1](#sfotpa), [5.1.5.1](#mfotpa), [5.1.7.1](#sfcda), [5.1.9.1](#mfcda) |
+|  | 鍵付きハッシュを含む、ソルト付き、ハッシュ化された状態で Memorized Secret を保存する  | [5.1.1.2](#memsecretver), [5.2.7](#verifier-secrets)  |
+| **サイドチャネル Attack**  | シークレットの値に関係なく消費電力とタイミングが一定に保たれるように設計された Authenticator アルゴリズムを使用する  | [4.3.2](#aal3req)  |
+| **Phishing または Pharming** | Verifier Impersonation への防御が提供される Authenticator を使用する。  | [5.2.5](#verifimpers)  |
+| **Social Engineering**  | カスタマーサービスエージェントなどの第三者による Social Engineering のリスクを引き起こす Authenticator の使用を避ける  | [6.1.2.1](#bindexisting), [6.1.2.3](#replacement)  |
+| **オンラインでの推測**  | 高い Entropy の出力を生成する Authenticator を使用する  | [5.1.2.1](#lusa), [5.1.7.1](#sfcda), [5.1.9.1](#mfcda)  |
+|  | アクティベーションの試行に繰り返し失敗した後にはロックアップする Authenticator を使用する  | [5.2.2](#throttle)  |
+| **エンドポイントの危殆化**  | Subscriber の物理的なアクションを必要とするハードウェア Authenticator を使用する  | [5.2.9](#intent)  |
+|  | ソフトウェアベースの鍵は Restricted-Access ストレージで保持する  | [5.1.3.1](#ooba), [5.1.6.1](#sfcsa), [5.1.8.1](#mfcsa)  |
+| **認証されていない Binding**  | Authenticator と 関連する鍵のプロビジョニングには MitM に体制のあるプロトコルを使用する  | [6.1](#binding)  |
+
+<!--
+| **Authenticator Threat/Attack** | **Threat Mitigation Mechanisms** | **Normative Reference(s)** |
 |---------------------------------|----------------------------------|-------|
 | **Theft** | Use multi-factor authenticators that need to be activated through a memorized secret or biometric.| [4.2.1](#aal2types), [4.3.1](#aal3types) |
 | | Use a combination of authenticators that includes a memorized secret or biometric. | [4.2.1](#aal2types), [4.3.1](#aal3types) |
@@ -154,7 +161,8 @@ Authenticator を制御できる Attacker は Authenticator の所有者のよ�
 | | Use an authenticator that locks up after a number of repeated failed activation attempts. | [5.2.2](#throttle) |
 | **Endpoint Compromise** | Use hardware authenticators that require physical action by the subscriber. | [5.2.9](#intent) |
 | | Maintain software-based keys in restricted-access storage. | [5.1.3.1](#ooba), [5.1.6.1](#sfcsa), [5.1.8.1](#mfcsa) |
-| **Unauthorized Binding** | Use MitM-resistant protocols for provisioning of authenticators and associated keys. | [6.1](#binding) | -->
+| **Unauthorized Binding** | Use MitM-resistant protocols for provisioning of authenticators and associated keys. | [6.1](#binding) |
+ -->
 
 [表 8-1](#63bSec8-Table1) で説明された脅威を軽減するために、いくつかのストラテジーを適用できる :
 <!-- Several other strategies may be applied to mitigate the threats described in [Table 8-1](#63bSec8-Table1): -->
