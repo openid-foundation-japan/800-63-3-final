@@ -261,17 +261,32 @@ Supervised Remote (監視下にある Remote での) Identity Proofing および
 
 #### <a name="trustref"></a> 5.3.4 Trusted Referee Requirements
 
+1. CSP は, 交渉人や法的保護者, 医療専門家, 後見人, 法定代理人, その他の訓練を受け承認されたもの, または認定されたものなど, 適切な法律, 規則, 機関のポリシーに従って, Applicant の身元を保証したり代理人となれる信頼できる身元引き受け人 (Trusted Referee) とやり取りをしても良い (MAY). CSP は Remote, 対面どちらのプロセスでも,  Trusted Referee とやり取りをしても良い (MAY).
+2. CSP は, Trusted Referee がどのように決定されるか, および取り消し, 一時停止, その他いかなる制約も含め, Trusted Referee 自身のステータスのライフサイクルについて, ポリシーや手順を明文化すること (SHALL).
+3. CSP は, Applicant の Proofing と同じ IAL で, Trusted Referee に対する Proofing を行うこと (SHALL). また CSP は, Trusted Referee と Applicant の関係性を測るために必要な最低限のエビデンスを決定すること (SHALL).
+4. CSP は, [Section 4.4.1](#normal) の要件を満たすことをゴールとして, 上記1で示された文書化されたポリシーに定義された規則的なインターバルで, Subscriber に対して Re-proofing を行うべきである (SHOULD).
+
+<!--
 1. The CSP MAY use trusted referees &mdash; such as notaries, legal guardians, medical professionals, conservators, persons with power of attorney, or some other form of trained and approved or certified individuals &mdash; that can vouch for or act on behalf of the applicant in accordance with applicable laws, regulations, or agency policy. The CSP MAY use a trusted referee for both remote and in-person processes.
 2. The CSP SHALL establish written policy and procedures as to how a trusted referee is determined and the lifecycle by which the trusted referee retains their status as a valid referee, to include any restrictions, as well as any revocation and suspension requirements.
 3. The CSP SHALL proof the trusted referee at the same IAL as the applicant proofing. In addition, the CSP SHALL determine the minimum evidence required to bind the relationship between the trusted referee and the applicant.
 4. The CSP SHOULD perform re-proofing of the subscriber at regular intervals defined in the written policy specified in item 1 above, with the goal of satisfying the requirements of [Section 4.4.1](#normal).
+-->
 
 #### Considerations for Minors
 
+1. CSP は, [Children's Online Privacy Protection Act of 1998](#COPPA) およびその他の法律が適用される場合, それらに遵守すべく, Identity Proofing のエビデンス要件を満たすことができない未成年とのインタラクションに関する法的制約を特別に考慮すること (SHALL).
+2. 13歳以下の未成年に関しては, CSP は COPPA およびその他の法律の遵守が求められ (SHALL), 確実に遵守するためには特別な配慮が必要となる.
+3. CSP は, 本セクションですでに述べたように, 未成年の Applicant のための Trusted Referee として, 親または法定成人後見人を関与させるべきである (SHOULD).
+
+<!--
 1. The CSP SHALL give special consideration to the legal restrictions of interacting with minors unable to meet the evidence requirements of identity proofing to ensure compliance with the [Children's Online Privacy Protection Act of 1998](#COPPA), and other laws, as applicable.
 2. Minors under age 13 require additional special considerations under COPPA, and other laws, to which the CSP SHALL ensure compliance, as applicable.
 3. The CSP SHOULD involve a parent or legal adult guardian as a trusted referee for an applicant that is a minor, as described elsewhere in this section.
+-->
 
 ### 5.4 Binding Requirements
 
-[800-63B](sp800-63b.html) Section 6.1 Authenticator Binding for instructions on binding authenticators to subscribers.
+Authenticator と Subscriber の紐付けに関しては, [800-63B](sp800-63b.html) Section 6.1 Authenticator Binding を参照のこと.
+
+<!-- [800-63B](sp800-63b.html) Section 6.1 Authenticator Binding for instructions on binding authenticators to subscribers. -->
