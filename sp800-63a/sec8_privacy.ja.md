@@ -28,10 +28,13 @@ Identity Proofing を目的として SSN を収集する前に, 各組織は SSN
 
 <!-- Prior to collecting the SSN for identity proofing, organizations need to consider any legal obligation to collect the SSN, the necessity of using the SSN for interoperability with third party processes and systems, or operational requirements. Operational requirements can be demonstrated by an inability to alter systems, processes, or forms due to cost or unacceptable levels of risk. Operational necessity is not justified by ease of use or unwillingness to change. -->
 
-For federal agencies, the initial requirement in [Executive Order (EO) 9397] (#9397) to use the SSN as a primary means of identification for individuals working for, with, or conducting business with their agency, has since been eliminated. Accordingly, EO 9397 cannot be referenced as the sole authority establishing the collection of the SSN as necessary.
+連邦政府機関に対する [Executive Order (EO) 9397] (#9397) の初期の要件である, 当該機関で働く個人, 取引関係にある個人, ないしは取引関係にある他組織に属する個人の識別の主要手段として SSN を利用すべしという要件は廃止された. したがって, EO 9397 はもはやそれ単体をもって SSN 収集が必要であるという権威として参照することはできない.
 
+<!-- For federal agencies, the initial requirement in [Executive Order (EO) 9397] (#9397) to use the SSN as a primary means of identification for individuals working for, with, or conducting business with their agency, has since been eliminated. Accordingly, EO 9397 cannot be referenced as the sole authority establishing the collection of the SSN as necessary. -->
 
-Federal agencies need to review any decision to collect the SSN relative to their obligation to reduce the collection and unnecessary use of SSNs under Office of Management and Budget policy.
+連邦政府機関は, Office of Management and Budget Policy に従って SSN の収集および不必要な利用を削減する義務を考慮に入れ, あらゆる SSN 収集に関する意思決定をレビューする必要がある.
+
+<!-- Federal agencies need to review any decision to collect the SSN relative to their obligation to reduce the collection and unnecessary use of SSNs under Office of Management and Budget policy. -->
 
 ### <a name="consent"></a>8.2 Notice and Consent
 
