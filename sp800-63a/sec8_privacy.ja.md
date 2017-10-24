@@ -6,18 +6,27 @@
 
 _This section is informative._
 
-These privacy considerations provide information regarding the General Requirements set forth in [Section 4.2](#genProofReqs).
+以下のプライバシーに関する考慮事項は, [Section 4.2](#genProofReqs) の General Requirements に関する情報を提供する.
+
+<!-- These privacy considerations provide information regarding the General Requirements set forth in [Section 4.2](#genProofReqs). -->
 
 ### 8.1 Collection and Data Minimization
 
-[Section 4.2 requirement 2](#4.2-r2) permits the collection of only the PII necessary to validate the existence of the claimed identity and associate the claimed identity to the applicant, based on best available practices for appropriate identity resolution, validation, and verification. Collecting unnecessary PII can create confusion regarding why information not being used for the identity proofing service is being collected. This leads to invasiveness or overreach concerns, which can lead to loss of applicant trust. Further, PII retention can become vulnerable to unauthorized access or use. Data minimization reduces the amount of PII vulnerable to unauthorized access or use, and encourages trust in the identity proofing process.
+[Section 4.2 requirement 2](#4.2-r2) では, Identity Resolution, Validation および Verification に対する適用可能なベストプラクティスに基づいて, Claimed Identity の存在確認および Claimed Identity と Applicant の関連付けに必要な PII のみの収集を許可している. 不必要な PII を収集すると, なぜ Identity Proofing に利用されない情報が収集されているのかという混乱を生じさせる. これは侵害や不要な懸念を与え, Applicant の信頼を損ねることにつながる可能性がある. さらに, PII を保持すると, Unauthorized Access や不正利用に対して脆弱になる可能性もある. データ最小化により PII の量を減少させそのようなリスクを軽減することは, Identity Proofing プロセスにおける信頼を促進することとなろう.
+
+<!-- [Section 4.2 requirement 2](#4.2-r2) permits the collection of only the PII necessary to validate the existence of the claimed identity and associate the claimed identity to the applicant, based on best available practices for appropriate identity resolution, validation, and verification. Collecting unnecessary PII can create confusion regarding why information not being used for the identity proofing service is being collected. This leads to invasiveness or overreach concerns, which can lead to loss of applicant trust. Further, PII retention can become vulnerable to unauthorized access or use. Data minimization reduces the amount of PII vulnerable to unauthorized access or use, and encourages trust in the identity proofing process. -->
 
 #### 8.1.1 Social Security Numbers
 
-[Section 4.2 requirement 13](#4.2-r13) does not permit the CSP to collect the SSN unless it is necessary for performing identity resolution, when resolution cannot be accomplished by collection of another attribute or combination of attributes. Overreliance on the SSN can contribute to misuse and place the applicant at risk of harm, such as through identity theft. Nonetheless, the SSN may achieve identity resolution for RPs in particular federal agencies that use SSNs to correlate a subscriber to existing records. Thus, this document recognizes the role of the SSN as an identifier and makes appropriate allowance for its use.
-> Note: Evidence requirements at the higher IALs preclude using the SSN or the Social Security Card as acceptable identity evidence.
+[Section 4.2 requirement 13](#4.2-r13) では, Identity Resolution がその他の Attribute や Attribute の組み合わせによって達成不可能であり, SSN が Identity Resolution に必要でない限り, CSP が SSN を収集することを禁じている. SSN への過度な信頼は, 誤用を招き, なりすましなどにより Applicant に損害を与えかねない. しかし, こと連邦政府機関の RP にとっては, SSN により Subscriber を既存のレコードに関連づけることができ, Identity Resolution が達成されるケースもある. したがって, 本ドキュメントは SSN を識別子として捉え, その利用に関して適切な措置を行う.
+> Note: 高 IAL のエビデンス要件においては, SSN や Social Security Card を Identity Evidence として受け入れることを禁止している.
 
-Prior to collecting the SSN for identity proofing, organizations need to consider any legal obligation to collect the SSN, the necessity of using the SSN for interoperability with third party processes and systems, or operational requirements. Operational requirements can be demonstrated by an inability to alter systems, processes, or forms due to cost or unacceptable levels of risk. Operational necessity is not justified by ease of use or unwillingness to change.
+<!-- [Section 4.2 requirement 13](#4.2-r13) does not permit the CSP to collect the SSN unless it is necessary for performing identity resolution, when resolution cannot be accomplished by collection of another attribute or combination of attributes. Overreliance on the SSN can contribute to misuse and place the applicant at risk of harm, such as through identity theft. Nonetheless, the SSN may achieve identity resolution for RPs in particular federal agencies that use SSNs to correlate a subscriber to existing records. Thus, this document recognizes the role of the SSN as an identifier and makes appropriate allowance for its use. -->
+<!-- > Note: Evidence requirements at the higher IALs preclude using the SSN or the Social Security Card as acceptable identity evidence. -->
+
+Identity Proofing を目的として SSN を収集する前に, 各組織は SSN を収集する際の法的義務, 第三者のプロセスやシステムとの相互運用性のために SSN を利用する必要性, または運用要件を考慮する必要がある. 運用要件は, システムやプロセス, 形式が, コストや許容不可能なリスク要因により置き換え不可能であることにより示されるかもしれない. なお, 運用上の必要性は, 使い勝手や変更したくないという意思によって正当化されるものではない.
+
+<!-- Prior to collecting the SSN for identity proofing, organizations need to consider any legal obligation to collect the SSN, the necessity of using the SSN for interoperability with third party processes and systems, or operational requirements. Operational requirements can be demonstrated by an inability to alter systems, processes, or forms due to cost or unacceptable levels of risk. Operational necessity is not justified by ease of use or unwillingness to change. -->
 
 For federal agencies, the initial requirement in [Executive Order (EO) 9397] (#9397) to use the SSN as a primary means of identification for individuals working for, with, or conducting business with their agency, has since been eliminated. Accordingly, EO 9397 cannot be referenced as the sole authority establishing the collection of the SSN as necessary.
 
