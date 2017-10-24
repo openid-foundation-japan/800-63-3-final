@@ -66,22 +66,38 @@ Privacy Act は, 連邦政府の CSP に対して, Applicant が Access し, 正
 
 <!-- The Privacy Act requires federal CSPs that maintain a system of records to follow procedures to enable applicants to access and, if incorrect, amend their records. Any Privacy Act Statement should include a reference to the applicable SORN(s), which provide the applicant with instructions on how to make a request for access or correction. Non-federal CSPs should have comparable procedures, including contact information for any third parties if they are the source of the information. -->
 
-CSPs should make the availability of alternative methods for completing the process clear to users (e.g., in person at a customer service center, if available) in the event an applicant is unable to establish their identity and complete the registration process online.
+CSP は, Applicant が自身の Identity を確立して登録プロセスをオンラインで完結できない場合に, ユーザーに当該プロセスを完了するための代替手段 (e.g., 可能であれば, カスタマーサービスセンターでの対面手続き) を提供するべきである.
 
-> Note: If the ID proofing process is not successful, CSPs should inform the applicant of the procedures to address the issue but should not inform the applicant of the specifics of why the registration failed (e.g., do not inform the applicant, "Your SSN did not match the one that we have on record for you"), as doing so could allow fraudulent applicants to gain more knowledge about the accuracy of the PII.
+<!-- CSPs should make the availability of alternative methods for completing the process clear to users (e.g., in person at a customer service center, if available) in the event an applicant is unable to establish their identity and complete the registration process online. -->
 
+> Note: Identity Proofing プロセスが失敗した場合, CSP は Applicant に問題を解決する手順を通知すべきであるが, 登録が失敗した理由そのものを Applicant に通知すべきではない (e.g., Applicant に "あなたの SSN が当方があなたのものとして保持している SSN とマッチしなかった" などと知らせてはならない). そのような情報は不正な Applicant が正しい PII に関する情報を得る手立てとなりうる.
+
+<!-- > Note: If the ID proofing process is not successful, CSPs should inform the applicant of the procedures to address the issue but should not inform the applicant of the specifics of why the registration failed (e.g., do not inform the applicant, "Your SSN did not match the one that we have on record for you"), as doing so could allow fraudulent applicants to gain more knowledge about the accuracy of the PII. -->
 
 ### 8.5 Privacy Risk Assessment
 
-[Section 4.2 requirement 7](#4.2-r7) and [10](#4.2-r13) require the CSP to conduct a privacy risk assessment. In conducting a privacy risk assessment, CSPs should consider:
+[Section 4.2 requirement 7](#4.2-r7) および [10](#4.2-r13) は, CSP に Privacy Risk Assessment の実施を求めている. Privacy Risk Assessment 実施にあたって, CSP は以下を考慮すべきである.
 
+<!-- [Section 4.2 requirement 7](#4.2-r7) and [10](#4.2-r13) require the CSP to conduct a privacy risk assessment. In conducting a privacy risk assessment, CSPs should consider: -->
+
+1. CSP が取るアクション (e.g., 追加の検証ステップや記録保持) が, 侵害や情報への Unauthorized な Access など, Applicant にとっての問題となりうる可能性.
+2. 発生した問題のインパクト. CSP は, リスクの受容, 軽減, 共有など, 特定したプライバシーリスクへのあらゆるレスポンスを正当化できるようにすべきである. Applicant の同意は, リスクを共有する形態の一例とみなすべきであり, したがって Applicant が共有されたリスクを評価し受容できると合理的に期待できる場合のみ, Applicant の同意を使用すべきである.
+
+<!--
 1. The likelihood that the action it takes (e.g., additional verification steps or records retention) could create a problem for the applicant, such as invasiveness or unauthorized access to the information; and
 2. The impact if a problem did occur. CSPs should be able to justify any response it takes to identified privacy risks, including accepting the risk, mitigating the risk, and sharing the risk. The use of applicant consent should be considered a form of sharing the risk, and therefore should only be used when an applicant could reasonably be expected to have the capacity to assess and accept the shared risk.
+-->
 
 ### 8.6 Agency Specific Privacy Compliance
 
-[Section 4.2 requirement 12](#4.2-r12) covers specific compliance obligations for federal CSPs. It is critical to involve your agency's SAOP in the earliest stages of digital authentication system development to assess and mitigate privacy risks and advise the agency on compliance requirements, such as whether or not the PII collection to conduct identity proofing triggers the Privacy Act of 1974 [[Privacy Act]](#PrivacyAct) or the E-Government Act of 2002 [[E-Gov]](#E-Gov)requirement to conduct a Privacy Impact Assessment. For example, with respect to identity proofing, it is likely that the Privacy Act requirements will be triggered and require coverage by either a new or existing Privacy Act system of records due to the collection and maintenance of PII or other attributes necessary to conduct identity proofing.
+[Section 4.2 requirement 12](#4.2-r12) は, 連邦政府の CSP に対する特別なコンプライアンス上の責任について述べている. 機関の SAOP を Digital Authentication システムの開発初期段階から関与させることは, プライバシーリスクを評価・軽減し, Identity Proofing のための PII 収集が, Privacy Impact Assessment のための Privacy Act of 1974 [[Privacy Act]](#PrivacyAct) や E-Government Act of 2002 [[E-Gov]](#E-Gov) の要件を引き起こすか, といったコンプライアンス要件についての助言を行う上で, 非常に重要である. 例えば, Identity Proofing に関しては, Privacy Act 要件が適用され, Identity Proofing に必要な PII やその他の Attribute の収集・保持のために, 新規または既存の Privacy Act 記録システムによるカバレッジが求められる.
 
-The SAOP can similarly assist the agency in determining whether a PIA is required. These considerations should not be read as a requirement to develop a Privacy Act SORN or PIA for identity proofing alone; in many cases it will make the most sense to draft a PIA and SORN that encompasses the entire digital authentication process or include the digital authentication process as part of a larger programmatic PIA that discusses the program or benefit the agency is establishing online access to.
+<!-- [Section 4.2 requirement 12](#4.2-r12) covers specific compliance obligations for federal CSPs. It is critical to involve your agency's SAOP in the earliest stages of digital authentication system development to assess and mitigate privacy risks and advise the agency on compliance requirements, such as whether or not the PII collection to conduct identity proofing triggers the Privacy Act of 1974 [[Privacy Act]](#PrivacyAct) or the E-Government Act of 2002 [[E-Gov]](#E-Gov)requirement to conduct a Privacy Impact Assessment. For example, with respect to identity proofing, it is likely that the Privacy Act requirements will be triggered and require coverage by either a new or existing Privacy Act system of records due to the collection and maintenance of PII or other attributes necessary to conduct identity proofing. -->
 
-Due to the many components of digital authentication, it is important for the SAOP to have an awareness and understanding of each individual component. For example, other privacy artifacts may be applicable to an agency offering or using proofing services such as Data Use Agreements, Computer Matching Agreements, etc. The SAOP can assist the agency in determining what additional requirements apply. Moreover, a thorough understanding of the individual components of digital authentication will enable the SAOP to thoroughly assess and mitigate privacy risks either through compliance processes or by other means.
+SAOP は同様に PIA の必要性の決定において, 機関を支援できる. これらの考慮事項は, Identity Proofing だけのために Privacy Act SORN や PIA を開発することが要件となるという風に読むべきではない. 多くの場合, Digital Authentication プロセス全体を網羅する PIA および SORN を草稿したり, Digital Authentication プロセスを機関がオンライン Access を確立するプログラムやメリットについて議論するより広範囲で計画立った PIA の一部とすることが, もっとも理にかなっているであろう.
+
+<!-- The SAOP can similarly assist the agency in determining whether a PIA is required. These considerations should not be read as a requirement to develop a Privacy Act SORN or PIA for identity proofing alone; in many cases it will make the most sense to draft a PIA and SORN that encompasses the entire digital authentication process or include the digital authentication process as part of a larger programmatic PIA that discusses the program or benefit the agency is establishing online access to. -->
+
+Digital Authentication には多くの構成要素があることから, SAOP に各個別要素を認識し理解させることが重要である. 例えば, 機関は Data Use Agreements や Computer Matching Agreements などの Proofing サービスなどの提供・利用が可能かもしれない. SAOP は機関にどのような追加要件が適用されるを判断するべく支援を行なうことができる. さらに Digital Authentication の個々の要素を完全に理解することで, SAOP はコンプライアンスプロセスやその他の手段を通じてプライバシーリスクを入念に評価し, 緩和することができる.
+
+<!-- Due to the many components of digital authentication, it is important for the SAOP to have an awareness and understanding of each individual component. For example, other privacy artifacts may be applicable to an agency offering or using proofing services such as Data Use Agreements, Computer Matching Agreements, etc. The SAOP can assist the agency in determining what additional requirements apply. Moreover, a thorough understanding of the individual components of digital authentication will enable the SAOP to thoroughly assess and mitigate privacy risks either through compliance processes or by other means. -->
