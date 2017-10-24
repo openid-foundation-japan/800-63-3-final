@@ -89,7 +89,7 @@ AAL 1で用いられる暗号Authenticatorは，Approved Cryptographyを利用�
 Cryptographic authenticators used at AAL1 SHALL use approved cryptography. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise (e.g., by malware) of the user endpoint in which they are running and SHOULD NOT complete the operation when such a compromise is detected.
 -->
 
-ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．
+ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供するAuthenticateされた保護チャネルを介して行われるものとする(SHALL)．
 
 <!--
 Communication between the claimant and verifier (using the primary channel in the case of an out-of-band authenticator) SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to man-in-the-middle (MitM) attacks.
@@ -209,7 +209,7 @@ AAL 2で用いられる暗号Authenticatorは，Approved Cryptographyを使う�
 Cryptographic authenticators used at AAL2 SHALL use approved cryptography. Authenticators procured by government agencies SHALL be validated to meet the requirements of [FIPS 140](#FIPS140-2) Level 1. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise of the platform in which they are running (e.g., by malware) and SHOULD NOT complete the operation when such a compromise is detected. At least one authenticator used at AAL2 SHALL be replay resistant as described in [Section 5.2.8](#replay). Authentication at AAL2 SHOULD demonstrate authentication intent from at least one authenticator as discussed in [Section 5.2.9](#intent).
 -->
 
-ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．
+ClaimantとVerifierとの間の通信(アウトオブバンドAuthenticatorの場合はプライマリチャネル)は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供するAuthenticateされた保護チャネルを介して行われるものとする(SHALL)．
 
 <!--
 Communication between the claimant and verifier (the primary channel in the case of an out-of-band authenticator) SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to MitM attacks.
@@ -315,7 +315,7 @@ AAL3 authentication SHALL occur by the use of one of a combination of authentica
 #### <a name="aal3req"></a>4.3.2 Authenticator and Verifier Requirements
 -->
 
-ClaimantとVerifierとの間の通信は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供する保護されたAuthenticatedチャネルを介して行われるものとする(SHALL)．AAL3 Authenticationで利用される全ての暗号デバイスAuthenticatorは，[Section 5.2.5](#verifimpers)に記載されているVerifierなりすまし耐性を備えているものとし(SHALL)，[Section 5.2.8](#replay)に記載されているように，リプレイ耐性があるものとする(SHALL)．AAL3のAuthenticatorは[Section 5.2.9](#intent)に記載されているように，少なくとも1つのAuthenticatorからAuthentication及びReauthenticationの意図を明示するべきである(SHOULD)．
+ClaimantとVerifierとの間の通信は，Authenticator出力の秘匿性と中間者攻撃に対する耐性を提供するAuthenticateされた保護チャネルを介して行われるものとする(SHALL)．AAL3 Authenticationで利用される全ての暗号デバイスAuthenticatorは，[Section 5.2.5](#verifimpers)に記載されているVerifierなりすまし耐性を備えているものとし(SHALL)，[Section 5.2.8](#replay)に記載されているように，リプレイ耐性があるものとする(SHALL)．AAL3のAuthenticatorは[Section 5.2.9](#intent)に記載されているように，少なくとも1つのAuthenticatorからAuthentication及びReauthenticationの意図を明示するべきである(SHOULD)．
 
 <!--
 Communication between the claimant and verifier SHALL be via an authenticated protected channel to provide confidentiality of the authenticator output and resistance to MitM attacks. All cryptographic device authenticators used at AAL3 SHALL be verifier impersonation resistant as described in Section [5.2.5](#verifimpers) and SHALL be replay resistant as described in Section [5.2.8](#replay). All authentication and reauthentication processes at AAL3 SHALL demonstrate authentication intent from at least one authenticator as described in [Section 5.2.9](#intent).
