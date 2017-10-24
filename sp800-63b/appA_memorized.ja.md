@@ -77,14 +77,32 @@ Users also express frustration when attempts to create complex passwords are rej
 Users' password choices are very predictable, so attackers are likely to guess passwords that have been successful in the past. These include dictionary words and passwords from previous breaches, such as the "Password1!" example above. For this reason, it is recommended that passwords chosen by users be compared against a "black list" of unacceptable passwords. This list should include passwords from previous breach corpuses, dictionary words, and specific words (such as the name of the service itself) that users are likely to choose. Since user choice of passwords will also be governed by a minimum length requirement, this dictionary need only include entries meeting that requirement.
 -->
 
+極端に複雑な記憶シークレットは新たな潜在的な脆弱性を生み出す: シークレットを記憶できる可能性が減り，書き留めたり安全でない方法で電子的に記録する可能性が高まる．これらの慣例は必ずしも脆弱であるわけではないが，統計的にそのようなシークレットの記録方法のなかには脆弱なものがある．これは，極端に長い、または極端に複雑な記憶シークレットを要求しないということの追加の動機付けになる．
+<!--
 Highly complex memorized secrets introduce a new potential vulnerability: they are less likely to be memorable, and it is more likely that they will be written down or stored electronically in an unsafe manner. While these practices are not necessarily vulnerable, statistically some methods of recording such secrets will be. This is an additional motivation not to require excessively long or complex memorized secrets.
+-->
 
+### A.4 ランダムに選択されたシークレット
+<!--
 ### A.4 Randomly-Chosen Secrets
+-->
 
+記憶シークレットの強度を決定するもう一つの要素が，それが生成されるプロセスである．(VerifierやCSPでは殆どの場合)分布が一様でランダムなシークレットでは、同じ長さと複雑さ要件に対してユーザが選択するシークレットに比べてパスワード推測やブルートフォース攻撃の難易度が高くなるだろう．従って，SP 800-63-2のLOA2ではランダムに選択された6桁の数字のPINが許容されるのに対し，ユーザが選択したシークレットの場合は最低8文字という要件になっている．
+<!--
 Another factor that determines the strength of memorized secrets is the process by which they are generated. Secrets that are randomly chosen (in most cases by the verifier or CSP) and are uniformly distributed will be more difficult to guess or brute-force attack than user-chosen secrets meeting the same length and complexity requirements. Accordingly, at LOA2, SP 800-63-2 permitted the use of randomly generated PINs with 6 or more digits while requiring user-chosen memorized secrets to be a minimum of 8 characters long.
+-->
 
+上で論じたように，記憶シークレットの長さ要件に考慮された脅威モデルには，オンライン攻撃に対するレート制限が含まれているが，オフライン攻撃は含まれていない．この制約があるものの，6桁のランダムに生成されたPINは記憶シークレットに対しては引き続き適切であるとみなされる．
+<!--
 As discussed above, the threat model being addressed with memorized secret length requirements includes rate-limited online attacks, but not offline attacks. With this limitation, 6 digit randomly-generated PINs are still considered adequate for memorized secrets.
+-->
 
+### A.5 サマリ
+<!--
 ### A.5 Summary
+-->
 
+ここで推奨されている内容を超えた長さと複雑さの要件は，記憶シークレットの難易度を大幅に増加させ，ユーザの不満を増加させる．結果としてユーザはしばしばこれらの制限を回避してしまうため，逆効果である． 更に，ブラックリスト，安全なハッシュストレージ，レート制限などの他の緩和策は，のブルートフォース攻撃をためにより効果的です．したがって，複雑さについて追加の要件が課されることはない．
+<!--
 Length and complexity requirements beyond those recommended here significantly increase the difficulty of memorized secrets and increase user frustration. As a result, users often work around these restrictions in a way that is counterproductive. Furthermore, other mitigations such as blacklists, secure hashed storage, and rate limiting are more effective at preventing modern brute-force attacks. Therefore, no additional complexity requirements are imposed.
+-->
