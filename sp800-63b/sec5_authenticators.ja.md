@@ -357,7 +357,7 @@ The verifier SHALL generate random authentication secrets with at least 20 bits 
 #### <a name="pstnOOB"></a> 5.1.3.3 Authentication using the Public Switched Telephone Network
 -->
 
-アウトオブバンドでの検証を目的としたPSTNの利用は，本セクション及び [Section 5.2.10](#restricted) に記載されているように制限されている(RESTRICTED)．もしアウトオブバンドでの検証がPSTNを用いて実施される場合は，Verifierは利用されている事前登録済みの電話番号が，特定の物理デバイスに紐付けられていることを検証するものとする(SHALL)．事前登録済みの電話番号の変更は，新しいAuthenticatorを結びつける行為とみなされ，[Section 6.1.2](#post-enroll-bind) に記載されている場合のみ発生するものとする(SHALL)．
+アウトオブバンドでの検証を目的としたPSTNの利用は，本セクション及び [Section 5.2.10](#restricted) に記載されているように制限されている(RESTRICTED)．もしアウトオブバンドでの検証がPSTNを用いて実施される場合は，Verifierは利用されている事前登録済みの電話番号が，特定の物理デバイスに結びつけられていることを検証するものとする(SHALL)．事前登録済みの電話番号の変更は，新しいAuthenticatorのバインディングとみなされ，[Section 6.1.2](#post-enroll-bind) に記載されている場合のみ発生するものとする(SHALL)．
 
 <!--
 Use of the PSTN for out-of-band verification is RESTRICTED as described in this section and in [Section 5.2.10](#restricted). If out-of-band verification is to be made using the PSTN, the verifier SHALL verify that the pre-registered telephone number being used is associated with a specific physical device. Changing the pre-registered telephone number is considered to be the binding of a new authenticator and SHALL only occur as described in [Section 6.1.2](#post-enroll-bind).
