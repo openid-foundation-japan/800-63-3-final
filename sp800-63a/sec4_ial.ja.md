@@ -123,7 +123,7 @@ IAL2 ないしは IAL3 で Identity Proofing を行う CSP には, 以下の要�
       <ol type="a" start="a">
         <li>機関は, Senior Agency Official for Privacy (SAOP) と協議し, Identity Proofing を実施するための PII 収集において Privacy Act 要件が適用されるかどうか判断するための分析を行うこと (SHALL).</li>
         <li>機関は, 該当する場合は System of Records Notice (SORN) を公開し, そういった収集について記載すること.</li>
-        <li>機関は, SOAP と協議し, Identity Proofing を実施するための PII 収集において E-Government Act of 2002 要件が適用されるかどうか判断するための分析を行うこと (SHALL).</li>
+        <li>機関は, SAOP と協議し, Identity Proofing を実施するための PII 収集において E-Government Act of 2002 要件が適用されるかどうか判断するための分析を行うこと (SHALL).</li>
         <li>機関は, 該当する場合は Privacy Impact Assessment (PIA) を公開し, そういった収集について記載すること.</li>
       </ol>
     <li><a name="4.2-r13"></a>CSP は, Identity Resolution に必要でない限り, また Identity Resolution がその他の Attribute または Attribute の組み合わせによって実現不可能でない限り, Social Security Number (SSN) を収集すべきではない (SHOULD NOT).</li>
