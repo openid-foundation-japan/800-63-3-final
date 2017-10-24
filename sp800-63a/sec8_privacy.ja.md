@@ -38,21 +38,33 @@ Identity Proofing を目的として SSN を収集する前に, 各組織は SSN
 
 ### <a name="consent"></a>8.2 Notice and Consent
 
-[Section 4.2 requirement 3](4.2-r3) requires the CSP provide explicit notice to the applicant at the time of collection regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether such attributes are voluntary or mandatory in order to complete the identity proofing transactions, and the consequences for not providing the attributes.
+[Section 4.2 requirement 3](4.2-r3) では, Identity Proofing に必要な Attribute の収集と記録管理の目的を, 当該 Attribute が Identity Proofing Transaction を完了させるために必須か否か, Attribute を提供しなかった場合の影響を含め, CSP が収集時に Applicant に明示的に通知するよう求めている.
 
-An effective notice will take into account user experience design standards and research, and an assessment of privacy risks that may arise from the collection. Various factors should be considered, including incorrectly inferring that applicants understand why attributes are collected, that collected information may be combined with other data sources, etc. An effective notice is never only a pointer leading to a complex, legalistic privacy policy or general terms and conditions that applicants are unlikely to read or understand.
+<!-- [Section 4.2 requirement 3](4.2-r3) requires the CSP provide explicit notice to the applicant at the time of collection regarding the purpose for collecting and maintaining a record of the attributes necessary for identity proofing, including whether such attributes are voluntary or mandatory in order to complete the identity proofing transactions, and the consequences for not providing the attributes. -->
+
+効果的な通知を行うには, ユーザーエクスペリエンスデザイン標準と研究, および収集により発生する可能性のあるプライバシーリスクの評価を考慮することが重要であろう. Applicant が, なぜ当該 Attribute が収集されるかや, 収集された情報が他のデータソースと組み合わされるかどうかなどに関して不正確な推測を行うことなどを含め, さまざまな要素を考慮すべきである. 効果的な通知は, 決して複雑で法に固執したプライバシーポリシーや, Applicant が読んだり理解することが期待できないような全般的な利用規約への単なるポインターではない.
+
+<!-- An effective notice will take into account user experience design standards and research, and an assessment of privacy risks that may arise from the collection. Various factors should be considered, including incorrectly inferring that applicants understand why attributes are collected, that collected information may be combined with other data sources, etc. An effective notice is never only a pointer leading to a complex, legalistic privacy policy or general terms and conditions that applicants are unlikely to read or understand. -->
 
 ### 8.3 Use Limitation
 
-[Section 4.2 requirement 4](#4.2-r4) does not permit the CSP to use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization, or attribute assertions, related fraud mitigation, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses.
+[Section 4.2 requirement 4](#4.2-r4) は, CSP が Identity Proofing において収集・管理することとなった Attribute を, CSP が明確な通知を行い Subscriber からの同意を得た場合を除き, Identity Proofing, Authentication, Authorization, Attribute Assertion, 関連する不正対策, 法律や法的プロセスに従う以外の目的で利用することを禁じている.
 
-Consult your SAOP if there are questions about whether proposed uses fall within the scope of these permitted uses. This notice should follow the same principles as described in [Section 8.2 Notice and Consent](#consent) and should not be rolled up into a legalistic privacy policy or general terms and conditions. Rather if there are uses outside the bounds of these explicit purposes, the subscriber should be provided with a meaningful way to understand the purpose for additional uses, and the opportunity to accept or decline. The CSP cannot make acceptance by the subscriber of additional uses a condition of providing identity proofing services.
+<!-- [Section 4.2 requirement 4](#4.2-r4) does not permit the CSP to use attributes collected and maintained in the identity proofing process for any purpose other than identity proofing, authentication, authorization, or attribute assertions, related fraud mitigation, or to comply with law or legal process unless the CSP provides clear notice and obtains consent from the subscriber for additional uses. -->
+
+想定する利用目的が許容範囲内かどうかについて疑問がある場合は, SAOP に相談すること. この通知は [Section 8.2 Notice and Consent](#consent) と同じ原則に従うべきであり, 決して複雑で法に固執したプライバシーポリシーや全般的な利用規約に含められるべきではない. むしろ, 明示された目的の範囲外での利用を行う際は, Subscriber に追加用途とその許諾・拒否の方法が理解できるように, 意味のある通知を行うべきである. CSP は, こういった追加用途への許諾を Subscriber に対して Identity Proofing サービス提供条件としてはならない.
+
+<!-- Consult your SAOP if there are questions about whether proposed uses fall within the scope of these permitted uses. This notice should follow the same principles as described in [Section 8.2 Notice and Consent](#consent) and should not be rolled up into a legalistic privacy policy or general terms and conditions. Rather if there are uses outside the bounds of these explicit purposes, the subscriber should be provided with a meaningful way to understand the purpose for additional uses, and the opportunity to accept or decline. The CSP cannot make acceptance by the subscriber of additional uses a condition of providing identity proofing services. -->
 
 ### 8.4. Redress
 
-[Section 4.2 requirement 5](#4.2-r5) requires the CSP to provide effective mechanisms for redressing applicant complaints or problems arising from the identity proofing, and make the mechanisms easy for applicants to find and access.
+[Section 4.2 requirement 5](#4.2-r5) は, CSP に対して, Identity Proofing によって生じた Applicant の苦情や問題に関する効果的な是正手段を提供し, その手段を Applicant が容易に発見, Access できるようにすることを求めている.
 
-The Privacy Act requires federal CSPs that maintain a system of records to follow procedures to enable applicants to access and, if incorrect, amend their records. Any Privacy Act Statement should include a reference to the applicable SORN(s), which provide the applicant with instructions on how to make a request for access or correction. Non-federal CSPs should have comparable procedures, including contact information for any third parties if they are the source of the information.
+<!-- [Section 4.2 requirement 5](#4.2-r5) requires the CSP to provide effective mechanisms for redressing applicant complaints or problems arising from the identity proofing, and make the mechanisms easy for applicants to find and access. -->
+
+Privacy Act は, 連邦政府の CSP に対して, Applicant が Access し, 正しくない場合は記録を訂正できるよう, 訂正を可能にする手順に従った記録システムを管理することを求めている. すべての Privacy Act Statement には, 適用可能な SORN への参照を含めるべきであり, それにより Applicant が Access, 訂正するための手順書を提供すべきである. 非連邦政府の CSP は, 情報源となる第三者の連絡先を含め, 上記と同等の手順を用意すべきである.
+
+<!-- The Privacy Act requires federal CSPs that maintain a system of records to follow procedures to enable applicants to access and, if incorrect, amend their records. Any Privacy Act Statement should include a reference to the applicable SORN(s), which provide the applicant with instructions on how to make a request for access or correction. Non-federal CSPs should have comparable procedures, including contact information for any third parties if they are the source of the information. -->
 
 CSPs should make the availability of alternative methods for completing the process clear to users (e.g., in person at a customer service center, if available) in the event an applicant is unable to establish their identity and complete the registration process online.
 
