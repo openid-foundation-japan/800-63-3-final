@@ -71,11 +71,11 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
 * 提示されたすべての情報が使用できることを保証する.
   * すべてのユーザーに提示する資料 (e.g., データ収集通知や記入式フォーム) について, 適切な情報デザインプラクティスに従う.
   * 資料, 典型的には第6学年から第8学年のリテラシーレベルの平易な言葉で記述し, 技術的な専門用語は避けること. 能動態と口語スタイルで, 主なポイントを論理的に順序立て, 混乱を避けるため同義語ではなく同一単語を一貫して使用し, 可動性向上のため可能であれば箇条書きや書式付き文書などを利用すること.
-  * Consider text legibility, such as font style, size, color, and contrast with surrounding background. The highest contrast is black on white. Text legibility is important because users have different levels of visual acuity. Illegible text will contribute to user comprehension errors or user entry errors (e.g., when completing fillable forms).
-  * Use sans serif font styles for electronic materials and serif fonts for paper materials.
-  * When possible, avoid fonts that do not clearly distinguish between easily confusable characters (such as the letter "O" and the number "0"). This is especially important for enrollment codes.
-  * Use a minimum font size of 12 points, as long as the text fits the display.
-* Perform a usability evaluation for each step with representative users. Establish realistic goals and tasks, and appropriate contexts of use for the usability evaluation.
+  * フォントスタイル, サイズ, 色, 周囲の背景とのコントラストなどのテキストの読みやすさを考慮する. 最もコントラスト比が高いのは, 白地に黒である. ユーザーの視力レベルは人それぞれであるため, テキストの可読性は重要である. 判読不可能なテキストは, ユーザーの誤認や入力エラーにつながる (e.g., 記入式フォームを埋める際など).
+  * 電子的な資料にはサンセリフフォント, 紙の資料にはセリフフォントを使用する.
+  * 可能であれば, すぐ混同しがちな文字 (文字 "O" と数字 "0" など) を明確に区別できないフォントは避ける. これは特に Enrollment コードにおいて重要である.
+  * テキストがディスプレイに収まる限り, 最小フォントサイズは12ポイントとする.
+* 代表的なユーザーに対して各ステップのユーザビリティー評価を行う. ユーザビリティー評価においては, 現実的ゴールとタスクを定め, 適切な利用コンテキストを設定する.
 
 <!--
 * Ensure all information presented is usable.
