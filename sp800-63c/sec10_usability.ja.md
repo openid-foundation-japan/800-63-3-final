@@ -32,7 +32,7 @@ ASSUMPTIONS
 
 <!-- In this section, the term "users" means "claimants" or "subscribers." The terms "entity" and "entities" refer to the parties of federated systems. -->
 
-ガイドラインおよび考慮事項はユーザー視点で記述されている.
+ガイドラインおよび考慮事項はユーザー視点で記述する.
 
 <!-- Guidelines and considerations are described from the users' perspective. -->
 

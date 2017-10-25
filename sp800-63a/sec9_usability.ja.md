@@ -6,27 +6,47 @@
 
 _This section is informative._
 
-This section is intended to raise implementers' awareness of the usability considerations associated with enrollment and identity proofing (for usability considerations for typical authenticator usage and intermittent events, see [SP 800-63B, Section 10](sp800-63b.html#sec10).
+本セクションでは, Enrollment と Identity Proofing に関連するユーザビリティー上の考慮事項を実装者に周知することを目的とする (典型的な Authenticator の利用と断続的イベントに関するユーザビリティー上の考慮事項については [SP 800-63B, Section 10](sp800-63b.html#sec10) を参照のこと).
 
-[ISO/IEC 9241-11](#ISO9241-11) defines usability as the "extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use." This definition focuses on users, goals, and context of use as the necessary elements for achieving effectiveness, efficiency, and satisfaction. A holistic approach considering these key elements is necessary to achieve usability.
+<!-- This section is intended to raise implementers' awareness of the usability considerations associated with enrollment and identity proofing (for usability considerations for typical authenticator usage and intermittent events, see [SP 800-63B, Section 10](sp800-63b.html#sec10). -->
 
-The overarching goal of usability for enrollment and identity proofing is to promote a smooth, positive enrollment process for users by minimizing user burden (e.g., time and frustration) and enrollment friction (e.g., the number of steps to complete and amount of information to track). To achieve this goal, organizations have to first familiarize themselves with their users.
+[ISO/IEC 9241-11](#ISO9241-11) はユーザビリティーを "特定のユーザーが特定の利用コンテキストにおいて,  有効, 効率的かつ満足できる程度に特定の目的を達成するためにプロダクトを利用できる程度" と定義している. この定義は, 有効性, 効率性, 満足度を達成するために必要な主要因として, ユーザーと目標, 利用コンテキストに着目している. ユーザビリティーを達成するには, これらのキー要素を考慮した全体的アプローチが必要である.
 
-The enrollment and identity proofing process sets the stage for a user's interactions with a given CSP and the online services that the user will access; as negative first impressions can influence user perception of subsequent interactions, organizations need to promote a positive user experience throughout the process.
+<!-- [ISO/IEC 9241-11](#ISO9241-11) defines usability as the "extent to which a product can be used by specified users to achieve specified goals with effectiveness, efficiency and satisfaction in a specified context of use." This definition focuses on users, goals, and context of use as the necessary elements for achieving effectiveness, efficiency, and satisfaction. A holistic approach considering these key elements is necessary to achieve usability. -->
 
-Usability cannot be achieved in a piecemeal manner. Performing a usability evaluation on the enrollment and identity proofing process is critical. It is important to conduct usability evaluation with representative users, realistic goals and tasks, and appropriate contexts of use. The enrollment and identity proofing process should be designed and implemented so it is easy for users to do the right thing, hard to do the wrong thing, and easy to recover when the wrong thing happens.
+Enrollment および Identity Proofing におけるユーザビリティーの包括的ゴールは, ユーザーの負担 (e.g., かかる時間やフラストレーション) や Enrollment における摩擦 (e.g., 完了までのステップ数とトラックされる情報量) を最小化し, スムーズでポジティブな Enrollment プロセスを促進することである. このゴールを達成するため, 組織はまずユーザーに自身をよく知ってもらう必要がある.
 
-From the user's perspective, the three main steps of enrollment and identity proofing are pre-enrollment preparation, the enrollment and proofing session, and post-enrollment actions. These steps may occur in a single session or there could be significant time elapsed between each one (e.g., days or weeks).
+<!-- The overarching goal of usability for enrollment and identity proofing is to promote a smooth, positive enrollment process for users by minimizing user burden (e.g., time and frustration) and enrollment friction (e.g., the number of steps to complete and amount of information to track). To achieve this goal, organizations have to first familiarize themselves with their users. -->
 
-General and step-specific usability considerations are described in sub-sections below.
+Enrollment および Identity Proofing プロセスでは, ユーザーは CSP および自身が Access するオンラインサービスとのインタラクションを行うことになる. ファーストインプレッションがネガティブであれば, それ以降のインタラクションに対するユーザーの印象にも影響しうるため, 組織はプロセス全体を通じてポジティブなユーザーエクスペリエンスを促進する必要がある.
+
+<!-- The enrollment and identity proofing process sets the stage for a user's interactions with a given CSP and the online services that the user will access; as negative first impressions can influence user perception of subsequent interactions, organizations need to promote a positive user experience throughout the process. -->
+
+ユーザビリティーは計画性なく断片的に達成できるものではない. Enrollment および Identity Proofing プロセスに対するユーザビリティー評価を行うことは, 非常に重要である. 代表的なユーザー, 現実的なゴールとタスク, 適切な利用コンテキストのもとでユーザービリティ評価を行うことが重要である. Enrollment および Identity Proofing プロセスは, ユーザーが正しいことをするのは簡単に, 間違ったことをするのは難しく, かつ間違っても簡単に回復できるように設計し実装するべきである.
+
+<!-- Usability cannot be achieved in a piecemeal manner. Performing a usability evaluation on the enrollment and identity proofing process is critical. It is important to conduct usability evaluation with representative users, realistic goals and tasks, and appropriate contexts of use. The enrollment and identity proofing process should be designed and implemented so it is easy for users to do the right thing, hard to do the wrong thing, and easy to recover when the wrong thing happens. -->
+
+ユーザー視点では, Enrollment および Identity Proofing には, Enrollment 事前準備, Enrollment および Proofing Session, Enrollment 完了後アクション, の3つの主要なステップが存在する. これらのステップは単一の Session で起こることもあれば, それぞれがかなり時間的に離れている (e.g., 数日から数週間) こともある.
+
+<!-- From the user's perspective, the three main steps of enrollment and identity proofing are pre-enrollment preparation, the enrollment and proofing session, and post-enrollment actions. These steps may occur in a single session or there could be significant time elapsed between each one (e.g., days or weeks). -->
+
+全般的, および各ステップごとのユーザビリティー上の考慮事項については, 以下の各セクションで述べる.
+
+<!-- General and step-specific usability considerations are described in sub-sections below. -->
 
 **ASSUMPTIONS**
 
-In this section, the term "users" means "applicants" or "subscribers."
+本セクションでは, "ユーザー" は "Applicant" ないし "Subscriber" を意味する.
 
-Guidelines and considerations are described from the users' perspective.
+<!-- In this section, the term "users" means "applicants" or "subscribers." -->
 
-Accessibility differs from usability and is out of scope for this document. [Section 508](#Section508) was enacted to eliminate barriers in information technology and require federal agencies to make their electronic and information technology public content accessible to people with disabilities. Refer to Section 508 law and standards for accessibility guidance.
+ガイドラインおよび考慮事項はユーザー視点で記述する.
+
+<!-- Guidelines and considerations are described from the users' perspective. -->
+
+アクセシビリティーはユーザビリティーとは異なり, 本ドキュメントの扱うところではない. [Section 508](#Section508) は情報技術の障壁を排除するために制定され, 連邦政府機関に対して, 電子的かつ情報技術を活用し障害者が公開コンテンツにアクセス可能になるよう求めている. アクセシビリティーガイドラインについては Section 508 の法と標準を参照のこと.
+
+<!-- Accessibility differs from usability and is out of scope for this document. [Section 508](#Section508) was enacted to eliminate barriers in information technology and require federal agencies to make their electronic and information technology public content accessible to people with disabilities. Refer to Section 508 law and standards for accessibility guidance. -->
 
 ### 9.1 General User Experience Considerations Duuring Enrollment and Identity Proofing
 
