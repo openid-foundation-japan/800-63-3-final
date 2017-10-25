@@ -37,7 +37,7 @@ SAML Assertion は XML Schema にエンコードされ, 3つのタイプのス�
 
 <!-- SAML Assertions are encoded in an XML schema and can carry up to three types of statements: -->
 
-- *Authentication Statement*: Assertion Issuer, Authenticated Subscriber, 有効期間およびその他の Authentication に関する情報を含む. 例えば, ある Authentication Assertion は Subscriber "John" が 2004/06/06 10:32pm にパスワードを使って Authenticate されたことを示すであろう.
+- *Authentication Statement*: Assertion Issuer, Authenticated Subscriber, 有効期間およびその他の Authentication に関する情報を含む. 例えば, ある Authentication Assertion は Subscriber "John" が 2004/06/06 10:32pm にパスワードを使って Authenticate されたことを示すであろう.
 
 <!-- -   *Authentication statements* include information about the assertion issuer, the authenticated subscriber, validity period, and other authentication information. For example, an Authentication Assertion would state the subscriber "John" was authenticated using a password at 10:32pm on 06-06-2004. -->
 

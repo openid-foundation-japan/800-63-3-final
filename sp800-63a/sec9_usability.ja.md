@@ -50,15 +50,34 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
 
 ### 9.1 General User Experience Considerations Duuring Enrollment and Identity Proofing
 
+本サブセクションでは, Enrollment プロセスの全ステップに渡って適用可能なユーザビリティー上の考慮事項について述べる. 各ステップごとに固有のユーザビリティー上の考慮事項は Sections [9.2](#sec9_2) から [9.4](#sec9_4) を参照のこと.
 
-This sub-section provides usability considerations that are applicable across all steps of the enrollment process. Usability considerations specific to each step are detailed in Sections [9.2](#sec9_2) to [9.4](#sec9_4).
+<!-- This sub-section provides usability considerations that are applicable across all steps of the enrollment process. Usability considerations specific to each step are detailed in Sections [9.2](#sec9_2) to [9.4](#sec9_4). -->
 
-* To avoid user frustration, streamline the process required for enrollment to make each step as clear and easy as possible.
+* ユーザーのフラストレーションを回避するため, Enrollment に必要なプロセスを合理化し, 各ステップを可能な限り明確かつ容易にする.
 
-* Clearly communicate how and where to acquire technical assistance. For example, provide helpful information such as a link to online self-service feature, chat sessions, and a phone number for help desk support. Ideally, sufficient information should be provided to enable users to answer their own enrollment preparation questions without outside intervention.
+<!-- * To avoid user frustration, streamline the process required for enrollment to make each step as clear and easy as possible. -->
 
-* Clearly explain who is collecting their data and why. Also indicate the path their data will take, in particular where the data is being stored.
+* どこでどのように技術的支援を受けることができるかを明確に伝える. 例えば, お
 
+* どこでどのようにして技術的な支援を得ることができるかを明確に伝える. 例えば, ユーザーにオンラインセルフサービス機能へのリンクや, ヘルプデスクサポートのためのチャットや電話番号を提供する. 理想的には, 外部からの介入なしにユーザーが自身で Enrollment 準備の疑問を解決できるよう, 十分な情報を提供するべきである.
+
+<!-- * Clearly communicate how and where to acquire technical assistance. For example, provide helpful information such as a link to online self-service feature, chat sessions, and a phone number for help desk support. Ideally, sufficient information should be provided to enable users to answer their own enrollment preparation questions without outside intervention. -->
+
+* 誰が何の目的で彼らのデータを収集するのかを明確に説明する. また, 彼らのデータがたどるパス, 特にどこにデータが格納されるかも示す.
+
+<!-- * Clearly explain who is collecting their data and why. Also indicate the path their data will take, in particular where the data is being stored. -->
+
+* 提示されたすべての情報が使用できることを保証する.
+  * すべてのユーザーに提示する資料 (e.g., データ収集通知や記入式フォーム) について, 適切な情報デザインプラクティスに従う.
+  * 資料, 典型的には第6学年から第8学年のリテラシーレベルの平易な言葉で記述し, 技術的な専門用語は避けること. 能動態と口語スタイルで, 主なポイントを論理的に順序立て, 混乱を避けるため同義語ではなく同一単語を一貫して使用し, 可動性向上のため可能であれば箇条書きや書式付き文書などを利用すること.
+  * Consider text legibility, such as font style, size, color, and contrast with surrounding background. The highest contrast is black on white. Text legibility is important because users have different levels of visual acuity. Illegible text will contribute to user comprehension errors or user entry errors (e.g., when completing fillable forms).
+  * Use sans serif font styles for electronic materials and serif fonts for paper materials.
+  * When possible, avoid fonts that do not clearly distinguish between easily confusable characters (such as the letter "O" and the number "0"). This is especially important for enrollment codes.
+  * Use a minimum font size of 12 points, as long as the text fits the display.
+* Perform a usability evaluation for each step with representative users. Establish realistic goals and tasks, and appropriate contexts of use for the usability evaluation.
+
+<!--
 * Ensure all information presented is usable.
   * Follow good information design practice for all user-facing materials (e.g., data collection notices and fillable forms).
   * Write materials in plain language, typically at a 6th to 8th grade literacy level, and avoid technical jargon. Use active voice and conversational style, logically sequence main points, use the same word consistently rather than synonyms to avoid confusion, and use bullets, numbers, and formatting where appropriate to aid readability.
@@ -67,7 +86,7 @@ This sub-section provides usability considerations that are applicable across al
   * When possible, avoid fonts that do not clearly distinguish between easily confusable characters (such as the letter "O" and the number "0"). This is especially important for enrollment codes.
   * Use a minimum font size of 12 points, as long as the text fits the display.
 * Perform a usability evaluation for each step with representative users. Establish realistic goals and tasks, and appropriate contexts of use for the usability evaluation.
-
+-->
 
 ### <a name="sec9_2"></a>9.2 Pre-Enrollment Preparation
 
