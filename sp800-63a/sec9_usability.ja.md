@@ -152,13 +152,47 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
 
 <!-- Usability considerations specific to the enrollment session include: -->
 
+* ユーザーに Enrollment Session 開始時に Enrollment Session の手順についてリマインドすること. ユーザーが事前準備段階でそれらを覚えてくることを期待しないように. Enrollment Session が事前準備の直後に開始されない場合, Proofing および Enrollment フェーズ完了にかかる典型的時間枠を明示的にリマインドすることが特に重要である.
+  * 対面ないしは Remote でリスケジューリングできるようにすること.
+  * 可能な場合は, 利用可能かつ必要な Identity Evidence のチェックリストを提供し, Enrollment コードを含め, ユーザーが Enrollment Session を進めるのに必要な Identity Evidence を確実に持っているようにすること.
+  * どの情報が破棄され, どの情報が将来のフォローアップ Session のために保管され, どの Identity Evidence が将来の Session を完了させるために必要となるかをユーザーに通知すること. 理想的には, ユーザーは Identity Proofing Session を途中で終了させるか選択できることが望ましい.
+  * 事前の Identity Verification の経験によりユーザーはすでに何らかの期待を持っている可能性があることから, ユーザーに Enrollment Session の結果に関する想定を伝えること (e.g., 運転免許証が対面で手渡される, パスポートが郵送で送られる).
+  * ユーザーが Authenticator を Enrollment Session 成功後即時に渡されるのか否か, Authenticator を受け取るための予定を立てなければならないのか, Authenticator を郵送で受け取ればいいのか, またいつ Authenticator が受け取れると期待すれば良いかなどを明確にすること.
+
+<!--
 * Remind users at the start of the enrollment session of the enrollment session procedure, without expecting them to remember from the pre-enrollment preparation step. If the enrollment session does not immediately follow pre-enrollment preparation, it is especially important to clearly remind users of the typical timeframe to complete the proofing and enrollment phase.
   * Provide rescheduling options for in-person or in-person over remote channels.
   * Provide a checklist with the allowed and required identity evidence to ensure users have the requisite identity evidence to proceed with the enrollment session, including enrollment codes, if applicable. If users do not have the complete set of identity evidence, they must be informed regarding whether they can complete a partial identity proofing session.
   * Notify users regarding what information will be destroyed, what, if any, information will be retained for future follow-up sessions, and what identity evidence they will need to bring to complete a future session. Ideally, users can choose whether they would like to complete a partial identity proofing session.
   * Set user expectations regarding the outcome of the enrollment session as prior identity verification experiences may drive their expectations (e.g., receiving a driver's license in person, receiving a passport in the mail).
   * Clearly indicate whether users will receive an authenticator immediately at the end of a successful enrollment session, if users have to schedule an appointment to pick it up in person, or if users will receive it in the mail and when they can expect to receive it.
+-->
 
+* Enrollment Session 中には, CSP がどのデータを記録するかなど, Identity Proofing 時にユーザーに明示的に通知を行うべきいくつかの要件が課されることになる (通知要件の詳細については [Section 4.2.](#genProofReqs) と [Section 8.](#sec8) を参照). 4.2 の要件 (5) に従って, CSP がユーザーに追加の Attribute に関する同意を求めたり, Attribute を Identity Proofing, Authentication, Authorization, Attribute Assertion 以外の目的で利用することに同意を求めたりすると, そういった行為がユーザーの予期しないことであったり不快感を感じさせるかもしれない. ユーザーがそれらに対してメリットを理解できず, 余計なリスクを感じる場合, ユーザーは同意してプロセスを進めることを嫌がったりためらったりするかもしれない. 追加の要件に関して, ユーザーに明確な通知を行うこと.
+* Avoid using KBV since it is extremely problematic from a usability perspective. KBV tends to be error-prone and frustrating for users given the limitations of human memory. If KBV is used, address the following usability considerations.
+  * KBV questions should have relevance and context to users for them to be able to answer correctly.
+  * Phrase KBV questions clearly, as ambiguity can lead to user errors. For example, when asking about a user's social security balance, clearly specify which time period as social security accounts fluctuate.
+  * Prior to being asked KBV questions, users must be informed of:
+    * The number of allowed attempts and remaining attempt(s).
+    * The fact that KBV questions will change on subsequent attempts.
+    * During the KBV session, provide timeout inactivity warnings prior to timeout.
+* If an enrollment code is issued:
+    * Notify users in advance that they will receive an enrollment code, when to expect it, the length of time for which the code is valid, and how it will arrive (e.g., physical mail, SMS, landline telephone, email, or physical mailing address).
+    * When an enrollment code is delivered to a user, include instructions on how to use the code, and the length of time for which the code is valid. This is especially important given the short validity timeframes specified in [Section 4.4.1.6](#4-4-1-6).
+    * If issuing a machine-readable optical label, such as a QR Code (see [Section 4.6.](#enrollmentcode)), provide users with information on how to obtain QR code scanning capabilities (e.g., acceptable QR code applications).
+    * Inform users that they will be required to repeat the enrollment process if enrollment codes expire or are lost before use.
+    * Provide users with alternative options as not all users are able to use this level of technology. For example, users may not have the technology needed for this approach to be feasible.
+* At the end of the enrollment session,
+  * If enrollment is successful, send users confirmation regarding the successful enrollment and information on next steps (e.g., when and where to pick up their authenticator, when it will arrive in the mail).
+  * If enrollment is partially complete (due to users not having the complete set of identity evidence, users choosing to stop the process, or session timeouts), communicate to users:
+    * what information will be destroyed;
+    * what, if any, information will be retained for future follow-up sessions;
+    * how long the information will be retained; and
+    * what identity evidence they will need to bring to a future session.
+  * If enrollment is unsuccessful, provide users with clear instructions for alternative enrollment session types, for example, offering in-person proofing for users that can not complete remote proofing.
+* If users receive the authenticator during the enrollment session, provide users information on the use and maintenance of the authenticator. For example, information could include instructions for use (especially if there are different requirements for first-time use or initialization), information on authenticator expiration, how to protect the authenticator, and what to do if the authenticator is lost or stolen.
+
+<!--
 * During the enrollment session, there are several requirements to provide users with explicit notice at the time of identity proofing, such as what data will be retained on record by the CSP (see [Section 4.2.](#genProofReqs) and [Section 8.](#sec8) for detailed requirements on notices). If CSPs seek consent from a user for additional attributes or uses of their attributes for any purpose other than identity proofing, authentication, authorization or attribute assertions, per 4.2 requirement (5), make CSPs aware that requesting additional attributes or uses may be unexpected or may make users uncomfortable. If users do not perceive benefit(s) to the additional collection or uses, but perceive extra risk, they may be unwilling or hesitant to provide consent or continue the process. Provide users with explicit notice of the additional requirements.
 * Avoid using KBV since it is extremely problematic from a usability perspective. KBV tends to be error-prone and frustrating for users given the limitations of human memory. If KBV is used, address the following usability considerations.
   * KBV questions should have relevance and context to users for them to be able to answer correctly.
@@ -175,13 +209,14 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
     * Provide users with alternative options as not all users are able to use this level of technology. For example, users may not have the technology needed for this approach to be feasible.
 * At the end of the enrollment session,
   * If enrollment is successful, send users confirmation regarding the successful enrollment and information on next steps (e.g., when and where to pick up their authenticator, when it will arrive in the mail).
-  * If enrollment is partially complete (due to users not having the complete set of identity evidence, users choosing to stop the process, or session timeouts), communicate to users:  
-  	* what information will be destroyed;
-  	* what, if any, information will be retained for future follow-up sessions;
-  	* how long the information will be retained; and
-  	* what identity evidence they will need to bring to a future session.
+  * If enrollment is partially complete (due to users not having the complete set of identity evidence, users choosing to stop the process, or session timeouts), communicate to users:
+    * what information will be destroyed;
+    * what, if any, information will be retained for future follow-up sessions;
+    * how long the information will be retained; and
+    * what identity evidence they will need to bring to a future session.
   * If enrollment is unsuccessful, provide users with clear instructions for alternative enrollment session types, for example, offering in-person proofing for users that can not complete remote proofing.
 * If users receive the authenticator during the enrollment session, provide users information on the use and maintenance of the authenticator. For example, information could include instructions for use (especially if there are different requirements for first-time use or initialization), information on authenticator expiration, how to protect the authenticator, and what to do if the authenticator is lost or stolen.
+-->
 
 * For both in-person and in-person proofing performed over remote channels enrollment sessions, additional usability considerations apply:
   * At the start of the enrollment session, operators or attendants need to explain their role to users (e.g., whether operators or attendants will walk users through the enrollment session or observe silently and only interact as needed).
