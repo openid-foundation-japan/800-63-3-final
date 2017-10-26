@@ -118,10 +118,10 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
 
 <!-- * Information on the monetary amount and acceptable forms of payment, and if there is an enrollment fee. Offering a larger variety of acceptable forms of payment allows users to choose their preferred payment operation. -->
 
-* ユーザーの Enrollment Session が対面なのか Remote なのか, およびユーザーに選択肢があるかについての情報. 利用可能な Session の選択肢についてのみ情報を提供すること.
-  * ユーザーが場所に関する選択肢を持っているかや, 対面ないし Remote Session に関する必要なロジスティック情報など, 場所に関する情報. 紛失や盗難への被害が増えるため, ユーザーは Identity Evidence を特定の公共空間 (e.g., 銀行 v.s. スーパーマーケット) に持っていくのを嫌がる可能性があることに注意すること.
+* ユーザーの Enrollment Session が対面なのか Remote チャネル越しの対面なのか, およびユーザーに選択肢があるかについての情報. 利用可能な Session の選択肢についてのみ情報を提供すること.
+  * ユーザーが場所に関する選択肢を持っているかや, 対面ないし Remote チャネル越しの対面 Session に関する必要なロジスティック情報など, 場所に関する情報. 紛失や盗難への被害が増えるため, ユーザーは Identity Evidence を特定の公共空間 (e.g., 銀行 v.s. スーパーマーケット) に持っていくのを嫌がる可能性があることに注意すること.
   * Remote Session に対する技術要件 (e.g., Internet Access 要件) に関する情報.
-  * 待機時間を最小限に抑えるために, 対面や Remote の Identity Proofing Session の予約を可能にする. 予約なしでの来場が可能な場合は, 予約がない場合に待ち時間がより長くなる可能性がることをユーザーに明確に伝える.
+  * 待機時間を最小限に抑えるために, 対面や Remote チャネル越しの対面での Identity Proofing Session の予約を可能にする. 予約なしでの来場が可能な場合は, 予約がない場合に待ち時間がより長くなる可能性がることをユーザーに明確に伝える.
     * Enrollment Session の予約, リマインダーの設定と, 予約の変更方法に関する明確な手順を伝えること.
     * 予約のリマインダーを提供し, ユーザーが好みのリマインダー形式 (e.g., 郵便, ボイスメール, Email, テキストメッセージ) を指定できるようにすること. ユーザーには, 日付, 時刻, 場所, 必要な Identity Evidence に関する記述などが必要である.
 * 利用可能かつ必要な Identity Evidence および Attribute に関して, それぞれが任意か必須か, 完全な Identity Evidence 一式を提供しない場合の影響についての情報. ユーザーは具体的な Identity Evidence の組み合わせ, およびそれぞれの Identity Evidence に関する要件 (e.g., 出生証明書には捺印が必要) についての情報が必要である. 必要な Identity Evidence を取得することが潜在的に困難な可能性もあるため, これは特に重要である.
@@ -153,7 +153,7 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
 <!-- Usability considerations specific to the enrollment session include: -->
 
 * ユーザーに Enrollment Session 開始時に Enrollment Session の手順についてリマインドすること. ユーザーが事前準備段階でそれらを覚えてくることを期待しないように. Enrollment Session が事前準備の直後に開始されない場合, Proofing および Enrollment フェーズ完了にかかる典型的時間枠を明示的にリマインドすることが特に重要である.
-  * 対面ないしは Remote でリスケジューリングできるようにすること.
+  * 対面ないしは Remote チャネル越しの対面でリスケジューリングできるようにすること.
   * 可能な場合は, 利用可能かつ必要な Identity Evidence のチェックリストを提供し, Enrollment コードを含め, ユーザーが Enrollment Session を進めるのに必要な Identity Evidence を確実に持っているようにすること.
   * どの情報が破棄され, どの情報が将来のフォローアップ Session のために保管され, どの Identity Evidence が将来の Session を完了させるために必要となるかをユーザーに通知すること. 理想的には, ユーザーは Identity Proofing Session を途中で終了させるか選択できることが望ましい.
   * 事前の Identity Verification の経験によりユーザーはすでに何らかの期待を持っている可能性があることから, ユーザーに Enrollment Session の結果に関する想定を伝えること (e.g., 運転免許証が対面で手渡される, パスポートが郵送で送られる).
@@ -169,28 +169,28 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
 -->
 
 * Enrollment Session 中には, CSP がどのデータを記録するかなど, Identity Proofing 時にユーザーに明示的に通知を行うべきいくつかの要件が課されることになる (通知要件の詳細については [Section 4.2.](#genProofReqs) と [Section 8.](#sec8) を参照). 4.2 の要件 (5) に従って, CSP がユーザーに追加の Attribute に関する同意を求めたり, Attribute を Identity Proofing, Authentication, Authorization, Attribute Assertion 以外の目的で利用することに同意を求めたりすると, そういった行為がユーザーの予期しないことであったり不快感を感じさせるかもしれない. ユーザーがそれらに対してメリットを理解できず, 余計なリスクを感じる場合, ユーザーは同意してプロセスを進めることを嫌がったりためらったりするかもしれない. 追加の要件に関して, ユーザーに明確な通知を行うこと.
-* Avoid using KBV since it is extremely problematic from a usability perspective. KBV tends to be error-prone and frustrating for users given the limitations of human memory. If KBV is used, address the following usability considerations.
-  * KBV questions should have relevance and context to users for them to be able to answer correctly.
-  * Phrase KBV questions clearly, as ambiguity can lead to user errors. For example, when asking about a user's social security balance, clearly specify which time period as social security accounts fluctuate.
-  * Prior to being asked KBV questions, users must be informed of:
-    * The number of allowed attempts and remaining attempt(s).
-    * The fact that KBV questions will change on subsequent attempts.
-    * During the KBV session, provide timeout inactivity warnings prior to timeout.
-* If an enrollment code is issued:
-    * Notify users in advance that they will receive an enrollment code, when to expect it, the length of time for which the code is valid, and how it will arrive (e.g., physical mail, SMS, landline telephone, email, or physical mailing address).
-    * When an enrollment code is delivered to a user, include instructions on how to use the code, and the length of time for which the code is valid. This is especially important given the short validity timeframes specified in [Section 4.4.1.6](#4-4-1-6).
-    * If issuing a machine-readable optical label, such as a QR Code (see [Section 4.6.](#enrollmentcode)), provide users with information on how to obtain QR code scanning capabilities (e.g., acceptable QR code applications).
-    * Inform users that they will be required to repeat the enrollment process if enrollment codes expire or are lost before use.
-    * Provide users with alternative options as not all users are able to use this level of technology. For example, users may not have the technology needed for this approach to be feasible.
-* At the end of the enrollment session,
-  * If enrollment is successful, send users confirmation regarding the successful enrollment and information on next steps (e.g., when and where to pick up their authenticator, when it will arrive in the mail).
-  * If enrollment is partially complete (due to users not having the complete set of identity evidence, users choosing to stop the process, or session timeouts), communicate to users:
-    * what information will be destroyed;
-    * what, if any, information will be retained for future follow-up sessions;
-    * how long the information will be retained; and
-    * what identity evidence they will need to bring to a future session.
-  * If enrollment is unsuccessful, provide users with clear instructions for alternative enrollment session types, for example, offering in-person proofing for users that can not complete remote proofing.
-* If users receive the authenticator during the enrollment session, provide users information on the use and maintenance of the authenticator. For example, information could include instructions for use (especially if there are different requirements for first-time use or initialization), information on authenticator expiration, how to protect the authenticator, and what to do if the authenticator is lost or stolen.
+* ユーザビリティー視点では KBV は非常に問題が多いため, KBV の利用は避けること. 人間の記憶力には限界があるため, KBV はエラーを引き起こしたりユーザーにフラストレーションを抱かせがちである. KBV を利用する場合は, 以下のユーザビリティー上の考慮事項に従うこと.
+  * ユーザーが正しく回答できるよう, KBV の質問には関連性とコンテキストを持たせるべきである.
+  * KBV の質問は明確な言い回しにすること. あいまいな表現はユーザーのエラーにつながる可能性がある. 例えば, ユーザーに社会保障残高について質問する場合, 社会保障講座の変動を考慮し期間を明確に指定すること.
+  * KBV の質問をするまえに, ユーザーに以下を知らせること.
+    * 許容される試行回数と残りの試行回数.
+    * KBV の質問が, 次の試行において変化するであろうこと.
+    * KBV Session 中, タイムアウト前にインアクティブ状態でタイムアウトが近いことを警告すること.
+* Enrollment コードが発行される場合.
+    * 事前に Enrollment コードが送られることを, その到着予想時期, コードの有効期間, 送付方法 (e.g., 郵送, SMS, 固定電話, Email) とともにユーザーに通知すること.
+    * Enrollment コードをユーザーに送付する際は, その利用手順と有効期限を添えること. 特に [Section 4.4.1.6](#4-4-1-6) にあるように有効期間が短い場合, この情報は特に重要である.
+    * QR コードなどの機械可読光学ラベルを発行する場合 ([Section 4.6.](#enrollmentcode) 参照), どうすれば QR コードをスキャンできるかについての情報も添えること (e.g., 利用可能な QR コードアプリケーション).
+    * Enrollment コードが期限切れしたり使用前に紛失したりすると, Enrollment プロセスを再び繰り返す必要があることをユーザーに知らせること.
+    * 全てのユーザーがこのレベルの技術を使いこなせるわけではないため, 代替オプションをユーザーに提供すること. 例えば, ユーザーはこのアプローチに必要な技術を持ち合わせていないかもしれない.
+* Enrollment Session 終了時.
+  * Enrollment が成功した場合は, ユーザーに成功した Enrollment に関する確認と次のステップに関する情報を送ること (e.g., いつどこで Authenticator を受け取るべきかや, いつ Authenticator が郵送されるかなど).
+  * Enrollment が途中で終了 (ユーザーが完全な Identity Evidence セットを持っていなかった, ユーザーがプロセス中断を選択した, Session がタイムアウトしたなど) した場合は, ユーザーに以下を伝えること.
+    * どの情報が破棄されるか.
+    * もしあれば, どの情報が将来のフォローアップ Session のために保持されるか.
+    * どれくらいの期間その情報が保持されるか.
+    * 将来の Session ではどの Identity Evidence を持ってくる必要があるか.
+  * Enrollment が失敗した場合は, ユーザーに代替の Enrollment Session タイプについての明確な説明を提供すること. 例えば, Remote Proofing を完了できないユーザーに対面の Proofing を提供するなど.
+* ユーザーが Enrollment Session 中に Authenticator を受け取る場合は, ユーザーに Authenticator の利用と保管に関する情報を提供すること. 例えば, 利用手順 (特に初回利用時や初期化時に特別な要件がある場合), Authenticator の有効期限, Authenticator の保護方法, Authenticator を紛失したり盗まれた場合の対応方法など.
 
 <!--
 * During the enrollment session, there are several requirements to provide users with explicit notice at the time of identity proofing, such as what data will be retained on record by the CSP (see [Section 4.2.](#genProofReqs) and [Section 8.](#sec8) for detailed requirements on notices). If CSPs seek consent from a user for additional attributes or uses of their attributes for any purpose other than identity proofing, authentication, authorization or attribute assertions, per 4.2 requirement (5), make CSPs aware that requesting additional attributes or uses may be unexpected or may make users uncomfortable. If users do not perceive benefit(s) to the additional collection or uses, but perceive extra risk, they may be unwilling or hesitant to provide consent or continue the process. Provide users with explicit notice of the additional requirements.
@@ -218,10 +218,17 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
 * If users receive the authenticator during the enrollment session, provide users information on the use and maintenance of the authenticator. For example, information could include instructions for use (especially if there are different requirements for first-time use or initialization), information on authenticator expiration, how to protect the authenticator, and what to do if the authenticator is lost or stolen.
 -->
 
+* 対面の Proofing, および Remote の Enrollment Session 越しに行われる対面の Proofing のどちらにおいても, 追加のユーザビリティー上の考慮事項が適用される.
+  * Enrollment Session 開始時に, オペレーターや係員は自身の役割をユーザーに説明すること (e.g., オペレーターないし係員は,  Enrollment Session をとおしてユーザーに付き添うのか, 静かに観察し必要な時だけインタラクションを行うのか).
+  * Enrollment Session 開始時に, ユーザーに Session 中に離席してはならないこと, Session をとおして彼らのアクションが可視でなければならないことを伝えること.
+  * Enrollment Session 中に Biometrics が収集される場合は, その収集プロセスを完了させる手順についてユーザーに明確に説明すること. この情報はプロセス直前に提供されることが最も望ましい. その場にいるオペレーターからの修正フィードバックが可能な口頭での説明が, 最も効果的である (e.g., Biometrics センサーがどこにあるか, いつ開始されるか, どのようにセンサーとインタラクションすべきか, いつ Biometrics の収集が完了するか).
+
+<!--
 * For both in-person and in-person proofing performed over remote channels enrollment sessions, additional usability considerations apply:
   * At the start of the enrollment session, operators or attendants need to explain their role to users (e.g., whether operators or attendants will walk users through the enrollment session or observe silently and only interact as needed).
   * At the start of the enrollment session, inform users that they must not depart during the session, and that their actions must be visible throughout the session.
   * When biometrics are collected during the enrollment session, provide users clear instructions on how to complete the collection process. The instructions are best given just prior to the process. Verbal instructions with corrective feedback from a live operator are the most effective (e.g., instruct users where the biometric sensor is, when to start, how to interact with the sensor, and when the biometric collection is completed).
+-->
 
 * Since remote identity proofing is conducted online, follow general web usability principles. For example:
   * Design the user interface to walk users through the enrollment process.
