@@ -252,12 +252,22 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
 
 ###  <a name="sec9_4"></a>9.4 Post-Enrollment
 
-Post-enrollment refers to the step immediately after enrollment but prior to typical usage of an authenticator (for usability considerations for typical authenticator usage and intermittent events, see [SP800-63B](sp800-63b.html), Section 10.1-10.3. As described above, users have already been informed at the end of their enrollment session regarding the expected delivery (or pick-up) mechanism by which they will receive their authenticator.
+Post-Enrollment とは, Enrollment 直後かつ Authenticator 通常利用前のステップを指す (Authenticator 通常利用と断続的イベントに関するユーザビリティー上の考慮事項については, [SP800-63B](sp800-63b.html) Section 10.1-10.3 を参照). 上述のように, ユーザーは Enrollment Session 終了時に Authenticator の配送 (もしくは受け取り) 手段に関して知らされている.
 
-Usability considerations for post-enrollment include:
+<!-- Post-enrollment refers to the step immediately after enrollment but prior to typical usage of an authenticator (for usability considerations for typical authenticator usage and intermittent events, see [SP800-63B](sp800-63b.html), Section 10.1-10.3. As described above, users have already been informed at the end of their enrollment session regarding the expected delivery (or pick-up) mechanism by which they will receive their authenticator. -->
 
-* Minimize the amount of time that users wait for their authenticator to arrive. Shorter wait times will allow users to access information systems and services more quickly.
+Post-Enrollment に関するユーザビリティー上の考慮事項には以下のようなものがある.
 
-* Inform users whether they need to go to a physical location to pick up their authenticators. The previously-identified usability considerations for appointments and reminders still apply.
+<!-- Usability considerations for post-enrollment include: -->
 
-* Along with the authenticator, give users information relevant to the use and maintenance of the authenticator; this may include instructions for use, especially if there are different requirements for first-time use or initialization, information on authenticator expiration, and what to do if the authenticator is lost or stolen.
+* ユーザーの Authenticator 到着までの待ち時間を最小化すること. 待ち時間が短いほど, ユーザーはすぐに情報システムとサービスに Access できる.
+
+<!-- * Minimize the amount of time that users wait for their authenticator to arrive. Shorter wait times will allow users to access information systems and services more quickly. -->
+
+* Authenticator を受け取るために物理的にある場所に行く必要があるかどうかを知らせること. 既出の予約とリマインダーに関するユーザビリティー上の考慮事項はここでも適用される.
+
+<!-- * Inform users whether they need to go to a physical location to pick up their authenticators. The previously-identified usability considerations for appointments and reminders still apply. -->
+
+* Authenticator と共に, Authenticator の利用と管理に関する情報も提供すること. これには, 利用手順 (特に初回利用時や初期化時に特別な要件がある場合), Authenticator の有効期限, Authenticator の保護方法, Authenticator を紛失したり盗まれた場合の対応方法などが含まれる.
+
+<!-- * Along with the authenticator, give users information relevant to the use and maintenance of the authenticator; this may include instructions for use, especially if there are different requirements for first-time use or initialization, information on authenticator expiration, and what to do if the authenticator is lost or stolen. -->
