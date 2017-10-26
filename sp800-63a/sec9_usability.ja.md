@@ -118,6 +118,20 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
 
 <!-- * Information on the monetary amount and acceptable forms of payment, and if there is an enrollment fee. Offering a larger variety of acceptable forms of payment allows users to choose their preferred payment operation. -->
 
+* ユーザーの Enrollment Session が対面なのか Remote なのか, およびユーザーに選択肢があるかについての情報. 利用可能な Session の選択肢についてのみ情報を提供すること.
+  * ユーザーが場所に関する選択肢を持っているかや, 対面ないし Remote Session に関する必要なロジスティック情報など, 場所に関する情報. 紛失や盗難への被害が増えるため, ユーザーは Identity Evidence を特定の公共空間 (e.g., 銀行 v.s. スーパーマーケット) に持っていくのを嫌がる可能性があることに注意すること.
+  * Remote Session に対する技術要件 (e.g., Internet Access 要件) に関する情報.
+  * 待機時間を最小限に抑えるために, 対面や Remote の Identity Proofing Session の予約を可能にする. 予約なしでの来場が可能な場合は, 予約がない場合に待ち時間がより長くなる可能性がることをユーザーに明確に伝える.
+    * Enrollment Session の予約, リマインダーの設定と, 予約の変更方法に関する明確な手順を伝えること.
+    * 予約のリマインダーを提供し, ユーザーが好みのリマインダー形式 (e.g., 郵便, ボイスメール, Email, テキストメッセージ) を指定できるようにすること. ユーザーには, 日付, 時刻, 場所, 必要な Identity Evidence に関する記述などが必要である.
+* 利用可能かつ必要な Identity Evidence および Attribute に関して, それぞれが任意か必須か, 完全な Identity Evidence 一式を提供しない場合の影響についての情報. ユーザーは具体的な Identity Evidence の組み合わせ, およびそれぞれの Identity Evidence に関する要件 (e.g., 出生証明書には捺印が必要) についての情報が必要である. 必要な Identity Evidence を取得することが潜在的に困難な可能性もあるため, これは特に重要である.
+  * 可能であれば, 必要な Identity Evidence の取得を容易にするツールを実装する.
+  * ユーザーに, 未成年や独特なニーズを持つ人々に対する特別な要件を知らせる. 例えば, 公証人, 法定後見人, その他の本人の代理権を法的に証明できる個人などの Trusted Referee を利用する場合に必要な情報 (詳細は [Section 5.3.4](#trustref) を参照).
+  * フォームが必要であれば
+     * Enrollment Session 開始前および Session 中に記入式フォームを提示すること. ユーザーにプリンターへの Access を要求しないこと.
+     * ユーザーがフォームに入力しなければならない情報量を最小化すること. フォームが長くなると, ユーザーは簡単にフラストレーションを感じ, エラーを発生させがちである. 可能であれば事前にフォームを埋めておくこと.
+
+<!--
 * Information on whether the user's enrollment session will be in-person or in-person over remote channels, and whether a user can choose. Only provide information relevant to the allowable session option(s).
   * Information on the location(s), whether a user can choose their preferred location, and necessary logistical information for in-person or in-person over remote channels session. Note that users may be reluctant to bring identity evidence to certain public places (bank versus supermarket), as it increases exposure to loss or theft.
   * Information on the technical requirements (e.g., requirements for internet access) for remote sessions.
@@ -130,10 +144,13 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
   * If forms are required:
      * Provide fillable forms before and at the enrollment session. Do not require users to have access to a printer.
      * Minimize the amount of information users must enter on a form, as users are easily frustrated and more error-prone with longer forms. Where possible, pre-populate forms.
+-->
 
 ### 9.3 Enrollment and Proofing Session
 
-Usability considerations specific to the enrollment session include:
+Enrollment Session に特化したユーザビリティー上の考慮事項としては, 以下のような項目が挙げられる.
+
+<!-- Usability considerations specific to the enrollment session include: -->
 
 * Remind users at the start of the enrollment session of the enrollment session procedure, without expecting them to remember from the pre-enrollment preparation step. If the enrollment session does not immediately follow pre-enrollment preparation, it is especially important to clearly remind users of the typical timeframe to complete the proofing and enrollment phase.
   * Provide rescheduling options for in-person or in-person over remote channels.
