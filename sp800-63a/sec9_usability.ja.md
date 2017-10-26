@@ -182,7 +182,7 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
     * QR コードなどの機械可読光学ラベルを発行する場合 ([Section 4.6.](#enrollmentcode) 参照), どうすれば QR コードをスキャンできるかについての情報も添えること (e.g., 利用可能な QR コードアプリケーション).
     * Enrollment コードが期限切れしたり使用前に紛失したりすると, Enrollment プロセスを再び繰り返す必要があることをユーザーに知らせること.
     * 全てのユーザーがこのレベルの技術を使いこなせるわけではないため, 代替オプションをユーザーに提供すること. 例えば, ユーザーはこのアプローチに必要な技術を持ち合わせていないかもしれない.
-* Enrollment Session 終了時.
+* Enrollment Session 終了時には以下のようにすること.
   * Enrollment が成功した場合は, ユーザーに成功した Enrollment に関する確認と次のステップに関する情報を送ること (e.g., いつどこで Authenticator を受け取るべきかや, いつ Authenticator が郵送されるかなど).
   * Enrollment が途中で終了 (ユーザーが完全な Identity Evidence セットを持っていなかった, ユーザーがプロセス中断を選択した, Session がタイムアウトしたなど) した場合は, ユーザーに以下を伝えること.
     * どの情報が破棄されるか.
@@ -230,6 +230,16 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
   * When biometrics are collected during the enrollment session, provide users clear instructions on how to complete the collection process. The instructions are best given just prior to the process. Verbal instructions with corrective feedback from a live operator are the most effective (e.g., instruct users where the biometric sensor is, when to start, how to interact with the sensor, and when the biometric collection is completed).
 -->
 
+* Remote Identity Proofing はオンラインで行われるため, 一般的な Web 上のユーザビリティー原則に従うこと. 以下に例を挙げる.
+  * ユーザーが Enrollment プロセスを通過できるようにユーザーインターフェースを設計すること.
+  * ユーザーが記憶しなければならないことを減らすこと.
+  * インターフェースを一貫したものにすること.
+  * 順序づけられたステップには明確にラベルをつけること.
+  * 開始ポイントを明確にすること.
+  * 多様なプラットフォームやデバイスサイズをサポートするように設計すること.
+  * ナビゲーションを, 一貫性があり発見しやすく辿りやすいものにすること.
+
+<!--
 * Since remote identity proofing is conducted online, follow general web usability principles. For example:
   * Design the user interface to walk users through the enrollment process.
   * Reduce users' memory load.
@@ -238,9 +248,10 @@ Enrollment Session に特化したユーザビリティー上の考慮事項と�
   * Make the starting point clear.
   * Design to support multiple platforms and device sizes.
   * Make the navigation consistent, easy to find, and easy to follow.
-
+-->
 
 ###  <a name="sec9_4"></a>9.4 Post-Enrollment
+
 Post-enrollment refers to the step immediately after enrollment but prior to typical usage of an authenticator (for usability considerations for typical authenticator usage and intermittent events, see [SP800-63B](sp800-63b.html), Section 10.1-10.3. As described above, users have already been informed at the end of their enrollment session regarding the expected delivery (or pick-up) mechanism by which they will receive their authenticator.
 
 Usability considerations for post-enrollment include:
