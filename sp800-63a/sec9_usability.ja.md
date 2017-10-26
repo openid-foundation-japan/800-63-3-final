@@ -90,18 +90,33 @@ Enrollment および Identity Proofing プロセスでは, ユーザーは CSP �
 
 ### <a name="sec9_2"></a>9.2 Pre-Enrollment Preparation
 
-This section describes an effective approach to facilitate sufficient pre-enrollment preparation so users can avoid challenging, frustrating enrollment sessions. Ensuring users are as prepared as possible for their enrollment sessions is critical to the overall success and usability of the enrollment and identity proofing process.
+本セクションでは, 十分な Enrollment の事前準備を促進するための効果的なアプローチについて述べる. これによりユーザーは困難でフラストレーションが溜まる Enrollment Session を避けることができる. ユーザーが Enrollment Session にできるだけ準備万端であれるよう保証することは, Enrollment および Identity Proofing の全体的な成功とユーザビリティーにとって非常に重要である.
 
-Such preparation is only possible if users receive the necessary information (e.g., required documentation) in a usable format in an appropriate timeframe. This includes making users aware of exactly what identity evidence will be required. Users do not need to know anything about IALs or whether the identity evidence required is scored as "fair," "strong," or "superior," whereas organizations need to know what IAL is required for access to a particular system.
+<!-- This section describes an effective approach to facilitate sufficient pre-enrollment preparation so users can avoid challenging, frustrating enrollment sessions. Ensuring users are as prepared as possible for their enrollment sessions is critical to the overall success and usability of the enrollment and identity proofing process. -->
 
-To ensure users are equipped to make informed decisions about whether to proceed with the enrollment process, and what will be needed for their session, provide users:
+そのような準備は, ユーザーが必要な情報 (e.g., 作成が必要な書類について) を適切な時間枠内に利用可能な形式で受け取れる場合にのみ可能となる. これにはどの Identity Evidence が必要となるかを正確にユーザーに伝えることも含まれる. ユーザーは IAL や当該 Identity Evidence が "fair", "strong", "superior" のどれに当てはまるかなどについては一切知る必要はない. 一方で組織は特定のシステムに Access するためにどの IAL が必要かを知っている必要がある.
 
+<!-- Such preparation is only possible if users receive the necessary information (e.g., required documentation) in a usable format in an appropriate timeframe. This includes making users aware of exactly what identity evidence will be required. Users do not need to know anything about IALs or whether the identity evidence required is scored as "fair," "strong," or "superior," whereas organizations need to know what IAL is required for access to a particular system. -->
+
+ユーザーが Enrollment プロセスを進めるかどうか, およびその Session に何が必要になるかについて, 情報に基づいた判断を下せるようにするには, ユーザーに以下の項目を提供すること.
+
+<!-- To ensure users are equipped to make informed decisions about whether to proceed with the enrollment process, and what will be needed for their session, provide users: -->
+
+* 各ステップで何が期待されるかなど, プロセス全体についての情報.
+ * ユーザーがそれに応じて計画を立てられるよう, 予想される時間枠についての明確な説明.
+
+<!--
 * Information about the entire process, such as what to expect in each step.   
   * Clear explanations of the expected timeframes to allow users to plan accordingly.
+-->
 
-* Explanation of the need for — and benefits of — identity proofing to allow users to understand the value proposition.
+* ユーザーに価値命題を理解させるための, Identity Proofing の必要性とメリットに関する説明.
 
-* Information on the monetary amount and acceptable forms of payment, and if there is an enrollment fee. Offering a larger variety of acceptable forms of payment allows users to choose their preferred payment operation.
+<!-- * Explanation of the need for — and benefits of — identity proofing to allow users to understand the value proposition. -->
+
+* Enrollment 料金が発生する場合は, その額と受け入れ可能な支払い方法についての情報. より多種多様な支払い方法を許容することで, ユーザーは好みの支払い方法を選ぶことができる.
+
+<!-- * Information on the monetary amount and acceptable forms of payment, and if there is an enrollment fee. Offering a larger variety of acceptable forms of payment allows users to choose their preferred payment operation. -->
 
 * Information on whether the user's enrollment session will be in-person or in-person over remote channels, and whether a user can choose. Only provide information relevant to the allowable session option(s).
   * Information on the location(s), whether a user can choose their preferred location, and necessary logistical information for in-person or in-person over remote channels session. Note that users may be reluctant to bring identity evidence to certain public places (bank versus supermarket), as it increases exposure to loss or theft.
