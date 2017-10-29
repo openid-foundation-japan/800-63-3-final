@@ -701,8 +701,10 @@ Multi-factor cryptographic device authenticators use tamper-resistant hardware t
 -->
 
 秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．チャレンジノンスは少なくとも64ビット長であるものとする(SHALL)．Approveされた暗号理論が利用されるものとする(SHALL)．
+
 <!--
 The secret key and its algorithm SHALL provide at least the minimum security length specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The challenge nonce SHALL be at least 64 bits in length. Approved cryptography SHALL be used.
+-->
 
 Authenticatorを用いた各Authentication操作には追加の要素の入力を必要とすべきである(SOULD)．追加要素の入力は，デバイスへの直接入力かハードウェア接続(例：USB，スマートカード)を介して実施されてもよい(MAY)．
 <!--
