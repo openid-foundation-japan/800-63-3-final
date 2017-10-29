@@ -23,7 +23,7 @@ Detailed normative requirements for authenticators and verifiers at each AAL are
 See [SP 800-63](sp800-63-3.html) Section 6.2 for details on how to choose the most appropriate AAL.
 -->
 
-FIPS 140 要件は，[FIPS 140-2](#FIPS140-2)またはより新しい版によって充足される．
+FIPS 140 要件は，[FIPS 140-2](#FIPS140-2)またはより新しい版により満たされる．
 <!--
 FIPS 140 requirements are satisfied by [FIPS 140-2](#FIPS140-2) or newer revisions.
 -->
@@ -83,7 +83,7 @@ AAL1 authentication SHALL occur by the use of any of the following authenticator
 #### <a name="aal1req"></a>4.1.2 Authenticator and Verifier Requirements
 -->
 
-AAL 1で用いられる暗号Authenticatorは，Approved Cryptographyを利用するものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作している利用者のエンドポイントの改竄検出を試みてもよく(MAY)，そのような改竄が検出された場合には操作を完了すべきでではない(SHOULD NOT)．
+AAL 1で用いられる暗号Authenticatorは，Approved Cryptographyを利用するものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作している利用者のエンドポイントのセキュリティ侵害検出を試みてもよく(MAY)，そのようなセキュリティ侵害が検出された場合には操作を完了すべきでではない(SHOULD NOT)．
 
 <!--
 Cryptographic authenticators used at AAL1 SHALL use approved cryptography. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise (e.g., by malware) of the user endpoint in which they are running and SHOULD NOT complete the operation when such a compromise is detected.
@@ -191,7 +191,7 @@ When a combination of two single-factor authenticators is used, it SHALL include
 * Single-Factor Cryptographic Device ([Section 5.1.7](#sfcd))
 -->
 
-> 注記: [Section 5.2.3](#biometric_use)でのバイオメトリックAuthenticationの要件を満たすために，デバイスはバイオメトリックに加えて，デバイスをAuthenticateされる必要がある &mdash; バイオメトリックは1つの要素としてみなせるが，それ自体をAuthenticatorとしてみなしてはいない．従って，バイオメトリックを用いたAuthenticationを実施する時，2つのAuthenticatorを使う必要はない．なぜならば，関連付けられたデバイスは"something you have"として機能し，バイオメトリックは"something you are"として機能するからである．
+> 注記: [Section 5.2.3](#biometric_use)でのバイオメトリックAuthenticationの要件を満たすために，デバイスはバイオメトリックに加えて，デバイスをAuthenticateされる必要がある &mdash バイオメトリックは1つの要素としてみなせるが，それ自体をAuthenticatorとしてみなしてはいない．従って，バイオメトリックを用いたAuthenticationを実施する時，2つのAuthenticatorを使う必要はない．なぜならば，関連付けられたデバイスは"something you have"として機能し，バイオメトリックは"something you are"として機能するからである．
 
 <!--
 > Note: When biometric authentication meets the requirements in [Section 5.2.3](#biometric_use), the device has to be authenticated in addition to the biometric &mdash; a biometric is recognized as a factor, but not recognized as an authenticator by itself. Therefore, when conducting authentication with a biometric, it is unnecessary to use two authenticators because the associated device serves as "something you have," while the biometric serves as "something you are."
@@ -203,7 +203,7 @@ When a combination of two single-factor authenticators is used, it SHALL include
 #### <a name="aal2req"></a>4.2.2 Authenticator and Verifier Requirements
 -->
 
-AAL 2で用いられる暗号Authenticatorは，Approved Cryptographyを使うものとする(SHALL)．政府機関によって調達されたAuthenticatorは，[FIPS 140](#FIPS140-2) Level 1の要件に適合していることを確認されるものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作しているプラットフォームの改竄検知を試みてもよく(MAY)，そのような改竄が検出されると操作を拒否すべき(SHOULD)である．AAL2では少なくとも1つのAuthenticatorは[Section 5.2.8](#replay)に記載されているように，リプレイ耐性があるものとする(SHALL)．AAL2のAuthenticatorは[Section 5.2.9](#intent)に記載されているように，少なくとも1つのAuthenticatorからAuthenticationの意図を明示するべきである(SHOULD)．
+AAL 2で用いられる暗号Authenticatorは，Approved Cryptographyを使うものとする(SHALL)．政府機関によって調達されたAuthenticatorは，[FIPS 140](#FIPS140-2) Level 1の要件に適合していることを確認されるものとする(SHALL)．オペレーティング・システム環境で動作するソフトウェアベースのAuthenticatorは，該当する場合(例，マルウェアによって)それ自身が動作しているプラットフォームのセキュリティ侵害検知を試みてもよく(MAY)，そのようなセキュリティ侵害が検出されると操作を拒否すべき(SHOULD)である．AAL2では少なくとも1つのAuthenticatorは[Section 5.2.8](#replay)に記載されているように，リプレイ耐性があるものとする(SHALL)．AAL2のAuthenticatorは[Section 5.2.9](#intent)に記載されているように，少なくとも1つのAuthenticatorからAuthenticationの意図を明示するべきである(SHOULD)．
 
 <!--
 Cryptographic authenticators used at AAL2 SHALL use approved cryptography. Authenticators procured by government agencies SHALL be validated to meet the requirements of [FIPS 140](#FIPS140-2) Level 1. Software-based authenticators that operate within the context of an operating system MAY, where applicable, attempt to detect compromise of the platform in which they are running (e.g., by malware) and SHOULD NOT complete the operation when such a compromise is detected. At least one authenticator used at AAL2 SHALL be replay resistant as described in [Section 5.2.8](#replay). Authentication at AAL2 SHOULD demonstrate authentication intent from at least one authenticator as discussed in [Section 5.2.9](#intent).
@@ -332,7 +332,7 @@ AAL3におけるVerifierは，[FIPS 140](#FIPS140-2) Level 1またはそれ以�
 Verifiers at AAL3 SHALL be validated at [FIPS 140](#FIPS140-2) Level 1 or higher.
 -->
 
-AAL3におけるVerifierは，[Section 5.2.7](#verifier-secrets)に記載のあるように，少なくとも１つのAuthenticator要素においてVerifier改竄耐性があるものとする(SHALL)．
+AAL3におけるVerifierは，[Section 5.2.7](#verifier-secrets)に記載のあるように，少なくとも１つのAuthenticator要素においてVerifier危殆化耐性があるものとする(SHALL)．
 
 <!--
 Verifiers at AAL3 SHALL be verifier compromise resistant as described in [Section 5.2.7](#verifier-secrets) with respect to at least one authentication factor.
@@ -450,7 +450,7 @@ Regardless of whether the CSP is an agency or private sector provider, the follo
 **セキュリティ統制**|[SP 800-53](#SP800-53) 低度のベースライン(または等価)|[SP 800-53](#SP800-53) 中度のベースライン(または等価)|[SP 800-53](#SP800-53) 高度のベースライン(または等価)
 **中間者攻撃耐性** | 必須 | 必須 | 必須 |
 **Verifierなりすまし耐性** | 不要 | 不要 | 必須 |
-**Verifier改竄耐性** | 不要 | 不要 | 必須 |
+**Verifier危殆化耐性** | 不要 | 不要 | 必須 |
 **リプレイ耐性** | 不要 | 必須 | 必須 |
 **Authentication意図** | 不要 | 推奨 | 必須 |
 **レコード保持ポリシ** | 必須 | 必須 | 必須 |
