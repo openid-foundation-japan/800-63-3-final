@@ -38,18 +38,18 @@ This section provides the detailed requirements specific to each type of authent
   </table>
   </div>
 
-#### 5.1.1.1 記憶シークレットAuthenticators
+#### 5.1.1.1 記憶シークレットAuthenticator
 <!--
 #### 5.1.1.1 Memorized Secret Authenticators
 -->
 
 記憶シークレットは，Subscriberにより選択されば場合少なくとも8文字とするものとする(SHALL)．記憶シークレットがCSPまたはVerifierによってランダムに選択されたものである場合は，少なくとも6文字であるものとし(SHALL)，全て数字でもよい(MAY)．
-CSPやVerifierが指定された記憶シークレットがセキュリティ侵害を受けたブラックリストに出現するかどうかに基づいて拒否した場合，Subscriberは別の記憶シークレット値を選ぶよう要求されるものとする(SHALL)．記憶シークレットの複雑さに関する他の要件を課すべきではない(SHOULD)．本件についての論拠は[Appendix A](#appA)の _Strength of Memorized Secrets_ に記載されている．
+CSPやVerifierが，危殆化した値のブラックリストに出現状況に基づいて指定された記憶シークレットを拒否した場合，Subscriberは別の記憶シークレット値を選ぶよう要求されるものとする(SHALL)．記憶シークレットの複雑さに関する他の要件を課すべきではない(SHOULD)．本件についての論拠は[Appendix A](#appA)の _Strength of Memorized Secrets_ に記載されている．
 <!--
 Memorized secrets SHALL be at least 8 characters in length if chosen by the subscriber. Memorized secrets chosen randomly by the CSP or verifier SHALL be at least 6 characters in length and MAY be entirely numeric. If the CSP or verifier disallows a chosen memorized secret based on its appearance on a blacklist of compromised values, the subscriber SHALL be required to choose a different memorized secret. No other complexity requirements for memorized secrets SHOULD be imposed. A rationale for this is presented in [Appendix A](#appA) _Strength of Memorized Secrets_.
 -->
 
-#### <a name="memsecretver"></a> 5.1.1.2 記憶シークレットVerifiers
+#### <a name="memsecretver"></a> 5.1.1.2 記憶シークレットVerifier
 <!--
 #### <a name="memsecretver"></a> 5.1.1.2 Memorized Secret Verifiers
 -->
@@ -79,7 +79,7 @@ Memorized secrets that are randomly chosen by the CSP (e.g., at enrollment) or b
 Memorized secret verifiers SHALL NOT permit the subscriber to store a "hint" that is accessible to an unauthenticated claimant. Verifiers SHALL NOT prompt subscribers to use specific types of information (e.g., "What was the name of your first pet?") when choosing memorized secrets.
 -->
 
-記憶シークレットの設定，変更の要求を処理する際，Verifierは候補となっているシークレットの値を，一般的に利用されている値，予想されうる値，セキュリティ侵害を受けた値として知られている値を含むリストに対し，比較するものとする(SHALL)．例えば，以下のリストが含んでいるものでよい(MAY)が，限定するものではない:
+記憶シークレットの設定，変更の要求を処理する際，Verifierは候補となっているシークレットの値を，一般的に利用されている値，予想されうる値，危殆化した値として知られている値を含むリストに対し，比較するものとする(SHALL)．例えば，以下のリストが含んでいるものでよい(MAY)が，限定するものではない:
 
 * 過去に漏洩した語彙集から得られるパスワード
 * 辞書に含まれる言葉
@@ -113,13 +113,13 @@ Verifierは，[Section 5.2.2](#throttle)に記載されているように，Subs
 Verifiers SHALL implement a rate-limiting mechanism that effectively limits the number of failed authentication attempts that can be made on the subscriber's account as described in [Section 5.2.2](#throttle).
 -->
 
-Verifierは他の構成ルール(例えば，異なる文字種の組み合わせ，一定の文字の繰り返し)を記憶シークレットに課すべきではない(SHOULD NOT)．Verifierは，記憶シークレットを任意で(例えば，定期的に)変更するよう要求すべきではない(SHOULD NOT)．しかしながらAuthenticatorが侵害されている証拠がある場合は，変更を強制するものとする(SHALL)．
+Verifierは他の構成ルール(例えば，異なる文字種の組み合わせ，一定の文字の繰り返し)を記憶シークレットに課すべきではない(SHOULD NOT)．Verifierは，記憶シークレットを任意で(例えば，定期的に)変更するよう要求すべきではない(SHOULD NOT)．しかしながらAuthenticatorが危殆化した証拠がある場合は，変更を強制するものとする(SHALL)．
 
 <!--
 Verifiers SHOULD NOT impose other composition rules (e.g., requiring mixtures of different character types or prohibiting consecutively repeated characters) for memorized secrets. Verifiers SHOULD NOT require memorized secrets to be changed arbitrarily (e.g., periodically). However, verifiers SHALL force a change if there is evidence of compromise of the authenticator.
 -->
 
-VerifierはClaimantによる記憶シークレットを入力時に"ペースト"機能を利用することを許可すべきである(SHOULD)．これはパスワードマネージャの利用を促進し，広く利用されるようになることで多くの場合ユーザがより強力な記憶シークレットを選択する可能性を増加させる．．
+VerifierはClaimantによる記憶シークレットを入力時に"ペースト"機能を利用することを許可すべきである(SHOULD)．これはパスワードマネージャの利用を促進し，広く利用されるようになることで多くの場合ユーザがより強力な記憶シークレットを選択する可能性を増加させる．
 <!--
 Verifiers SHOULD permit claimants to use "paste" functionality when entering a memorized secret. This facilitates the use of password managers, which are widely used and in many cases increase the likelihood that users will choose stronger memorized secrets.
 -->
@@ -431,7 +431,7 @@ If the nonce used to generate the authenticator output is based on a real-time c
 Single-factor OTP verifiers effectively duplicate the process of generating the OTP used by the authenticator. As such, the symmetric keys used by authenticators are also present in the verifier, and SHALL be strongly protected against compromise.
 -->
 
-単一要素OTP AuthenticatorがSubscriberアカウントに紐付けられている時，Verifierまたは関連するCSPは，Authenticatorの出力を再現するために必要なシークレットを生成，交換または取得するためにApproveされた暗号理論を利用するものとする(SHALL)．．
+単一要素OTP AuthenticatorがSubscriberアカウントに紐付けられている時，Verifierまたは関連するCSPは，Authenticatorの出力を再現するために必要なシークレットを生成，交換または取得するためにApproveされた暗号理論を利用するものとする(SHALL)．
 <!--
 When a single-factor OTP authenticator is being associated with a subscriber account, the verifier or associated CSP SHALL use approved cryptography to either generate and exchange or to obtain the secrets required to duplicate the authenticator output.
 -->
@@ -900,7 +900,7 @@ If comparison is performed centrally:
 
 * Authenticationとしてのバイオメトリック利用はApproveされた暗号理論を用いて特定される一つ以上の特定デバイスに限定されるものとする(SHALL)．バイオメトリックがまだメインのAuthentication鍵をアンロックしていないのであれば，分離している鍵がデバイスの特定のために利用されるものとする(SHALL)．
 * バイオメトリックの破棄は，[ISO/IEC 24745](#ISO24745)中のバイオメトリックテンプレート保護と呼ばれており，実装するものとする(SHALL)．
-* 全てのバイオメトリクスの送信はAuthenticateされた保護チャネルを介して行われる．．
+* 全てのバイオメトリクスの送信はAuthenticateされた保護チャネルを介して行われる．
 
 <!--
 * Use of the biometric as an authentication factor SHALL be limited to one or more specific devices that are identified using approved cryptography. Since the biometric has not yet unlocked the main authentication key, a separate key SHALL be used for identifying the device.
@@ -992,17 +992,17 @@ VerifierとCSPが個別のエンティティである場合([SP 800-63-3 Figure 
 In situations where the verifier and CSP are separate entities (as shown by the dotted line in [SP 800-63-3 Figure 4-1](sp800-63-3.html#63Sec4-Figure1)), communications between the verifier and CSP SHALL occur through a mutually-authenticated secure channel (such as a client-authenticated TLS connection) using approved cryptography.
 -->
 
-#### <a name="verifier-secrets"></a>5.2.7 Verifier侵害耐性
+#### <a name="verifier-secrets"></a>5.2.7 Verifier危殆化耐性
 <!--
 #### <a name="verifier-secrets"></a>5.2.7 Verifier-Compromise Resistance
 -->
 
-いくつかのAuthenticatorタイプを利用に際しては，VerifierがAuthenticatorシークレットのコピーを記録する必要がある．例えば，OTP Authenticator([Section 5.1.4](#singlefactorOTP)で記載)では，VerifierがClaimantから送信された値と比較するために，個別にAuthenticator出力を生成する必要がある．Verifierが侵害され，記録されているシークレットが窃取される可能性があるため，Verifierが永続的にAuthenticationに利用するシークレットを記録する必要のないAuthenticationプロトコルは，より強力であるとみなされ，ここでは*Verifier侵害耐性*があるものとして記載されている．そのようなVerifierが，全ての攻撃に耐性があるのではないことに注意すること．Verifierは，特定のAuthenticator出力を常に受け付けるように操作されるなど，異なる方法で侵害される可能性がある．
+いくつかのAuthenticatorタイプを利用に際しては，VerifierがAuthenticatorシークレットのコピーを記録する必要がある．例えば，OTP Authenticator([Section 5.1.4](#singlefactorOTP)で記載)では，VerifierがClaimantから送信された値と比較するために，個別にAuthenticator出力を生成する必要がある．Verifierが危殆化され，記録されているシークレットが窃取される可能性があるため，Verifierが永続的にAuthenticationに利用するシークレットを記録する必要のないAuthenticationプロトコルは，より強力であるとみなされ，ここでは*Verifier危殆化耐性*があるものとして記載されている．そのようなVerifierが，全ての攻撃に耐性があるのではないことに注意すること．Verifierは，特定のAuthenticator出力を常に受け付けるように操作されるなど，異なる方法で危殆化される可能性がある．
 <!--
 Use of some types of authenticators requires that the verifier store a copy of the authenticator secret. For example, an OTP authenticator (described in [Section 5.1.4](#singlefactorOTP)) requires that the verifier independently generate the authenticator output for comparison against the value sent by the claimant. Because of the potential for the verifier to be compromised and stored secrets stolen, authentication protocols that do not require the verifier to persistently store secrets that could be used for authentication are considered stronger, and are described herein as being *verifier compromise resistant*. Note that such verifiers are not resistant to all attacks. A verifier could be compromised in a different way, such as being manipulated into always accepting a particular authenticator output.
 -->
 
-Verifier侵害耐性は異なる方法で実現することができる．例えば:
+Verifier危殆化耐性は異なる方法で実現することができる．例えば:
 <!--
 Verifier compromise resistance can be achieved in different ways, for example:
 -->
@@ -1019,12 +1019,12 @@ Verifier compromise resistance can be achieved in different ways, for example:
 - Store the expected authenticator output in hashed form. This method can be used with some look-up secret authenticators (described in [Section 5.1.2](#lookupsecrets)), for example.
 -->
 
-Verifier侵害耐性を考慮し，Verifierによって記録される公開鍵は，Approveされた暗号アルゴリズムの利用と関連付けられているものとし(SHALL)，少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．
+Verifier危殆化耐性を考慮し，Verifierによって記録される公開鍵は，Approveされた暗号アルゴリズムの利用と関連付けられているものとし(SHALL)，少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．
 <!--
 To be considered verifier compromise resistant, public keys stored by the verifier SHALL be associated with the use of approved cryptographic algorithms and SHALL provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication).
 -->
 
-他のVerifier侵害耐性のあるシークレットは，Approveされた暗号アルゴリズムを利用するものとし(SHALL)，基礎となるシークレットは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．より複雑性の低いシークレット(例えば記憶シークレット)は，辞書の探索や全探索などを通してハッシュ処理を攻略できる可能性があるため，ハッシュされていてもVerifier侵害耐性を持つものと満たさないものとする(SHALL NOT)．
+他のVerifier危殆化耐性のあるシークレットは，Approveされた暗号アルゴリズムを利用するものとし(SHALL)，基礎となるシークレットは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)を備えるものとする(SHALL)．より複雑性の低いシークレット(例えば記憶シークレット)は，辞書の探索や全探索などを通してハッシュ処理を攻略できる可能性があるため，ハッシュされていてもVerifier危殆化耐性を持つものと満たさないものとする(SHALL NOT)．
 <!--
 Other verifier compromise resistant secrets SHALL use approved hash algorithms and the underlying secrets SHALL have at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). Secrets (e.g., memorized secrets) having lower complexity SHALL NOT be considered verifier compromise resistant when hashed because of the potential to defeat the hashing process through dictionary lookup or exhaustive search.
 -->
