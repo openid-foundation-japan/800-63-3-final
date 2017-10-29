@@ -401,12 +401,12 @@ Single-factor OTP devices are similar to look-up secret authenticators with the 
 
 #### <a name="sfotpa"></a>5.1.4.1 Single-Factor OTP Authenticators
 
-単一要素OTPAuthenticatorは2つの永続的な値を保持する.1つ目はデバイスの生存期間の間保持し続ける対象鍵である.2つ目は認証機が使われる都度変化する，またはリアルタイムクロックに基づいているノンスである.
+単一要素OTPAuthenticatorは2つの永続的な値を保持する.1つ目はデバイスの存続期間にわたり保持し続ける対象鍵である.2つ目は認証機が使われる都度変化する，またはリアルタイムクロックに基づいているノンスである.
 <!--
 Single-factor OTP authenticators contain two persistent values. The first is a symmetric key that persists for the device's lifetime. The second is a nonce that is either changed each time the authenticator is used or is based on a real-time clock.
 -->
 
-秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．ノンスは，デバイスの生存期間に渡りデバイスが操作される都度一意な値であることを確実にするために十分長いこととする(SHALL). OTP Authenticatorは - 特にソフトウェアベースのOTP生成器の場合 - 複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
+秘密鍵とそのアルゴリズムは少なくとも[SP 800-131A](#SP800-131A)の最新版で定義された最低のセキュリティ強度(本書の刊行現在では112ビット)であるものとする(SHALL)．ノンスは，デバイスの存続期間にわたりデバイスが操作される都度一意な値であることを確実にするために十分長いこととする(SHALL). OTP Authenticatorは - 特にソフトウェアベースのOTP生成器の場合 - 複数デバイスに対して秘密鍵を複製する行為を思いとどまらせるべきであり(SHOULD)，助長しないものとする(SHALL NOT)．
 <!--
 The secret key and its algorithm SHALL provide at least the minimum security strength specified in the latest revision of [SP 800-131A](#SP800-131A) (112 bits as of the date of this publication). The nonce SHALL be of sufficient length to ensure that it is unique for each operation of the device over its lifetime. OTP authenticators — particularly software-based OTP generators — SHOULD discourage and SHALL NOT facilitate the cloning of the secret key onto multiple devices.
 -->
@@ -436,7 +436,7 @@ Single-factor OTP verifiers effectively duplicate the process of generating the 
 When a single-factor OTP authenticator is being associated with a subscriber account, the verifier or associated CSP SHALL use approved cryptography to either generate and exchange or to obtain the secrets required to duplicate the authenticator output.
 -->
 
-Verifierは，OTPを収集する際の盗聴や中間者攻撃に対抗するために，Approveされた暗号化を利用し，Authenticateされた保護チャネルを利用するものとする(SHALL)．時間ベースのOTP[[RFC 6238]](#RFC6238)は，有効期間を定義するものとし(SHALL)，Authenticator自体の寿命までに予想される（何れの方向に対する）時刻ずれにネットワーク遅延とユーザによるOTP入力の許容時間を加えて決定される．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは指定された時間ベースのOTPを有効期間で一度だけ受け付けるものとする(SHALL)．
+Verifierは，OTPを収集する際の盗聴や中間者攻撃に対抗するために，Approveされた暗号化を利用し，Authenticateされた保護チャネルを利用するものとする(SHALL)．時間ベースのOTP[[RFC 6238]](#RFC6238)は，有効期間を定義するものとし(SHALL)，Authenticatorの存続期間にわたり予想される（何れの方向に対する）時刻ずれにネットワーク遅延とユーザによるOTP入力の許容時間を加えて決定される．[Section 5.2.8](#replay)に記載されているリプレイ耐性を備えるために，Verifierは指定された時間ベースのOTPを有効期間で一度だけ受け付けるものとする(SHALL)．
 <!--
 The verifier SHALL use approved encryption and an authenticated protected channel when collecting the OTP in order to provide resistance to eavesdropping and MitM attacks. Time-based OTPs [[RFC 6238]](#RFC6238) SHALL have a defined lifetime that is determined by the expected clock drift — in either direction — of the authenticator over its lifetime, plus allowance for network delay and user entry of the OTP. In order to provide replay resistance as described in [Section 5.2.8](#replay), verifiers SHALL accept a given time-based OTP only once during the validity period.
 -->
@@ -471,7 +471,7 @@ If the authenticator output has less than 64 bits of entropy, the verifier SHALL
 Multi-factor OTP authenticators operate in a similar manner to single-factor OTP authenticators (see [Section 5.1.4.1](#sfotpa)), except that they require the entry of either a memorized secret or the use of a biometric to obtain the OTP from the authenticator. Each use of the authenticator SHALL require the input of the additional factor.
 -->
 
-アクティベーション情報に加えて，多要素OTP Authenticatorは2つの永続的な値を含んでいる．1つ目はデバイスの有効期間の間永続する対称鍵である．2つ目は，Authenticator利用の都度変化する，またはリアルタイムクロックに基づいているノンスである．
+アクティベーション情報に加えて，多要素OTP Authenticatorは2つの永続的な値を含んでいる．1つ目はデバイスの存続期間にわたり永続する対称鍵である．2つ目は，Authenticator利用の都度変化する，またはリアルタイムクロックに基づいているノンスである．
 <!--
 In addition to activation information, multi-factor OTP authenticators contain two persistent values. The first is a symmetric key that persists for the device's lifetime. The second is a nonce that is either changed each time the authenticator is used or is based on a real-time clock.
 -->
