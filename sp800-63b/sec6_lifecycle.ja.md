@@ -144,7 +144,7 @@ Accordingly, CSPs SHOULD permit the binding of additional authenticators to a su
 #### 6.1.2.2 Adding an Additional Factor to a Single-Factor Account
 -->
 
-Subscriberアカウントに1つのAuthentication要素がバインドされていて(すなわちIAL1/AAL2)，異なるAuthentication要素の追加Authenticatorを追加する場合，Subscriberはアカウントを AAL2 にアップグレードするよう要求してもよい(MAY)．IALはIAL1のままである．
+Subscriberアカウントに1つのAuthentication要素がバインドされていて(すなわちIAL1/AAL1)，異なるAuthentication要素の追加Authenticatorを追加する場合，Subscriberはアカウントを AAL2 にアップグレードするよう要求してもよい(MAY)．IALはIAL1のままである．
 <!--
 If the subscriber's account has only one authentication factor bound to it (i.e., at IAL1/AAL1) and an additional authenticator of a different authentication factor is to be added, the subscriber MAY request that the account be upgraded to AAL2. The IAL would remain at IAL1.
 -->
@@ -230,7 +230,7 @@ To facilitate secure reporting of the loss, theft, or damage to an authenticator
 ### 6.3 Expiration
 -->
 
-CSPは有効期限が切れたAuthenticatorを発行してもよい(MAY)．Authenticatorの有効期限が切れた際には，Authenticationに利用することはできない(SHALL NOT)．有効期限切れのAuthenticatorを用いてAuthenticationが試行された時には，CSPはSubscriberに対してこのAuthentication失敗は他の理由ではく有効期限によるものであることを指摘すべきである(SHOULD)．
+CSPは有効期限があるAuthenticatorを発行してもよい(MAY)．Authenticatorの有効期限が切れた際には，Authenticationに利用することはできない(SHALL NOT)．有効期限切れのAuthenticatorを用いてAuthenticationが試行された時には，CSPはSubscriberに対してこのAuthentication失敗は他の理由ではく有効期限によるものであることを指摘すべきである(SHOULD)．
 <!--
 CSPs MAY issue authenticators that expire. If and when an authenticator expires, it SHALL NOT be usable for authentication. When an authentication is attempted using an expired authenticator, the CSP SHOULD give an indication to the subscriber that the authentication failure is due to expiration rather than some other cause.
 -->
