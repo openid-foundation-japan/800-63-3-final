@@ -191,7 +191,7 @@ When a combination of two single-factor authenticators is used, it SHALL include
 * Single-Factor Cryptographic Device ([Section 5.1.7](#sfcd))
 -->
 
-> 注記: [Section 5.2.3](#biometric_use)でのバイオメトリックAuthenticationの要件を満たすために，デバイスはバイオメトリックに加えて，デバイスをAuthenticateされる必要がある &mdash バイオメトリックは1つの要素としてみなせるが，それ自体をAuthenticatorとしてみなしてはいない．従って，バイオメトリックを用いたAuthenticationを実施する時，2つのAuthenticatorを使う必要はない．なぜならば，関連付けられたデバイスは"something you have"として機能し，バイオメトリックは"something you are"として機能するからである．
+> 注記: [Section 5.2.3](#biometric_use)でのバイオメトリックAuthenticationの要件を満たすために，デバイスはバイオメトリックに加えて，デバイスをAuthenticateされる必要がある &mdash; バイオメトリックは1つの要素としてみなせるが，それ自体をAuthenticatorとしてみなしてはいない．従って，バイオメトリックを用いたAuthenticationを実施する時，2つのAuthenticatorを使う必要はない．なぜならば，関連付けられたデバイスは"something you have"として機能し，バイオメトリックは"something you are"として機能するからである．
 
 <!--
 > Note: When biometric authentication meets the requirements in [Section 5.2.3](#biometric_use), the device has to be authenticated in addition to the biometric &mdash; a biometric is recognized as a factor, but not recognized as an authenticator by itself. Therefore, when conducting authentication with a biometric, it is unnecessary to use two authenticators because the associated device serves as "something you have," while the biometric serves as "something you are."
