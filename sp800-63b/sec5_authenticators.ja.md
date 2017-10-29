@@ -272,11 +272,13 @@ The out-of-band authenticator SHALL uniquely authenticate itself in one of the f
 -->
 
 - Approve済み暗号理論を利用してVerifierに対するAuthenticateされた保護チャネルを確立すること．鍵はAuthenticatorアプリケーションが利用可能なデバイス上で適切にセキュアであるストレージ(例:キーチェーンストレージ，TPM，TEE，セキュアエレメント)に記録されるものとする(SHALL)．
+
 <!--
 - Establish an authenticated protected channel to the verifier using approved cryptography. The key used SHALL be stored in suitably secure storage available to the authenticator application (e.g., keychain storage, TPM, TEE, secure element).
 -->
 
 - SIMカードまたはデバイスを一意に識別する等価な方法を用いて公衆携帯電話網に対してAuthenticateする．この方法はPSTN(SMSまたは音声)を介してアウトオブバンドデバイスに対してVerifierからシークレットが送信される場合に限り用いるものとする(SHALL)．
+
 <!--
 - Authenticate to a public mobile telephone network using a SIM card or equivalent that uniquely identifies the device. This method SHALL only be used if a secret is being sent from the verifier to the out-of-band device via the PSTN (SMS or voice).
 -->
@@ -292,11 +294,13 @@ If the out-of-band authenticator sends an approval message over the secondary co
 -->
 
 * Authenticatorはプライマリチャネルから得たシークレットを転送することを許容するものとし(SHALL)，Authenticationトランザクションに対する承認と関連付けるために，セカンダリチャネルを介してVerifierに対して送信するものとする(SHALL)．Claimantは送信を手動で実施，またはバーコード・QRコードといった技術を利用して送信を行ってもよい(MAY)．
+
 <!--
 * The authenticator SHALL accept transfer of the secret from the primary channel which it SHALL send to the verifier over the secondary channel to associate the approval with the authentication transaction. The claimant MAY perform the transfer manually or use a technology such as a barcode or QR code to effect the transfer.
 -->
 
 * Authenticatorはセカンダリチャネルを介してVerifierから受け取ったシークレットを提示し，Claimantに対してプライマリチャネルのシークレットとの一貫性を検証するよう促した上で，Claimantから「はい/いいえ」の応答を受け入れるものとする(SHALL)．
+
 <!--
 * The authenticator SHALL present a secret received via the secondary channel from the verifier and prompt the claimant to verify the consistency of that secret with the primary channel, prior to accepting a yes/no response from the claimant. It SHALL then send that response to the verifier.
 -->
