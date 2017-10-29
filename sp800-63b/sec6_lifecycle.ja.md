@@ -62,7 +62,7 @@ When any new authenticator is bound to a subscriber account, the CSP SHALL ensur
 #### 6.1.1 Binding at Enrollment
 -->
 
-Authenticatorが[SP 800-63A](sp800-63a.html)に記載されているIdentity proofingのトランザクションが成功した結果として，アイデンティティにバインドされる時，次の要件が適用される．Executive Order 13681 [[EO 13681]](#EO13681)によりあらゆるパーソナルデータの開示には，多要素Authenticationを利用する必要があるため，AuthenticatorはSubscriberアカウントにEnrollment時にバインドされ，Identity proofingに確立されているものを含むパーソナルデータへのアクセスが許可されることが重要である．
+Authenticatorが[SP 800-63A](sp800-63a.html)に記載されているIdentity proofingのトランザクションが成功した結果として，アイデンティティにバインドされる時，次の要件が適用される．Executive Order 13681 [[EO 13681]](#EO13681)によりあらゆる個人データの開示には，多要素Authenticationを利用する必要があるため，AuthenticatorはSubscriberアカウントにEnrollment時にバインドされ，Identity proofingに確立されているものを含む個人データへのアクセスが許可されることが重要である．
 <!--
 The following requirements apply when an authenticator is bound to an identity as a result of a successful identity proofing transaction, as described in [SP 800-63A](sp800-63a.html). Since Executive Order 13681 [[EO 13681]](#EO13681) requires the use of multi-factor authentication for the release of any personal data, it is important that authenticators be bound to subscriber accounts at enrollment, enabling access to personal data, including that established by identity proofing.
 -->
@@ -77,7 +77,7 @@ The CSP SHALL bind at least one, and SHOULD bind at least two, physical (*someth
 While all identifying information is self-asserted at IAL1, preservation of online material or an online reputation makes it undesirable to lose control of an account due to the loss of an authenticator. The second authenticator makes it possible to securely recover from an authenticator loss. For this reason, a CSP SHOULD bind at least two physical authenticators to the subscriber's credential at IAL1 as well.
 -->
 
-IAL2以上では，識別情報は，デジタルアイデンティティに関連付けられ，Subscriberは[SP 800-63A](sp800-63a.html)に記載されているIdentity proofingプロセスを受ける．結果として，要求するIALと同じAALのAuthenticatorがアカウントにバインドされるものとする(SHALL)．例えば，もしSubscriberがIAL2でproofingに成功したならば，AAL2またはAAL3のAuthenticatorがIAL2のアイデンティティにバインドするために適切である．CSPはAAL1のAuthenticatorをIAL2のアイデンティティにバインドしてもよい(MAY)が，もしSubscriberがAAL1でAuthenticateされた場合には，CSPは，それが仮にself-assertedであっても，パーソナルインフォメーションをSubscriberに対して開示しない(SHALL NOT)．以前の文章で述べているように，追加のAuthenticatorが利用可能であれば，あるAuthenticatorが破損，紛失，盗難してしまった場合に備える手段を提供することになる．
+IAL2以上では，識別情報は，デジタルアイデンティティに関連付けられ，Subscriberは[SP 800-63A](sp800-63a.html)に記載されているIdentity proofingプロセスを受ける．結果として，要求するIALと同じAALのAuthenticatorがアカウントにバインドされるものとする(SHALL)．例えば，もしSubscriberがIAL2でproofingに成功したならば，AAL2またはAAL3のAuthenticatorがIAL2のアイデンティティにバインドするために適切である．CSPはAAL1のAuthenticatorをIAL2のアイデンティティにバインドしてもよい(MAY)が，もしSubscriberがAAL1でAuthenticateされた場合には，CSPは，それが仮にself-assertedであっても，個人情報をSubscriberに対して開示しない(SHALL NOT)．以前の文章で述べているように，追加のAuthenticatorが利用可能であれば，あるAuthenticatorが破損，紛失，盗難してしまった場合に備える手段を提供することになる．
 <!--
 At IAL2 and above, identifying information is associated with the digital identity and the subscriber has undergone an identity proofing process as described in [SP 800-63A](sp800-63a.html). As a result, authenticators at the same AAL as the desired IAL SHALL be bound to the account. For example, if the subscriber has successfully completed proofing at IAL2, then AAL2 or AAL3 authenticators are appropriate to bind to the IAL2 identity. While a CSP MAY bind an AAL1 authenticator to an IAL2 identity, if the subscriber is authenticated at AAL1, the CSP SHALL NOT expose personal information, even if self-asserted, to the subscriber. As stated in the previous paragraph, the availability of additional authenticators provides backup methods for authentication if an authenticator is damaged, lost, or stolen.
 -->
@@ -144,7 +144,7 @@ Accordingly, CSPs SHOULD permit the binding of additional authenticators to a su
 #### 6.1.2.2 Adding an Additional Factor to a Single-Factor Account
 -->
 
-Subscriberアカウントに1つのAuthentication要素がバインドされていて(すなわちIAL1/AAL2)，異なるAuthentication要素の追加Authenticatorを追加する場合，Subscriberはアカウントを AAL2 にアップグレードするよう要求してもよい(MAY)．IALはIAL1のままである．
+Subscriberアカウントに1つのAuthentication要素がバインドされていて(すなわちIAL1/AAL1)，異なるAuthentication要素の追加Authenticatorを追加する場合，Subscriberはアカウントを AAL2 にアップグレードするよう要求してもよい(MAY)．IALはIAL1のままである．
 <!--
 If the subscriber's account has only one authentication factor bound to it (i.e., at IAL1/AAL1) and an additional authenticator of a different authentication factor is to be added, the subscriber MAY request that the account be upgraded to AAL2. The IAL would remain at IAL1.
 -->
@@ -210,17 +210,17 @@ The CSP SHOULD bind an updated authenticator an appropriate amount of time befor
 ### 6.2 Loss, Theft, Damage, and Unauthorized Duplication
 -->
 
-侵害されたAuthenticatorには，盗難，紛失，不正な複製の対称となるものが含まれる．一般的に，紛失したAuthenticatorは盗難されたりAuthenticatorの正当なSubscriberではない誰かに侵害されたものであると仮定しなければならない．破損または故障したAuthenticatorもまた，Authenticatorシークレットが抽出されたいかなる可能性に対しても防御するために，侵害されたとみなされる．攻撃者に入手されるといった侵害された形跡がなく，忘れてしまった記憶シークレットは顕著な例外である．
+危殆化したAuthenticatorには，盗難，紛失，不正な複製の対象となったものが含まれる．一般的に，紛失したAuthenticatorは盗難されたりAuthenticatorの正当なSubscriberではない誰かによって危殆化されたものであると仮定しなければならない．破損または故障したAuthenticatorもまた，Authenticatorシークレットが抽出されたいかなる可能性に対しても防御するために，侵害されたとみなされる．攻撃者に入手されるといった危殆化した形跡がなく，忘れてしまった記憶シークレットは顕著な例外である．
 <!--
 Compromised authenticators include those that have been lost, stolen, or subject to unauthorized duplication. Generally, one must assume that a lost authenticator has been stolen or compromised by someone that is not the legitimate subscriber of the authenticator. Damaged or malfunctioning authenticators are also considered compromised to guard against any possibility of extraction of the authenticator secret. One notable exception is a memorized secret that has been forgotten without other indications of having been compromised, such as having been obtained by an attacker.
 -->
 
-侵害されたAuthenticatorの中断，無効化，破棄は，その検出後に速やかに行われるべきである(SHOULD)．政府機関はこのプロセスに時間制限を設けるべきである(SHOULD)．
+危殆化したAuthenticatorの中断，無効化，破棄は，その検出後に速やかに行われるべきである(SHOULD)．政府機関はこのプロセスに時間制限を設けるべきである(SHOULD)．
 <!--
 Suspension, revocation, or destruction of compromised authenticators SHOULD occur as promptly as practical following detection. Agencies SHOULD establish time limits for this process.
 -->
 
-Authenticatorの紛失，盗難，破損の安全に報告することを促すために，CSPは，Subscriberに対してバックアップまたは代替Authenticatorを利用してCSPに対してAuthenticateする方法を提供すべきである(SHOULD)．このバックアップAuthenticatorは記憶シークレットか物理Authenticatorのいずれかとする(SHALL)．どちらが利用されてもよい(MAY)が，この報告を行うためには1つだけのAuthentication要素だけが必要である．あるいは，Subscriberは，Authenticate済み保護チャネルを確立し，Proofingプロセスにおいて収取された情報を検証してもよい(MAY)．CSPはアドレスレコード(すなわちEmail，電話，住所)を検証し，侵害されたと報告のあったAuthenticatorを中断してもよい(MAY)．中断は，Subscriberが正当な(すなわち，中断されていない) Authenticatorを用いて正しくCSPに対してAuthenticateすることができ，Authenticatorを再アクティベーションを要求する場合，再開できるものとする(SHALL)．CSPは中断されているAuthenticatorがもはや再アクティベートができなくなるまでの時間制限を設けてもよい(MAY)．
+Authenticatorの紛失，盗難，破損の安全に報告することを促すために，CSPは，Subscriberに対してバックアップまたは代替Authenticatorを利用してCSPに対してAuthenticateする方法を提供すべきである(SHOULD)．このバックアップAuthenticatorは記憶シークレットか物理Authenticatorのいずれかとする(SHALL)．どちらが利用されてもよい(MAY)が，この報告を行うためには1つだけのAuthentication要素だけが必要である．あるいは，Subscriberは，Authenticate済み保護チャネルを確立し，Proofingプロセスにおいて収集された情報を検証してもよい(MAY)．CSPはアドレスレコード(すなわちEmail，電話，住所)を検証し，危殆化したと報告のあったAuthenticatorを中断してもよい(MAY)．中断は，Subscriberが正当な(すなわち，中断されていない) Authenticatorを用いて正しくCSPに対してAuthenticateすることができ，Authenticatorを再アクティベーションを要求する場合，再開できるものとする(SHALL)．CSPは中断されているAuthenticatorがもはや再アクティベートができなくなるまでの時間制限を設けてもよい(MAY)．
 <!--
 To facilitate secure reporting of the loss, theft, or damage to an authenticator, the CSP SHOULD provide the subscriber with a method of authenticating to the CSP using a backup or alternate authenticator. This backup authenticator SHALL be either a memorized secret or a physical authenticator. Either MAY be used, but only one authentication factor is required to make this report. Alternatively, the subscriber MAY establish an authenticated protected channel to the CSP and verify information collected during the proofing process. The CSP MAY choose to verify an address of record (i.e., email, telephone, postal) and suspend authenticator(s) reported to have been compromised. The suspension SHALL be reversible if the subscriber successfully authenticates to the CSP using a valid (i.e., not suspended) authenticator and requests reactivation of an authenticator suspended in this manner. The CSP MAY set a time limit after which a suspended authenticator can no longer be reactivated.
 -->
@@ -230,7 +230,7 @@ To facilitate secure reporting of the loss, theft, or damage to an authenticator
 ### 6.3 Expiration
 -->
 
-CSPは有効期限が切れたAuthenticatorを発行してもよい(MAY)．Authenticatorの有効期限が切れた際には，Authenticationに利用することはできない(SHALL NOT)．有効期限切れのAuthenticatorを用いてAuthenticationが試行された時には，CSPはSubscriberに対してこのAuthentication失敗は他の理由ではく有効期限によるものであることを指摘すべきである(SHOULD)．
+CSPは有効期限があるAuthenticatorを発行してもよい(MAY)．Authenticatorの有効期限が切れた際には，Authenticationに利用することはできない(SHALL NOT)．有効期限切れのAuthenticatorを用いてAuthenticationが試行された時には，CSPはSubscriberに対してこのAuthentication失敗は他の理由ではく有効期限によるものであることを指摘すべきである(SHOULD)．
 <!--
 CSPs MAY issue authenticators that expire. If and when an authenticator expires, it SHALL NOT be usable for authentication. When an authentication is attempted using an expired authenticator, the CSP SHOULD give an indication to the subscriber that the authentication failure is due to expiration rather than some other cause.
 -->
