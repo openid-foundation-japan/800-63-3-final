@@ -70,7 +70,7 @@ https://doi.org/10.6028/NIST.SP.800-63b
 Tatsuya Katsuhara (勝原 達也)  
 *NRI SecureTechnologies, Ltd.*
 
-Hitomi Kimura (木村 瞳)  
+Hitomi Kimura (木村 仁美)  
 *Trend Micro Inc.*
 
 
