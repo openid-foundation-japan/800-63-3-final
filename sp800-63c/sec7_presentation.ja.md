@@ -8,7 +8,7 @@ Assertion は IdP から RP に対して *Back-Channel* ないしは *Front-Chan
 
 <!-- Assertions MAY be presented in either a *back-channel* or *front-channel* manner from the IdP to the RP. There are tradeoffs with each model, but each requires the proper validation of the assertion. Assertions MAY also be proxied to facilitate federation between IdPs and RPs under specific circumstances, as discussed in [Section 5.1.4](#proxied). -->
 
-IdP は RP が明示的に要求した Attribute のみを送信することとする (SHALL). また RP は Privacy Risk Assesment を行い, どの Attribute を要求するか決定することとする (SHALL).
+IdP は RP が明示的に要求した Attribute のみを送信することとする (SHALL). また RP は Privacy Risk Assessment を行い, どの Attribute を要求するか決定することとする (SHALL).
 
 <!-- The IdP SHALL transmit only those attributes that were explicitly requested by the RP. RPs SHALL conduct a privacy risk assessment when determining which attributes to request. -->
 

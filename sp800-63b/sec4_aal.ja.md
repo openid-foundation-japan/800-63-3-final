@@ -7,7 +7,7 @@ _本セクションは標準及び参考情報の題材両方を含む._
 _This section contains both normative and informative material._
 -->
 
-指定されたAALの要件を満たすために，Claimantは少なくとも自身がSubscriberとして認識される強度のレベルでAuthenticateされるものとする(SHALL)．Authenticationプロセスの結果は識別子であり，SubscriberがRPに対してAuthenticateするたびに使われるものとする(SHALL)．それは仮名でもよい(MAY)，Subscriberの識別子は異なる目的で再利用すべきではない(SHOULD NOT)が，CSPによって過去に登録済みのSubjectが再登録される場合には再利用すべきである(SHOULD)．Subscriberをを一意なSubjectであると識別する他の属性もまた提供されてもよい(MAY)．
+指定されたAALの要件を満たすために，Claimantは少なくとも自身がSubscriberとして認識される強度のレベルでAuthenticateされるものとする(SHALL)．Authenticationプロセスの結果は識別子であり，SubscriberがRPに対してAuthenticateするたびに使われるものとする(SHALL)．それは仮名でもよい(MAY)，Subscriberの識別子は異なる目的で再利用すべきではない(SHOULD NOT)が，CSPによって過去に登録済みのSubjectが再登録される場合には再利用すべきである(SHOULD)．Subscriberを一意なSubjectであると識別する他の属性もまた提供されてもよい(MAY)．
 
 <!--
 To satisfy the requirements of a given AAL, a claimant SHALL be authenticated with at least a given level of strength to be recognized as a subscriber. The result of an authentication process is an identifier that SHALL be used each time that subscriber authenticates to that RP. The identifier MAY be pseudonymous. Subscriber identifiers SHOULD NOT be reused for a different subject but SHOULD be reused when a previously-enrolled subject is re-enrolled by the CSP. Other attributes that identify the subscriber as a unique subject MAY also be provided.

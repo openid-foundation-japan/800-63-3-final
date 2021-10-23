@@ -32,7 +32,7 @@ Digital Authentication は, 個人の情報への Unauthorized Access のリス�
 
 <!-- Digital authentication supports privacy protection by mitigating risks of unauthorized access to individuals' information. At the same time, because identity proofing, authentication, authorization, and federation involve the processing of individuals' information, these functions can also create privacy risks. These guidelines therefore include privacy requirements and considerations to help mitigate potential associated privacy risks. -->
 
-本ガイドライン群は, Identity Assurance を個別要素ごとに分割することで, Authentication の誤りがもたらすネガティブインパクトの軽減に寄与する. Non-federated なシステムでは, 各機関はそれらのうち *Identity Assurance Level (IAL)* と *Authenticator Assurance Level (AAL)* という2つの要素を用いるであろう. Federated なシステムでは, それに加えて3つ目の要素となる *Federation Assurance Level (FAL)* も用いることとなろう. [Section 5, Digital Identity Risk Management](#sec5) では Risk Assesment プロセスの詳細について述べる. [Section 6, Selecting Assurance Levels](#sec6) は, Risk Assessment の結果と追加のコンテキストをふまえ, 機関によるリスクに応じた適切な IAL, AAL, FAL の選択の一助となる.
+本ガイドライン群は, Identity Assurance を個別要素ごとに分割することで, Authentication の誤りがもたらすネガティブインパクトの軽減に寄与する. Non-federated なシステムでは, 各機関はそれらのうち *Identity Assurance Level (IAL)* と *Authenticator Assurance Level (AAL)* という2つの要素を用いるであろう. Federated なシステムでは, それに加えて3つ目の要素となる *Federation Assurance Level (FAL)* も用いることとなろう. [Section 5, Digital Identity Risk Management](#sec5) では Risk Assessment プロセスの詳細について述べる. [Section 6, Selecting Assurance Levels](#sec6) は, Risk Assessment の結果と追加のコンテキストをふまえ, 機関によるリスクに応じた適切な IAL, AAL, FAL の選択の一助となる.
 
 <!-- These guidelines support the mitigation of the negative impacts induced by an authentication error by separating the individual elements of identity assurance into discrete, component parts. For non-federated systems, agencies will select two components, referred to as *Identity Assurance Level (IAL)* and *Authenticator Assurance Level (AAL)*. For federated systems, a third component, *Federation Assurance Level (FAL)*, is included. [Section 5, Digital Identity Risk Management](#sec5) provides details on the risk assessment process. [Section 6, Selecting Assurance Levels](#sec6) combines the results of the risk assessment with additional context to support agency selection of the appropriate IAL, AAL, and FAL combinations based on risk. -->
 
@@ -56,7 +56,7 @@ SP 800-63 は以下のような一連の Vol. から構成される.
 
 <!-- As such, SP 800-63 is organized as a suite of volumes as follows: -->
 
-SP 800-63 *Digital Identity Guidelines*:　SP 800-63 では, Risk Assesment の方法論, デジタルシステムにおける Authenticator, Credential, Assertion を利用した一般的な Identity Framework の概観, およびリスクベースプロセスに基づく各 Assurance Level の選択方法について述べる. _SP 800-63 contains both normative and informative material._
+SP 800-63 *Digital Identity Guidelines*:　SP 800-63 では, Risk Assessment の方法論, デジタルシステムにおける Authenticator, Credential, Assertion を利用した一般的な Identity Framework の概観, およびリスクベースプロセスに基づく各 Assurance Level の選択方法について述べる. _SP 800-63 contains both normative and informative material._
 
 <!-- SP 800-63 *Digital Identity Guidelines*: Provides the risk assessment methodology and an overview of general identity frameworks, using authenticators, credentials, and assertions together in a digital system, and a risk-based process of selecting assurance levels. _SP 800-63 contains both normative and informative material._ -->
 
@@ -155,7 +155,7 @@ NIST SP 800-63-3 は SP 800-63-2 の大幅なアップデートと再構成を�
 
 <!-- Other areas updated in 800-63-3 include: -->
 
-- Identity Proofing および Federation をスコープに含めていることを正しく示すべく, "Digital Identity Guidelines" に改名し, 将来のリビジョンで Device Identity や Machine-to-Machene Authentication を扱えるようスコープを拡大する余地を含めた.
+- Identity Proofing および Federation をスコープに含めていることを正しく示すべく, "Digital Identity Guidelines" に改名し, 将来のリビジョンで Device Identity や Machine-to-Machine Authentication を扱えるようスコープを拡大する余地を含めた.
 - Assertion 技術における *Token* との混同を避けるため *Token* の代わりに *Authenticator* という用語を用いるなど, 用語変更を行った.
 - Authentication および Assertion の要件を更新し, セキュリティー技術および脅威の進化を反映した.
 - Verifier が Long-term Secret を保管する際の要件を定めた.
